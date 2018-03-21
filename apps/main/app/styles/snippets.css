@@ -1,0 +1,28 @@
+.snippet {
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+  overflow-x: auto;
+}
+
+.snippet__block-code {
+  display: block;
+  padding: 0.15em 0.4em;
+  color: #fff;
+  background-color: #424242;
+  border-radius: var(--border-radius-square);
+}
+
+.snippet__block-code--multiline {
+  white-space: pre-wrap;
+}
+
+.snippet__inline-code {
+  padding: 0.15em 0.4em;
+  color: #fff;
+  background-color: #424242;
+  border-radius: var(--border-radius-square);
+}

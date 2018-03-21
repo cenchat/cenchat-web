@@ -1,0 +1,9 @@
+.section-header {
+  display: flex;
+}
+
+.section-header__title {
+  flex: 1;
+  padding-right: 8px;
+  padding-left: 8px;
+}

@@ -1,0 +1,36 @@
+.comment-item {
+  display: flex;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.comment-item__edit-form-composer {
+  flex: 1;
+  overflow: hidden;
+}
+
+.comment-item__container {
+  flex: 1;
+  max-width: 100%;
+}
+
+.comment-item__share-comment-label {
+  display: block;
+  max-width: 400px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  font-size: var(--font-size-12);
+  color: var(--font-primary-color);
+}
+
+.comment-item__share-comment-link {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: var(--font-size-14);
+  color: var(--font-primary-color);
+  background-color: transparent;
+  border: 1px solid var(--divider-color);
+  border-radius: var(--border-radius-square);
+}

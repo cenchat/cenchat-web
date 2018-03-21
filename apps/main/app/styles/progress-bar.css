@@ -1,0 +1,37 @@
+.progress-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2400;
+  height: 2px;
+  overflow: hidden;
+  background-color: var(--progress-bar-background-color);
+  border: none;
+}
+
+.progress-bar::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  content: '';
+  background-color: var(--progress-bar-moving-color);
+  animation-name: progress-bar;
+  animation-duration: 2000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
+}

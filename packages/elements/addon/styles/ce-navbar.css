@@ -1,0 +1,33 @@
+.ce-navbar {
+  position: fixed;
+  bottom: 0;
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--navbar-background-color);
+  box-shadow: var(--elevation);
+}
+
+@media (min-width: 960px) {
+  .ce-navbar {
+    top: 0;
+    left: 0;
+    z-index: 200;
+    display: block;
+    width: auto;
+  }
+
+  .ce-navbar::before {
+    display: block;
+    height: 64px;
+    content: '';
+  }
+}
+
+.ce-navbar .ce-icon-link-button {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color: var(--navbar-color);
+}

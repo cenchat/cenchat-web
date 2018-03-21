@@ -1,0 +1,20 @@
+.legal {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.legal__header {
+  font-family: var(--font-family);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: 28px;
+  color: var(--font-secondary-color);
+}
+
+.legal__header,
+.legal__list,
+.legal__paragraph {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}

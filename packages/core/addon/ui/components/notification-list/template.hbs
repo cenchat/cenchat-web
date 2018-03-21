@@ -1,0 +1,16 @@
+{{#each --notifications as |notification|}}
+  {{#if (eq notification.type 'comment_tag')}}
+    {{notification-list/notification-list-comment-tag-item --notification=notification}}
+  {{else if (eq notification.type 'follow')}}
+    {{notification-list/notification-list-follow-item
+        --notification=notification
+        --onFollowBackClick=(action handleFollowBackClick)}}
+  {{/if}}
+{{else}}
+  <li class="list__item" data-test-notification-list="empty-state">
+    <div class="list__multi-line-content">
+      <h2 class="list__primary-text">Nothing here right now</h2>
+      <p class="list__secondary-text">Don't worry. We don't judge. ;)</p>
+    </div>
+  </li>
+{{/each}}

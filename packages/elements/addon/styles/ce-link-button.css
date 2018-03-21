@@ -1,0 +1,39 @@
+.ce-link-button {
+  padding: 8px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 36px;
+  color: var(--button-default-color);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.ce-link-button:disabled {
+  color: var(--button-disabled-color);
+}
+
+.ce-link-button div {
+  position: relative;
+  height: 36px;
+  min-width: 88px;
+  padding-right: 8px;
+  padding-left: 8px;
+  border-radius: var(--border-radius-square);
+  box-sizing: border-box;
+}
+
+.ce-link-button:hover div {
+  background-color: var(--button-hover-background-color);
+}
+
+.ce-link-button:active div,
+.ce-link-button[aria-pressed="true"] div {
+  background-color: var(--button-active-background-color);
+}
+
+.ce-link-button:disabled div {
+  background-color: transparent;
+}

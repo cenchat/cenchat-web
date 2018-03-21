@@ -1,0 +1,18 @@
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        href=(href-to 'sites.index')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+
+    <h2>Add site</h2>
+  {{/ce-top-bar}}
+
+  <div class="side-nav__content">
+    {{sites/index/new/-components/route-content/site-form
+        --onSiteFormSubmit=(action --onSiteFormSubmit)}}
+  </div>
+
+  {{yield}}
+{{/side-nav}}

@@ -1,0 +1,15 @@
+.ce-icon {
+  color: var(--icon-default-color);
+}
+
+.ce-icon[size="small"] {
+  font-size: 18px;
+}
+
+.ce-icon[size="medium"] {
+  font-size: 36px;
+}
+
+.ce-icon[size="large"] {
+  font-size: 48px;
+}

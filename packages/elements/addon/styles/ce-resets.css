@@ -1,0 +1,32 @@
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+  color: #0091ea;
+}
+
+a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
+  color: #ea80fc;
+}
+
+/**
+ * Reset Segoe UI font to include font-weight 500
+ */
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 300;
+  src: local("Segoe UI Semilight");
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI");
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  font-weight: 500;
+  src: local("Segoe UI Semibold");
+}

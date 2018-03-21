@@ -1,0 +1,31 @@
+.comment-composer-message-textbox {
+  display: flex;
+}
+
+.comment-composer-message-textbox__field {
+  width: 100%;
+  margin-top: 4px;
+  margin-right: 4px;
+  margin-left: 4px;
+  font-family: var(--font-family);
+  color: var(--font-primary-color);
+  resize: none;
+  background-color: transparent;
+  border: none;
+}
+
+.comment-composer-message-textbox__field::-moz-placeholder {
+  color: var(--font-hint-color);
+}
+
+.comment-composer-message-textbox__field::-webkit-input-placeholder {
+  color: var(--font-hint-color);
+}
+
+.comment-composer-message-textbox__field:-ms-input-placeholder {
+  color: var(--font-hint-color);
+}
+
+.comment-composer-message-textbox__field:focus {
+  outline: none;
+}

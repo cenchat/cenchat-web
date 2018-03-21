@@ -1,0 +1,95 @@
+.ce-icon-link-button {
+  padding: 0;
+  color: var(--icon-default-color);
+  background: none;
+  border-style: none;
+}
+
+.ce-icon-link-button div {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin: 8px;
+  border-radius: var(--border-radius-circle);
+}
+
+.ce-icon-link-button:hover div {
+  background-color: var(--icon-button-hover-background-color);
+}
+
+.ce-icon-link-button:active div,
+.ce-icon-link-button[aria-pressed="true"] div {
+  background-color: var(--icon-button-active-background-color);
+}
+
+.ce-icon-link-button:disabled div {
+  background-color: transparent;
+}
+
+.ce-icon-link-button[size="small"] div {
+  width: 30px;
+  height: 30px;
+}
+
+.ce-icon-link-button[size="medium"] div {
+  width: 48px;
+  height: 48px;
+}
+
+.ce-icon-link-button[size="large"] div {
+  width: 60px;
+  height: 60px;
+}
+
+.ce-icon-link-button[square] div {
+  border-radius: var(--border-radius-square);
+}
+
+.ce-icon-link-button[badged] div::after {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--red);
+  border-radius: var(--border-radius-circle);
+  content: '';
+}
+
+.ce-icon-link-button img {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  border-radius: var(--border-radius-circle);
+  box-sizing: content-box;
+  user-select: none;
+}
+
+.ce-icon-link-button[size="small"] img {
+  width: 18px;
+  height: 18px;
+}
+
+.ce-icon-link-button[size="medium"] img {
+  width: 36px;
+  height: 36px;
+}
+
+.ce-icon-link-button[size="large"] img {
+  width: 48px;
+  height: 48px;
+}
+
+.ce-icon-link-button[square] img {
+  border-radius: 0;
+}
+
+.ce-icon-link-button .ce-icon {
+  padding: 6px;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.ce-icon-link-button:disabled .ce-icon {
+  color: var(--icon-disabled-color);
+}

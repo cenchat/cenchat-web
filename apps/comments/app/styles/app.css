@@ -1,0 +1,18 @@
+@import "empty-state.css";
+@import "firebaseui.css";
+@import "layout.css";
+@import "themes.css";
+@import "pod-styles";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: var(--item-background-color);
+}

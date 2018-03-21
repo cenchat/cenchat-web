@@ -1,0 +1,9 @@
+.comment-item-content-tagged-entity-list-item:not(:last-child) {
+  margin-right: 4px;
+}
+
+.comment-item-content-tagged-entity-list-item__photo {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--border-radius-circle);
+}

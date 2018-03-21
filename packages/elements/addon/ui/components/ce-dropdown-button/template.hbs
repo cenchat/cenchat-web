@@ -1,0 +1,32 @@
+{{#if text}}
+  {{#ce-button
+      id=buttonId
+      type="button"
+      aria-haspopup="true"
+      aria-expanded=(if isExpanded 'true' 'false')
+      --onClick=(action handleButtonClick)}}
+    {{text}}
+  {{/ce-button}}
+{{else}}
+  {{ce-icon-button
+      id=buttonId
+      type="button"
+      title=title
+      alt=alt
+      aria-label=aria-label
+      aria-haspopup="true"
+      aria-expanded=(if isExpanded 'true' 'false')
+      icon=icon
+      image=image
+      badged=badged
+      size=size
+      --onClick=(action handleButtonClick)}}
+{{/if}}
+
+{{#if isExpanded}}
+  <div class="backdrop"></div>
+{{/if}}
+
+<ul class="menu {{animation}}" aria-labelledby="{{buttonId}}">
+  {{yield}}
+</ul>

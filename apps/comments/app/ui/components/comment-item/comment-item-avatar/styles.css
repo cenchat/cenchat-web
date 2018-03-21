@@ -1,0 +1,44 @@
+.comment-item-avatar {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-item-avatar__author-image-container {
+  position: relative;
+}
+
+.comment-item-avatar__author-image-link {
+  display: block;
+}
+
+.comment-item-avatar__author-image {
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  border-radius: var(--border-radius-circle);
+}
+
+.comment-item-avatar__following-badge {
+  position: absolute;
+  top: -4px;
+  right: 12px;
+  color: var(--red);
+}
+
+.comment-item-avatar__toggle-quote-button {
+  padding: 8px 8px 8px 0;
+  background: none;
+  border-style: none;
+}
+
+.comment-item-avatar__toggle-quote-button:focus {
+  outline: none;
+}
+
+.comment-item-avatar__toggle-quote-button img {
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--border-radius-circle);
+}

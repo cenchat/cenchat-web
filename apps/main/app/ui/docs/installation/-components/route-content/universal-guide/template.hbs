@@ -1,0 +1,77 @@
+{{!-- disable block-indentation --}}
+{{! template-lint-disable block-indentation }}
+
+<section class="section">
+  {{#ce-subheader class="section__header"}}
+    <h3>Embedding Cenchat Comments</h3>
+  {{/ce-subheader}}
+
+  <article class="card">
+    <header class="card__header">
+      <h4 class="card__heading">Using an ID</h4>
+      <p class="card__subheading">Recommended way</p>
+    </header>
+
+    <p class="card__message">
+      Add the <code class="snippet__inline-code">&lt;script&gt;</code> tag below at the end of your web page's <code class="snippet__inline-code">&lt;body&gt;</code> tag
+    </p>
+
+    <p class="card__message snippet">
+      <code class="snippet__block-code" data-test-docs="iframe-id-snippet">
+        &lt;script src="https://comments.cenchat.com/embeds/1.0.0/universal.js"&gt;&lt;/script&gt;
+      </code>
+    </p>
+
+    <p class="card__message">
+      Next, add the <code class="snippet__inline-code">&lt;div&gt;</code> tag below and place it anywhere in your page where you want the comments to appear. You'll need to replace <code class="snippet__inline-code">[page_id]</code> with an ID that uniquely identifies that page across your website.
+    </p>
+
+    <p class="card__message snippet">
+      <code class="snippet__block-code" data-test-docs="iframe-id-snippet">
+        &lt;div id="cenchat-comments" data-page-id="[page_id]"&gt;&lt;/div&gt;
+      </code>
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Using your page's URL</h4>
+
+    <p class="card__message">
+      This is similar to what's explained above except that you'll remove the <code class="snippet__inline-code">data-page-id="[page_id]"</code> part.
+    </p>
+
+    <p class="card__message">
+      With this method, the URL of the page will be used to determine which set of comments will be shown.
+    </p>
+
+    <p class="card__message">
+      Take note that URLs can be unreliable as they could easily change, such as when renaming an article, changing domain, and many more. Should you go with this method, a unique ID will be generated for you which you can use in the future.
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Removing scrollbar</h4>
+
+    <p class="card__message">
+      Embedding Cenchat Comments in your web page will have a scrollbar by default. To remove it, just add in the <code class="snippet__inline-code">&lt;script&gt;</code> tag below at the end of your web page's <code class="snippet__inline-code">&lt;body&gt;</code> tag
+    </p>
+
+    <p class="card__message snippet">
+      <code class="snippet__block-code" data-test-docs="iframe-id-snippet">
+        &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js"&gt;&lt;/script&gt;
+      </code>
+    </p>
+
+    <p class="card__message">
+      Your comments will now resize on its own depending on its size. Thus, removing the scrollbar.
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Styling</h4>
+
+    <p class="card__message">
+      You can style Cenchat Comments should you need to. To do so, just target the <code class="snippet__inline-code">#cenchat-comments-thread</code> in your CSS.
+    </p>
+  </article>
+</section>

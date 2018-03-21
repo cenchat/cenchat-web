@@ -1,0 +1,18 @@
+{{sites/site/index/-components/route-content/top-bar --site=--site}}
+
+<main class="main">
+  {{#if --site.isVerified}}
+    {{#async-let
+        on=(async-property --site.pages)
+        placeholder=(component 'ce-spinner' aria-valuetext='Loading pages')
+        as |pages|}}
+      {{sites/site/index/-components/route-content/page-collection --router=--router --pages=pages}}
+    {{/async-let}}
+  {{else}}
+    {{sites/site/index/-components/route-content/setup-guide
+        --site=--site
+        --onVerifySiteClick=(action --onVerifySiteClick)}}
+  {{/if}}
+
+  {{yield}}
+</main>

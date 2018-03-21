@@ -1,0 +1,18 @@
+.ce-subheader {
+  height: 48px;
+}
+
+.ce-subheader > h1,
+.ce-subheader > h2,
+.ce-subheader > h3,
+.ce-subheader > h4,
+.ce-subheader > h5,
+.ce-subheader > h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 48px;
+  color: var(--font-secondary-color);
+}

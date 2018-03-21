@@ -1,0 +1,37 @@
+<div data-test-item-toolbar="host" role="toolbar" aria-label="Comment toolbar">
+  {{#if (and (not --comment.isDeleted) (eq --comment.author.id --session.model.id))}}
+    {{ce-icon-button
+        data-test-item-toolbar="delete-button"
+        title="Delete"
+        aria-label="Delete"
+        icon="delete"
+        size="small"
+        --onClick=(action --onDeleteCommentClick --comment)}}
+
+    {{ce-icon-button
+        data-test-item-toolbar="edit-button"
+        title="Edit"
+        aria-label="Edit"
+        icon="edit"
+        size="small"
+        --onClick=(action --onEditCommentClick)}}
+  {{/if}}
+
+  {{ce-icon-button
+      data-test-item-toolbar="share-button"
+      title="Share"
+      aria-label="Share"
+      icon="share"
+      size="small"
+      --onClick=(action --onShareCommentClick)}}
+
+  {{#if isReplyButtonVisible}}
+    {{ce-icon-button
+        data-test-item-toolbar="reply-button"
+        title="Reply"
+        aria-label="Reply"
+        icon="chat_bubble"
+        size="small"
+        --onClick=(action --onReplyToCommentClick)}}
+  {{/if}}
+</div>

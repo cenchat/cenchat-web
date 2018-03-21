@@ -1,0 +1,23 @@
+{{#infinite-content class="wrapper" --query=--sites}}
+  {{#each --sites as |site|}}
+    {{sites/index/-components/route-content/site-collection/site-collection-item
+        --router=--router
+        --site=site}}
+  {{else}}
+    <article
+        class="sites-index_site-collection__empty-state-card card"
+        data-test-site-collection="empty-state">
+      <header class="card__header">
+        <h2 class="card__heading">Get started</h2>
+
+        <p class="card__subheading">
+          Provide a commenting system on your website that's free of online harassments
+        </p>
+      </header>
+
+      {{#ce-link-button class="card__action" href=(href-to 'sites.index.new')}}
+        Add site
+      {{/ce-link-button}}
+    </article>
+  {{/each}}
+{{/infinite-content}}

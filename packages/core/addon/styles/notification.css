@@ -1,0 +1,12 @@
+.notification-list-item {
+  display: block;
+}
+
+.notification-list-item__row {
+  display: flex;
+  align-items: center;
+}
+
+.notification-list-item__action-link {
+  display: inline-block;
+}

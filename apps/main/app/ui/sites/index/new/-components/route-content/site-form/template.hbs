@@ -1,0 +1,40 @@
+{{#ce-form class="card" --onSubmit=(action --onSiteFormSubmit site)}}
+  {{ce-field
+      class="card__field"
+      name="hostname"
+      data-test-site-form="hostname-field"
+      type="text"
+      title="Use the hostname of your site (e.g. example.com)"
+      pattern="(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])"
+      required=true
+      label="URL"
+      --onInput=(action handleSiteFormDataChange)}}
+
+  {{ce-field
+      class="card__field"
+      name="name"
+      data-test-site-form="name-field" 
+      type="text"
+      required=true
+      label="Name"
+      --onInput=(action handleSiteFormDataChange)}}
+
+  {{#ce-field
+      class="card__field"
+      name="theme"
+      data-test-site-form="theme-field"
+      type="select"
+      label="Theme"
+      --onChange=(action handleSiteFormDataChange)}}
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  {{/ce-field}}
+
+  {{#ce-button
+      class="card__action"
+      data-test-site-form="submit-button"
+      type="submit"
+      disabled=(not (and site.hostname site.name))}}
+    Save
+  {{/ce-button}}
+{{/ce-form}}

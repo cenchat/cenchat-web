@@ -1,0 +1,30 @@
+.ce-top-bar-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+}
+
+.ce-top-bar-row > h1,
+.ce-top-bar-row > h2,
+.ce-top-bar-row > h3,
+.ce-top-bar-row > h4,
+.ce-top-bar-row > h5,
+.ce-top-bar-row > h6 {
+  flex: 1;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+
+  /* Title typography */
+  font-family: var(--font-family);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-medium);
+  line-height: 2rem;
+  color: var(--font-primary-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}

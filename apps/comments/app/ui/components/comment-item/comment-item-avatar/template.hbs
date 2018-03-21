@@ -1,0 +1,39 @@
+<div class="comment-item-avatar">
+  <div class="comment-item-avatar__author-image-container">
+    <a
+        class="comment-item-avatar__author-image-link"
+        href="https://cenchat.com/profile/{{if --comment.author.username --comment.author.username --comment.author.id}}"
+        target="_blank"
+        rel="noopener noreferrer">
+      <img
+          class="comment-item-avatar__author-image"
+          data-test-item-avatar="author-image"
+          src="{{--comment.author.photoUrl}}"
+          alt="">
+    </a>
+    
+    {{#if --comment.isFromFollowing}}
+      {{#ce-icon
+          class="comment-item-avatar__following-badge"
+          data-test-item-avatar="following-badge"
+          title="Following badge"
+          aria-label="Following badge"
+          size="small"}}
+        favorite
+      {{/ce-icon}}
+    {{/if}}
+  </div>
+
+  {{#if --comment.replyTo}}
+    <button
+        class="comment-item-avatar__toggle-quote-button"
+        data-test-item-avatar="toggle-quote-button"
+        title="Toggle quote"
+        aria-label="Toggle quote"
+        onclick={{action --onToggleQuoteClick}}>
+      {{#ce-icon size="small"}}reply{{/ce-icon}}
+
+      <img src="{{--comment.replyTo.author.photoUrl}}" alt="">
+    </button>
+  {{/if}}
+</div>

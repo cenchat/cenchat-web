@@ -1,0 +1,48 @@
+{{!-- disable block-indentation --}}
+{{! template-lint-disable block-indentation }}
+
+<section class="section">
+  {{#ce-subheader class="section__header"}}
+    <h3>Embedding Cenchat Comments</h3>
+  {{/ce-subheader}}
+
+  <article class="card">
+    <h4 class="card__heading">Plugin</h4>
+
+    <p class="card__message">
+      Our WordPress plugin which will allow you to easily install Cenchat Comments is currently under development. In the meantime, you can opt for the manual installation below.
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Manual installation</h4>
+
+    <p class="card__message">
+      In your WordPress admin page, open <strong>comments.php</strong> which you can find under your theme editor through the <strong>Appearance > Editor</strong> page. Next, backup its existing code by copy and pasting it into a text file. Once backed up, replace the code in <strong>comments.php</strong> with the one below.
+    </p>
+
+    <p class="card__message snippet">
+      <code class="snippet__block-code snippet__block-code--multiline">&lt;?php if (comments_open()) : ?&gt;
+  &lt;div id="cenchat-comments" data-page-id="&lt;?php echo get_the_ID() ?&gt;"&gt;&lt;/div&gt;
+  &lt;script src="https://comments.cenchat.com/embeds/1.0.0/universal.js"&gt;&lt;/script&gt;
+  &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js"&gt;&lt;/script&gt;
+&lt;?php endif; ?&gt;</code>
+    </p>
+
+    <p class="card__message">
+      Lastly, save/update the file and you should be good to go.
+    </p>
+
+    <p class="card__message">
+      Remember that you can revert back to your old comment system by copy and pasting the contents of the original <strong>comments.php</strong> file that you've backed up earlier.
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Styling</h4>
+
+    <p class="card__message">
+      You can style Cenchat Comments should you need to. To do so, just target the <code class="snippet__inline-code">#cenchat-comments-thread</code> in your CSS.
+    </p>
+  </article>
+</section>

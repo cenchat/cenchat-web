@@ -1,0 +1,38 @@
+{{yield}}
+
+{{#if --session.model}}
+  {{#ce-navbar data-test-application="navbar"}}
+    {{ce-icon-link-button
+        data-test-application="notification-link"
+        href=(href-to 'notifications')
+        title="Notifications"
+        aria-label="Notifications"
+        icon="notifications"
+        badged=--session.model.metaInfo.hasNewNotification}}
+
+    {{#if --session.model.username}}
+      {{ce-icon-link-button
+          data-test-application="profile-username-link"
+          href=(href-to 'profile' --session.model.username)
+          title="Profile"
+          aria-label="Profile"
+          icon="account_circle"}}
+    {{else}}
+      {{ce-icon-link-button
+          data-test-application="profile-id-link"
+          href=(href-to 'profile' --session.model.id)
+          title="Profile"
+          aria-label="Profile"
+          icon="account_circle"}}
+    {{/if}}
+
+    {{ce-icon-link-button
+        data-test-application="sites-link"
+        href=(href-to 'sites.index')
+        title="Sites"
+        aria-label="Sites"
+        icon="domain"}}
+  {{/ce-navbar}}
+{{/if}}
+
+{{ce-toast}}

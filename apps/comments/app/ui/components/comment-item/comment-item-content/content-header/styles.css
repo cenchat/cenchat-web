@@ -1,0 +1,30 @@
+.comment-item-content-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comment-item-content-header__author {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+  color: var(--font-primary-color);
+}
+
+.comment-item-content-header__timestamp {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+  color: var(--font-secondary-color);
+}
+
+.comment-item-content-header__separator {
+  align-self: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  font-size: 8px;
+  color: var(--font-secondary-color);
+}

@@ -1,0 +1,20 @@
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        data-test-profile-edit="navigate-back-link"
+        href=(href-to 'profile.index')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+
+    <h2>Edit profile</h2>
+  {{/ce-top-bar}}
+
+  <div class="side-nav__content">
+    {{profile/edit/-components/route-content/profile-form
+        --user=--user
+        --onProfileFormSubmit=(action --onProfileFormSubmit)}}
+  </div>
+
+  {{yield}}
+{{/side-nav}}

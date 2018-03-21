@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Material-Icons-Extension';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/@cenchat/elements/fonts/Material-Icons-Extension.woff') format('woff');
+}
+
+.material-icons-ext {
+  display: inline-block;
+  font-family: 'Material-Icons-Extension', sans-serif;
+  font-size: 24px;  /* Preferred icon size */
+  -webkit-font-smoothing: antialiased;  /* Support for all WebKit browsers. */
+  -moz-osx-font-smoothing: grayscale;  /* Support for Firefox. */
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-rendering: optimizeLegibility;  /* Support for Safari and Chrome. */
+  text-transform: none;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';  /* Support for IE. */
+}

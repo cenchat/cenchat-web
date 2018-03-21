@@ -1,0 +1,108 @@
+.ce-dropdown-button {
+  position: relative;
+}
+
+.ce-dropdown-button .menu {
+  position: absolute;
+  z-index: 800;
+  display: none;
+  min-width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  background-color: var(--item-background-color);
+  border: 1px solid var(--divider-color);
+  border-radius: var(--border-radius-square);
+  box-sizing: border-box;
+}
+
+.ce-dropdown-button .menu.expanded {
+  animation-duration: 225ms;
+  animation-name: ce-dropdown-button-expand;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.ce-dropdown-button .menu.compressed {
+  animation-duration: 195ms;
+  animation-name: ce-dropdown-button-compress;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.ce-dropdown-button[position="ur"] .menu {
+  bottom: 0;
+  left: 0;
+  transform-origin: left bottom;
+}
+
+.ce-dropdown-button[position="lr"] .menu {
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+}
+
+.ce-dropdown-button[position="ll"] .menu {
+  top: 8px;
+  right: 8px;
+  transform-origin: right top;
+}
+
+.ce-dropdown-button[position="ul"] .menu {
+  right: 0;
+  bottom: 0;
+  transform-origin: right bottom;
+}
+
+.ce-dropdown-button button[aria-expanded="true"] ~ .menu {
+  display: block;
+}
+
+.ce-dropdown-button .backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 750;
+  cursor: pointer;
+}
+
+@keyframes ce-dropdown-button-expand {
+  0% {
+    transform: scale(0, 0);
+  }
+
+  12% {
+    transform: scale(0.12, 0);
+  }
+
+  66% {
+    transform: scale(1, 0.71);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes ce-dropdown-button-compress {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  21% {
+    transform: scale(1, 0.78);
+  }
+
+  79% {
+    transform: scale(0.22, 0);
+  }
+
+  100% {
+    transform: scale(0, 0);
+  }
+}

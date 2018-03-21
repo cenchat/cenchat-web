@@ -1,0 +1,103 @@
+.ce-theme-light {
+  /* Colors */
+  --item-background-color: #fff;
+
+  /* Scaffolding */
+  --body-background-color: #fafafa;
+
+  /* Buttons */
+  --button-default-color: var(--dark-87);
+  --button-hover-background-color: var(--highlight-dark-1);
+  --button-active-background-color: var(--highlight-dark-2);
+  --button-disabled-color: var(--dark-38);
+  --icon-button-hover-background-color: var(--highlight-dark-1);
+  --icon-button-active-background-color: var(--highlight-dark-2);
+
+  /* Divider */
+  --divider-color: var(--dark-12);
+
+  /* Icon */
+  --icon-default-color: var(--dark-54);
+  --icon-disabled-color: var(--dark-38);
+
+  /* List */
+  --list-item-disabled-color: var(--dark-38);
+  --list-item-hover-background-color: var(--highlight-dark-1);
+  --list-item-active-background-color: var(--highlight-dark-2);
+
+  /* Nav bar */
+  --navbar-background-color: #212121;
+  --navbar-color: var(--light-100);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--dark-12);
+  --progress-bar-moving-color: var(--dark-87);
+
+  /* Text fields */
+  --text-field-background-color: var(--highlight-dark-1);
+
+  /* Toast */
+  --toast-color: var(--light-100);
+  --toast-background-color: #303030;
+  --toast-border-color: var(--light-12);
+  --toast-button-color: var(--light-100);
+  --toast-button-hover-background-color: var(--highlight-light-1);
+  --toast-button-active-background-color: var(--highlight-light-2);
+
+  /* Typography */
+  --font-primary-color: var(--dark-87);
+  --font-secondary-color: var(--dark-54);
+  --font-hint-color: var(--dark-38);
+}
+
+.ce-theme-dark {
+  /* Colors */
+  --item-background-color: #424242;
+
+  /* Scaffolding */
+  --body-background-color: #303030;
+
+  /* Buttons */
+  --button-default-color: var(--light-100);
+  --button-hover-background-color: var(--highlight-light-1);
+  --button-active-background-color: var(--highlight-light-2);
+  --button-disabled-color: var(--light-50);
+  --icon-button-hover-background-color: var(--highlight-light-1);
+  --icon-button-active-background-color: var(--highlight-light-2);
+
+  /* Divider */
+  --divider-color: var(--light-12);
+
+  /* Icon */
+  --icon-default-color: var(--light-100);
+  --icon-disabled-color: var(--light-50);
+
+  /* List */
+  --list-item-disabled-color: var(--light-50);
+  --list-item-hover-background-color: var(--highlight-light-1);
+  --list-item-active-background-color: var(--highlight-light-2);
+
+  /* Nav bar */
+  --navbar-background-color: #212121;
+  --navbar-color: var(--light-100);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--light-12);
+  --progress-bar-moving-color: var(--light-100);
+
+  /* Text fields */
+  --text-field-background-color: var(--highlight-light-1);
+
+  /* Toast */
+  --toast-color: var(--dark-87);
+  --toast-background-color: #fafafa;
+  --toast-border-color: var(--dark-12);
+  --toast-button-color: var(--dark-87);
+  --toast-button-hover-background-color: var(--highlight-dark-1);
+  --toast-button-active-background-color: var(--highlight-dark-2);
+
+  /* Typography */
+  --font-primary-color: var(--light-100);
+  --font-secondary-color: var(--light-70);
+  --font-hint-color: var(--light-50);
+}

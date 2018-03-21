@@ -1,0 +1,43 @@
+<div>{{label}}</div>
+
+{{#if isMultiTextField}}
+  <textarea
+      name="{{name}}"
+      value="{{value}}"
+      aria-invalid="{{isInvalid}}"
+      autocapitalize="{{autocapitalize}}"
+      disabled="{{disabled}}"
+      maxlength="{{maxlength}}"
+      placeholder="{{placeholder}}"
+      required="{{required}}"
+      oninput={{action handleTextFieldInput value="target"}}></textarea>
+{{else if isSelectField}}
+  <select
+      name="{{name}}"
+      disabled="{{disabled}}"
+      required="{{required}}"
+      onchange={{action handleSelectFieldChange value="target"}}>
+    {{yield}}
+  </select>
+{{else}}
+  <input
+      name="{{name}}"
+      type="{{type}}"
+      value="{{value}}"
+      title="{{title}}"
+      aria-invalid="{{isInvalid}}"
+      autocapitalize="{{autocapitalize}}"
+      disabled="{{disabled}}"
+      max="{{max}}"
+      maxlength="{{maxlength}}"
+      min="{{min}}"
+      pattern="{{pattern}}"
+      placeholder="{{placeholder}}"
+      required="{{required}}"
+      step="{{step}}"
+      oninput={{action handleTextFieldInput value="target"}}>
+{{/if}}
+
+{{#if isInvalid}}
+  <div role="alert">{{feedback}}</div>
+{{/if}}

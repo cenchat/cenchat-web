@@ -1,0 +1,18 @@
+{{#ce-top-bar fixed=true multi-row=true responsive=true}}
+  {{#ce-top-bar-row}}
+    <img
+        class="profile-top-bar__photo"
+        data-test-top-bar="photo"
+        src="{{--user.photoUrl}}"
+        alt="{{--user.displayName}}">
+
+    <h1 data-test-top-bar="name">{{--user.displayName}}</h1>
+  {{/ce-top-bar-row}}
+
+  {{profile/-components/route-content/top-bar/top-bar-actions
+      --session=--session
+      --user=--user
+      --onSignOutClick=(action --onSignOutClick)
+      --onFollowUserClick=(action --onFollowUserClick)
+      --onUnfollowUserClick=(action --onUnfollowUserClick)}}
+{{/ce-top-bar}}

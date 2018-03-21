@@ -1,0 +1,47 @@
+@import "card.css";
+@import "firebaseui.css";
+@import "layout.css";
+@import "legal.css";
+@import "marketing.css";
+@import "outlet.css";
+@import "progress-bar.css";
+@import "side-nav.css";
+@import "snippets.css";
+@import "pod-styles";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: var(--body-background-color);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.ce-navbar ~ .ce-toast {
+  margin-bottom: 52px;
+}
+
+@media (min-width: 960px) {
+  .ce-navbar ~ .ce-toast {
+    margin-bottom: 16px;
+    margin-left: 68px;
+  }
+}
+
+.ce-top-bar[multi-row] ~ .ce-navbar::before {
+  height: 120px;
+}
+
+strong {
+  font-weight: 500;
+}

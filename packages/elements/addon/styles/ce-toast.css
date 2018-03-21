@@ -1,0 +1,83 @@
+.ce-toast {
+  position: fixed;
+  right: 8px;
+  bottom: 0;
+  left: 8px;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  color: var(--toast-color);
+  background-color: var(--toast-background-color);
+  border-radius: var(--border-radius-square);
+  transform: translateY(100%);
+  box-shadow: var(--elevation);
+  box-sizing: border-box;
+  transition-duration: 195ms;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+
+@media (min-width: 600px) {
+  .ce-toast {
+    transition-duration: 255ms;
+  }
+}
+
+@media (min-width: 960px) {
+  .ce-toast {
+    right: auto;
+    max-width: 568px;
+    min-width: 288px;
+    margin: 16px;
+    transform: translateY(140%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .ce-toast {
+    transition-duration: 150ms;
+  }
+}
+
+.ce-toast[opened] {
+  transform: translateY(-8px);
+  transition-duration: 225ms;
+  transition-timing-function: ease-in;
+}
+
+@media (min-width: 600px) {
+  .ce-toast[opened] {
+    transition-duration: 295ms;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ce-toast[opened] {
+    transition-duration: 175ms;
+  }
+}
+
+.ce-toast span {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+}
+
+.ce-toast span:only-child {
+  padding-right: 24px;
+}
+
+.ce-toast__text {
+  flex: 1;
+}
+
+.ce-toast__button {
+  --button-default-color: var(--toast-button-color);
+  --button-hover-background-color: var(--toast-button-hover-background-color);
+  --button-active-background-color: var(--toast-button-active-background-color);
+}

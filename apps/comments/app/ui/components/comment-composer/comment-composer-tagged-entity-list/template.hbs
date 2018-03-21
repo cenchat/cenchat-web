@@ -1,0 +1,7 @@
+<ul class="comment-composer-tagged-entity-list">
+  {{#each --entities as |entity|}}
+    {{comment-composer/comment-composer-tagged-entity-list/tagged-entity-list-item
+        --entity=entity
+        --onUntagEntityClick=(action --onUntagEntityClick)}}
+  {{/each}}
+</ul>

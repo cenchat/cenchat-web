@@ -1,0 +1,21 @@
+<p class="comment-composer-message">
+  {{#if --comment.isTextAllowed}}
+    {{comment-composer/comment-composer-message/message-textbox
+        --comment=--comment
+        --onTextBoxInput=(action --onTextBoxInput)}}
+  {{/if}}
+
+  {{#if --comment.isAskMeAnything}}
+    <img
+        class="comment-composer-message__ask-me-anything-image"
+        data-test-comment-composer-message="ask-me-anything-image"
+        src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fama%2Fama_2.png?alt=media&token=ebbaeddc-804e-4921-9e05-48cfea2fbf13"
+        alt="Ask me anything">
+  {{/if}}
+
+  {{#each --comment.parsedAttachments as |attachment index|}}
+    {{comment-composer/comment-composer-message/message-image
+        --attachment=attachment
+        --onRemoveAttachmentClick=(action --onRemoveAttachmentClick index)}}
+  {{/each}}
+</p>

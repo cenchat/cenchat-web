@@ -1,0 +1,23 @@
+<div>
+  {{#each filteredNewComments as |newComment|}}
+    {{comment-item --comment=newComment --threadLevel=--threadLevel}}
+  {{/each}}
+
+  {{#each --comments as |comment|}}
+    {{comment-item --comment=comment --threadLevel=--threadLevel}}
+  {{/each}}
+
+  {{#if (and (eq --newComments.length 0) (eq --comments.length 0))}}
+    {{#if --emptyStateMessage}}
+      <p class="empty-state" data-test-comment-list="empty-state">{{--emptyStateMessage}}</p>
+    {{/if}}
+  {{/if}}
+
+  {{#if (gte --comments.length limit)}}
+    {{#ce-button
+        data-test-comment-list="load-more-comments-button"
+        --onClick=(action loadMoreComments)}}
+      Load more comments
+    {{/ce-button}}
+  {{/if}}
+</div>

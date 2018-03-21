@@ -1,0 +1,184 @@
+import { module, test } from 'qunit';
+import { render } from '@ember/test-helpers';
+import { run } from '@ember/runloop';
+import { setupRenderingTest } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+import { spyComponent } from '@cenchat/core/test-support';
+
+import {
+  setupBeforeEach,
+  setupAfterEach,
+} from 'main/tests/helpers/integration-test-setup';
+
+module('Integration | Component | profile/-components/route content', function(hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(async function() {
+    await setupBeforeEach(this);
+
+    const user = await this.get('session.model');
+
+    this.set('user', user);
+    this.set('onSignOutClick', () => {});
+    this.set('onUsernameSubmit', () => {});
+    this.set('onFollowUserClick', () => {});
+    this.set('onUnfollowUserClick', () => {});
+  });
+
+  hooks.afterEach(async function() {
+    await setupAfterEach(this);
+  });
+
+  test('should show <TopBar />', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const spy = spyComponent(this, 'profile/-components/route-content/top-bar');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, {
+      'session': 'instance',
+      'user': 'instance',
+      'onSignOutClick': 'function',
+      'onFollowUserClick': 'function',
+      'onUnfollowUserClick': 'function',
+    });
+  });
+
+  test('should show <MissingInfo /> if there is any and if current user owns the profile', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const spy = spyComponent(this, 'profile/-components/route-content/missing-info');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, {
+      'user': 'instance',
+      'onUsernameSubmit': 'function',
+    });
+  });
+
+  test('should hide <MissingInfo /> if current user doesn\'t own the profile', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await run(() => {
+      return this.get('store').findRecord('user', 'user_b');
+    });
+
+    this.set('user', user);
+
+    const spy = spyComponent(this, 'profile/-components/route-content/missing-info');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
+  });
+
+  test('should hide <MissingInfo /> if there isn\'t any', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('user.missingInfo', []);
+
+    const spy = spyComponent(this, 'profile/-components/route-content/missing-info');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
+  });
+
+  test('should show <FollowingCollection /> if current user owns the profile', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const spy = spyComponent(this, 'profile/-components/route-content/following-collection');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, {
+      'user': 'instance',
+      'onUnfollowUserClick': 'function',
+    });
+  });
+
+  test('should hide <FollowingCollection /> if current user doesn\'t own the profile', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await run(() => {
+      return this.get('store').findRecord('user', 'user_b');
+    });
+
+    this.set('user', user);
+
+    const spy = spyComponent(this, 'profile/-components/route-content/following-collection');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)
+          --onFollowUserClick=(action onFollowUserClick)
+          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
+  });
+});

@@ -1,0 +1,18 @@
+.profile-bar__toolbar {
+  display: flex;
+}
+
+.profile-bar__profile-link {
+  margin-right: auto;
+}
+
+.profile-bar__notifications-button .menu {
+  width: calc(100vw - 76px);
+  max-width: 320px;
+}
+
+@media (max-width: 359px) {
+  .profile-bar__notifications-button .list__avatar {
+    display: none;
+  }
+}

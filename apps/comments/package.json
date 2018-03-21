@@ -1,0 +1,72 @@
+{
+  "name": "comments",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Web app for comments.cenchat.com",
+  "license": "GPL-3.0",
+  "author": "Cenchat",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "repository": "https://github.com/cenchat/cenchat-web",
+  "scripts": {
+    "build": "ember build",
+    "lint:js": "eslint ./*.js app config lib server tests",
+    "start": "ember serve",
+    "test": "ember test"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "broccoli-asset-rev": "^2.4.5",
+    "ember-ajax": "^3.0.0",
+    "ember-cli": "~3.0.1",
+    "ember-cli-app-version": "^3.0.0",
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.2.1",
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-postcss": "^3.7.1",
+    "ember-cli-qunit": "^4.1.1",
+    "ember-cli-shims": "^1.2.0",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-stylelint": "^2.0.0",
+    "ember-cli-template-lint": "^0.7.5",
+    "ember-cli-uglify": "^2.0.0",
+    "ember-component-css": "^0.6.3",
+    "ember-data": "~3.0.0",
+    "ember-export-application-global": "^2.0.0",
+    "ember-firebaseui": "^0.1.2",
+    "ember-linkify": "^3.0.0",
+    "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-resolver": "^4.0.0",
+    "ember-sinon": "^2.1.0",
+    "ember-source": "~3.0.0",
+    "ember-test-selectors": "^0.3.8",
+    "ember-welcome-page": "^3.0.0",
+    "eslint-config-rmmmp": "^0.1.0",
+    "eslint-plugin-ember": "^5.0.0",
+    "iframe-resizer": "^3.5.16",
+    "loader.js": "^4.2.3",
+    "normalize.css": "^8.0.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "qunit-dom": "^0.5.0",
+    "stylelint-config-recess-order": "^1.2.4",
+    "stylelint-config-standard": "^18.2.0",
+    "torii": "^0.10.1"
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
+  },
+  "ember-addon": {
+    "paths": [
+      "../../packages/core",
+      "../../packages/elements"
+    ]
+  }
+}

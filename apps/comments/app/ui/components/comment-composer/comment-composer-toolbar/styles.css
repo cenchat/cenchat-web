@@ -1,0 +1,9 @@
+.comment-composer-toolbar__toolbar {
+  display: flex;
+}
+
+.comment-composer-toolbar__supplementary-actions {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+}
