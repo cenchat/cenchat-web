@@ -1,0 +1,16 @@
+<div class="comment-composer-message-image">
+  {{ce-icon-button
+      class="comment-composer-message-image__remove-attachment-button"
+      data-test-message-image="remove-attachment-button"
+      title="Remove"
+      aria-label="Remove"
+      icon="remove_circle"
+      size="small"
+      --onClick=(action --onRemoveAttachmentClick index)}}
+
+  <img
+      class="comment-composer-message-image__image"
+      data-test-message-image="attachment-image"
+      src="{{--attachment.imageUrl}}"
+      alt="{{--attachment.description}}">
+</div>

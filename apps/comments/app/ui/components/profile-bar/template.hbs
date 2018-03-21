@@ -1,0 +1,40 @@
+<section>
+  {{#ce-subheader class="section-header"}}
+    <h1 class="section-header__title" data-test-profile-bar="title">{{--headerText}}</h1>
+  {{/ce-subheader}}
+
+  <div class="profile-bar__toolbar">
+    {{ce-icon-link-button
+        class="profile-bar__profile-link"
+        href=(concat "https://cenchat.com/profile/" session.model.id)
+        target="_blank"
+        title="Profile"
+        aria-label="Profile"
+        image=session.model.photoUrl}}
+
+    {{#ce-dropdown-button
+        class="profile-bar__notifications-button"
+        data-test-profile-bar="notification-button"
+        icon="notifications"
+        position="ll"
+        badged=session.model.metaInfo.hasNewNotification
+        --onClick=(action handleNotificationDropdownClick)}}
+      {{#async-let
+          on=(async-property session.model.notifications)
+          placeholder=(component 'ce-spinner' aria-valuetext="Loading notifications")
+          as |notifications|}}
+        {{notification-list --notifications=notifications}}
+      {{/async-let}}
+    {{/ce-dropdown-button}}
+    
+    {{ce-icon-button
+        title="Sign out"
+        aria-label="Sign out"
+        icon="exit_to_app"
+        --onClick=(action handleSignOutClick)}}
+  </div>
+
+  {{#if --isCommentComposerVisible}}
+    {{comment-composer --page=--page --onSendCommentSuccess=(action --onSendCommentSuccess)}}
+  {{/if}}
+</section>

@@ -1,0 +1,33 @@
+{{!-- disable block-indentation --}}
+{{! template-lint-disable block-indentation }}
+
+<section class="section">
+  {{#ce-subheader class="section__header"}}
+    <h3>Embedding Cenchat Comments</h3>
+  {{/ce-subheader}}
+
+  <article class="card">
+    <h4 class="card__heading">Using HTML/JavaScript Gadget</h4>
+
+    <p class="card__message">
+      In your Blogger layout, add a HTML/JavaScript Gadget anywhere. Inside it, add the code below.
+    </p>
+
+    <p class="card__message snippet">
+      <code class="snippet__block-code snippet__block-code--multiline">&lt;script src="https://comments.cenchat.com/embeds/1.0.0/blogger.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js"&gt;&lt;/script&gt;</code>
+    </p>
+
+    <p class="card__message">
+      You'll also want to disable Blogger's built-in comments. You can do this by setting your <strong>Comment Location</strong> to <strong>Hide</strong> in your settings.
+    </p>
+  </article>
+
+  <article class="card">
+    <h4 class="card__heading">Styling</h4>
+
+    <p class="card__message">
+      You can style Cenchat Comments should you need to. To do so, just target the <code class="snippet__inline-code">#cenchat-comments-thread</code> in your CSS.
+    </p>
+  </article>
+</section>

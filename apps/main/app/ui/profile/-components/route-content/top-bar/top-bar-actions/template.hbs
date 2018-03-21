@@ -1,0 +1,27 @@
+{{#ce-top-bar-row}}
+  {{#if (eq --session.model.id --user.id)}}
+    {{#ce-link-button data-test-top-bar-actions="edit-link" href=(href-to 'profile.edit')}}
+      Edit profile
+    {{/ce-link-button}}
+
+    {{#ce-button data-test-top-bar-actions="sign-out-button" --onClick=(action --onSignOutClick)}}
+      Sign out
+    {{/ce-button}}
+  {{else}}
+    {{#if (not-eq isFollowingUser null)}}
+      {{#if isFollowingUser}}
+        {{#ce-button
+            data-test-top-bar-actions="unfollow-user-button"
+            --onClick=(action handleUnfollowUserClick --user)}}
+          Unfollow
+        {{/ce-button}}
+      {{else}}
+        {{#ce-button
+            data-test-top-bar-actions="follow-user-button"
+            --onClick=(action handleFollowUserClick)}}
+          Follow
+        {{/ce-button}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
+{{/ce-top-bar-row}}

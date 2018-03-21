@@ -1,0 +1,34 @@
+.sign-in_route-content__top-bar {
+  background-color: #212121;
+  box-shadow: none;
+}
+
+.sign-in_route-content__logo {
+  width: auto;
+  height: 32px;
+  padding: 6px 20px;
+}
+
+.sign-in_route-content__main {
+  height: 100vh;
+  padding: 8px;
+  overflow: hidden;
+  background-color: #212121;
+}
+
+.sign-in_route-content__card {
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  background-color: var(--item-background-color);
+  border-radius: var(--border-radius-square);
+  box-shadow: var(--elevation);
+}
+
+@media (min-width: 600px) {
+  .sign-in_route-content__card {
+    max-width: 420px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,62 @@
+.ce-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ce-field div:first-child {
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-left: 16px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-12);
+  color: var(--font-primary-color);
+}
+
+.ce-field input {
+  border-radius: var(--border-radius-square);
+}
+
+.ce-field select {
+  background: none;
+  border-radius: var(--border-radius-square);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.ce-field option {
+  color: initial;
+}
+
+.ce-field textarea {
+  border-radius: var(--border-radius-square);
+  resize: none;
+}
+
+.ce-field input,
+.ce-field select,
+.ce-field textarea {
+  padding: 8px 16px;
+  margin-top: 8px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-16);
+  line-height: 1.75rem;
+  color: var(--font-primary-color);
+  background-color: var(--text-field-background-color);
+  border: none;
+}
+
+.ce-field input:invalid,
+.ce-field select:invalid,
+.ce-field textarea:invalid {
+  box-shadow: none;
+}
+
+.ce-field [role="alert"] {
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-12);
+  color: var(--red);
+}

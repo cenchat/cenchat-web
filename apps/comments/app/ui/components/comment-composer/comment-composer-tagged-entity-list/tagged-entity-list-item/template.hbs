@@ -1,0 +1,17 @@
+<li class="comment-composer-tagged-entity-list-item">
+  {{ce-icon-button
+      class="comment-composer-tagged-entity-list-item__untag-button"
+      data-test-tagged-entity-list-item="untag-button"
+      title="Untag"
+      aria-label="Untag"
+      icon="remove_circle"
+      size="small"
+      --onClick=(action --onUntagEntityClick --entity)}}
+
+  <img
+      class="comment-composer-tagged-entity-list-item__photo"
+      data-test-tagged-entity-list-item="photo"
+      src="{{--entity.photoUrl}}"
+      title="{{--entity.displayName}}"
+      alt="{{--entity.displayName}}">
+</li>

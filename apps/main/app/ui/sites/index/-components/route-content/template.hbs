@@ -1,0 +1,40 @@
+{{#ce-top-bar fixed=true responsive=true}}
+  <h1>Sites</h1>
+
+  {{#if (eq --user.betaTesterStatus 'approved')}}
+    {{ce-icon-link-button
+        data-test-sites-index="new-link"
+        href=(href-to 'sites.index.new')
+        title="New site"
+        aria-label="New site"
+        icon="add"}}
+  {{/if}}
+{{/ce-top-bar}}
+
+<main class="main main--unsectioned">
+  {{#if --user.betaTesterStatus}}
+    {{#if (eq --user.betaTesterStatus 'approved')}}
+      {{#async-let
+          on=(async-property --user.sitesAsAdmin)
+          placeholder=(component 'ce-spinner' aria-valuetext='Loading sites administered')
+          as |sitesAsAdmin|}}
+        {{sites/index/-components/route-content/site-collection 
+            --router=--router
+            --sites=sitesAsAdmin}}
+      {{/async-let}}
+    {{else if (eq --user.betaTesterStatus 'pending')}}
+      <article class="card">
+        <h2 class="card__heading">You've already applied for an invite</h2>
+
+        <p class="card__message">
+          Our approval process is based on our current needs. We may hold your request until then.
+        </p>
+      </article>
+    {{else if (eq --user.betaTesterStatus 'unapplied')}}
+      {{sites/index/-components/route-content/invite-form
+          --onInviteRequestFormSubmit=(action --onInviteRequestFormSubmit)}}
+    {{/if}}
+  {{/if}}
+
+  {{yield}}
+</main>

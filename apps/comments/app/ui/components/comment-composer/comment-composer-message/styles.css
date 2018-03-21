@@ -1,0 +1,12 @@
+.comment-composer-message {
+  padding-top: 12px;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.comment-composer-message__ask-me-anything-image {
+  width: 80px;
+  height: 80px;
+}

@@ -1,0 +1,22 @@
+<div>
+  {{#if --isQuoteVisible}}
+    {{comment-item/comment-item-content/content-quote --comment=--comment}}
+  {{/if}}
+
+  <div class="comment-item-content__chat-bubble" data-test-item-content="chat-bubble">
+    {{#if --comment.isAskMeAnything}}
+      <img
+          class="comment-item-content__ask-me-anything-image"
+          data-test-content-item-content="ask-me-anything-image"
+          src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fama%2Fama_2.png?alt=media&token=ebbaeddc-804e-4921-9e05-48cfea2fbf13"
+          alt="Ask me anything">
+    {{/if}}
+
+    {{comment-item/comment-item-content/content-header --comment=--comment}}
+    {{comment-item/comment-item-content/content-message --comment=--comment}}
+
+    {{#if --comment.taggedEntities}}
+      {{comment-item/comment-item-content/content-tagged-entity-list --entities=--comment.parsedTaggedEntities}}
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="{{class}}">
+  <div class="comment-composer__container">
+    {{#if (or comment.isTextAllowed comment.isMessageValid)}}
+      {{comment-composer/comment-composer-message
+          --comment=comment
+          --onTextBoxInput=(action handleTextBoxInput)
+          --onRemoveAttachmentClick=(action handleRemoveAttachmentClick)}}
+    {{/if}}
+
+    {{#if comment.taggedEntities}}
+      {{comment-composer/comment-composer-tagged-entity-list
+          --entities=comment.parsedTaggedEntities
+          --onUntagEntityClick=(action handleUntagEntityClick)}}
+    {{/if}}
+
+    {{comment-composer/comment-composer-toolbar
+        --comment=comment
+        --onAddAttachmentClick=(action handleAddAttachmentClick)
+        --onAskMeAnythingClick=(action handleAskMeAnythingClick)
+        --onSendCommentClick=(action handleSendCommentClick)
+        --onTagEntityClick=(action handleTagEntityClick)}}
+  </div>
+
+  {{#if (not comment.isTextAllowed)}}
+    <div class="comment-composer__hint" data-test-comment-composer="hint">
+      Texts aren't allowed for this comment
+    </div>
+  {{/if}}
+</div>

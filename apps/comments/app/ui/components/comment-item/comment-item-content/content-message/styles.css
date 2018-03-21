@@ -1,0 +1,24 @@
+.comment-item-content-message {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.comment-item-content-message__sticker-attachment-image {
+  max-width: 80px;
+  max-height: 80px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.comment-item-content-message__gif-attachment-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+}
+
+.comment-item-content-message__text {
+  font-size: var(--font-size-14);
+  line-height: 1.25rem;
+  color: var(--font-primary-color);
+}

@@ -1,0 +1,31 @@
+<article class="card" data-test-following-collection-item="{{--following.id}}">
+  <header class="profile_following-collection-item__header">
+    <div class="profile_following-collection-item__text-content">
+      <h3
+          class="profile_following-collection-item__name"
+          data-test-following-collection-item="name">
+        {{--following.displayName}}
+      </h3>
+
+      {{#if --following.displayUsername}}
+        <p
+            class="profile_following-collection-item__username"
+            data-test-following-collection-item="username">
+          @{{--following.displayUsername}}
+        </p>
+      {{/if}}
+    </div>
+
+    <img
+        class="profile_following-collection-item__photo"
+        data-test-following-collection-item="photo"
+        src="{{--following.photoUrl}}"
+        alt="{{--following.displayName}}">
+  </header>
+
+  {{#ce-button
+      data-test-following-collection-item="unfollow-user-button"
+      --onClick=(action --onUnfollowUserClick --following)}}
+    Unfollow
+  {{/ce-button}}
+</article>

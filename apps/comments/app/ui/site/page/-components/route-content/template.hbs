@@ -1,0 +1,23 @@
+<main>
+  {{#if --session.model}}
+    {{profile-bar
+        --page=--page
+        --isCommentComposerVisible=true
+        --headerText="Send a comment"
+        --onSendCommentSuccess=(action handleSendCommentSuccess)}}
+  {{/if}}
+
+  {{#async-let
+      on=(async-function --page 'loadFilteredComments' --filterCommentsBy)
+      placeholder=(component 'ce-spinner' aria-valuetext='Loading comments')
+      as |comments|}}
+    {{site/page/-components/route-content/page-comments
+        --session=--session
+        --comments=comments
+        --newComments=newComments
+        --filterCommentsBy=--filterCommentsBy
+        --onFilterCommentsClick=(action --onFilterCommentsClick)}}
+  {{/async-let}}
+
+  {{yield}}
+</main>

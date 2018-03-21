@@ -1,0 +1,28 @@
+{{#ce-form
+    class="card"
+    data-test-missing-info-username="form"
+    --onSubmit=(action --onUsernameSubmit username)}}
+  <header class="card__header">
+    <h3 class="card__heading">Set your username</h3>
+    <p class="card__subheading">Your username will be used by other people to look you up. Don't worry, you can change it up later.</p>
+  </header>
+
+  {{ce-field
+      class="card__field"
+      data-test-missing-info-username="field"
+      type="text"
+      title="Use at least 3 characters and it must only contain letters, numbers, and underscores"
+      maxlength="15"
+      pattern="[A-Za-z\d]\w{1,13}[A-Za-z\d]"
+      required=true
+      label="Username"
+      --onInput=(action handleUsernameInput)}}
+
+  {{#ce-button
+      class="card__action"
+      data-test-missing-info-username="save-button"
+      type="submit"
+      disabled=(not username)}}
+    Save
+  {{/ce-button}}
+{{/ce-form}}

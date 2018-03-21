@@ -1,0 +1,9 @@
+{{#profile/-components/route-content
+    --session=session
+    --user=model
+    --onSignOutClick=(action handleSignOutClick)
+    --onUsernameSubmit=(action handleUsernameSubmit)
+    --onFollowUserClick=(action handleFollowUserClick)
+    --onUnfollowUserClick=(action handleUnfollowUserClick)}}
+  {{liquid-outlet class="side-nav-outlet"}}
+{{/profile/-components/route-content}}

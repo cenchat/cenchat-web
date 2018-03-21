@@ -1,0 +1,11 @@
+.sites-index_site-collection-item__header {
+  display: flex;
+}
+
+.sites-index_site-collection-item__header-primary-info {
+  flex: 1;
+}
+
+.sites-index_site-collection-item__unverified {
+  color: var(--red);
+}

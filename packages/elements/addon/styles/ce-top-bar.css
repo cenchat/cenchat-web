@@ -1,0 +1,24 @@
+.ce-top-bar {
+  position: relative;
+  width: 100%;
+  background-color: var(--item-background-color);
+  box-shadow: var(--elevation);
+}
+
+.ce-top-bar[fixed] {
+  position: fixed;
+  top: 0;
+  z-index: 400;
+}
+
+@media (min-width: 960px) {
+  .ce-top-bar[responsive] {
+    padding-right: 8px;
+    padding-left: 8px;
+    box-sizing: border-box;
+  }
+
+  .ce-top-bar[responsive] > .ce-top-bar-row:first-child {
+    height: 64px;
+  }
+}

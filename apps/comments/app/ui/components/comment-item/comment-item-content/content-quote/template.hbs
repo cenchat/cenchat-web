@@ -1,0 +1,21 @@
+<blockquote class="comment-item-content-quote" data-test-content-quote="{{--comment.replyTo.id}}">
+  <cite class="comment-item-content-quote__author" data-test-content-quote="author-name">
+    {{--comment.replyTo.author.displayName}}:
+  </cite>
+
+  {{#if --comment.replyTo.isDeleted}}
+    <div data-test-content-quote="deleted">[deleted]</div>
+  {{/if}}
+
+  {{#if --comment.replyTo.text}}
+    <div data-test-content-quote="text">{{--comment.replyTo.text}}</div>
+  {{/if}}
+
+  {{#each --comment.replyTo.parsedAttachments as |attachment|}}
+    <img
+        class="comment-item-content-quote__sticker-attachment-image"
+        data-test-content-quote="attachment-image"
+        src="{{attachment.imageUrl}}"
+        alt="{{attachment.description}}">
+  {{/each}}
+</blockquote>

@@ -1,0 +1,16 @@
+.comment-composer-toolbar-sticker-panel__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comment-composer-toolbar-sticker-panel__list {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  list-style-type: none;
+}
+
+.comment-composer-toolbar-sticker-panel__list-item {
+  display: inline-block;
+}

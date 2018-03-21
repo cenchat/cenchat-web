@@ -1,0 +1,17 @@
+.sign-in_route-content__top-bar {
+  background-color: #212121;
+  box-shadow: none;
+}
+
+.sign-in_route-content__logo {
+  width: auto;
+  height: 32px;
+  padding: 6px 20px;
+}
+
+.sign-in_route-content__main {
+  height: 100vh;
+  padding: 8px;
+  overflow: hidden;
+  background-color: #212121;
+}

@@ -1,0 +1,18 @@
+{{#ce-top-bar fixed=true responsive=true}}
+  <h1>Notifications</h1>
+{{/ce-top-bar}}
+
+<main class="main main--unsectioned">
+  {{#async-let
+      on=(async-property --user.notifications)
+      placeholder=(component 'ce-spinner' aria-valuetext='Loading notifications')
+      as |notifications|}}
+    {{#infinite-content --query=notifications}}
+      <ul class="card list">
+        {{notification-list --notifications=notifications}}
+      </ul>
+    {{/infinite-content}}
+  {{/async-let}}
+
+  {{yield}}
+</main>

@@ -1,0 +1,24 @@
+<div>
+  {{#if --session.model}}
+    {{comment-composer
+        class="comment-item-replies__composer"
+        --page=--comment.page
+        --replyTo=--comment
+        --onSendCommentSuccess=(action handleSendCommentSuccess)}}
+  {{/if}}
+
+  {{#if (lt threadLevel 3)}}
+    {{#async-let
+        on=(async-function --comment 'loadReplies')
+        placeholder=(component 'ce-spinner' aria-valuetext="Loading replies")
+        as |replies|}}
+      {{comment-list
+          --comments=replies
+          --newComments=newReplies
+          --threadLevel=threadLevel
+          --onLoadMoreCommentsClick=(action handleLoadMoreCommentsClick replies)}}
+    {{/async-let}}
+  {{else}}
+    {{comment-list --newComments=newReplies --threadLevel=threadLevel}}
+  {{/if}}
+</div>

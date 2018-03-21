@@ -1,0 +1,60 @@
+<div>
+  <div class="comment-composer-toolbar__toolbar" role="toolbar" aria-label="Composer toolbar">
+    <div class="comment-composer-toolbar__supplementary-actions" role="group">
+      {{ce-icon-button
+          data-test-composer-toolbar="sticker-button"
+          title="Show stickers"
+          aria-label="Show stickers"
+          aria-pressed=(if (eq selectedPanel 'sticker') 'true' 'false')
+          icon="sticker_emoji"
+          mdi-ext=true
+          square=true
+          --onClick=(action (mut selectedPanel) 'sticker')}}
+
+      {{ce-icon-button
+          data-test-comment-composer-toolbar="tag-entity-button"
+          title="Tag users"
+          aria-label="Tag users"
+          aria-pressed=(if (eq selectedPanel 'tag') 'true' 'false')
+          icon="tag_faces"
+          mdi-ext=true
+          square=true
+          --onClick=(action (mut selectedPanel) 'tag')}}
+
+      {{#if --comment.isAskMeAnythingAllowed}}
+        {{ce-icon-button
+            data-test-comment-composer-toolbar="ask-me-anything-button"
+            title="Set as ask my anything"
+            aria-label="Set as ask my anything"
+            icon="question_answer"
+            square=true
+            --onClick=(action --onAskMeAnythingClick)}}
+      {{/if}}
+    </div>
+
+    {{ce-icon-button
+        title="Send"
+        aria-label="Send"
+        data-test-composer-toolbar="send-button"
+        disabled=(not --comment.isMessageValid)
+        icon="send"
+        square=true
+        --onClick=(action --onSendCommentClick)}}
+  </div>
+
+  {{#if (eq selectedPanel 'sticker')}}
+    {{#async-let on=(async-property --comment.author) as |author|}}
+      {{#async-let
+          on=(async-property author.stickerPacks)
+          description=(component 'ce-spinner' aria-valuetext='Loading sticker packs')
+          as |stickerPacks|}}
+        {{comment-composer/comment-composer-toolbar/toolbar-sticker-panel
+            --stickerPacks=stickerPacks
+            --onAddAttachmentClick=(action --onAddAttachmentClick)}}
+      {{/async-let}}
+    {{/async-let}}
+  {{else if (eq selectedPanel 'tag')}}
+    {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel
+        --onTagEntityClick=(action --onTagEntityClick)}}
+  {{/if}}
+</div>

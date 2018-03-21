@@ -1,0 +1,57 @@
+<article class="comment-item" data-test-comment-item="{{--comment.id}}">
+  {{comment-item/comment-item-avatar
+      --comment=--comment
+      --onToggleQuoteClick=(action handleToggleQuoteClick)}}
+
+  {{#if isEditingComment}}
+    <div data-test-comment-item="edit-form-container">
+      {{comment-composer
+          class="comment-item__edit-form-composer"
+          --comment=--comment
+          --onSendCommentSuccess=(action (mut isEditingComment) false)}}
+
+      {{ce-icon-button
+          data-test-comment-item="cancel-edit-button"
+          title="Cancel edit"
+          aria-label="Cancel edit"
+          icon="cancel"
+          size="small"
+          --onClick=(action handleCancelEditClick)}}
+    </div>
+  {{else}}
+    <div class="comment-item__container">
+      {{comment-item/comment-item-content --comment=--comment --isQuoteVisible=isQuoteVisible}}
+
+      {{comment-item/comment-item-toolbar
+          --session=session
+          --comment=--comment
+          --threadLevel=--threadLevel
+          --onEditCommentClick=(action (mut isEditingComment) true)
+          --onDeleteCommentClick=(action handleDeleteCommentClick)
+          --onShareCommentClick=(action handleShareCommentClick)
+          --onReplyToCommentClick=(action (mut isReplySectionVisible true))}}
+      
+      {{#if isShareCommentLinkVisible}}
+        <label class="comment-item__share-comment-label" for="comment-item__share-comment-link">
+          Share link
+        </label>
+
+        <input
+            class="comment-item__share-comment-link"
+            id="comment-item__share-comment-link"
+            data-test-comment-item="share-comment-link"
+            type="text"
+            value="https://cenchat.com/comments/{{--comment.id}}"
+            readonly
+            onclick={{action selectShareCommentLinkValue value="target"}}>
+      {{/if}}
+
+      {{#if isReplySectionVisible}}
+        {{comment-item/comment-item-replies
+            --session=session
+            --comment=--comment
+            --threadLevel=--threadLevel}}
+      {{/if}}
+    </div>
+  {{/if}}
+</article>

@@ -1,0 +1,15 @@
+{{#ce-top-bar fixed=true responsive=true}}
+  {{ce-icon-link-button
+      href=(href-to 'sites.index')
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"}}
+
+  <h1 data-test-top-bar="name">{{--site.name}}</h1>
+
+  {{ce-icon-link-button
+      href=(href-to 'docs')
+      title="Documentation"
+      aria-label="Documentation"
+      icon="info"}}
+{{/ce-top-bar}}

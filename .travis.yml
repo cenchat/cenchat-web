@@ -20,8 +20,23 @@ env:
 
 before_install:
   - npm config set spin false
+  - cd packages/core
+  - npm install
+  - cd ../elements
+  - npm install
+  - cd ../../
+
+install:
+  - cd apps/comments
+  - npm install
+  - cd ../main
+  - npm install
+  - cd ../../
 
 script:
   - cd apps/comments
+  - npm run lint:js
+  - npm test
+  - cd ../main
   - npm run lint:js
   - npm test

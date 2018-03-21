@@ -1,0 +1,23 @@
+<p class="comment-item-content-message">
+  {{#if --comment.isDeleted}}
+    <div class="comment-item-content-message__text" data-test-content-message="deleted-message">
+      [deleted]
+    </div>
+  {{/if}}
+
+  {{#if --comment.text}}
+    <div class="comment-item-content-message__text" data-test-content-message="text">
+      {{linkify --comment.text rel="noopener noreferrer"}}
+    </div>
+  {{/if}}
+
+  <div>
+    {{#each --comment.parsedAttachments as |attachment|}}
+      <img
+          class="comment-item-content-message__sticker-attachment-image"
+          data-test-content-message="attachment-image"
+          src="{{attachment.imageUrl}}"
+          alt="{{attachment.description}}">
+    {{/each}}
+  </div>
+</p>

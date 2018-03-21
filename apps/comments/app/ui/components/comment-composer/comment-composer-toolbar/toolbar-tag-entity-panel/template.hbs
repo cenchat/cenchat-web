@@ -1,0 +1,19 @@
+<div>
+  {{ce-field
+      class="comment-composer-toolbar-tag-entity-panel__search-field"
+      name="search"
+      data-test-toolbar-tag-entity-panel="search-field"
+      type="search"
+      label="Search for people using their username"
+      --onInput=(action searchEntities)}}
+
+  {{#if searchResults}}
+    <ul class="list" data-test-toolbar-tag-entity-panel="search-result">
+      {{#each searchResults as |entity|}}
+        {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag-entity-panel-item
+            --entity=entity
+            --onTagEntityClick=(action --onTagEntityClick)}}
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>

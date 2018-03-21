@@ -1,0 +1,39 @@
+<div data-test-toolbar-sticker-panel="host">
+  <div
+      class="comment-composer-toolbar-sticker-panel__toolbar"
+      role="toolbar"
+      aria-label="Sticker packs">
+    {{#each --stickerPacks as |stickerPack|}}
+      {{ce-icon-button
+          data-test-toolbar-sticker-panel=(concat 'pack-button__' stickerPack.id)
+          title=stickerPack.name
+          aria-label=stickerPack.name
+          aria-pressed=(if (eq selectedStickerPack.id stickerPack.id) 'true' 'false')
+          alt=stickerPack.name
+          image=stickerPack.thumbnailUrl
+          square=true
+          --onClick=(action (mut selectedStickerPack) stickerPack)}}
+    {{/each}}
+  </div>
+
+  <ul class="comment-composer-toolbar-sticker-panel__list">
+    {{#async-let
+        on=(async-property selectedStickerPack.stickers)
+        placeholder=(component 'ce-spinner' aria-valuetext='Loading stickers')
+        as |stickers|}}
+      {{#each stickers as |sticker|}}
+        <li class="comment-composer-toolbar-sticker-panel__list-item">
+          {{ce-icon-button
+              data-test-toolbar-sticker-panel=(concat 'sticker-button__' sticker.id)
+              title=sticker.description
+              aria-label=sticker.description
+              alt=sticker.description
+              image=sticker.imageUrl
+              square=true
+              size="large"
+              --onClick=(action --onAddAttachmentClick sticker)}}
+        </li>
+      {{/each}}
+    {{/async-let}}
+  </ul>
+</div>
