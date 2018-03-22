@@ -14,11 +14,11 @@
         as |replies|}}
       {{comment-list
           --comments=replies
-          --newComments=newReplies
+          --prioritizedComments=prioritizedReplies
           --threadLevel=threadLevel
           --onLoadMoreCommentsClick=(action handleLoadMoreCommentsClick replies)}}
     {{/async-let}}
   {{else}}
-    {{comment-list --newComments=newReplies --threadLevel=threadLevel}}
+    {{comment-list --prioritizedComments=prioritizedReplies --threadLevel=threadLevel}}
   {{/if}}
 </div>

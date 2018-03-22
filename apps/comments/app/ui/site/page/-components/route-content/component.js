@@ -14,7 +14,7 @@ export default Component.extend({
   /**
    * @type {Array.<Model.Comment>}
    */
-  newComments: [],
+  prioritizedComments: [],
 
   /**
    * @override
@@ -23,7 +23,7 @@ export default Component.extend({
     this._super(...args);
 
     if (this.get('--comment')) {
-      this.set('newComments', [this.get('--comment')]);
+      this.set('prioritizedComments', [this.get('--comment')]);
     }
   },
 
@@ -33,6 +33,9 @@ export default Component.extend({
    * @param {Model.Comment} newComment
    */
   handleSendCommentSuccess(newComment) {
-    this.set('newComments', [...this.get('newComments'), newComment]);
+    this.set('prioritizedComments', [
+      ...this.get('prioritizedComments'),
+      newComment,
+    ]);
   },
 });

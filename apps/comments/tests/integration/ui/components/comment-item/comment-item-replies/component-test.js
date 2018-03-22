@@ -87,7 +87,7 @@ module('Integration | Component | comment-item/comment item replies', function(h
 
     assert.deepEqual(spy.componentArgsType, {
       'comments': 'instance',
-      'newComments': 'array',
+      'prioritizedComments': 'array',
       'threadLevel': 'number',
       'onLoadMoreCommentsClick': 'function',
     });
@@ -130,7 +130,7 @@ module('Integration | Component | comment-item/comment item replies', function(h
     `);
 
     assert.deepEqual(spy.componentArgsType, {
-      'newComments': 'array',
+      'prioritizedComments': 'array',
       'threadLevel': 'number',
     });
   });

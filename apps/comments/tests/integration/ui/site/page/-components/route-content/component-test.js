@@ -94,7 +94,7 @@ module('Integration | Component | site/page/-components/route content', function
     assert.deepEqual(spy.componentArgsType, {
       'session': 'instance',
       'comments': 'instance',
-      'newComments': 'array',
+      'prioritizedComments': 'array',
       'filterCommentsBy': 'string',
       'onFilterCommentsClick': 'function',
     });

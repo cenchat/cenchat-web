@@ -1,13 +1,15 @@
 <div>
-  {{#each filteredNewComments as |newComment|}}
-    {{comment-item --comment=newComment --threadLevel=--threadLevel}}
-  {{/each}}
+  <div class="comment-list__prioritized-comments">
+    {{#each --prioritizedComments as |comment|}}
+      {{comment-item --comment=comment --threadLevel=--threadLevel}}
+    {{/each}}
+  </div>
 
   {{#each --comments as |comment|}}
     {{comment-item --comment=comment --threadLevel=--threadLevel}}
   {{/each}}
 
-  {{#if (and (eq --newComments.length 0) (eq --comments.length 0))}}
+  {{#if (and (eq --prioritizedComments.length 0) (eq --comments.length 0))}}
     {{#if --emptyStateMessage}}
       <p class="empty-state" data-test-comment-list="empty-state">{{--emptyStateMessage}}</p>
     {{/if}}

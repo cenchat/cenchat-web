@@ -14,7 +14,7 @@ export default Component.extend({
   /**
    * @type {Array.<Model.Comment>}
    */
-  newReplies: [],
+  prioritizedReplies: [],
 
   /**
    * @override
@@ -31,7 +31,10 @@ export default Component.extend({
    * @param {Model.Comment} newReply
    */
   handleSendCommentSuccess(newReply) {
-    this.set('newReplies', [...this.get('newReplies'), newReply]);
+    this.set('prioritizedReplies', [
+      ...this.get('prioritizedReplies'),
+      newReply,
+    ]);
   },
 
   /**

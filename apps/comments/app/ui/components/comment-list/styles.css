@@ -1,0 +1,4 @@
+.comment-list__prioritized-comments {
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--divider-color);
+}

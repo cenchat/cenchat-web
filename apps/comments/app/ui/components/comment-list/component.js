@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 /**
@@ -16,24 +15,6 @@ export default Component.extend({
    * @type {number}
    */
   limit: 2,
-
-  /**
-   * @type {Array.<Model.Comment>}
-   */
-  filteredNewComments: computed('--newComments', '--comments.[]', {
-    get() {
-      const newComments = this.get('--newComments');
-      const oldComments = this.get('--comments');
-
-      if (oldComments) {
-        return newComments.filter((newComment) => {
-          return oldComments.includes(newComment) ? false : true;
-        });
-      }
-
-      return newComments;
-    },
-  }),
 
   /**
    * Load more comments
