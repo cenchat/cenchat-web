@@ -25,6 +25,16 @@ test('should list comments', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 2 });
 });
 
+test('should show a comment on demand', async function(assert) {
+  assert.expect(1);
+
+  // Act
+  await visit('/sites/site_a/pages/page_a?comment=comment_c&slug=foobar');
+
+  // Assert
+  assert.dom('[data-test-comment-item]').exists({ count: 3 });
+});
+
 test('should load more comments', async function(assert) {
   assert.expect(1);
 

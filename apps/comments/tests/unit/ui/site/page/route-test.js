@@ -25,7 +25,35 @@ module('Unit | Route | site/page', function(hooks) {
 
       // Assert
       assert.ok(stub.calledWithExactly('page', 'site_a__page_a'));
-      assert.deepEqual(result, 'foo');
+      assert.deepEqual(result, {
+        comment: undefined,
+        page: 'foo',
+      });
+    });
+
+    test('should fetch comment when available in the params', async function(assert) {
+      assert.expect(1);
+
+      // Arrange
+      const stub = sinon.stub();
+
+      stub.withArgs('comment', 'comment_a').returns(stubPromise(true, 'foo'));
+      stub.withArgs('page', 'site_a__page_a').returns(stubPromise(true, 'bar'));
+
+      const site = EmberObject.create({ id: 'site_a' });
+      const route = this.owner.lookup('route:site/page');
+
+      route.set('store', { findRecord: stub });
+      route.set('modelFor', sinon.stub().returns(site));
+
+      // Act
+      const result = await route.model({
+        comment: 'comment_a',
+        page_id: 'page_a',
+      });
+
+      // Assert
+      assert.deepEqual(result, { comment: 'foo', page: 'bar' });
     });
 
     test('should create new page and use it as the model when it does not exist', async function(assert) {
@@ -56,7 +84,10 @@ module('Unit | Route | site/page', function(hooks) {
       assert.ok(saveStub.calledWithExactly({
         adapterOptions: { onServer: true },
       }));
-      assert.equal(result, 'foo');
+      assert.deepEqual(result, {
+        comment: undefined,
+        page: 'foo',
+      });
     });
 
     test('should not create a new page when page doesn\'t exist and slug is unavailable', async function(assert) {
@@ -80,7 +111,10 @@ module('Unit | Route | site/page', function(hooks) {
 
       // Assert
       assert.ok(createRecordStub.notCalled);
-      assert.equal(result, null);
+      assert.deepEqual(result, {
+        comment: undefined,
+        page: undefined,
+      });
     });
   });
 });

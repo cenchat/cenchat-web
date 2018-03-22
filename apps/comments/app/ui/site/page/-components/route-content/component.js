@@ -17,6 +17,17 @@ export default Component.extend({
   newComments: [],
 
   /**
+   * @override
+   */
+  init(...args) {
+    this._super(...args);
+
+    if (this.get('--comment')) {
+      this.set('newComments', [this.get('--comment')]);
+    }
+  },
+
+  /**
    * Handles the send comment success event
    *
    * @param {Model.Comment} newComment
