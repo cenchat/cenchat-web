@@ -27,7 +27,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     });
 
     this.set('comments', comments);
-    this.set('newComments', []);
+    this.set('prioritizedComments', []);
     this.set('filterCommentsBy', 'relevance');
     this.set('pageUrl', 'http://foobar.com');
     this.set('onFilterCommentsClick', () => {});
@@ -48,7 +48,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -57,7 +57,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     // Assert
     assert.deepEqual(spy.componentArgsType, {
       'comments': 'instance',
-      'newComments': 'array',
+      'prioritizedComments': 'array',
       'emptyStateMessage': 'string',
       'threadLevel': 'number',
       'onLoadMoreCommentsClick': 'function',
@@ -72,7 +72,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -93,7 +93,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -111,7 +111,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -134,7 +134,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -157,7 +157,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -177,7 +177,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -202,7 +202,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -222,7 +222,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}
@@ -246,7 +246,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       {{site/page/-components/route-content/page-comments
           --session=session
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --filterCommentsBy=filterCommentsBy
           --pageUrl=pageUrl
           --onFilterCommentsClick=(action onFilterCommentsClick)}}

@@ -26,7 +26,7 @@ module('Integration | Component | comment list', function(hooks) {
     });
 
     this.set('comments', comments);
-    this.set('newComments', []);
+    this.set('prioritizedComments', []);
     this.set('emptyStateMessage', 'No comments');
     this.set('threadLevel', 2);
   });
@@ -39,11 +39,11 @@ module('Integration | Component | comment list', function(hooks) {
     assert.expect(2);
 
     // Arrange
-    const newComment = await run(() => {
+    const prioritizedComment = await run(() => {
       return this.get('store').findRecord('comment', 'comment_c');
     });
 
-    this.set('newComments', [newComment]);
+    this.set('prioritizedComments', [prioritizedComment]);
 
     const spy = spyComponent(this, 'comment-item');
 
@@ -51,7 +51,7 @@ module('Integration | Component | comment list', function(hooks) {
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
@@ -74,7 +74,7 @@ module('Integration | Component | comment list', function(hooks) {
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
@@ -91,14 +91,14 @@ module('Integration | Component | comment list', function(hooks) {
     assert.expect(1);
 
     // Arrange
-    this.set('newComments', []);
+    this.set('prioritizedComments', []);
     this.set('comments', []);
 
     // Act
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
@@ -118,7 +118,7 @@ module('Integration | Component | comment list', function(hooks) {
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
@@ -134,7 +134,7 @@ module('Integration | Component | comment list', function(hooks) {
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
@@ -155,7 +155,7 @@ module('Integration | Component | comment list', function(hooks) {
     await render(hbs`
       {{comment-list
           --comments=comments
-          --newComments=newComments
+          --prioritizedComments=prioritizedComments
           --emptyStateMessage=emptyStateMessage
           --threadLevel=threadLevel}}
     `);
