@@ -29,7 +29,10 @@ module('Unit | Model | notification', function(hooks) {
       });
 
       // Assert
-      assert.equal(result, 'http://site-a.com/foo/bar');
+      assert.equal(
+        result,
+        'http://site-a.com/foo/bar?cenchat_comment=comment_a',
+      );
     });
   });
 });

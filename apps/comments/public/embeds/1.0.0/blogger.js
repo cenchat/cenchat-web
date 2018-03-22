@@ -19,40 +19,6 @@
     return null;
   }
 
-  function createCenchatContainerElement(commentsSectionElement) {
-    const element = document.createElement('div');
-
-    element.id = 'cenchat-comments';
-
-    commentsSectionElement.appendChild(element);
-  }
-
-  function createCenchatIframeElement(siteId) {
-    const pageId = getPageId();
-    let iframeUrl = `https://comments.cenchat.com/sites/${siteId}`;
-
-    if (pageId) {
-      iframeUrl = `${iframeUrl}/pages/${pageId}`;
-    }
-
-    const pageUrlSlug = getPageUrlSlug();
-
-    iframeUrl = `${iframeUrl}?slug=${pageUrlSlug}`;
-
-    const iframeElement = document.createElement('iframe');
-
-    iframeElement.style = 'width: 100%; border: none';
-    iframeElement.id = 'cenchat-comments-thread';
-    iframeElement.src = iframeUrl;
-    iframeElement.onload = () => {
-      if (window.iFrameResize) {
-        iFrameResize({}, '#cenchat-comments-thread');
-      }
-    };
-
-    document.querySelector('#cenchat-comments').appendChild(iframeElement);
-  }
-
   function fixedEncodeURIComponent(value) {
     return encodeURIComponent(value).replace(/[.!'()*]/g, (c) => {
       return '%' + c.charCodeAt(0).toString(16);
@@ -62,45 +28,133 @@
   function getCanonicalUrlElement() {
     const canonicalUrlElement = document.querySelector('link[rel="canonical"]');
 
-    if (canonicalUrlElement) {
-      return canonicalUrlElement;
+    if (canonicalUrlElement && canonicalUrlElement.hasAttribute('href')) {
+      const urlElement = document.createElement('a');
+
+      urlElement.href = canonicalUrlElement.getAttribute('href');
+
+      return urlElement;
     }
 
     const ogUrlElement = document.querySelector('meta[property="og:url"]');
 
-    if (ogUrlElement) {
-      return ogUrlElement;
+    if (ogUrlElement && ogUrlElement.hasAttribute('content')) {
+      const urlElement = document.createElement('a');
+
+      urlElement.href = ogUrlElement.getAttribute('content');
+
+      return urlElement;
     }
 
     return null;
   }
 
-  function getPageUrlSlug() {
+  function getCenchatCommentQueryParam() {
+    const params = window.location.search.split('&');
+    let comment;
+
+    params.forEach((param) => {
+      if (param.includes('cenchat_comment')) {
+        const startIndex = param.search('cenchat_comment');
+        const endIndex = param.length;
+        const cenchatCommentParam = param.slice(startIndex, endIndex);
+
+        comment = cenchatCommentParam.split('=')[1];
+      }
+    });
+
+    return comment;
+  }
+
+  function removeCenchatCommentQueryParam(url, comment) {
+    url = url.replace(`&cenchat_comment=${comment}`, '');
+    url = url.replace(`cenchat_comment=${comment}&`, '');
+    url = url.replace(`cenchat_comment=${comment}`, '');
+
+    return url;
+  }
+
+  function getSlug(url) {
+    return fixedEncodeURIComponent(`${url.pathname}${url.search}`);
+  }
+
+  function getIframeSrcSearch() {
     const canonicalUrlElement = getCanonicalUrlElement();
-    let pageUrl = window.location;
+    const comment = getCenchatCommentQueryParam();
 
     if (canonicalUrlElement) {
-      const canonicalUrl = canonicalUrlElement.getAttribute('href');
+      const slug = getSlug(canonicalUrlElement);
 
-      if (canonicalUrl) {
-        const canonicalLinkElement = document.createElement('a');
-
-        canonicalLinkElement.href = canonicalUrl;
-        pageUrl = canonicalLinkElement;
-      }
+      return comment ? `?slug=${slug}&comment=${comment}` : `?slug=${slug}`;
     }
 
-    return fixedEncodeURIComponent(`${pageUrl.pathname}${pageUrl.search}`);
+    const pageUrlElement = document.createElement('a');
+
+    pageUrlElement.href = window.location.href;
+
+    if (comment) {
+      pageUrlElement.href = removeCenchatCommentQueryParam(
+        pageUrlElement.href,
+        comment,
+      );
+
+      return `?slug=${getSlug(pageUrlElement)}&comment=${comment}`;
+    }
+
+    return `?slug=${getSlug(pageUrlElement)}`;
+  }
+
+  function getIframeSrc() {
+    const siteId = getSiteId();
+    const pageId = getPageId();
+    let iframeUrl = `https://comments.cenchat.com/sites/${siteId}`;
+
+    if (pageId) {
+      iframeUrl = `${iframeUrl}/pages/${pageId}`;
+    }
+
+    return `${iframeUrl}${getIframeSrcSearch()}`;
+  }
+
+  function createIframeElement() {
+    const iframeElement = document.createElement('iframe');
+
+    iframeElement.style = 'width: 100%; border: none';
+    iframeElement.id = 'cenchat-comments-thread';
+    iframeElement.src = getIframeSrc();
+    iframeElement.onload = () => {
+      if (window.iFrameResize) {
+        iFrameResize({}, '#cenchat-comments-thread');
+      }
+    };
+
+    return iframeElement;
+  }
+
+  function showIframeElement() {
+    const cenchatContainerElement = document.querySelector('#cenchat-comments');  
+
+    if (cenchatContainerElement) {
+      const iframeElement = createIframeElement();
+
+      cenchatContainerElement.appendChild(iframeElement);
+    }
+  }
+
+  function createCenchatContainerElement(commentsSectionElement) {
+    const element = document.createElement('div');
+
+    element.id = 'cenchat-comments';
+
+    commentsSectionElement.appendChild(element);
   }
 
   function setupCenchatComments() {
     const commentsSectionElement = document.querySelector('#comments');
 
     if (commentsSectionElement) {
-      const siteId = getSiteId();
-
       createCenchatContainerElement(commentsSectionElement);
-      createCenchatIframeElement(siteId);
+      showIframeElement();
     }
   }
 

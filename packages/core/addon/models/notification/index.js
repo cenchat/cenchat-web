@@ -51,7 +51,7 @@ export default Model.extend({
       return comment.get('page');
     }).then((page) => {
       return page.get('site').then((site) => {
-        return `http://${site.get('hostname')}${page.get('decodedSlug')}`;
+        return `http://${site.get('hostname')}${page.get('decodedSlug')}?cenchat_comment=${commentId}`;
       });
     });
   },
