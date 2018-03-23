@@ -77,7 +77,9 @@ export default Route.extend({
     }
 
     if (willSave) {
-      return profile.save();
+      return profile.save({
+        adapterOptions: { onServer: true },
+      });
     }
   },
 });
