@@ -34,12 +34,23 @@ module('Unit | Route | application', function(hooks) {
     });
   });
 
-  module('hook: afterModel', function() {
+  module('hook: afterModel', function(hooks) {
+    hooks.beforeEach(function() {
+      this.user = EmberObject.create({
+        displayName: 'User A',
+        photoUrl: 'user_a.jpg',
+
+        save() {
+          return Promise.resolve();
+        },
+      });
+    });
+
     test('should set session model', async function(assert) {
       assert.expect(2);
 
       // Arrange
-      const stub = sinon.stub().returns(stubPromise(true, 'foo'));
+      const stub = sinon.stub().returns(stubPromise(true, this.user));
       const route = this.owner.lookup('route:application');
 
       route.set('session', ObjectProxy.create({
@@ -51,11 +62,9 @@ module('Unit | Route | application', function(hooks) {
             email: 'user_a@gmail.com',
             photoURL: 'user_a.jpg',
             providerData: [{
+              displayName: 'User A',
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
-            }, {
-              photoURL: 'user_a.jpg',
-              providerId: 'google.com',
             }],
           },
         }),
@@ -68,7 +77,7 @@ module('Unit | Route | application', function(hooks) {
 
       // Assert
       assert.ok(stub.calledWithExactly('user', 'user_a'));
-      assert.equal(route.get('session.model'), 'foo');
+      assert.equal(route.get('session.model'), this.user);
     });
 
     test('should create record when fetching session model fails', async function(assert) {
@@ -91,9 +100,6 @@ module('Unit | Route | application', function(hooks) {
             providerData: [{
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
-            }, {
-              photoURL: 'user_a.jpg',
-              providerId: 'google.com',
             }],
           },
         }),
@@ -116,6 +122,150 @@ module('Unit | Route | application', function(hooks) {
         adapterOptions: { onServer: true },
       }));
       assert.deepEqual(route.get('session.content.model'), createRecordStub());
+    });
+
+    test('should update profile when display name is outdated with Facebook info', async function(assert) {
+      assert.expect(3);
+
+      // Arrange
+      const saveSpy = sinon.spy(this.user, 'save');
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', ObjectProxy.create({
+        content: EmberObject.create({
+          isAuthenticated: true,
+          uid: 'user_a',
+          currentUser: {
+            uid: 'user_a',
+            email: 'user_a@gmail.com',
+            photoURL: 'user_a.jpg',
+            providerData: [{
+              displayName: 'New name',
+              photoURL: 'user_a.jpg',
+              providerId: 'facebook.com',
+            }],
+          },
+        }),
+      }));
+
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.equal(this.user.get('displayName'), 'New name');
+      assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
+      assert.ok(saveSpy.calledOnce);
+    });
+
+    test('should update profile when photo url is outdated with Facebook info', async function(assert) {
+      assert.expect(3);
+
+      // Arrange
+      const saveSpy = sinon.spy(this.user, 'save');
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', ObjectProxy.create({
+        content: EmberObject.create({
+          isAuthenticated: true,
+          uid: 'user_a',
+          currentUser: {
+            uid: 'user_a',
+            email: 'user_a@gmail.com',
+            photoURL: 'user_a.jpg',
+            providerData: [{
+              displayName: 'User A',
+              photoURL: 'new_photo.jpg',
+              providerId: 'facebook.com',
+            }],
+          },
+        }),
+      }));
+
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.equal(this.user.get('displayName'), 'User A');
+      assert.equal(this.user.get('photoUrl'), 'new_photo.jpg');
+      assert.ok(saveSpy.calledOnce);
+    });
+
+    test('should not update profile when up-to-date with Facebook info', async function(assert) {
+      assert.expect(1);
+
+      // Arrange
+      const saveSpy = sinon.spy(this.user, 'save');
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', ObjectProxy.create({
+        content: EmberObject.create({
+          isAuthenticated: true,
+          uid: 'user_a',
+          currentUser: {
+            uid: 'user_a',
+            email: 'user_a@gmail.com',
+            photoURL: 'user_a.jpg',
+            providerData: [{
+              displayName: 'User A',
+              photoURL: 'user_a.jpg',
+              providerId: 'facebook.com',
+            }],
+          },
+        }),
+      }));
+
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.ok(saveSpy.notCalled);
+    });
+
+    test('should not update profile when no Facebook provider', async function(assert) {
+      assert.expect(1);
+
+      // Arrange
+      const saveSpy = sinon.spy(this.user, 'save');
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', ObjectProxy.create({
+        content: EmberObject.create({
+          isAuthenticated: true,
+          uid: 'user_a',
+          currentUser: {
+            uid: 'user_a',
+            email: 'user_a@gmail.com',
+            photoURL: 'user_a.jpg',
+            providerData: [{
+              displayName: 'User A',
+              photoURL: 'user_a.jpg',
+              providerId: 'password',
+            }],
+          },
+        }),
+      }));
+
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.ok(saveSpy.notCalled);
     });
   });
 });

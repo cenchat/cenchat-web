@@ -27,9 +27,40 @@ export default Route.extend({
         session.get('currentUser.uid'),
       ).then((model) => {
         session.set('content.model', model);
+
+        return this.updateProfile(model);
       }).catch((error) => {
         return session.close();
       });
+    }
+  },
+
+  /**
+   * Updates the signed in user's profile based on their Facebook data
+   *
+   * @param {Model.User} profile
+   * @return {Promise} Resolves after successful save
+   */
+  updateProfile(profile) {
+    let willSave = false;
+
+    for (const provider of this.get('session.currentUser.providerData')) {
+      const providerId = provider.providerId;
+
+      if (
+        providerId.includes('facebook')
+        && profile.get('displayName') !== provider.displayName
+        || profile.get('photoUrl') !== provider.photoURL
+      ) {
+        willSave = true;
+        profile.set('displayName', provider.displayName);
+        profile.set('photoUrl', provider.photoURL);
+        break;
+      }
+    }
+
+    if (willSave) {
+      return profile.save();
     }
   },
 
