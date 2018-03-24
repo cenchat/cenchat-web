@@ -42,15 +42,16 @@ export default Route.extend({
    * @return {Promise} Resolves after successful save
    */
   updateProfile(profile) {
+    const currentUser = this.get('session.currentUser');
     let willSave = false;
 
-    for (const provider of this.get('session.currentUser.providerData')) {
-      const providerId = provider.providerId;
-
+    for (const provider of currentUser.providerData) {
       if (
-        providerId.includes('facebook')
-        && profile.get('displayName') !== provider.displayName
-        || profile.get('photoUrl') !== provider.photoURL
+        provider.providerId.includes('facebook')
+        && (
+          profile.get('displayName') !== provider.displayName
+          || profile.get('photoUrl') !== provider.photoURL
+        )
       ) {
         willSave = true;
         profile.set('displayName', provider.displayName);
@@ -60,9 +61,15 @@ export default Route.extend({
     }
 
     if (willSave) {
-      return profile.save({
-        adapterOptions: { onServer: true },
-      });
+      return Promise.all([
+        profile.save({
+          adapterOptions: { onServer: true },
+        }),
+        currentUser.updateProfile({
+          displayName: profile.get('displayName'),
+          photoURL: profile.get('photoUrl'),
+        }),
+      ]);
     }
   },
 

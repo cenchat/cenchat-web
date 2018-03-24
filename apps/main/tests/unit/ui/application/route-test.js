@@ -41,12 +41,12 @@ module('Unit | Route | application', function(hooks) {
         photoUrl: 'user_a.jpg',
 
         save() {
-          return Promise.resolve();
+          return stubPromise(true);
         },
       });
     });
 
-    test('should set session model in the afterModel hook', async function(assert) {
+    test('should set session model', async function(assert) {
       assert.expect(2);
 
       // Arrange
@@ -65,6 +65,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
             }],
+            updateProfile: sinon.stub().returns(stubPromise(true)),
           },
         }),
       }));
@@ -98,6 +99,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
             }],
+            updateProfile: sinon.stub().returns(stubPromise(true)),
           },
         }),
         close: stub,
@@ -115,9 +117,10 @@ module('Unit | Route | application', function(hooks) {
     });
 
     test('should update profile when display name is outdated with Facebook info', async function(assert) {
-      assert.expect(3);
+      assert.expect(4);
 
       // Arrange
+      const updateProfileStub = sinon.stub().returns(stubPromise(true));
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
@@ -134,6 +137,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
             }],
+            updateProfile: updateProfileStub,
           },
         }),
       }));
@@ -149,12 +153,17 @@ module('Unit | Route | application', function(hooks) {
       assert.equal(this.user.get('displayName'), 'New name');
       assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
       assert.ok(saveSpy.calledOnce);
+      assert.ok(updateProfileStub.calledWithExactly({
+        displayName: 'New name',
+        photoURL: 'user_a.jpg',
+      }));
     });
 
     test('should update profile when photo url is outdated with Facebook info', async function(assert) {
-      assert.expect(3);
+      assert.expect(4);
 
       // Arrange
+      const updateProfileStub = sinon.stub().returns(stubPromise(true));
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
@@ -171,6 +180,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'new_photo.jpg',
               providerId: 'facebook.com',
             }],
+            updateProfile: updateProfileStub,
           },
         }),
       }));
@@ -186,12 +196,17 @@ module('Unit | Route | application', function(hooks) {
       assert.equal(this.user.get('displayName'), 'User A');
       assert.equal(this.user.get('photoUrl'), 'new_photo.jpg');
       assert.ok(saveSpy.calledOnce);
+      assert.ok(updateProfileStub.calledWithExactly({
+        displayName: 'User A',
+        photoURL: 'new_photo.jpg',
+      }));
     });
 
     test('should not update profile when up-to-date with Facebook info', async function(assert) {
-      assert.expect(1);
+      assert.expect(2);
 
       // Arrange
+      const updateProfileStub = sinon.stub().returns(stubPromise(true));
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
@@ -208,6 +223,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'user_a.jpg',
               providerId: 'facebook.com',
             }],
+            updateProfile: updateProfileStub,
           },
         }),
       }));
@@ -221,12 +237,14 @@ module('Unit | Route | application', function(hooks) {
 
       // Assert
       assert.ok(saveSpy.notCalled);
+      assert.ok(updateProfileStub.notCalled);
     });
 
     test('should not update profile when no Facebook provider', async function(assert) {
-      assert.expect(1);
+      assert.expect(2);
 
       // Arrange
+      const updateProfileStub = sinon.stub().returns(stubPromise(true));
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
@@ -243,6 +261,7 @@ module('Unit | Route | application', function(hooks) {
               photoURL: 'user_a.jpg',
               providerId: 'password',
             }],
+            updateProfile: updateProfileStub,
           },
         }),
       }));
@@ -256,6 +275,7 @@ module('Unit | Route | application', function(hooks) {
 
       // Assert
       assert.ok(saveSpy.notCalled);
+      assert.ok(updateProfileStub.notCalled);
     });
   });
 });
