@@ -38,9 +38,39 @@ module('Unit | Route | application', function(hooks) {
     hooks.beforeEach(function() {
       this.user = EmberObject.create({
         displayName: 'User A',
+        facebookId: '12345',
         photoUrl: 'user_a.jpg',
 
+        getMetaInfo() {
+          return stubPromise(true, EmberObject.create());
+        },
+
         save() {
+          return stubPromise(true);
+        },
+      });
+      this.session = ObjectProxy.create({
+        content: EmberObject.create({
+          isAuthenticated: true,
+          uid: 'user_a',
+          currentUser: {
+            uid: 'user_a',
+            email: 'user_a@gmail.com',
+            photoURL: 'user_a.jpg',
+            providerData: [{
+              displayName: 'User A',
+              photoURL: 'user_a.jpg',
+              providerId: 'facebook.com',
+              uid: '12345',
+            }],
+
+            updateProfile() {
+              return stubPromise(true);
+            },
+          },
+        }),
+
+        close() {
           return stubPromise(true);
         },
       });
@@ -53,23 +83,7 @@ module('Unit | Route | application', function(hooks) {
       const stub = sinon.stub().returns(stubPromise(true, this.user));
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              photoURL: 'user_a.jpg',
-              providerId: 'facebook.com',
-            }],
-            updateProfile: sinon.stub().returns(stubPromise(true)),
-          },
-        }),
-      }));
-
+      route.set('session', this.session);
       route.set('store', { findRecord: stub });
 
       // Act
@@ -84,27 +98,10 @@ module('Unit | Route | application', function(hooks) {
       assert.expect(1);
 
       // Arrange
-      const stub = sinon.stub().returns(stubPromise(true));
+      const closeSpy = sinon.spy(this.session, 'close');
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              photoURL: 'user_a.jpg',
-              providerId: 'facebook.com',
-            }],
-            updateProfile: sinon.stub().returns(stubPromise(true)),
-          },
-        }),
-        close: stub,
-      }));
-
+      route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(false)),
       });
@@ -113,35 +110,23 @@ module('Unit | Route | application', function(hooks) {
       await route.afterModel();
 
       // Assert
-      assert.ok(stub.calledOnce);
+      assert.ok(closeSpy.calledOnce);
     });
 
-    test('should update profile when display name is outdated with Facebook info', async function(assert) {
-      assert.expect(4);
+    test('should update profile when Facebook UID is outdated with Facebook info', async function(assert) {
+      assert.expect(5);
 
       // Arrange
-      const updateProfileStub = sinon.stub().returns(stubPromise(true));
+      this.session.get('currentUser.providerData')[0].uid = '67890';
+
+      const updateProfileSpy = sinon.spy(
+        this.session.content.currentUser,
+        'updateProfile',
+      );
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              displayName: 'New name',
-              photoURL: 'user_a.jpg',
-              providerId: 'facebook.com',
-            }],
-            updateProfile: updateProfileStub,
-          },
-        }),
-      }));
-
+      route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
       });
@@ -150,41 +135,62 @@ module('Unit | Route | application', function(hooks) {
       await route.afterModel();
 
       // Assert
+      assert.equal(this.user.get('facebookId'), '67890');
+      assert.equal(this.user.get('displayName'), 'User A');
+      assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
+      assert.ok(saveSpy.calledOnce);
+      assert.ok(updateProfileSpy.calledWithExactly({
+        displayName: 'User A',
+        photoURL: 'user_a.jpg',
+      }));
+    });
+
+    test('should update profile when display name is outdated with Facebook info', async function(assert) {
+      assert.expect(5);
+
+      // Arrange
+      this.session.get('currentUser.providerData')[0].displayName = 'New name';
+
+      const updateProfileSpy = sinon.spy(
+        this.session.content.currentUser,
+        'updateProfile',
+      );
+      const saveSpy = sinon.spy(this.user, 'save');
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', this.session);
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.equal(this.user.get('facebookId'), '12345');
       assert.equal(this.user.get('displayName'), 'New name');
       assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
       assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileStub.calledWithExactly({
+      assert.ok(updateProfileSpy.calledWithExactly({
         displayName: 'New name',
         photoURL: 'user_a.jpg',
       }));
     });
 
     test('should update profile when photo url is outdated with Facebook info', async function(assert) {
-      assert.expect(4);
+      assert.expect(5);
 
       // Arrange
-      const updateProfileStub = sinon.stub().returns(stubPromise(true));
+      this.session.get('currentUser.providerData')[0].photoURL = 'new.png';
+
+      const updateProfileSpy = sinon.spy(
+        this.session.content.currentUser,
+        'updateProfile',
+      );
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              displayName: 'User A',
-              photoURL: 'new_photo.jpg',
-              providerId: 'facebook.com',
-            }],
-            updateProfile: updateProfileStub,
-          },
-        }),
-      }));
-
+      route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
       });
@@ -193,12 +199,13 @@ module('Unit | Route | application', function(hooks) {
       await route.afterModel();
 
       // Assert
+      assert.equal(this.user.get('facebookId'), '12345');
       assert.equal(this.user.get('displayName'), 'User A');
-      assert.equal(this.user.get('photoUrl'), 'new_photo.jpg');
+      assert.equal(this.user.get('photoUrl'), 'new.png');
       assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileStub.calledWithExactly({
+      assert.ok(updateProfileSpy.calledWithExactly({
         displayName: 'User A',
-        photoURL: 'new_photo.jpg',
+        photoURL: 'new.png',
       }));
     });
 
@@ -206,28 +213,14 @@ module('Unit | Route | application', function(hooks) {
       assert.expect(2);
 
       // Arrange
-      const updateProfileStub = sinon.stub().returns(stubPromise(true));
+      const updateProfileSpy = sinon.spy(
+        this.session.content.currentUser,
+        'updateProfile',
+      );
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              displayName: 'User A',
-              photoURL: 'user_a.jpg',
-              providerId: 'facebook.com',
-            }],
-            updateProfile: updateProfileStub,
-          },
-        }),
-      }));
-
+      route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
       });
@@ -237,35 +230,21 @@ module('Unit | Route | application', function(hooks) {
 
       // Assert
       assert.ok(saveSpy.notCalled);
-      assert.ok(updateProfileStub.notCalled);
+      assert.ok(updateProfileSpy.notCalled);
     });
 
     test('should not update profile when no Facebook provider', async function(assert) {
       assert.expect(2);
 
       // Arrange
-      const updateProfileStub = sinon.stub().returns(stubPromise(true));
+      const updateProfileSpy = sinon.spy(
+        this.session.content.currentUser,
+        'updateProfile',
+      );
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
-      route.set('session', ObjectProxy.create({
-        content: EmberObject.create({
-          isAuthenticated: true,
-          uid: 'user_a',
-          currentUser: {
-            uid: 'user_a',
-            email: 'user_a@gmail.com',
-            photoURL: 'user_a.jpg',
-            providerData: [{
-              displayName: 'User A',
-              photoURL: 'user_a.jpg',
-              providerId: 'password',
-            }],
-            updateProfile: updateProfileStub,
-          },
-        }),
-      }));
-
+      route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
       });
@@ -275,7 +254,47 @@ module('Unit | Route | application', function(hooks) {
 
       // Assert
       assert.ok(saveSpy.notCalled);
-      assert.ok(updateProfileStub.notCalled);
+      assert.ok(updateProfileSpy.notCalled);
+    });
+
+    test('should update Facebook access token when current user has one', async function(assert) {
+      assert.expect(3);
+
+      // Arrange
+      const saveStub = sinon.stub().returns(stubPromise(true));
+      const userMetaInfo = EmberObject.create({
+        facebookAccessToken: '12345',
+        save: saveStub,
+      });
+
+      this.user.set(
+        'getMetaInfo',
+        sinon.stub().returns(stubPromise(true, userMetaInfo)),
+      );
+
+      const authData = {
+        credential: { accessToken: '67890' },
+      };
+      const signInStub = sinon.stub().returns(stubPromise(true, authData));
+      const route = this.owner.lookup('route:application');
+
+      route.set('session', this.session);
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+      route.set('firebase', {
+        auth: sinon.stub().returns({
+          signInAndRetrieveDataWithCredential: signInStub,
+        }),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.ok(signInStub.calledOnce);
+      assert.equal(userMetaInfo.get('facebookAccessToken'), '67890');
+      assert.ok(saveStub.calledOnce);
     });
   });
 });

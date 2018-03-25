@@ -1,6 +1,7 @@
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
-import RSVP from 'rsvp';
+
+import { stubPromise } from '@cenchat/core/test-support';
 
 /**
  * @param {Object} context
@@ -40,15 +41,19 @@ export function stubSession(context, model) {
       uid: 'user_a',
 
       getIdToken() {
-        return RSVP.Promise.resolve(12345);
+        return stubPromise(12345);
       },
     },
     isAuthenticated: true,
     uid: 'user_a',
     model: model,
 
+    fetch() {
+      return stubPromise(true);
+    },
+
     close() {
-      return RSVP.Promise.resolve();
+      return stubPromise(true);
     },
   });
 }

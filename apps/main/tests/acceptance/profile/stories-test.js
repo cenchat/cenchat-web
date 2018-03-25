@@ -26,8 +26,8 @@ test('should show followings', async function(assert) {
   await visit('/');
 
   // Assert
-  assert.dom('[data-test-following-collection-item="user_b"]').exists();
-  assert.dom('[data-test-following-collection-item="user_d"]').exists();
+  assert.dom('[data-test-user-collection-item="user_b"]').exists();
+  assert.dom('[data-test-user-collection-item="user_d"]').exists();
 });
 
 test('TODO: find a way to test this | should follow a user', async function(assert) {

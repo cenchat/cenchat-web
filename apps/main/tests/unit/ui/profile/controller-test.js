@@ -81,20 +81,4 @@ module('Unit | Controller | profile', function(hooks) {
       }));
     });
   });
-
-  module('function: handleFollowUserClick', function() {
-    test('TODO: find a way to test this | should follow user', async function(assert) {
-      assert.expect(1);
-
-      assert.ok(true);
-    });
-  });
-
-  module('function: unfollowUser', function() {
-    test('TODO: find a way to test this | should unfollow user', async function(assert) {
-      assert.expect(1);
-
-      assert.ok(true);
-    });
-  });
 });

@@ -8,6 +8,11 @@ import attr from 'ember-data/attr';
  */
 export default Model.extend({
   /**
+   * @type {string}
+   */
+  facebookAccessToken: attr('string'),
+
+  /**
    * @type {boolean}
    */
   hasNewNotification: attr('boolean'),

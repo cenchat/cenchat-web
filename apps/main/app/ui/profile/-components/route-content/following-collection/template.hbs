@@ -1,27 +1,30 @@
 <section class="section">
   {{#ce-subheader class="section__header"}}
     <h2>Followings</h2>
+
+    {{#ce-link-button
+        data-test-following-collection="see-all-link"
+        href=(href-to 'profile.followings')
+        size="small"}}
+      See all
+    {{/ce-link-button}}
   {{/ce-subheader}}
 
   {{#async-let
       on=(async-property --user.followings)
-      description=(component 'ce-spinner' aria-valuetext='Loading followings')
+      placeholder=(component 'ce-spinner' aria-valuetext='Loading followings')
       as |followings|}}
-    {{#infinite-content class="wrapper" --query=followings}}
-      {{#each followings as |following|}}
-        {{profile/-components/route-content/following-collection/following-collection-item
-            --following=following
-            --onUnfollowUserClick=(action --onUnfollowUserClick)}}
-      {{else}}
-        <article class="card" data-test-following-collection="empty-state">
-          <header class="card__header">
-            <h3 class="card__heading">Follow people you like</h3>
-            <p class="card__subheading">Look them up by searching for their usernames. Once you've added them, you'll be able to see their comments first when reading articles. If they follow you back, you'll be able to reply to them with texts.</p>
-          </header>
+    {{#if followings}}
+      {{user-collection class="wrapper" --users=followings --type="unfollow"}}
+    {{else}}
+      <article class="card" data-test-following-collection="empty-state">
+        <header class="card__header">
+          <h3 class="card__heading">Follow people you like</h3>
+          <p class="card__subheading">Look them up by searching for their usernames. Once you've added them, you'll be able to see their comments first when reading articles. If they follow you back, you'll be able to reply to them with texts.</p>
+        </header>
 
-          {{#ce-button class="card__action"}}Search them{{/ce-button}}
-        </article>
-      {{/each}}
-    {{/infinite-content}}
+        {{#ce-button class="card__action"}}Search them{{/ce-button}}
+      </article>
+    {{/if}}
   {{/async-let}}
 </section>

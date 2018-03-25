@@ -10,17 +10,9 @@
   {{else}}
     {{#if (not-eq isFollowingUser null)}}
       {{#if isFollowingUser}}
-        {{#ce-button
-            data-test-top-bar-actions="unfollow-user-button"
-            --onClick=(action handleUnfollowUserClick --user)}}
-          Unfollow
-        {{/ce-button}}
+        {{unfollow-user-button --userToUnfollow=--user --onUnfollowUser=(action handleUnfollowUser)}}
       {{else}}
-        {{#ce-button
-            data-test-top-bar-actions="follow-user-button"
-            --onClick=(action handleFollowUserClick)}}
-          Follow
-        {{/ce-button}}
+        {{follow-user-button --userToFollow=--user --onFollowUser=(action handleFollowUser)}}
       {{/if}}
     {{/if}}
   {{/if}}

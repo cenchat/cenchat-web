@@ -48,6 +48,14 @@ export default Route.extend({
             photoUrl: currentUser.photoURL,
           });
 
+          for (const provider of currentUser.providerData) {
+            if (provider.providerId.includes('facebook')) {
+              record.set('facebookId', provider.uid);
+
+              break;
+            }
+          }
+
           return record.save({
             adapterOptions: { onServer: true },
           }).then(() => {
@@ -74,13 +82,16 @@ export default Route.extend({
       if (
         provider.providerId.includes('facebook')
         && (
-          profile.get('displayName') !== provider.displayName
+          profile.get('facebookId') !== provider.uid
+          || profile.get('displayName') !== provider.displayName
           || profile.get('photoUrl') !== provider.photoURL
         )
       ) {
         willSave = true;
+        profile.set('facebookId', provider.uid);
         profile.set('displayName', provider.displayName);
         profile.set('photoUrl', provider.photoURL);
+
         break;
       }
     }

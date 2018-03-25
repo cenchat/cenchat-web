@@ -1,21 +1,21 @@
-.profile_following-collection-item__header {
+.user-collection-item__header {
   display: flex;
   padding-right: 16px;
   padding-left: 16px;
 }
 
-.profile_following-collection-item__text-content {
+.user-collection-item__text-content {
   flex: 1;
 }
 
-.profile_following-collection-item__photo {
+.user-collection-item__photo {
   width: 80px;
   height: 80px;
   margin-top: 16px;
   margin-left: 16px;
 }
 
-.profile_following-collection-item__name {
+.user-collection-item__name {
   padding: 24px 0 8px;
   margin-top: 0;
   margin-bottom: 0;
@@ -24,7 +24,7 @@
   color: var(--font-primary-color);
 }
 
-.profile_following-collection-item__username {
+.user-collection-item__username {
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-14);

@@ -1,9 +1,7 @@
 {{profile/-components/route-content/top-bar
     --session=--session
     --user=--user
-    --onSignOutClick=(action --onSignOutClick)
-    --onFollowUserClick=(action --onFollowUserClick)
-    --onUnfollowUserClick=(action --onUnfollowUserClick)}}
+    --onSignOutClick=(action --onSignOutClick)}}
 
 <main class="profile-route-content__main main">
   {{#if (eq --session.model.id --user.id)}}
@@ -13,9 +11,7 @@
           --onUsernameSubmit=(action --onUsernameSubmit)}}
     {{/if}}
 
-    {{profile/-components/route-content/following-collection
-        --user=--user
-        --onUnfollowUserClick=(action --onUnfollowUserClick)}}
+    {{profile/-components/route-content/following-collection --user=--user}}
   {{/if}}
 
   {{yield}}

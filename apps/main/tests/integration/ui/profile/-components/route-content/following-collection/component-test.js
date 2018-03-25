@@ -19,48 +19,25 @@ module('Integration | Component | profile/-components/route-content/following co
     const user = this.get('session.model');
 
     this.set('user', user);
-    this.set('onUnfollowUserClick', () => {});
   });
 
   hooks.afterEach(async function() {
     await setupAfterEach(this);
   });
 
-  test('should show <InfiniteContent />', async function(assert) {
+  test('should show <UserCollection />', async function(assert) {
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'infinite-content');
+    const spy = spyComponent(this, 'user-collection');
 
     // Act
-    await render(hbs`
-      {{profile/-components/route-content/following-collection
-          --user=user
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
-    `);
+    await render(hbs`{{profile/-components/route-content/following-collection --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'query': 'instance' });
-  });
-
-  test('should show <FollowingCollectionItem /> for each following', async function(assert) {
-    assert.expect(2);
-
-    // Arrange
-    const spy = spyComponent(this, 'profile/-components/route-content/following-collection/following-collection-item');
-
-    // Act
-    await render(hbs`
-      {{profile/-components/route-content/following-collection
-          --user=user
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
-    `);
-
-    // Assert
-    assert.ok(spy.calledTwice);
     assert.deepEqual(spy.componentArgsType, {
-      'following': 'instance',
-      'onUnfollowUserClick': 'function',
+      users: 'instance',
+      type: 'string',
     });
   });
 
@@ -73,11 +50,7 @@ module('Integration | Component | profile/-components/route-content/following co
     });
 
     // Act
-    await render(hbs`
-      {{profile/-components/route-content/following-collection
-          --user=user
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
-    `);
+    await render(hbs`{{profile/-components/route-content/following-collection --user=user}}`);
 
     // Assert
     assert.dom('[data-test-following-collection="empty-state"]').exists();

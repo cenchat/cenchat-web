@@ -16,6 +16,7 @@
 .side-nav__content {
   flex: 1;
   overflow: auto;
+  background-color: var(--body-background-color);
 }
 
 .side-nav__toolbar {
@@ -34,9 +35,13 @@
 }
 
 .side-nav .card {
+  margin-bottom: 8px;
+  border-top: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--divider-color);
+  border-radius: 0;
   box-shadow: none;
 }
 
-.side-nav .card:not(:last-of-type) {
-  margin-bottom: 8px;
+.side-nav .card:first-child {
+  margin-top: 8px;
 }

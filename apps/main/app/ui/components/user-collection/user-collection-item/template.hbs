@@ -1,0 +1,27 @@
+<article class="card" data-test-user-collection-item="{{--user.id}}">
+  <header class="user-collection-item__header">
+    <div class="user-collection-item__text-content">
+      <h3 class="user-collection-item__name" data-test-user-collection-item="name">
+        {{--user.displayName}}
+      </h3>
+
+      {{#if --user.displayUsername}}
+        <p class="user-collection-item__username" data-test-user-collection-item="username">
+          @{{--user.displayUsername}}
+        </p>
+      {{/if}}
+    </div>
+
+    <img
+        class="user-collection-item__photo"
+        data-test-user-collection-item="photo"
+        src="{{--user.photoUrl}}"
+        alt="{{--user.displayName}}">
+  </header>
+
+  {{#if (eq --type 'follow')}}
+    {{follow-user-button --userToFollow=--user}}
+  {{else if (eq --type 'unfollow')}}
+    {{unfollow-user-button --userToUnfollow=--user}}
+  {{/if}}
+</article>

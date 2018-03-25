@@ -30,13 +30,13 @@ export default Component.extend({
           }
         },
       },
-      signInOptions: [
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          requireDisplayName: true,
-        },
-      ],
+      signInOptions: [{
+        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        scopes: ['public_profile', 'user_friends'],
+      }, {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        requireDisplayName: true,
+      }],
       tosUrl: 'https://cenchat.com/about/terms',
     });
   },

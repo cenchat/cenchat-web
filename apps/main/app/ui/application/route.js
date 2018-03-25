@@ -1,4 +1,7 @@
+import { inject } from '@ember/service';
 import Route from '@ember/routing/route';
+
+import firebase from 'firebase';
 
 /**
  * @class Application
@@ -6,6 +9,11 @@ import Route from '@ember/routing/route';
  * @extends Ember.Route
  */
 export default Route.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  firebase: inject(),
+
   /**
    * @override
    */
@@ -28,10 +36,36 @@ export default Route.extend({
       ).then((model) => {
         session.set('content.model', model);
 
-        return this.updateProfile(model);
+        return Promise.all([
+          this.updateFacebookAccessToken(model),
+          this.updateProfile(model),
+        ]);
       }).catch((error) => {
         return session.close();
       });
+    }
+  },
+
+  /**
+   * Updates the Facebook access token
+   *
+   * @param {Model.User} profile
+   */
+  async updateFacebookAccessToken(profile) {
+    const meta = await profile.getMetaInfo();
+
+    if (meta.get('facebookAccessToken')) {
+      const credential = firebase
+        .auth
+        .FacebookAuthProvider
+        .credential(meta.get('facebookAccessToken'));
+      const authData = await this.get('firebase')
+        .auth()
+        .signInAndRetrieveDataWithCredential(credential);
+
+      meta.set('facebookAccessToken', authData.credential.accessToken);
+
+      await meta.save();
     }
   },
 
@@ -49,13 +83,16 @@ export default Route.extend({
       if (
         provider.providerId.includes('facebook')
         && (
-          profile.get('displayName') !== provider.displayName
+          profile.get('facebookId') !== provider.uid
+          || profile.get('displayName') !== provider.displayName
           || profile.get('photoUrl') !== provider.photoURL
         )
       ) {
         willSave = true;
+        profile.set('facebookId', provider.uid);
         profile.set('displayName', provider.displayName);
         profile.set('photoUrl', provider.photoURL);
+
         break;
       }
     }
