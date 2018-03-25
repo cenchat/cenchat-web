@@ -23,6 +23,11 @@ export default Model.extend({
   /**
    * @type {string}
    */
+  facebookId: attr('string'),
+
+  /**
+   * @type {string}
+   */
   photoUrl: attr('string'),
 
   /**
@@ -205,5 +210,17 @@ export default Model.extend({
     } catch (error) {
       return false;
     }
+  },
+
+  /**
+   * Returns the user's meta info
+   *
+   * @return {Promise.<Model.UserMetaInfo>} User meta info
+   */
+  getMetaInfo() {
+    return this.get('store').findRecord(
+      'userMetaInfo',
+      this.get('id'),
+    ).catch((error) => {});
   },
 });

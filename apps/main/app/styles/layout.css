@@ -49,13 +49,19 @@
 }
 
 .section__header {
-  padding-right: 8px;
   padding-left: 8px;
 }
 
 .side-nav .section__header {
-  padding-right: 16px;
   padding-left: 16px;
+}
+
+.section__header > *:only-child {
+  margin-right: 8px;
+}
+
+.side-nav .section__header > *:only-child {
+  margin-right: 16px;
 }
 
 .wrapper {

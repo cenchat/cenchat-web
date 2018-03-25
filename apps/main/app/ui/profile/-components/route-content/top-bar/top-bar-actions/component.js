@@ -14,7 +14,7 @@ export default Component.extend({
   /**
    * @type {boolean}
    */
-  isFollowingUser: false,
+  isFollowingUser: null,
 
   /**
    * @override
@@ -23,8 +23,8 @@ export default Component.extend({
     if (this.get('--session.model.id') === this.get('--user.id')) {
       this.set('isFollowingUser', false);
     } else {
-      this.get('--session.model').isFollowing(this.get('--user.id'))
-        .then((result) => {
+      this.get('--session.model').isFollowing(this.get('--user.id')).then(
+        (result) => {
           this.set('isFollowingUser', result);
         },
       );
@@ -34,8 +34,7 @@ export default Component.extend({
   /**
    * Handles follow user's click event
    */
-  async handleFollowUserClick() {
-    await this.get('--onFollowUserClick')();
+  async handleFollowUser() {
     this.set('isFollowingUser', true);
   },
 
@@ -44,8 +43,7 @@ export default Component.extend({
    *
    * @param {Model.User} user
    */
-  async handleUnfollowUserClick(user) {
-    await this.get('--onUnfollowUserClick')(user);
+  async handleUnfollowUser(user) {
     this.set('isFollowingUser', false);
   },
 });

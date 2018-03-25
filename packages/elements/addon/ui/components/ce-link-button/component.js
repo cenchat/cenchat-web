@@ -32,6 +32,7 @@ export default Component.extend({
     'aria-pressed',
     'target',
     'disabled',
+    'size',
     'onclick',
   ],
 });

@@ -1,11 +1,11 @@
-import Route from '@ember/routing/route';
+import ProfileOwnerRoute from 'main/utils/profile-owner-route';
 
 /**
  * @class ProfileEdit
  * @namespace Route
- * @extends Ember.Route
+ * @extends Route.ProfileOwnerRoute
  */
-export default Route.extend({
+export default ProfileOwnerRoute.extend({
   /**
    * @override
    */

@@ -40,43 +40,52 @@ export default Component.extend({
     this.set('uiConfig', {
       credentialHelper: firebaseui.auth.CredentialHelper.NONE,
       callbacks: {
-        signInSuccess: () => {
-          this.fetchOrCreateUserRecord();
+        signInSuccess: (currentUser, credential) => {
+          this.fetchOrCreateUserRecord(currentUser, credential);
         },
       },
-      signInOptions: [
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        {
-          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          requireDisplayName: true,
-        },
-      ],
+      signInOptions: [{
+        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        scopes: ['public_profile', 'user_friends'],
+      }, {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        requireDisplayName: true,
+      }],
       tosUrl: 'https://cenchat.com/about/terms',
     });
   },
 
   /**
    * Fetches or creates a user record
+   *
+   * @param {firebase.User} currentUser
+   * @param {firebase.auth.AuthCredential} credential
    */
-  async fetchOrCreateUserRecord() {
+  async fetchOrCreateUserRecord(currentUser, credential) {
     const session = this.get('session');
+    let user;
 
     try {
       await session.fetch();
 
       const store = this.get('store');
-      let user;
 
       try {
-        user = await store.findRecord('user', session.get('currentUser.uid'));
+        user = await store.findRecord('user', currentUser.uid);
       } catch (e) {
-        const currentUser = session.get('currentUser');
-
         user = store.createRecord('user', {
           id: currentUser.uid,
           displayName: currentUser.displayName,
           photoUrl: currentUser.photoURL,
         });
+
+        for (const provider of currentUser.providerData) {
+          if (provider.providerId.includes('facebook')) {
+            user.set('facebookId', provider.uid);
+
+            break;
+          }
+        }
 
         await user.save({ adapterOptions: { onServer: true } });
       }
@@ -86,6 +95,26 @@ export default Component.extend({
       toast(`Signed in as ${user.get('displayName')}`);
     } catch (e) {
       toast('Couldn\'t sign in. Please try again.');
+
+      return;
     }
+
+    if (credential) {
+      await this.saveFacebookAccessToken(user, credential);
+    }
+  },
+
+  /**
+   * Saves the current user's Facebook access token if available
+   *
+   * @param {Model.User} user
+   * @param {Object} credential
+   */
+  async saveFacebookAccessToken(user, credential) {
+    const meta = await user.getMetaInfo();
+
+    meta.set('facebookAccessToken', credential.accessToken);
+
+    await meta.save();
   },
 });

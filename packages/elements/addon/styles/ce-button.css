@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+.ce-button[size="small"] {
+  line-height: 32px;
+}
+
 .ce-button div {
   position: relative;
   height: 36px;
@@ -21,6 +25,10 @@
   padding-left: 8px;
   border-radius: var(--border-radius-square);
   box-sizing: border-box;
+}
+
+.ce-button[size="small"] div {
+  height: 32px;
 }
 
 .ce-button:hover div {

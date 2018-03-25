@@ -180,4 +180,26 @@ module('Unit | Model | user', function(hooks) {
       assert.equal(result, false);
     });
   });
+
+  module('function: getMetaInfo', function() {
+    test('should return the user\'s meta info', async function(assert) {
+      assert.expect(2);
+
+      // Arrange
+      const model = run(() => {
+        return this.owner.lookup('service:store').createRecord('user', {
+          id: 'user_a',
+        });
+      });
+
+      // Act
+      const result = await run(() => {
+        return model.getMetaInfo();
+      });
+
+      // Assert
+      assert.equal(result.get('id'), 'user_a');
+      assert.equal(result.get('hasNewNotification'), true);
+    });
+  });
 });

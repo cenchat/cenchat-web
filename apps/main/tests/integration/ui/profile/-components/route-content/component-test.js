@@ -22,8 +22,6 @@ module('Integration | Component | profile/-components/route content', function(h
     this.set('user', user);
     this.set('onSignOutClick', () => {});
     this.set('onUsernameSubmit', () => {});
-    this.set('onFollowUserClick', () => {});
-    this.set('onUnfollowUserClick', () => {});
   });
 
   hooks.afterEach(async function() {
@@ -42,18 +40,14 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'session': 'instance',
-      'user': 'instance',
-      'onSignOutClick': 'function',
-      'onFollowUserClick': 'function',
-      'onUnfollowUserClick': 'function',
+      session: 'instance',
+      user: 'instance',
+      onSignOutClick: 'function',
     });
   });
 
@@ -69,15 +63,13 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'user': 'instance',
-      'onUsernameSubmit': 'function',
+      user: 'instance',
+      onUsernameSubmit: 'function',
     });
   });
 
@@ -99,9 +91,7 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert
@@ -122,9 +112,7 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert
@@ -143,16 +131,11 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      'user': 'instance',
-      'onUnfollowUserClick': 'function',
-    });
+    assert.deepEqual(spy.componentArgsType, { user: 'instance' });
   });
 
   test('should hide <FollowingCollection /> if current user doesn\'t own the profile', async function(assert) {
@@ -173,9 +156,7 @@ module('Integration | Component | profile/-components/route content', function(h
           --session=session
           --user=user
           --onSignOutClick=(action onSignOutClick)
-          --onUsernameSubmit=(action onUsernameSubmit)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onUsernameSubmit=(action onUsernameSubmit)}}
     `);
 
     // Assert

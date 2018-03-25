@@ -20,8 +20,6 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
 
     this.set('user', user);
     this.set('onSignOutClick', () => {});
-    this.set('onFollowUserClick', () => {});
-    this.set('onUnfollowUserClick', () => {});
   });
 
   hooks.afterEach(async function() {
@@ -36,9 +34,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
@@ -57,18 +53,14 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'session': 'instance',
-      'user': 'instance',
-      'onSignOutClick': 'function',
-      'onFollowUserClick': 'function',
-      'onUnfollowUserClick': 'function',
+      session: 'instance',
+      user: 'instance',
+      onSignOutClick: 'function',
     });
   });
 });

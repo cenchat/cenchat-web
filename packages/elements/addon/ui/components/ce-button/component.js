@@ -35,6 +35,7 @@ export default Component.extend({
     'aria-haspopup',
     'aria-pressed',
     'disabled',
+    'size',
     'triggerOnClick.isRunning:performing',
   ],
 

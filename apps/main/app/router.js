@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('home', { path: '/' }, function() {});
   this.route('profile', { path: '/profile/:user_id' }, function() {
     this.route('edit');
+    this.route('followings');
   });
   this.route('sites', function() {
     this.route('index', { path: '/' }, function() {

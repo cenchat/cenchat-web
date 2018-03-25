@@ -39,7 +39,7 @@ export default Component.extend({
   },
 
   /**
-   * Loads more --query
+   * Loads more next set of --query
    */
   async loadMoreRecords() {
     const query = this.get('--query');
@@ -49,11 +49,15 @@ export default Component.extend({
 
       this.set('numOfRecordsLimit', newLimit);
 
-      query.relationship.relationshipMeta.options.filter = (reference) => {
-        return reference.limit(newLimit);
-      };
+      if (this.get('--onLoadMoreRecords')) {
+        this.get('--onLoadMoreRecords')(newLimit);
+      } else {
+        query.relationship.relationshipMeta.options.filter = (reference) => {
+          return reference.limit(newLimit);
+        };
 
-      query.reload();
+        query.reload();
+      }
     }
   },
 

@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+.ce-link-button[size="small"] {
+  line-height: 32px;
+}
+
 .ce-link-button:disabled {
   color: var(--button-disabled-color);
 }
@@ -23,6 +27,10 @@
   padding-left: 8px;
   border-radius: var(--border-radius-square);
   box-sizing: border-box;
+}
+
+.ce-link-button[size="small"] div {
+  height: 32px;
 }
 
 .ce-link-button:hover div {

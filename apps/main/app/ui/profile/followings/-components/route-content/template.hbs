@@ -1,0 +1,20 @@
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        data-test-profile-edit="navigate-back-link"
+        href=(href-to 'profile.index')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+
+    <h2>Followings</h2>
+  {{/ce-top-bar}}
+
+  <div class="side-nav__content">
+    {{#infinite-content --query=--followings}}
+      {{user-collection --users=--followings --type="unfollow"}}
+    {{/infinite-content}}
+  </div>
+
+  {{yield}}
+{{/side-nav}}

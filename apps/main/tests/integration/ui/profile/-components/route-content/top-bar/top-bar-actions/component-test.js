@@ -4,7 +4,7 @@ import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 import {
@@ -12,7 +12,7 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/-components/route-content/top bar', function(hooks) {
+module('Integration | Component | profile/-components/route-content/top-bar-actions', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function() {
@@ -22,8 +22,6 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
 
     this.set('user', user);
     this.set('onSignOutClick', () => {});
-    this.set('onFollowUserClick', () => {});
-    this.set('onUnfollowUserClick', () => {});
   });
 
   hooks.afterEach(async function() {
@@ -38,9 +36,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
@@ -62,9 +58,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
@@ -79,9 +73,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
@@ -103,9 +95,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
@@ -122,9 +112,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Act
@@ -134,7 +122,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
     assert.ok(spy.calledOnce);
   });
 
-  test('should show follow button when not following the user', async function(assert) {
+  test('should show <FollowUserButton /> when not following the user', async function(assert) {
     assert.expect(1);
 
     // Arrange
@@ -144,21 +132,24 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
 
     this.set('user', user);
 
+    const spy = spyComponent(this, 'follow-user-button');
+
     // Act
     await render(hbs`
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
-    assert.dom('[data-test-top-bar-actions="follow-user-button"]').exists();
+    assert.deepEqual(spy.componentArgsType, {
+      userToFollow: 'instance',
+      onFollowUser: 'function',
+    });
   });
 
-  test('should hide follow button when following the user', async function(assert) {
+  test('should hide <FollowUserButton /> when following the user', async function(assert) {
     assert.expect(1);
 
     // Arrange
@@ -168,26 +159,48 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
 
     this.set('user', user);
 
-    this.set(
-      'session.model.isFollowing',
-      sinon.stub().returns(stubPromise(true, true)),
-    );
+    const spy = spyComponent(this, 'follow-user-button');
 
     // Act
     await render(hbs`
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
     // Assert
-    assert.dom('[data-test-top-bar-actions="unfollow-user-button"]').exists();
+    assert.ok(spy.notCalled);
   });
 
-  test('should fire an external action when clicking follow user', async function(assert) {
+  test('should show <UnfollowUserButton /> when following the user', async function(assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await run(() => {
+      return this.get('store').findRecord('user', 'user_b');
+    });
+
+    this.set('user', user);
+
+    const spy = spyComponent(this, 'unfollow-user-button');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content/top-bar/top-bar-actions
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)}}
+    `);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, {
+      userToUnfollow: 'instance',
+      onUnfollowUser: 'function',
+    });
+  });
+
+  test('should hide <UnfollowUserButton /> when not following the user', async function(assert) {
     assert.expect(1);
 
     // Arrange
@@ -197,54 +210,17 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
 
     this.set('user', user);
 
-    const spy = sinon.spy(this, 'onFollowUserClick');
+    const spy = spyComponent(this, 'unfollow-user-button');
 
+    // Act
     await render(hbs`
       {{profile/-components/route-content/top-bar/top-bar-actions
           --session=session
           --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
+          --onSignOutClick=(action onSignOutClick)}}
     `);
 
-    // Act
-    await click('[data-test-top-bar-actions="follow-user-button"]');
-
     // Assert
-    assert.ok(spy.calledOnce);
-  });
-
-  test('should fire an external action when clicking follow user', async function(assert) {
-    assert.expect(1);
-
-    // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
-
-    this.set('user', user);
-
-    this.set(
-      'session.model.isFollowing',
-      sinon.stub().returns(stubPromise(true, true)),
-    );
-
-    const spy = sinon.spy(this, 'onUnfollowUserClick');
-
-    await render(hbs`
-      {{profile/-components/route-content/top-bar/top-bar-actions
-          --session=session
-          --user=user
-          --onSignOutClick=(action onSignOutClick)
-          --onFollowUserClick=(action onFollowUserClick)
-          --onUnfollowUserClick=(action onUnfollowUserClick)}}
-    `);
-
-    // Act
-    await click('[data-test-top-bar-actions="unfollow-user-button"]');
-
-    // Assert
-    assert.ok(spy.calledWith(this.get('user')));
+    assert.ok(spy.notCalled);
   });
 });
