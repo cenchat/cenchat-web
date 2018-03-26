@@ -10,19 +10,19 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Unit | Controller | profile', function(hooks) {
+module('Unit | Controller | profile', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  module('function: handleSignOutClick', function() {
-    test('should sign out', async function(assert) {
+  module('function: handleSignOutClick', () => {
+    test('should sign out', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -40,7 +40,7 @@ module('Unit | Controller | profile', function(hooks) {
       assert.ok(closeStub.calledOnce);
     });
 
-    test('should transition to home route after signing out', async function(assert) {
+    test('should transition to home route after signing out', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -58,8 +58,8 @@ module('Unit | Controller | profile', function(hooks) {
     });
   });
 
-  module('function: handleUsernameSubmit', function() {
-    test('should save username', async function(assert) {
+  module('function: handleUsernameSubmit', () => {
+    test('should save username', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -76,9 +76,7 @@ module('Unit | Controller | profile', function(hooks) {
 
       // Assert
       assert.equal(model.get('username'), 'foobar');
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
   });
 });

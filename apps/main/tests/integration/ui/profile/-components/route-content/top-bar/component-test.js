@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/-components/route-content/top bar', function(hooks) {
+module('Integration | Component | profile/-components/route-content/top bar', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -22,11 +22,11 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
     this.set('onSignOutClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show user info', async function(assert) {
+  test('should show user info', async (assert) => {
     assert.expect(2);
 
     // Act
@@ -42,7 +42,7 @@ module('Integration | Component | profile/-components/route-content/top bar', fu
     assert.dom('[data-test-top-bar="name"]').hasText('User A');
   });
 
-  test('should show <TopBarActions />', async function(assert) {
+  test('should show <TopBarActions />', async function (assert) {
     assert.expect(1);
 
     // Arrange

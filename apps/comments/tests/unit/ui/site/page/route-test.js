@@ -5,11 +5,11 @@ import EmberObject from '@ember/object';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | site/page', function(hooks) {
+module('Unit | Route | site/page', (hooks) => {
   setupTest(hooks);
 
-  module('hook: model', function() {
-    test('should fetch page', async function(assert) {
+  module('hook: model', () => {
+    test('should fetch page', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -25,13 +25,10 @@ module('Unit | Route | site/page', function(hooks) {
 
       // Assert
       assert.ok(stub.calledWithExactly('page', 'site_a__page_a'));
-      assert.deepEqual(result, {
-        comment: undefined,
-        page: 'foo',
-      });
+      assert.deepEqual(result, { page: 'foo' });
     });
 
-    test('should fetch comment when available in the params', async function(assert) {
+    test('should fetch comment when available in the params', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -56,7 +53,7 @@ module('Unit | Route | site/page', function(hooks) {
       assert.deepEqual(result, { comment: 'foo', page: 'bar' });
     });
 
-    test('should create new page and use it as the model when it does not exist', async function(assert) {
+    test('should create new page and use it as the model when it does not exist', async function (assert) {
       assert.expect(3);
 
       // Arrange
@@ -76,21 +73,19 @@ module('Unit | Route | site/page', function(hooks) {
       const result = await route.model({ page_id: 'page_a' });
 
       // Assert
-      assert.ok(createRecordStub.calledWithExactly('page', {
-        site,
-        id: 'site_a__page_a',
-        slug: '%2Fslug',
-      }));
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
-      assert.deepEqual(result, {
-        comment: undefined,
-        page: 'foo',
-      });
+      assert.ok(createRecordStub.calledWithExactly(
+        'page',
+        {
+          site,
+          id: 'site_a__page_a',
+          slug: '%2Fslug',
+        },
+      ));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.deepEqual(result, { page: 'foo' });
     });
 
-    test('should not create a new page when page doesn\'t exist and slug is unavailable', async function(assert) {
+    test('should not create a new page when page doesn\'t exist and slug is unavailable', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -111,10 +106,7 @@ module('Unit | Route | site/page', function(hooks) {
 
       // Assert
       assert.ok(createRecordStub.notCalled);
-      assert.deepEqual(result, {
-        comment: undefined,
-        page: undefined,
-      });
+      assert.deepEqual(result, { page: null });
     });
   });
 });

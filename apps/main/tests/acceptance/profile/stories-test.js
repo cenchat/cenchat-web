@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | profile');
 
-test('should set username', async function(assert) {
+test('should set username', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -19,7 +19,7 @@ test('should set username', async function(assert) {
   assert.dom('[data-test-missing-info="host"]').doesNotExist();
 });
 
-test('should show followings', async function(assert) {
+test('should show followings', async (assert) => {
   assert.expect(2);
 
   // Act
@@ -30,19 +30,19 @@ test('should show followings', async function(assert) {
   assert.dom('[data-test-user-collection-item="user_d"]').exists();
 });
 
-test('TODO: find a way to test this | should follow a user', async function(assert) {
+test('TODO: find a way to test this | should follow a user', async (assert) => {
   assert.expect(1);
 
   assert.ok(true);
 });
 
-test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async function(assert) {
+test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async (assert) => {
   assert.expect(1);
 
   assert.ok(true);
 });
 
-test('TODO: find a way to test this | should unfollow a user in their own profile', async function(assert) {
+test('TODO: find a way to test this | should unfollow a user in their own profile', async (assert) => {
   assert.expect(1);
 
   assert.ok(true);

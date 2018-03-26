@@ -6,10 +6,10 @@ import Service from '@ember/service';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Component | comment item', function(hooks) {
+module('Unit | Component | comment item', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register('service:session', Service.extend());
 
     this.comment = EmberObject.create({
@@ -22,8 +22,8 @@ module('Unit | Component | comment item', function(hooks) {
     });
   });
 
-  module('function: handleDeleteCommentClick', function() {
-    test('should update comment into delete state', async function(assert) {
+  module('function: handleDeleteCommentClick', () => {
+    test('should update comment into delete state', async function (assert) {
       assert.expect(4);
 
       // Arrange
@@ -41,21 +41,19 @@ module('Unit | Component | comment item', function(hooks) {
       assert.equal(this.comment.get('attachments'), null);
       assert.equal(this.comment.get('isDeleted'), true);
       assert.equal(this.comment.get('text', null));
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
   });
 
-  module('function: handleToggleQuoteClick', function() {
-    test('should toggle on quote visibility', async function(assert) {
+  module('function: handleToggleQuoteClick', () => {
+    test('should toggle on quote visibility', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const factory = this.owner.factoryFor('component:comment-item');
       const component = await factory.create({
         '--comment': this.comment,
-        'isQuoteVisible': false,
+        isQuoteVisible: false,
       });
 
       // Act
@@ -65,14 +63,14 @@ module('Unit | Component | comment item', function(hooks) {
       assert.equal(component.get('isQuoteVisible'), true);
     });
 
-    test('should toggle off quote visibility', async function(assert) {
+    test('should toggle off quote visibility', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const factory = this.owner.factoryFor('component:comment-item');
       const component = await factory.create({
         '--comment': this.comment,
-        'isQuoteVisible': true,
+        isQuoteVisible: true,
       });
 
       // Act
@@ -83,8 +81,8 @@ module('Unit | Component | comment item', function(hooks) {
     });
   });
 
-  module('function: handleCancelEditClick', function() {
-    test('should rollback comment attributes', async function(assert) {
+  module('function: handleCancelEditClick', () => {
+    test('should rollback comment attributes', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -102,7 +100,7 @@ module('Unit | Component | comment item', function(hooks) {
       assert.ok(rollbackAttributesStub.calledOnce);
     });
 
-    test('should set editing comment state to false', async function(assert) {
+    test('should set editing comment state to false', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -113,7 +111,7 @@ module('Unit | Component | comment item', function(hooks) {
       const factory = this.owner.factoryFor('component:comment-item');
       const component = await factory.create({
         '--comment': this.comment,
-        'isEditingComment': true,
+        isEditingComment: true,
       });
 
       // Act

@@ -12,24 +12,22 @@ import {
   stubSession,
 } from '@cenchat/core/test-support';
 
-module('Unit | Model | comment', function(hooks) {
+module('Unit | Model | comment', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     mockFirebase(this.owner, getFixtureData());
     stubSession(this);
   });
 
-  module('getter/setter: isMessageValid', function() {
-    test('should return true if text is available', function(assert) {
+  module('getter/setter: isMessageValid', () => {
+    test('should return true if text is available', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          text: 'Foo',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        text: 'Foo',
+      }));
 
       // Act
       const result = model.get('isMessageValid');
@@ -38,15 +36,13 @@ module('Unit | Model | comment', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return true if attachments is available', function(assert) {
+    test('should return true if attachments is available', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          attachments: ['Foo'],
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        attachments: ['Foo'],
+      }));
 
       // Act
       const result = model.get('isMessageValid');
@@ -55,13 +51,11 @@ module('Unit | Model | comment', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return false if attachments and text are unavailable', function(assert) {
+    test('should return false if attachments and text are unavailable', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {});
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {}));
 
       // Act
       const result = model.get('isMessageValid');
@@ -71,23 +65,19 @@ module('Unit | Model | comment', function(hooks) {
     });
   });
 
-  module('getter/setter: isFromFollowing', function() {
-    test('should return true when comment is from a following', async function(assert) {
+  module('getter/setter: isFromFollowing', () => {
+    test('should return true when comment is from a following', async function (assert) {
       assert.expect(2);
 
       // Arrange
       const isFollowingStub = sinon.stub().returns(stubPromise(true, true));
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-          session: { model: { isFollowing: isFollowingStub } },
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+        session: { model: { isFollowing: isFollowingStub } },
+      }));
 
       // Act
       await model.get('isFromFollowing');
@@ -99,22 +89,18 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return false when comment isn\'t from a following', async function(assert) {
+    test('should return false when comment isn\'t from a following', async function (assert) {
       assert.expect(2);
 
       // Arrange
       const isFollowingStub = sinon.stub().returns(stubPromise(true, false));
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-          session: { model: { isFollowing: isFollowingStub } },
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+        session: { model: { isFollowing: isFollowingStub } },
+      }));
 
       // Act
       await model.get('isFromFollowing');
@@ -126,15 +112,13 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return false when session model is unavailable', async function(assert) {
+    test('should return false when session model is unavailable', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          session: { model: null },
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        session: { model: null },
+      }));
 
       // Act
       const result = await model.get('isFromFollowing');
@@ -144,21 +128,17 @@ module('Unit | Model | comment', function(hooks) {
     });
   });
 
-  module('getter/setter: isAskMeAnythingAllowed', function() {
-    test('should return true the author is a site admin', function(assert) {
+  module('getter/setter: isAskMeAnythingAllowed', () => {
+    test('should return true the author is a site admin', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user',
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user',
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+      }));
 
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, true)));
 
@@ -171,20 +151,16 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return false the author isn\'t a site admin', function(assert) {
+    test('should return false the author isn\'t a site admin', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user',
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user',
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+      }));
 
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, false)));
 
@@ -198,16 +174,14 @@ module('Unit | Model | comment', function(hooks) {
     });
   });
 
-  module('getter/setter: isTextAllowed', function() {
-    test('should return true when comment already has a text', function(assert) {
+  module('getter/setter: isTextAllowed', () => {
+    test('should return true when comment already has a text', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          text: 'Foobar',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        text: 'Foobar',
+      }));
 
       // Act
       const result = model.get('isTextAllowed');
@@ -216,21 +190,17 @@ module('Unit | Model | comment', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return true when replying to an is ask me anything type comment', function(assert) {
+    test('should return true when replying to an is ask me anything type comment', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const replyTo = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          id: 'comment_a',
-          isAskMeAnything: true,
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          replyTo,
-        });
-      });
+      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        id: 'comment_a',
+        isAskMeAnything: true,
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        replyTo,
+      }));
 
       // Act
       model.get('isTextAllowed');
@@ -241,31 +211,23 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return true when replying to a follower', function(assert) {
+    test('should return true when replying to a follower', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user',
-        });
-      });
-      const replyTo = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          id: 'comment_a',
-          author,
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-          replyTo,
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user',
+      }));
+      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        id: 'comment_a',
+        author,
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+        replyTo,
+      }));
 
-      author.set('hasFollower', () => {
-        return stubPromise(true, true);
-      });
+      author.set('hasFollower', () => stubPromise(true, true));
 
       // Act
       model.get('isTextAllowed');
@@ -276,33 +238,23 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return true when not replying to a follower and is a site admin', function(assert) {
+    test('should return true when not replying to a follower and is a site admin', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user',
-        });
-      });
-      const replyTo = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-          replyTo,
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user',
+      }));
+      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+        replyTo,
+      }));
 
-      author.set('hasFollower', () => {
-        return stubPromise(true, false);
-      });
-      author.set('isSiteAdmin', () => {
-        return stubPromise(true, true);
-      });
+      author.set('hasFollower', () => stubPromise(true, false));
+      author.set('isSiteAdmin', () => stubPromise(true, true));
 
       // Act
       model.get('isTextAllowed');
@@ -313,33 +265,23 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should return false when not replying to a follower and not a site admin', function(assert) {
+    test('should return false when not replying to a follower and not a site admin', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user',
-        });
-      });
-      const replyTo = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-        });
-      });
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('comment', {
-          author,
-          replyTo,
-        });
-      });
+      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user',
+      }));
+      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+      }));
+      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+        author,
+        replyTo,
+      }));
 
-      author.set('hasFollower', () => {
-        return stubPromise(true, false);
-      });
-      author.set('isSiteAdmin', () => {
-        return stubPromise(true, false);
-      });
+      author.set('hasFollower', () => stubPromise(true, false));
+      author.set('isSiteAdmin', () => stubPromise(true, false));
 
       // Act
       model.get('isTextAllowed');
@@ -351,24 +293,20 @@ module('Unit | Model | comment', function(hooks) {
     });
   });
 
-  module('getter/setter: parsedAttachments', function() {
-    test('should return the model equivalent for attachments', async function(assert) {
+  module('getter/setter: parsedAttachments', () => {
+    test('should return the model equivalent for attachments', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const sticker = run(() => {
-        return store.createRecord('sticker', { id: 'sticker_a' });
-      });
-      const model = run(() => {
-        return store.createRecord('comment', {
-          store: {
-            findRecord: sinon.stub().returns(stubPromise(true, sticker)),
-          },
+      const sticker = run(() => store.createRecord('sticker', { id: 'sticker_a' }));
+      const model = run(() => store.createRecord('comment', {
+        store: {
+          findRecord: sinon.stub().returns(stubPromise(true, sticker)),
+        },
 
-          attachments: [{ id: 'sticker_a', type: 'sticker' }],
-        });
-      });
+        attachments: [{ id: 'sticker_a', type: 'sticker' }],
+      }));
 
       // Act
       await model.get('parsedAttachments');
@@ -379,22 +317,16 @@ module('Unit | Model | comment', function(hooks) {
       });
     });
 
-    test('should serialize and update the attachments when setting', function(assert) {
+    test('should serialize and update the attachments when setting', function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const sticker = run(() => {
-        return store.createRecord('sticker', { id: 'sticker_a' });
-      });
-      const model = run(() => {
-        return store.createRecord('comment', {});
-      });
+      const sticker = run(() => store.createRecord('sticker', { id: 'sticker_a' }));
+      const model = run(() => store.createRecord('comment', {}));
 
       // Act
-      run(() => {
-        return model.set('parsedAttachments', [sticker]);
-      });
+      run(() => model.set('parsedAttachments', [sticker]));
 
       // Assert
       assert.deepEqual(model.get('attachments'), [{
@@ -403,43 +335,35 @@ module('Unit | Model | comment', function(hooks) {
       }]);
     });
 
-    test('should update attachments to a null value when setting to a non-array type', function(assert) {
+    test('should update attachments to a null value when setting to a non-array type', function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const model = run(() => {
-        return store.createRecord('comment', {});
-      });
+      const model = run(() => store.createRecord('comment', {}));
 
       // Act
-      run(() => {
-        return model.set('parsedAttachments', 'foo');
-      });
+      run(() => model.set('parsedAttachments', 'foo'));
 
       // Assert
       assert.deepEqual(model.get('attachments'), null);
     });
   });
 
-  module('getter/setter: parsedTaggedEntities', function() {
-    test('should return the model equivalent for tagged user entities', async function(assert) {
+  module('getter/setter: parsedTaggedEntities', () => {
+    test('should return the model equivalent for tagged user entities', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const user = run(() => {
-        return store.createRecord('user', { id: 'user_a' });
-      });
-      const model = run(() => {
-        return store.createRecord('comment', {
-          store: {
-            findRecord: sinon.stub().returns(stubPromise(true, user)),
-          },
+      const user = run(() => store.createRecord('user', { id: 'user_a' }));
+      const model = run(() => store.createRecord('comment', {
+        store: {
+          findRecord: sinon.stub().returns(stubPromise(true, user)),
+        },
 
-          taggedEntities: { user_a: 'user' },
-        });
-      });
+        taggedEntities: { user_a: 'user' },
+      }));
 
       // Act
       await model.get('parsedTaggedEntities');
@@ -451,15 +375,13 @@ module('Unit | Model | comment', function(hooks) {
     });
   });
 
-  module('getter/setter: replies', function() {
-    test('should return directReplies when root is available', async function(assert) {
+  module('getter/setter: replies', () => {
+    test('should return directReplies when root is available', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const model = await run(() => {
-        return store.findRecord('comment', 'comment_b');
-      });
+      const model = await run(() => store.findRecord('comment', 'comment_b'));
 
       // Act
       const result = model.get('replies');
@@ -468,14 +390,12 @@ module('Unit | Model | comment', function(hooks) {
       assert.deepEqual(result, model.get('directReplies'));
     });
 
-    test('should return rootReplies when root is unavailable', async function(assert) {
+    test('should return rootReplies when root is unavailable', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const model = await run(() => {
-        return store.findRecord('comment', 'comment_a');
-      });
+      const model = await run(() => store.findRecord('comment', 'comment_a'));
 
       // Act
       const result = model.get('replies');

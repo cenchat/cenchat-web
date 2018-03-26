@@ -5,9 +5,9 @@ import sinon from 'sinon';
 
 import ProfileOwnerRoute from 'main/utils/profile-owner-route';
 
-module('Unit | Utility | profile-owner-route', function(hooks) {
-  module('hook: beforeModel', function() {
-    test('should transition to profile when current user does not own the profile', async function(assert) {
+module('Unit | Utility | profile-owner-route', () => {
+  module('hook: beforeModel', () => {
+    test('should transition to profile when current user does not own the profile', async (assert) => {
       assert.expect(2);
 
       // Arrange
@@ -30,7 +30,7 @@ module('Unit | Utility | profile-owner-route', function(hooks) {
       assert.ok(transitionToStub.calledWithExactly('profile'));
     });
 
-    test('should not transition to profile when current user owns the profile', async function(assert) {
+    test('should not transition to profile when current user owns the profile', async (assert) => {
       assert.expect(1);
 
       // Arrange

@@ -5,15 +5,15 @@ import EmberObject from '@ember/object';
 import { stubService } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | home', function(hooks) {
+module('Unit | Route | home', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     stubService(this, 'session', {});
   });
 
-  module('hook: beforeModel', function() {
-    test('should transition to profile using username when signed in', async function(assert) {
+  module('hook: beforeModel', () => {
+    test('should transition to profile using username when signed in', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -32,7 +32,7 @@ module('Unit | Route | home', function(hooks) {
       assert.ok(stub.calledWithExactly('profile', 'username'));
     });
 
-    test('should transition to profile using id when signed in and username is unavailable', async function(assert) {
+    test('should transition to profile using id when signed in and username is unavailable', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -49,7 +49,7 @@ module('Unit | Route | home', function(hooks) {
       assert.ok(stub.calledWithExactly('profile', 'id'));
     });
 
-    test('should not transition to any route when signed out', async function(assert) {
+    test('should not transition to any route when signed out', async function (assert) {
       assert.expect(1);
 
       // Arrange

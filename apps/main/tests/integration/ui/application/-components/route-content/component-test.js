@@ -8,18 +8,18 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | application/-components/route content', function(hooks) {
+module('Integration | Component | application/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show navbar when signed in', async function(assert) {
+  test('should show navbar when signed in', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -31,7 +31,7 @@ module('Integration | Component | application/-components/route content', functi
     assert.dom('[data-test-application="navbar"]').exists();
   });
 
-  test('should show navbar when signed out', async function(assert) {
+  test('should show navbar when signed out', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -46,7 +46,7 @@ module('Integration | Component | application/-components/route content', functi
     assert.dom('[data-test-application="navbar"]').doesNotExist();
   });
 
-  test('should show profile username link when session model has a username', async function(assert) {
+  test('should show profile username link when session model has a username', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -61,7 +61,7 @@ module('Integration | Component | application/-components/route content', functi
     assert.dom('[data-test-application="profile-username-link"]').exists();
   });
 
-  test('should hide profile username link when session model doesn\'t have a username', async function(assert) {
+  test('should hide profile username link when session model doesn\'t have a username', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -75,7 +75,7 @@ module('Integration | Component | application/-components/route content', functi
       .doesNotExist();
   });
 
-  test('should show profile ID link when session model doesn\'t have a username', async function(assert) {
+  test('should show profile ID link when session model doesn\'t have a username', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -87,7 +87,7 @@ module('Integration | Component | application/-components/route content', functi
     assert.dom('[data-test-application="profile-id-link"]').exists();
   });
 
-  test('should hide profile ID link when session model has a username', async function(assert) {
+  test('should hide profile ID link when session model has a username', async function (assert) {
     assert.expect(1);
 
     // Arrange

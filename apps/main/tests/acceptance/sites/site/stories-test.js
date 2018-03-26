@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | sites/site');
 
-test('should list pages', async function(assert) {
+test('should list pages', async (assert) => {
   assert.expect(2);
 
   // Arrange

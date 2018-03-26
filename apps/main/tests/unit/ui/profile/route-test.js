@@ -6,19 +6,19 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Unit | Route | profile', function(hooks) {
+module('Unit | Route | profile', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  module('hook: model', function() {
-    test('should return record that matches a username', async function(assert) {
+  module('hook: model', () => {
+    test('should return record that matches a username', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -31,7 +31,7 @@ module('Unit | Route | profile', function(hooks) {
       assert.equal(result.get('id'), 'user_b');
     });
 
-    test('should return record that matches an ID if querying for a username returns nothing', async function(assert) {
+    test('should return record that matches an ID if querying for a username returns nothing', async function (assert) {
       assert.expect(1);
 
       // Arrange

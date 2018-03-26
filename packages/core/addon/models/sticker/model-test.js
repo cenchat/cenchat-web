@@ -1,10 +1,10 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-module('Unit | Model | sticker', function(hooks) {
+module('Unit | Model | sticker', (hooks) => {
   setupTest(hooks);
 
-  test('nothing to test', async function(assert) {
+  test('nothing to test', async (assert) => {
     assert.ok(true);
   });
 });

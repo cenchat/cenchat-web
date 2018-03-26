@@ -7,31 +7,21 @@ let currentTeardownSchedule;
 let currentScheduledAction;
 
 /**
- * Shows a toast
- *
- * @param {string} text
- * @param {number} [duration=5000]
- * @param {Object} [buttonOptions={}]
+ * Triggers the scheduled action
  */
-export default async function toast(text, duration = 5000, buttonOptions = {}) {
-  toastElement = document.querySelector('.ce-toast');
+function triggerScheduledAction() {
+  if (currentScheduledAction) {
+    currentScheduledAction();
+  }
+}
 
-  if (toastElement) {
-    const toastTextElement = document.querySelector('.ce-toast__text');
-
-    if (toastElement.hasAttribute('opened')) {
-      cancel(currentTeardownSchedule);
-      triggerScheduledAction();
-      toastElement.removeAttribute('opened');
-      await waitForToastElementTransition();
-    }
-
-    toastTextElement.innerHTML = text;
-    teardownButtonElement();
-    setupButtonElement(buttonOptions);
-    toastElement.setAttribute('opened', true);
-    currentScheduledAction = buttonOptions.scheduledAction;
-    scheduleToastTeardown(duration);
+/**
+ * Removes the button element
+ */
+function teardownButtonElement() {
+  if (buttonElement) {
+    toastElement.removeChild(buttonElement);
+    buttonElement = null;
   }
 }
 
@@ -72,7 +62,7 @@ function waitForToastElementTransition() {
  * @param {Object} options
  */
 function setupButtonElement(options) {
-  if (options.hasOwnProperty('text')) {
+  if (Object.prototype.hasOwnProperty.call(options, 'text')) {
     buttonElement = document.createElement('button');
 
     buttonElement.classList.add('ce-button');
@@ -94,20 +84,30 @@ function setupButtonElement(options) {
 }
 
 /**
- * Removes the button element
+ * Shows a toast
+ *
+ * @param {string} text
+ * @param {number} [duration=5000]
+ * @param {Object} [buttonOptions={}]
  */
-function teardownButtonElement() {
-  if (buttonElement) {
-    toastElement.removeChild(buttonElement);
-    buttonElement = null;
-  }
-}
+export default async function toast(text, duration = 5000, buttonOptions = {}) {
+  toastElement = document.querySelector('.ce-toast');
 
-/**
- * Triggers the scheduled action
- */
-function triggerScheduledAction() {
-  if (currentScheduledAction) {
-    currentScheduledAction();
+  if (toastElement) {
+    const toastTextElement = document.querySelector('.ce-toast__text');
+
+    if (toastElement.hasAttribute('opened')) {
+      cancel(currentTeardownSchedule);
+      triggerScheduledAction();
+      toastElement.removeAttribute('opened');
+      await waitForToastElementTransition();
+    }
+
+    toastTextElement.innerHTML = text;
+    teardownButtonElement();
+    setupButtonElement(buttonOptions);
+    toastElement.setAttribute('opened', true);
+    currentScheduledAction = buttonOptions.scheduledAction;
+    scheduleToastTeardown(duration);
   }
 }

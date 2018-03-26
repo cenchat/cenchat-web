@@ -11,26 +11,24 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment composer message', function(hooks) {
+module('Integration | Component | comment-composer/comment composer message', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     this.set('comment', comment);
     this.set('onRemoveAttachmentClick', () => {});
     this.set('onTextBoxInput', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <MessageImage /> for every image attachment', async function(assert) {
+  test('should show <MessageImage /> for every image attachment', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -47,12 +45,12 @@ module('Integration | Component | comment-composer/comment composer message', fu
     // Assert
     assert.ok(spy.calledTwice);
     assert.deepEqual(spy.componentArgsType, {
-      'attachment': 'instance',
-      'onRemoveAttachmentClick': 'function',
+      attachment: 'instance',
+      onRemoveAttachmentClick: 'function',
     });
   });
 
-  test('should show <MessageTextbox /> when text comment is allowed', async function(assert) {
+  test('should show <MessageTextbox /> when text comment is allowed', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -70,12 +68,12 @@ module('Integration | Component | comment-composer/comment composer message', fu
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onTextBoxInput': 'function',
+      comment: 'instance',
+      onTextBoxInput: 'function',
     });
   });
 
-  test('should hide <MessageTextbox /> when text comment is not allowed', async function(assert) {
+  test('should hide <MessageTextbox /> when text comment is not allowed', async function (assert) {
     assert.expect(1);
 
     // Arrange

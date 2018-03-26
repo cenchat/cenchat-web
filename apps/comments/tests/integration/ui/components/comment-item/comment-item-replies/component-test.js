@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-item/comment item replies', function(hooks) {
+module('Integration | Component | comment-item/comment item replies', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     this.set('comment', comment);
     this.set('threadLevel', 1);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <CommentComposer /> when signed in', async function(assert) {
+  test('should show <CommentComposer /> when signed in', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -45,13 +43,13 @@ module('Integration | Component | comment-item/comment item replies', function(h
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'page': 'instance',
-      'replyTo': 'instance',
-      'onSendCommentSuccess': 'function',
+      page: 'instance',
+      replyTo: 'instance',
+      onSendCommentSuccess: 'function',
     });
   });
 
-  test('should hide <CommentComposer /> when signed out', async function(assert) {
+  test('should hide <CommentComposer /> when signed out', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -71,7 +69,7 @@ module('Integration | Component | comment-item/comment item replies', function(h
     assert.ok(spy.notCalled);
   });
 
-  test('should show <CommentList /> for old comments when within max thread level threshold', async function(assert) {
+  test('should show <CommentList /> for old comments when within max thread level threshold', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -86,14 +84,14 @@ module('Integration | Component | comment-item/comment item replies', function(h
     `);
 
     assert.deepEqual(spy.componentArgsType, {
-      'comments': 'instance',
-      'prioritizedComments': 'array',
-      'threadLevel': 'number',
-      'onLoadMoreCommentsClick': 'function',
+      comments: 'instance',
+      prioritizedComments: 'array',
+      threadLevel: 'number',
+      onLoadMoreCommentsClick: 'function',
     });
   });
 
-  test('should hide <CommentList /> for old comments when over the thread level threshold', async function(assert) {
+  test('should hide <CommentList /> for old comments when over the thread level threshold', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -113,7 +111,7 @@ module('Integration | Component | comment-item/comment item replies', function(h
     assert.ok(spy.calledOnce);
   });
 
-  test('should show <CommentList /> for new comments when over the max thread level threshold', async function(assert) {
+  test('should show <CommentList /> for new comments when over the max thread level threshold', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -130,8 +128,8 @@ module('Integration | Component | comment-item/comment item replies', function(h
     `);
 
     assert.deepEqual(spy.componentArgsType, {
-      'prioritizedComments': 'array',
-      'threadLevel': 'number',
+      prioritizedComments: 'array',
+      threadLevel: 'number',
     });
   });
 });

@@ -3,11 +3,11 @@ import { setupTest } from 'ember-qunit';
 
 import sinon from 'sinon';
 
-module('Unit | Route | sites/site/index', function(hooks) {
+module('Unit | Route | sites/site/index', (hooks) => {
   setupTest(hooks);
 
-  module('hook: model', function() {
-    test('should use sites.site route model as model', async function(assert) {
+  module('hook: model', () => {
+    test('should use sites.site route model as model', async function (assert) {
       assert.expect(2);
 
       // Arrange

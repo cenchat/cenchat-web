@@ -100,9 +100,9 @@ export default Model.extend({
       if (this.get('session.model')) {
         const authorId = this.belongsTo('author').id();
 
-        this.get('session.model').isFollowing(authorId).then((result) => {
-          this.set('isFromFollowing', result);
-        });
+        this.get('session.model').isFollowing(authorId).then(result => (
+          this.set('isFromFollowing', result)
+        ));
       } else {
         this.set('_isFromFollowing', false);
       }
@@ -122,9 +122,9 @@ export default Model.extend({
    */
   isAskMeAnythingAllowed: computed({
     get() {
-      this.checkIfAuthorIsSiteAdmin().then((isSiteAdmin) => {
-        this.set('isAskMeAnythingAllowed', isSiteAdmin);
-      });
+      this.checkIfAuthorIsSiteAdmin().then(isSiteAdmin => (
+        this.set('isAskMeAnythingAllowed', isSiteAdmin)
+      ));
 
       return this.get('_isAskMeAnythingAllowed');
     },
@@ -188,9 +188,7 @@ export default Model.extend({
           }
         });
 
-        Promise.all(requests).then((results) => {
-          this.set('parsedAttachments', results);
-        });
+        Promise.all(requests).then(results => this.set('parsedAttachments', results));
       }
 
       return this.get('_parsedAttachments');
@@ -210,15 +208,14 @@ export default Model.extend({
   parsedTaggedEntities: computed('taggedEntities', {
     get() {
       const requests = [];
+      const taggedEntities = this.get('taggedEntities');
 
-      if (this.get('taggedEntities')) {
-        for (const entity in this.get('taggedEntities')) {
-          if (this.get('taggedEntities').hasOwnProperty(entity)) {
-            if (this.get('taggedEntities')[entity] === 'user') {
-              const findRecord = this.get('store').findRecord('user', entity);
+      if (taggedEntities) {
+        for (const entity of Object.keys(taggedEntities)) {
+          if (taggedEntities[entity] === 'user') {
+            const findRecord = this.get('store').findRecord('user', entity);
 
-              requests.push(findRecord);
-            }
+            requests.push(findRecord);
           }
         }
       }
@@ -278,7 +275,7 @@ export default Model.extend({
     const siteId = this.get('page.site.id');
     const author = await this.get('author');
 
-    return await author.isSiteAdmin(siteId);
+    return author.isSiteAdmin(siteId);
   },
 
   /**

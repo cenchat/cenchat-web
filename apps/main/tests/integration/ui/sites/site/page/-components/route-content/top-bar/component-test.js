@@ -9,24 +9,22 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/page/-components/route-content/top bar', function(hooks) {
+module('Integration | Component | sites/site/page/-components/route-content/top bar', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const page = await run(() => {
-      return this.get('store').findRecord('page', 'site_a__page_a');
-    });
+    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
 
     this.set('page', page);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show page title', async function(assert) {
+  test('should show page title', async (assert) => {
     assert.expect(1);
 
     // Act

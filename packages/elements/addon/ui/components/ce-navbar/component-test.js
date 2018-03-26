@@ -2,10 +2,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | ce-navbar', function(hooks) {
+module('Integration | Component | ce-navbar', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should render yield', async function(assert) {
+  test('should render yield', async function (assert) {
     assert.expect(1);
 
     // Act

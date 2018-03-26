@@ -25,7 +25,7 @@ export default Route.extend({
    */
   slug: computed({
     get() {
-      const slug = this.paramsFor(this.get('routeName')).slug;
+      const { slug } = this.paramsFor(this.get('routeName'));
 
       return slug ? fixedEncodeURIComponent(slug) : null;
     },
@@ -34,19 +34,18 @@ export default Route.extend({
   /**
    * @override
    */
-  beforeModel() {
+  async beforeModel() {
     if (this.get('slug')) {
-      return this.queryPage().then((pages) => {
-        if (pages.get('length') === 0) {
-          return this.createAndTransitionToPage();
-        }
+      const pages = await this.queryPage();
 
-        return this.transitionTo(
-          'site.page',
-          pages.get('firstObject.id').split('__')[1],
-        );
-      });
+      if (pages.get('length') === 0) {
+        return this.createAndTransitionToPage();
+      }
+
+      return this.transitionTo('site.page', pages.get('firstObject.id').split('__')[1]);
     }
+
+    return null;
   },
 
   /**
@@ -76,7 +75,7 @@ export default Route.extend({
    * @return {Promise} Resolves to the transition object
    * @private
    */
-  createAndTransitionToPage() {
+  async createAndTransitionToPage() {
     const site = this.modelFor('site');
     const postfixId = this.get('firebase')
       .firestore()
@@ -84,13 +83,14 @@ export default Route.extend({
       .doc()
       .id;
     const pageId = `${site.get('id')}__${postfixId}`;
-
-    return this.get('store').createRecord('page', {
+    const page = await this.get('store').createRecord('page', {
       site,
       id: pageId,
       slug: this.get('slug'),
-    }).save({ adapterOptions: { onServer: true } }).then((page) => {
-      return this.transitionTo('site.page', page.get('id').split('__')[1]);
+    }).save({
+      adapterOptions: { onServer: true },
     });
+
+    await this.transitionTo('site.page', page.get('id').split('__')[1]);
   },
 });

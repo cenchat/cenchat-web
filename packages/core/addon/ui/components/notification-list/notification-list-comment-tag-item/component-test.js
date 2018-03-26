@@ -9,22 +9,20 @@ import sinon from 'sinon';
 
 import { getFixtureData, stubService } from '@cenchat/core/test-support';
 
-module('Integration | Component | notification-list/notification-list-comment-tag-item', function(hooks) {
+module('Integration | Component | notification-list/notification-list-comment-tag-item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     mockFirebase(this.owner, getFixtureData());
     stubService(this, 'router', { urlFor: sinon.stub() });
 
     const store = stubService(this, 'store');
-    const notification = await run(() => {
-      return store.findRecord('notification', 'notification_b');
-    });
+    const notification = await run(() => store.findRecord('notification', 'notification_b'));
 
     this.set('notification', notification);
   });
 
-  test('should show notification info', async function(assert) {
+  test('should show notification info', async (assert) => {
     assert.expect(5);
 
     // Act

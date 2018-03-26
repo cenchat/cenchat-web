@@ -11,19 +11,17 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment list', function(hooks) {
+module('Integration | Component | comment list', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comments = await run(() => {
-      return this.get('store').query('comment', {
-        filter(reference) {
-          return reference.limit(2);
-        },
-      });
-    });
+    const comments = await run(() => this.get('store').query('comment', {
+      filter(reference) {
+        return reference.limit(2);
+      },
+    }));
 
     this.set('comments', comments);
     this.set('prioritizedComments', []);
@@ -31,17 +29,15 @@ module('Integration | Component | comment list', function(hooks) {
     this.set('threadLevel', 2);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <CommentItem /> for every new comment', async function(assert) {
+  test('should show <CommentItem /> for every new comment', async function (assert) {
     assert.expect(2);
 
     // Arrange
-    const prioritizedComment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_c');
-    });
+    const prioritizedComment = await run(() => this.get('store').findRecord('comment', 'comment_c'));
 
     this.set('prioritizedComments', [prioritizedComment]);
 
@@ -59,12 +55,12 @@ module('Integration | Component | comment list', function(hooks) {
     // Assert
     assert.equal(spy.callCount, 3);
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'threadLevel': 'number',
+      comment: 'instance',
+      threadLevel: 'number',
     });
   });
 
-  test('should show <CommentItem /> for every comment', async function(assert) {
+  test('should show <CommentItem /> for every comment', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -82,12 +78,12 @@ module('Integration | Component | comment list', function(hooks) {
     // Assert
     assert.equal(spy.callCount, 2);
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'threadLevel': 'number',
+      comment: 'instance',
+      threadLevel: 'number',
     });
   });
 
-  test('should show empty state when there are no comments and empty state message is available', async function(assert) {
+  test('should show empty state when there are no comments and empty state message is available', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -107,7 +103,7 @@ module('Integration | Component | comment list', function(hooks) {
     assert.dom('[data-test-comment-list="empty-state"]').exists();
   });
 
-  test('should hide empty state when there are no comments and empty state message is unavailable', async function(assert) {
+  test('should hide empty state when there are no comments and empty state message is unavailable', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -127,7 +123,7 @@ module('Integration | Component | comment list', function(hooks) {
     assert.dom('[data-test-comment-list="empty-state"]').doesNotExist();
   });
 
-  test('should show load more comments button when number of comments is >= to the current limit', async function(assert) {
+  test('should show load more comments button when number of comments is >= to the current limit', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -145,7 +141,7 @@ module('Integration | Component | comment list', function(hooks) {
       .exists();
   });
 
-  test('should hide load more comments button when number of comments is < the current limit', async function(assert) {
+  test('should hide load more comments button when number of comments is < the current limit', async function (assert) {
     assert.expect(1);
 
     // Arrange

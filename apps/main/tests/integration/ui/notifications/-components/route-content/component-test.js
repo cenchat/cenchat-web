@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | notifications/-components/route content', function(hooks) {
+module('Integration | Component | notifications/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -21,11 +21,11 @@ module('Integration | Component | notifications/-components/route content', func
     this.set('user', user);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <NotificationList />', async function(assert) {
+  test('should show <NotificationList />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -35,6 +35,6 @@ module('Integration | Component | notifications/-components/route content', func
     await render(hbs`{{notifications/-components/route-content --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'notifications': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { notifications: 'instance' });
   });
 });

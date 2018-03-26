@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/index/-components/route-content/site-collection/site collection item', function(hooks) {
+module('Integration | Component | sites/index/-components/route-content/site-collection/site collection item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const site = await run(() => {
-      return this.get('store').findRecord('site', 'site_b');
-    });
+    const site = await run(() => this.get('store').findRecord('site', 'site_b'));
 
     this.set('router', stubService(this, 'router'));
     this.set('site', site);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show site info', async function(assert) {
+  test('should show site info', async (assert) => {
     assert.expect(5);
 
     // Act
@@ -53,7 +51,7 @@ module('Integration | Component | sites/index/-components/route-content/site-col
     assert.dom('[data-test-site-collection-item="unverified"]').exists();
   });
 
-  test('should hide site image when unavailable', async function(assert) {
+  test('should hide site image when unavailable', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -70,7 +68,7 @@ module('Integration | Component | sites/index/-components/route-content/site-col
     assert.dom('[data-test-site-collection-item="image"]').doesNotExist();
   });
 
-  test('should hide unverified text when site is verified', async function(assert) {
+  test('should hide unverified text when site is verified', async function (assert) {
     assert.expect(1);
 
     // Arrange

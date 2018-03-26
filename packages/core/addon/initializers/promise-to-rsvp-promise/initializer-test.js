@@ -3,10 +3,10 @@ import { setupTest } from 'ember-qunit';
 
 import { initialize } from '@cenchat/core/initializers/promise-to-rsvp-promise';
 
-module('Unit | Initializer | promise-to-rsvp-promise', function(hooks) {
+module('Unit | Initializer | promise-to-rsvp-promise', (hooks) => {
   setupTest(hooks);
 
-  test('nothing to test', function(assert) {
+  test('nothing to test', (assert) => {
     assert.expect(1);
 
     initialize();

@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment item', function(hooks) {
+module('Integration | Component | comment item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     this.set('comment', comment);
     this.set('threadLevel', 1);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <CommentItemAvatar />', async function(assert) {
+  test('should show <CommentItemAvatar />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -45,12 +43,12 @@ module('Integration | Component | comment item', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onToggleQuoteClick': 'function',
+      comment: 'instance',
+      onToggleQuoteClick: 'function',
     });
   });
 
-  test('should show <CommentItemContent /> when not editing message', async function(assert) {
+  test('should show <CommentItemContent /> when not editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -66,12 +64,12 @@ module('Integration | Component | comment item', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'isQuoteVisible': 'boolean',
+      comment: 'instance',
+      isQuoteVisible: 'boolean',
     });
   });
 
-  test('should hide <CommentItemContent /> when editing message', async function(assert) {
+  test('should hide <CommentItemContent /> when editing message', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -89,7 +87,7 @@ module('Integration | Component | comment item', function(hooks) {
     assert.dom('[data-test-item-content]').doesNotExist();
   });
 
-  test('should show <CommentItemToolbar /> when not editing message', async function(assert) {
+  test('should show <CommentItemToolbar /> when not editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -105,17 +103,17 @@ module('Integration | Component | comment item', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'session': 'instance',
-      'comment': 'instance',
-      'threadLevel': 'number',
-      'onEditCommentClick': 'function',
-      'onDeleteCommentClick': 'function',
-      'onShareCommentClick': 'function',
-      'onReplyToCommentClick': 'function',
+      session: 'instance',
+      comment: 'instance',
+      threadLevel: 'number',
+      onEditCommentClick: 'function',
+      onDeleteCommentClick: 'function',
+      onShareCommentClick: 'function',
+      onReplyToCommentClick: 'function',
     });
   });
 
-  test('should hide <CommentItemToolbar /> when editing message', async function(assert) {
+  test('should hide <CommentItemToolbar /> when editing message', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -133,7 +131,7 @@ module('Integration | Component | comment item', function(hooks) {
     assert.dom('[data-test-item-toolbar]').doesNotExist();
   });
 
-  test('should show <CommentComposer /> when editing message', async function(assert) {
+  test('should show <CommentComposer /> when editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -151,12 +149,12 @@ module('Integration | Component | comment item', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onSendCommentSuccess': 'function',
+      comment: 'instance',
+      onSendCommentSuccess: 'function',
     });
   });
 
-  test('should hide <CommentComposer /> when not editing message', async function(assert) {
+  test('should hide <CommentComposer /> when not editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -174,7 +172,7 @@ module('Integration | Component | comment item', function(hooks) {
     assert.ok(spy.notCalled);
   });
 
-  test('should show share comment link when clicking share comment', async function(assert) {
+  test('should show share comment link when clicking share comment', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -193,7 +191,7 @@ module('Integration | Component | comment item', function(hooks) {
       .hasValue('https://cenchat.com/comments/comment_a');
   });
 
-  test('should hide share comment link by default', async function(assert) {
+  test('should hide share comment link by default', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -208,7 +206,7 @@ module('Integration | Component | comment item', function(hooks) {
     assert.dom('[data-test-comment-item="share-comment-link"]').doesNotExist();
   });
 
-  test('should show <CommentItemReplies /> when clicking reply', async function(assert) {
+  test('should show <CommentItemReplies /> when clicking reply', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -226,13 +224,13 @@ module('Integration | Component | comment item', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'session': 'instance',
-      'comment': 'instance',
-      'threadLevel': 'number',
+      session: 'instance',
+      comment: 'instance',
+      threadLevel: 'number',
     });
   });
 
-  test('should hide <CommentItemReplies /> when not clicking reply', async function(assert) {
+  test('should hide <CommentItemReplies /> when not clicking reply', async function (assert) {
     assert.expect(1);
 
     // Arrange

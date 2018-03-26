@@ -10,20 +10,20 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | docs/installation/-components/route content', function(hooks) {
+module('Integration | Component | docs/installation/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     this.set('platform', 'Universal');
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <BloggerGuide /> when platform is blogger', async function(assert) {
+  test('should show <BloggerGuide /> when platform is blogger', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -40,7 +40,7 @@ module('Integration | Component | docs/installation/-components/route content', 
     assert.ok(spy.calledOnce);
   });
 
-  test('should show <UniversalGuide /> when platform is universal', async function(assert) {
+  test('should show <UniversalGuide /> when platform is universal', async function (assert) {
     assert.expect(1);
 
     // Arrange

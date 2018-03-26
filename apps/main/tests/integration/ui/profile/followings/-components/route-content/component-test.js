@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/followings/-components/route-content', function(hooks) {
+module('Integration | Component | profile/followings/-components/route-content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const followings = await this.get('session.model.followings');
@@ -21,11 +21,11 @@ module('Integration | Component | profile/followings/-components/route-content',
     this.set('followings', followings);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <InfiniteContent />', async function(assert) {
+  test('should show <InfiniteContent />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -40,7 +40,7 @@ module('Integration | Component | profile/followings/-components/route-content',
     assert.deepEqual(spy.componentArgsType, { query: 'instance' });
   });
 
-  test('should show <UserCollection />', async function(assert) {
+  test('should show <UserCollection />', async function (assert) {
     assert.expect(1);
 
     // Arrange

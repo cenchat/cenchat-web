@@ -26,24 +26,25 @@ export default Route.extend({
   /**
    * @override
    */
-  afterModel() {
+  async afterModel() {
     const session = this.get('session');
 
     if (session.get('isAuthenticated')) {
-      return this.get('store').findRecord(
-        'user',
-        session.get('currentUser.uid'),
-      ).then((model) => {
+      try {
+        const model = await this.get('store').findRecord('user', session.get('currentUser.uid'));
+
         session.set('content.model', model);
 
         return Promise.all([
           this.updateFacebookAccessToken(model),
           this.updateProfile(model),
         ]);
-      }).catch((error) => {
-        return session.close();
-      });
+      } catch (error) {
+        session.close();
+      }
     }
+
+    return null;
   },
 
   /**
@@ -108,6 +109,8 @@ export default Route.extend({
         }),
       ]);
     }
+
+    return Promise.resolve();
   },
 
   actions: {

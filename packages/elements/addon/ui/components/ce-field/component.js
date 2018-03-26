@@ -128,7 +128,7 @@ export default Component.extend({
     scheduleOnce('afterRender', () => {
       const feedback = this.getValidationFeedback();
 
-      this.set('isInvalid', feedback ? true : false);
+      this.set('isInvalid', !!feedback);
       this.set('feedback', feedback);
 
       const onInput = this.get('--onInput');

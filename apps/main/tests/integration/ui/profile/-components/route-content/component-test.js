@@ -11,10 +11,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/-components/route content', function(hooks) {
+module('Integration | Component | profile/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -24,11 +24,11 @@ module('Integration | Component | profile/-components/route content', function(h
     this.set('onUsernameSubmit', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <TopBar />', async function(assert) {
+  test('should show <TopBar />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -51,7 +51,7 @@ module('Integration | Component | profile/-components/route content', function(h
     });
   });
 
-  test('should show <MissingInfo /> if there is any and if current user owns the profile', async function(assert) {
+  test('should show <MissingInfo /> if there is any and if current user owns the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -73,13 +73,11 @@ module('Integration | Component | profile/-components/route content', function(h
     });
   });
 
-  test('should hide <MissingInfo /> if current user doesn\'t own the profile', async function(assert) {
+  test('should hide <MissingInfo /> if current user doesn\'t own the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 
@@ -98,7 +96,7 @@ module('Integration | Component | profile/-components/route content', function(h
     assert.ok(spy.notCalled);
   });
 
-  test('should hide <MissingInfo /> if there isn\'t any', async function(assert) {
+  test('should hide <MissingInfo /> if there isn\'t any', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -119,7 +117,7 @@ module('Integration | Component | profile/-components/route content', function(h
     assert.ok(spy.notCalled);
   });
 
-  test('should show <FollowingCollection /> if current user owns the profile', async function(assert) {
+  test('should show <FollowingCollection /> if current user owns the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -138,13 +136,11 @@ module('Integration | Component | profile/-components/route content', function(h
     assert.deepEqual(spy.componentArgsType, { user: 'instance' });
   });
 
-  test('should hide <FollowingCollection /> if current user doesn\'t own the profile', async function(assert) {
+  test('should hide <FollowingCollection /> if current user doesn\'t own the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 

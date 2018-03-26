@@ -4,16 +4,16 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const cssimport = require('postcss-import');
 const cssnext = require('postcss-cssnext');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
-    'babel': {
+    babel: {
       plugins: ['transform-async-to-generator', 'transform-object-rest-spread'],
     },
-    'fingerprint': {
+    fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'woff'],
       replaceExtensions: ['html', 'css', 'js', 'webmanifest'],
     },
-    'postcssOptions': {
+    postcssOptions: {
       compile: {
         enabled: true,
         plugins: [{ module: cssimport }],
@@ -26,7 +26,7 @@ module.exports = function(defaults) {
         }],
       },
     },
-    'stylelint': {
+    stylelint: {
       linterConfig: { syntax: 'css' },
     },
   });

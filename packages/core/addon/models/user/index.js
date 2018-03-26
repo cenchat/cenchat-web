@@ -98,14 +98,9 @@ export default Model.extend({
   betaTesterStatus: computed('_betaTester.status', {
     get() {
       if (!this.get('_betaTester')) {
-        this.get('store').findRecord(
-          'betaTester',
-          this.get('id'),
-        ).then((betaTester) => {
-          this.set('_betaTester', betaTester);
-        }).catch((error) => {
-          this.set('_betaTester', { status: 'unapplied' });
-        });
+        this.get('store').findRecord('betaTester', this.get('id')).then(betaTester => (
+          this.set('_betaTester', betaTester)
+        )).catch(() => this.set('_betaTester', { status: 'unapplied' }));
 
         return null;
       }
@@ -124,12 +119,9 @@ export default Model.extend({
   metaInfo: computed('_metaInfo', {
     get() {
       if (!this.get('_metaInfo')) {
-        this.get('store').findRecord(
-          'userMetaInfo',
-          this.get('id'),
-        ).then((metaInfo) => {
-          this.set('_metaInfo', metaInfo);
-        });
+        this.get('store').findRecord('userMetaInfo', this.get('id')).then(metaInfo => (
+          this.set('_metaInfo', metaInfo)
+        ));
 
         return null;
       }
@@ -221,6 +213,6 @@ export default Model.extend({
     return this.get('store').findRecord(
       'userMetaInfo',
       this.get('id'),
-    ).catch((error) => {});
+    ).catch(() => {});
   },
 });

@@ -21,41 +21,31 @@ export default Route.extend({
    * @override
    */
   model(params) {
-    let comment;
+    const hash = { page: this.findOrCreatePage(params.page_id) };
 
     if (params.comment) {
-      comment = this.get('store').findRecord(
-        'comment',
-        params.comment,
-      ).catch((e) => {
-        return null;
-      });
+      hash.comment = this.get('store').findRecord('comment', params.comment).catch(() => null);
     }
 
-    return RSVP.hash({
-      comment,
-      page: this.findOrCreatePage(params.page_id),
-    });
+    return RSVP.hash(hash);
   },
 
   /**
    * Finds a page. Will create it if it doesn't exist.
    *
-   * @param {string} pageId
+   * @param {string} pageIdPostfix
    * @return {Promise} Page
    * @private
    */
-  async findOrCreatePage(pageId) {
+  async findOrCreatePage(pageIdPostfix) {
     const site = this.modelFor('site');
-
-    pageId = `${site.get('id')}__${pageId}`;
-
+    const pageId = `${site.get('id')}__${pageIdPostfix}`;
     const store = this.get('store');
 
     try {
       return await store.findRecord('page', pageId);
     } catch (e) {
-      const slug = this.paramsFor(this.get('routeName')).slug;
+      const { slug } = this.paramsFor(this.get('routeName'));
 
       if (slug) {
         const page = store.createRecord('page', {
@@ -64,10 +54,12 @@ export default Route.extend({
           slug: fixedEncodeURIComponent(slug),
         });
 
-        return await page.save({
+        return page.save({
           adapterOptions: { onServer: true },
         });
       }
     }
+
+    return null;
   },
 });

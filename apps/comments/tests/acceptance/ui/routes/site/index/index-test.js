@@ -5,7 +5,7 @@ import moduleForAcceptance from 'comments/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | ui/routes/site/index');
 
-test('should create page and redirect to it when page does not exist', async function(assert) {
+test('should create page and redirect to it when page does not exist', async (assert) => {
   assert.expect(1);
 
   // Act

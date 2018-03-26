@@ -9,24 +9,22 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-item/comment-item-content/content message', function(hooks) {
+module('Integration | Component | comment-item/comment-item-content/content message', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_b');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_b'));
 
     this.set('comment', comment);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show is deleted message when comment is flagged as deleted', async function(assert) {
+  test('should show is deleted message when comment is flagged as deleted', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -41,7 +39,7 @@ module('Integration | Component | comment-item/comment-item-content/content mess
     assert.dom('[data-test-content-message="deleted-message"]').exists();
   });
 
-  test('should hide is deleted message when comment isn\'t flagged as deleted', async function(assert) {
+  test('should hide is deleted message when comment isn\'t flagged as deleted', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -56,7 +54,7 @@ module('Integration | Component | comment-item/comment-item-content/content mess
     assert.dom('[data-test-content-message="deleted-message"]').doesNotExist();
   });
 
-  test('should show text content when available', async function(assert) {
+  test('should show text content when available', async (assert) => {
     assert.expect(2);
 
     // Act
@@ -69,7 +67,7 @@ module('Integration | Component | comment-item/comment-item-content/content mess
     assert.dom('[data-test-content-message="text"]').hasText('Foobar');
   });
 
-  test('should hide text content when unavailable', async function(assert) {
+  test('should hide text content when unavailable', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -84,7 +82,7 @@ module('Integration | Component | comment-item/comment-item-content/content mess
     assert.dom('[data-test-content-message="text"]').doesNotExist();
   });
 
-  test('should list stickers attachment', async function(assert) {
+  test('should list stickers attachment', async (assert) => {
     assert.expect(3);
 
     // Arrange

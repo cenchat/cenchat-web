@@ -9,24 +9,22 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-item/comment-item-content/content-tagged-entity-list/tagged entity list item', function(hooks) {
+module('Integration | Component | comment-item/comment-item-content/content-tagged-entity-list/tagged entity list item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_a');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
 
     this.set('entity', user);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show user photo', async function(assert) {
+  test('should show user photo', async (assert) => {
     assert.expect(3);
 
     // Act

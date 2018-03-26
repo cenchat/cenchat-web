@@ -5,11 +5,11 @@ import EmberObject from '@ember/object';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Controller | profile/edit', function(hooks) {
+module('Unit | Controller | profile/edit', (hooks) => {
   setupTest(hooks);
 
-  module('function: handleProfileFormSubmit', function() {
-    test('should update profile', async function(assert) {
+  module('function: handleProfileFormSubmit', () => {
+    test('should update profile', async function (assert) {
       assert.expect(4);
 
       // Arrange
@@ -32,12 +32,10 @@ module('Unit | Controller | profile/edit', function(hooks) {
       assert.equal(model.get('displayName'), 'Foo');
       assert.equal(model.get('displayUsername'), 'Bar');
       assert.equal(model.get('username'), 'bar');
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
 
-    test('should transition to profile.index after updating profile', async function(assert) {
+    test('should transition to profile.index after updating profile', async function (assert) {
       assert.expect(1);
 
       // Arrange

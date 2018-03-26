@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/index/-components/route-content/site collection', function(hooks) {
+module('Integration | Component | sites/index/-components/route-content/site collection', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const sites = await this.get('session.model.sitesAsAdmin');
@@ -22,11 +22,11 @@ module('Integration | Component | sites/index/-components/route-content/site col
     this.set('sites', sites);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <InfiniteContent />', async function(assert) {
+  test('should show <InfiniteContent />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -40,10 +40,10 @@ module('Integration | Component | sites/index/-components/route-content/site col
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'query': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { query: 'instance' });
   });
 
-  test('should show <SiteCollectionItem /> for every site', async function(assert) {
+  test('should show <SiteCollectionItem /> for every site', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -59,12 +59,12 @@ module('Integration | Component | sites/index/-components/route-content/site col
     // Assert
     assert.ok(spy.calledTwice);
     assert.deepEqual(spy.componentArgsType, {
-      'router': 'instance',
-      'site': 'instance',
+      router: 'instance',
+      site: 'instance',
     });
   });
 
-  test('should show empty state when there are no sites at all', async function(assert) {
+  test('should show empty state when there are no sites at all', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -81,7 +81,7 @@ module('Integration | Component | sites/index/-components/route-content/site col
     assert.dom('[data-test-site-collection="empty-state"]').exists();
   });
 
-  test('should hide empty state when there is at least 1 site', async function(assert) {
+  test('should hide empty state when there is at least 1 site', async (assert) => {
     assert.expect(1);
 
     // Act

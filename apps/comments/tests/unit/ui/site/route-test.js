@@ -2,11 +2,11 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
-module('Unit | Route | site', function(hooks) {
+module('Unit | Route | site', (hooks) => {
   setupTest(hooks);
 
-  module('hook: afterModel', function() {
-    test('should set theme', async function(assert) {
+  module('hook: afterModel', () => {
+    test('should set theme', async function (assert) {
       assert.expect(1);
 
       // Arrange

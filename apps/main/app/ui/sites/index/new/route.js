@@ -9,19 +9,17 @@ export default Route.extend({
   /**
    * @override
    */
-  beforeModel() {
+  async beforeModel() {
     const user = this.modelFor('sites.index');
+    const betaTester = await this.get('store').findRecord('betaTester', user.get('id'));
 
-    return this.get('store').findRecord(
-      'betaTester',
-      user.get('id'),
-    ).then((betaTester) => {
+    try {
       if (betaTester.get('status') !== 'approved') {
         this.transitionTo('sites.index');
       }
-    }).catch((error) => {
+    } catch (error) {
       this.transitionTo('sites.index');
-    });
+    }
   },
 
   /**

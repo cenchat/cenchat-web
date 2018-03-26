@@ -7,15 +7,15 @@ import {
 } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Controller | sites/index/new', function(hooks) {
+module('Unit | Controller | sites/index/new', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.session = stubSession(this, { id: 'user_a' });
   });
 
-  module('function: handleSiteFormSubmit', function() {
-    test('should create new site', async function(assert) {
+  module('function: handleSiteFormSubmit', () => {
+    test('should create new site', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -37,18 +37,19 @@ module('Unit | Controller | sites/index/new', function(hooks) {
       });
 
       // Assert
-      assert.ok(createRecordStub.calledWithExactly('site', {
-        hostname: 'foo.com',
-        name: 'Foo',
-        theme: 'light',
-        admins: [{ id: 'user_a' }],
-      }));
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(createRecordStub.calledWithExactly(
+        'site',
+        {
+          hostname: 'foo.com',
+          name: 'Foo',
+          theme: 'light',
+          admins: [{ id: 'user_a' }],
+        },
+      ));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
 
-    test('should transition to sites.index after creating new site', async function(assert) {
+    test('should transition to sites.index after creating new site', async function (assert) {
       assert.expect(1);
 
       // Arrange

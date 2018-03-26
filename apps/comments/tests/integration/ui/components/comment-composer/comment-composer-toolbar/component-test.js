@@ -12,15 +12,13 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment composer toolbar', function(hooks) {
+module('Integration | Component | comment-composer/comment composer toolbar', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     this.set('comment', comment);
     this.set('onAddAttachmentClick', () => {});
@@ -29,11 +27,11 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
     this.set('onTagEntityClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <ToolbarStickerPanel /> when clicking sticker', async function(assert) {
+  test('should show <ToolbarStickerPanel /> when clicking sticker', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -55,12 +53,12 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
     // Assert
     assert.dom(stickerButton).hasAttribute('aria-pressed', 'true');
     assert.deepEqual(spy.componentArgsType, {
-      'stickerPacks': 'instance',
-      'onAddAttachmentClick': 'function',
+      stickerPacks: 'instance',
+      onAddAttachmentClick: 'function',
     });
   });
 
-  test('should show <ToolbarTagEntityPanel /> when clicking tag user', async function(assert) {
+  test('should show <ToolbarTagEntityPanel /> when clicking tag user', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -81,10 +79,10 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
 
     // Assert
     assert.dom(tagEntityButton).hasAttribute('aria-pressed', 'true');
-    assert.deepEqual(spy.componentArgsType, { 'onTagEntityClick': 'function' });
+    assert.deepEqual(spy.componentArgsType, { onTagEntityClick: 'function' });
   });
 
-  test('should show ask me anything button when allowed for the comment', async function(assert) {
+  test('should show ask me anything button when allowed for the comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -106,7 +104,7 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
       .exists();
   });
 
-  test('should hide ask me anything button when not allowed for the comment', async function(assert) {
+  test('should hide ask me anything button when not allowed for the comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -128,7 +126,7 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
       .doesNotExist();
   });
 
-  test('should fire an external action when clicking ask me anything', async function(assert) {
+  test('should fire an external action when clicking ask me anything', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -152,7 +150,7 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
     assert.ok(spy.calledOnce);
   });
 
-  test('should enable send button when comment is valid', async function(assert) {
+  test('should enable send button when comment is valid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -174,7 +172,7 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
       .doesNotHaveAttribute('disabled');
   });
 
-  test('should disable send button when comment is invalid', async function(assert) {
+  test('should disable send button when comment is invalid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -196,7 +194,7 @@ module('Integration | Component | comment-composer/comment composer toolbar', fu
       .hasAttribute('disabled');
   });
 
-  test('should fire an external action when clicking send', async function(assert) {
+  test('should fire an external action when clicking send', async function (assert) {
     assert.expect(1);
 
     // Arrange

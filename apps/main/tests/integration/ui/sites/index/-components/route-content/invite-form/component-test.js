@@ -10,23 +10,22 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/index/-components/route-content/invite form', function(hooks) {
+module('Integration | Component | sites/index/-components/route-content/invite form', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    this.set('onInviteRequestFormSubmit', () => {
+    this.set('onInviteRequestFormSubmit', () =>
       // Prevents redirect when submitting form
-      return false;
-    });
+      false);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should fire an external action when clicking submit', async function(assert) {
+  test('should fire an external action when clicking submit', async function (assert) {
     assert.expect(1);
 
     // Arrange

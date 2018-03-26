@@ -5,7 +5,7 @@ import moduleForAcceptance from 'comments/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | ui/routes/site/page');
 
-test('should create page when it does not exist', async function(assert) {
+test('should create page when it does not exist', async (assert) => {
   assert.expect(1);
 
   // Act
@@ -15,7 +15,7 @@ test('should create page when it does not exist', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 0 });
 });
 
-test('should list comments', async function(assert) {
+test('should list comments', async (assert) => {
   assert.expect(1);
 
   // Act
@@ -25,7 +25,7 @@ test('should list comments', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 2 });
 });
 
-test('should show a comment on demand', async function(assert) {
+test('should show a comment on demand', async (assert) => {
   assert.expect(1);
 
   // Act
@@ -35,7 +35,7 @@ test('should show a comment on demand', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 3 });
 });
 
-test('should load more comments', async function(assert) {
+test('should load more comments', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -48,7 +48,7 @@ test('should load more comments', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 3 });
 });
 
-test('should create comment', async function(assert) {
+test('should create comment', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -63,7 +63,7 @@ test('should create comment', async function(assert) {
   assert.dom('[data-test-comment-item]').exists({ count: 3 });
 });
 
-test('should create comment with tagged entities', async function(assert) {
+test('should create comment with tagged entities', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -81,7 +81,7 @@ test('should create comment with tagged entities', async function(assert) {
   assert.dom('[data-test-tagged-entity-list-item="user_c"]').exists();
 });
 
-test('should edit comment', async function(assert) {
+test('should edit comment', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -104,7 +104,7 @@ test('should edit comment', async function(assert) {
     .exists({ count: 3 });
 });
 
-test('should edit comment that adds some tagged entities', async function(assert) {
+test('should edit comment that adds some tagged entities', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -128,7 +128,7 @@ test('should edit comment that adds some tagged entities', async function(assert
     .exists();
 });
 
-test('should delete comment', async function(assert) {
+test('should delete comment', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -147,7 +147,7 @@ test('should delete comment', async function(assert) {
     .exists();
 });
 
-test('should list comment replies', async function(assert) {
+test('should list comment replies', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -164,7 +164,7 @@ test('should list comment replies', async function(assert) {
   assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
 });
 
-test('should load more replies', async function(assert) {
+test('should load more replies', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -182,7 +182,7 @@ test('should load more replies', async function(assert) {
   assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 4 });
 });
 
-test('should create comment reply', async function(assert) {
+test('should create comment reply', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -200,7 +200,7 @@ test('should create comment reply', async function(assert) {
   assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
 });
 
-test('should edit comment reply', async function(assert) {
+test('should edit comment reply', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -222,7 +222,7 @@ test('should edit comment reply', async function(assert) {
     .exists({ count: 3 });
 });
 
-test('should delete comment reply', async function(assert) {
+test('should delete comment reply', async (assert) => {
   assert.expect(1);
 
   // Arrange
@@ -240,7 +240,7 @@ test('should delete comment reply', async function(assert) {
     .exists();
 });
 
-test('should show notifications', async function(assert) {
+test('should show notifications', async (assert) => {
   assert.expect(1);
 
   // Arrange

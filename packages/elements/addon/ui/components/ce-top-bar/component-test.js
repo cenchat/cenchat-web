@@ -2,10 +2,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | ce-top-bar', function(hooks) {
+module('Integration | Component | ce-top-bar', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should render yield inside <ce-top-bar-row> when not multi-row', async function(assert) {
+  test('should render yield inside <ce-top-bar-row> when not multi-row', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -15,7 +15,7 @@ module('Integration | Component | ce-top-bar', function(hooks) {
     assert.dom('[data-test="host"] .ce-top-bar-row').hasText('Foo');
   });
 
-  test('should render yield without <ce-top-bar-row> when multi-row', async function(assert) {
+  test('should render yield without <ce-top-bar-row> when multi-row', async function (assert) {
     assert.expect(2);
 
     // Act

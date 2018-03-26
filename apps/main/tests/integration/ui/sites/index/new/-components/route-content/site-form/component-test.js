@@ -5,16 +5,14 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-module('Integration | Component | sites/index/new/-components/route-content/site form', function(hooks) {
+module('Integration | Component | sites/index/new/-components/route-content/site form', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.set('onSiteFormSubmit', () => {
-      return false;
-    });
+  hooks.beforeEach(function () {
+    this.set('onSiteFormSubmit', () => false);
   });
 
-  test('should should enable submit button when hostname and name is valid', async function(assert) {
+  test('should should enable submit button when hostname and name is valid', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -33,7 +31,7 @@ module('Integration | Component | sites/index/new/-components/route-content/site
       .doesNotHaveAttribute('disabled');
   });
 
-  test('should disable submit button when hostname is invalid', async function(assert) {
+  test('should disable submit button when hostname is invalid', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -53,7 +51,7 @@ module('Integration | Component | sites/index/new/-components/route-content/site
       .hasAttribute('disabled');
   });
 
-  test('should disable submit button when name is empty', async function(assert) {
+  test('should disable submit button when name is empty', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -71,7 +69,7 @@ module('Integration | Component | sites/index/new/-components/route-content/site
       .hasAttribute('disabled');
   });
 
-  test('should fire an external action when clicking submit', async function(assert) {
+  test('should fire an external action when clicking submit', async function (assert) {
     assert.expect(1);
 
     // Arrange

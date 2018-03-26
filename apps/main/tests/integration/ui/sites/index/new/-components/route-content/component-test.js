@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/index/new/-components/route content', function(hooks) {
+module('Integration | Component | sites/index/new/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -22,11 +22,11 @@ module('Integration | Component | sites/index/new/-components/route content', fu
     this.set('onSiteFormSubmit', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <SiteForm />', async function(assert) {
+  test('should show <SiteForm />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -41,7 +41,7 @@ module('Integration | Component | sites/index/new/-components/route content', fu
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'onSiteFormSubmit': 'function',
+      onSiteFormSubmit: 'function',
     });
   });
 });

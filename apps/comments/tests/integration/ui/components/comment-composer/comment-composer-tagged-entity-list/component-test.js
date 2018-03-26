@@ -11,28 +11,24 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment composer tagged user list', function(hooks) {
+module('Integration | Component | comment-composer/comment composer tagged user list', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const userA = await run(() => {
-      return this.get('store').findRecord('user', 'user_a');
-    });
-    const userB = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const userA = await run(() => this.get('store').findRecord('user', 'user_a'));
+    const userB = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('entities', [userA, userB]);
     this.set('onUntagEntityClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <TaggedEntityListItem /> for every tagged entity', async function(assert) {
+  test('should show <TaggedEntityListItem /> for every tagged entity', async function (assert) {
     assert.expect(2);
 
     // Arrange

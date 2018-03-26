@@ -2,23 +2,22 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module',
-    ecmaFeatures: {
-      'experimentalObjectRestSpread': true,
-    },
+    sourceType: 'module'
   },
+  plugins: [
+    'ember'
+  ],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
+    'airbnb-base',
     'rmmmp/base',
     'rmmmp/ember'
   ],
   env: {
     browser: true
   },
-  rules: {
-    'ember/avoid-leaking-state-in-ember-objects': 'off'
-  },
+  rules: {},
   overrides: [
     // node files
     {

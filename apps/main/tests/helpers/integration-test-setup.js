@@ -26,9 +26,7 @@ export async function setupBeforeEach(context) {
   context.set('session', stubSession(context));
   context.set('store', stubService(context, 'store'));
 
-  const user = await run(() => {
-    return context.get('store').findRecord('user', 'user_a');
-  });
+  const user = await run(() => context.get('store').findRecord('user', 'user_a'));
 
   context.set('session.model', user);
 }
@@ -36,9 +34,8 @@ export async function setupBeforeEach(context) {
 /**
  * `afterEach()` setup for integration tests
  *
- * @param {Object} context Application context
  * @return {Promise} Empty promise
  */
-export function setupAfterEach(context) {
+export function setupAfterEach() {
   return Promise.resolve();
 }

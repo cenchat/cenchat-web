@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/index/-components/route content', function(hooks) {
+module('Integration | Component | sites/index/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -22,11 +22,11 @@ module('Integration | Component | sites/index/-components/route content', functi
     this.set('user', user);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <SiteCollection /> for sites as admin', async function(assert) {
+  test('should show <SiteCollection /> for sites as admin', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -39,8 +39,8 @@ module('Integration | Component | sites/index/-components/route content', functi
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'router': 'instance',
-      'sites': 'instance',
+      router: 'instance',
+      sites: 'instance',
     });
   });
 });

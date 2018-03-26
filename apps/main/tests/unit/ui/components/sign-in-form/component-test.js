@@ -6,10 +6,10 @@ import ObjectProxy from '@ember/object/proxy';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Component | sign in form', function(hooks) {
+module('Unit | Component | sign in form', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.session = ObjectProxy.create({
       content: EmberObject.create({
         isAuthenticated: true,
@@ -31,8 +31,8 @@ module('Unit | Component | sign in form', function(hooks) {
     });
   });
 
-  module('function: fetchOrCreateUserRecord', function() {
-    test('should fetch session model after signing in', async function(assert) {
+  module('function: fetchOrCreateUserRecord', () => {
+    test('should fetch session model after signing in', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -53,7 +53,7 @@ module('Unit | Component | sign in form', function(hooks) {
       assert.deepEqual(component.get('session.model'), user);
     });
 
-    test('should create session model record when fetching that record fails', async function(assert) {
+    test('should create session model record when fetching that record fails', async function (assert) {
       assert.expect(4);
 
       // Arrange
@@ -74,17 +74,20 @@ module('Unit | Component | sign in form', function(hooks) {
       await component.fetchOrCreateUserRecord(this.session.get('currentUser'));
 
       // Assert
-      assert.ok(createRecordStub.calledWithExactly('user', {
-        id: 'user_a',
-        displayName: 'User A',
-        photoUrl: 'user_a.jpg',
-      }));
+      assert.ok(createRecordStub.calledWithExactly(
+        'user',
+        {
+          id: 'user_a',
+          displayName: 'User A',
+          photoUrl: 'user_a.jpg',
+        },
+      ));
       assert.equal(this.session.get('content.model.facebookId'), '12345');
       assert.ok(saveStub.calledOnce);
       assert.ok(component.get('session.model'), user);
     });
 
-    test('should transition to profile after signing in', async function(assert) {
+    test('should transition to profile after signing in', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -104,7 +107,7 @@ module('Unit | Component | sign in form', function(hooks) {
       assert.ok(transitionToStub.calledWithExactly('profile', 'user_a'));
     });
 
-    test('should save Facebook access token when its credential is available', async function(assert) {
+    test('should save Facebook access token when its credential is available', async function (assert) {
       assert.expect(2);
 
       // Arrange

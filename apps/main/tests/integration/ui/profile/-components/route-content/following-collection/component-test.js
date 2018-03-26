@@ -10,10 +10,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/-components/route-content/following collection', function(hooks) {
+module('Integration | Component | profile/-components/route-content/following collection', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = this.get('session.model');
@@ -21,11 +21,11 @@ module('Integration | Component | profile/-components/route-content/following co
     this.set('user', user);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <UserCollection />', async function(assert) {
+  test('should show <UserCollection />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -41,7 +41,7 @@ module('Integration | Component | profile/-components/route-content/following co
     });
   });
 
-  test('should show empty state when there are no followings :(', async function(assert) {
+  test('should show empty state when there are no followings :(', async function (assert) {
     assert.expect(1);
 
     // Arrange

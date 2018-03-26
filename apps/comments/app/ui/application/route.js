@@ -25,21 +25,18 @@ export default Route.extend({
   /**
    * @override
    */
-  afterModel() {
+  async afterModel() {
     const session = this.get('session');
     const store = this.get('store');
 
     if (session.get('isAuthenticated')) {
-      return store.findRecord(
-        'user',
-        session.get('currentUser.uid'),
-      ).then((model) => {
+      try {
+        const model = await store.findRecord('user', session.get('currentUser.uid'));
+
         session.set('content.model', model);
 
-        return this.updateProfile(model);
-      }).catch((error) => {
-        // TODO: error.code should be used by Cloud Firestore doesn't
-        // use it. Replace this once they do.
+        await this.updateProfile(model);
+      } catch (error) {
         if (error.message === 'Document doesn\'t exist') {
           const currentUser = session.get('currentUser');
           const record = store.createRecord('user', {
@@ -56,15 +53,15 @@ export default Route.extend({
             }
           }
 
-          return record.save({
+          await record.save({
             adapterOptions: { onServer: true },
-          }).then(() => {
-            session.set('content.model', record);
           });
-        } else {
-          return session.close();
+
+          session.set('content.model', record);
         }
-      });
+
+        await session.close();
+      }
     }
   },
 
@@ -107,5 +104,7 @@ export default Route.extend({
         }),
       ]);
     }
+
+    return Promise.resolve();
   },
 });

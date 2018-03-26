@@ -3,11 +3,11 @@ import { setupTest } from 'ember-qunit';
 
 import sinon from 'sinon';
 
-module('Unit | Route | sign-in', function(hooks) {
+module('Unit | Route | sign-in', (hooks) => {
   setupTest(hooks);
 
-  module('hook: beforeModel', function() {
-    test('should transition to application route when signed in', function(assert) {
+  module('hook: beforeModel', () => {
+    test('should transition to application route when signed in', function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -24,7 +24,7 @@ module('Unit | Route | sign-in', function(hooks) {
       assert.ok(transitionToStub.calledWithExactly('application'));
     });
 
-    test('should not transition to application route when signed out', function(assert) {
+    test('should not transition to application route when signed out', function (assert) {
       assert.expect(1);
 
       // Arrange

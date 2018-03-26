@@ -11,26 +11,24 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/index/-components/route-content/page collection', function(hooks) {
+module('Integration | Component | sites/site/index/-components/route-content/page collection', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const site = await run(() => {
-      return this.get('store').findRecord('site', 'site_a');
-    });
+    const site = await run(() => this.get('store').findRecord('site', 'site_a'));
     const pages = await site.get('pages');
 
     this.set('router', stubService(this, 'router'));
     this.set('pages', pages);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <InfiniteContent />', async function(assert) {
+  test('should show <InfiniteContent />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -44,10 +42,10 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'query': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { query: 'instance' });
   });
 
-  test('should show <PageCollectionItem /> for each page', async function(assert) {
+  test('should show <PageCollectionItem /> for each page', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -63,12 +61,12 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
     // Assert
     assert.ok(spy.calledTwice);
     assert.deepEqual(spy.componentArgsType, {
-      'router': 'instance',
-      'page': 'instance',
+      router: 'instance',
+      page: 'instance',
     });
   });
 
-  test('should show empty state when there are no pages', async function(assert) {
+  test('should show empty state when there are no pages', async function (assert) {
     assert.expect(1);
 
     // Arrange

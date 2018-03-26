@@ -6,10 +6,10 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-module('Integration | Component | ce-button', function(hooks) {
+module('Integration | Component | ce-button', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should render yield', async function(assert) {
+  test('should render yield', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -19,13 +19,13 @@ module('Integration | Component | ce-button', function(hooks) {
     assert.dom('[data-test="host"]').hasText('Foo');
   });
 
-  test('should disable button when clicking it performs a promise', async function(assert) {
+  test('should disable button when clicking it performs a promise', async function (assert) {
     assert.expect(1);
 
     // Arrange
     this.set(
       'onClick',
-      sinon.stub().returns(new RSVP.Promise((resolve) => {})),
+      sinon.stub().returns(new RSVP.Promise(() => {})),
     );
 
     await this.render(hbs`
@@ -39,13 +39,13 @@ module('Integration | Component | ce-button', function(hooks) {
     assert.dom('[data-test="host"]').hasAttribute('disabled');
   });
 
-  test('should show progress bar button when clicking it performs a promise', async function(assert) {
+  test('should show progress bar button when clicking it performs a promise', async function (assert) {
     assert.expect(1);
 
     // Arrange
     this.set(
       'onClick',
-      sinon.stub().returns(new RSVP.Promise((resolve) => {})),
+      sinon.stub().returns(new RSVP.Promise(() => {})),
     );
 
     await this.render(hbs`

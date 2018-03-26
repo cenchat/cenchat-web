@@ -2,10 +2,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | ce-icon-link-button', function(hooks) {
+module('Integration | Component | ce-icon-link-button', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should render icon when icon is passed in', async function(assert) {
+  test('should render icon when icon is passed in', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -17,7 +17,7 @@ module('Integration | Component | ce-icon-link-button', function(hooks) {
     assert.dom('[data-test="host"] i').hasText('favorite');
   });
 
-  test('should render image when image is passed in', async function(assert) {
+  test('should render image when image is passed in', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -29,7 +29,7 @@ module('Integration | Component | ce-icon-link-button', function(hooks) {
     assert.dom('[data-test="host"] img').hasAttribute('src', 'favorite.jpg');
   });
 
-  test('should bind image alt when image and alt is passed in', async function(assert) {
+  test('should bind image alt when image and alt is passed in', async function (assert) {
     assert.expect(1);
 
     // Act
