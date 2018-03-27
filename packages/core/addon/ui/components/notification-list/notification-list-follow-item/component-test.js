@@ -13,19 +13,15 @@ import {
   stubService,
 } from '@cenchat/core/test-support';
 
-module('Integration | Component | notification-list/notification-list-follow-item', function(hooks) {
+module('Integration | Component | notification-list/notification-list-follow-item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     mockFirebase(this.owner, getFixtureData());
 
     const store = stubService(this, 'store');
-    const notification = await run(() => {
-      return store.findRecord('notification', 'notification_a');
-    });
-    const toUser = await run(() => {
-      return notification.get('to');
-    });
+    const notification = await run(() => store.findRecord('notification', 'notification_a'));
+    const toUser = await run(() => notification.get('to'));
 
     toUser.set('isFollowing', sinon.stub().returns(stubPromise(true, false)));
 
@@ -34,7 +30,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
     this.set('onFollowBackClick', () => {});
   });
 
-  test('should show notification info', async function(assert) {
+  test('should show notification info', async (assert) => {
     assert.expect(4);
 
     // Act
@@ -59,7 +55,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
       .exists();
   });
 
-  test('should show follow back button when notification receiver isn\'t following the notification sender', async function(assert) {
+  test('should show follow back button when notification receiver isn\'t following the notification sender', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -75,7 +71,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
       .exists();
   });
 
-  test('should hide follow back button when notification receiver is following the notification sender', async function(assert) {
+  test('should hide follow back button when notification receiver is following the notification sender', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -98,7 +94,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
       .doesNotExist();
   });
 
-  test('should fire an external action when clicking follow back', async function(assert) {
+  test('should fire an external action when clicking follow back', async function (assert) {
     assert.expect(1);
 
     // Arrange

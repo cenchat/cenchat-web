@@ -11,24 +11,22 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/page/-components/route content', function(hooks) {
+module('Integration | Component | sites/site/page/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const page = await run(() => {
-      return this.get('store').findRecord('page', 'site_a__page_a');
-    });
+    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
 
     this.set('page', page);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <top-bar>', async function(assert) {
+  test('should show <top-bar>', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -40,6 +38,6 @@ module('Integration | Component | sites/site/page/-components/route content', fu
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'page': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { page: 'instance' });
   });
 });

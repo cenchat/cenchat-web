@@ -9,15 +9,15 @@ import {
 } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | application', function(hooks) {
+module('Unit | Route | application', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     stubService(this, 'session', {});
   });
 
-  module('hook: beforeModel', function() {
-    test('should set session in the beforeModel hook', async function(assert) {
+  module('hook: beforeModel', () => {
+    test('should set session in the beforeModel hook', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -34,8 +34,8 @@ module('Unit | Route | application', function(hooks) {
     });
   });
 
-  module('hook: afterModel', function() {
-    hooks.beforeEach(function() {
+  module('hook: afterModel', () => {
+    hooks.beforeEach(function () {
       this.user = EmberObject.create({
         displayName: 'User A',
         facebookId: '12345',
@@ -76,7 +76,7 @@ module('Unit | Route | application', function(hooks) {
       });
     });
 
-    test('should set session model', async function(assert) {
+    test('should set session model', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -94,7 +94,7 @@ module('Unit | Route | application', function(hooks) {
       assert.equal(route.get('session.model'), this.user);
     });
 
-    test('should sign out when fetching session model fails', async function(assert) {
+    test('should sign out when fetching session model fails', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -113,7 +113,7 @@ module('Unit | Route | application', function(hooks) {
       assert.ok(closeSpy.calledOnce);
     });
 
-    test('should update profile when Facebook UID is outdated with Facebook info', async function(assert) {
+    test('should update profile when Facebook UID is outdated with Facebook info', async function (assert) {
       assert.expect(5);
 
       // Arrange
@@ -145,7 +145,7 @@ module('Unit | Route | application', function(hooks) {
       }));
     });
 
-    test('should update profile when display name is outdated with Facebook info', async function(assert) {
+    test('should update profile when display name is outdated with Facebook info', async function (assert) {
       assert.expect(5);
 
       // Arrange
@@ -177,7 +177,7 @@ module('Unit | Route | application', function(hooks) {
       }));
     });
 
-    test('should update profile when photo url is outdated with Facebook info', async function(assert) {
+    test('should update profile when photo url is outdated with Facebook info', async function (assert) {
       assert.expect(5);
 
       // Arrange
@@ -209,7 +209,7 @@ module('Unit | Route | application', function(hooks) {
       }));
     });
 
-    test('should not update profile when up-to-date with Facebook info', async function(assert) {
+    test('should not update profile when up-to-date with Facebook info', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -233,7 +233,7 @@ module('Unit | Route | application', function(hooks) {
       assert.ok(updateProfileSpy.notCalled);
     });
 
-    test('should not update profile when no Facebook provider', async function(assert) {
+    test('should not update profile when no Facebook provider', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -257,7 +257,7 @@ module('Unit | Route | application', function(hooks) {
       assert.ok(updateProfileSpy.notCalled);
     });
 
-    test('should update Facebook access token when current user has one', async function(assert) {
+    test('should update Facebook access token when current user has one', async function (assert) {
       assert.expect(3);
 
       // Arrange

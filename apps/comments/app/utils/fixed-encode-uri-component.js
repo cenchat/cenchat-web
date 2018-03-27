@@ -5,7 +5,5 @@
  * @return {string} Encoded URI Component
  */
 export default function fixedEncodeURIComponent(value) {
-  return encodeURIComponent(value).replace(/[.!'()*]/g, (c) => {
-    return '%' + c.charCodeAt(0).toString(16);
-  });
+  return encodeURIComponent(value).replace(/[.!'()*]/g, c => `%${c.charCodeAt(0).toString(16)}`);
 }

@@ -16,7 +16,7 @@ import sinon from 'sinon';
 export default function spyComponent(context, name) {
   const spy = sinon.spy();
   const componentArgsType = {};
-  const owner = context.owner;
+  const { owner } = context;
 
   if (!owner.hasRegistration(`component:${name}`)) {
     owner.register(`component:${name}`, Component.extend({ tagName: '' }));
@@ -28,11 +28,13 @@ export default function spyComponent(context, name) {
     didReceiveAttrs(...args) {
       this._super(...args);
 
-      for (const key in this.attrs) {
-        if (key.startsWith('--')) {
-          const keyWithoutPrefix = key.slice(2);
+      if (this.attrs) {
+        for (const key of Object.keys(this.attrs)) {
+          if (key.startsWith('--')) {
+            const keyWithoutPrefix = key.slice(2);
 
-          componentArgsType[keyWithoutPrefix] = typeOf(this.get(key));
+            componentArgsType[keyWithoutPrefix] = typeOf(this.get(key));
+          }
         }
       }
 

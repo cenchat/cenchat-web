@@ -7,10 +7,10 @@ import Service from '@ember/service';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Component | comment composer', function(hooks) {
+module('Unit | Component | comment composer', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register('service:session', Service.extend());
 
     this.comment = EmberObject.create({
@@ -25,8 +25,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('lifecycle: init', function() {
-    test('should create a new comment and set it as the comment prop when @comment isn\'t available', async function(assert) {
+  module('lifecycle: init', () => {
+    test('should create a new comment and set it as the comment prop when @comment isn\'t available', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -35,26 +35,29 @@ module('Unit | Component | comment composer', function(hooks) {
 
       // Act
       const component = await factory.create({
-        'store': { createRecord: createRecordStub },
-        'session': { model: 'sessionModel' },
+        store: { createRecord: createRecordStub },
+        session: { model: 'sessionModel' },
         '--page': 'page',
       });
 
       return settled().then(() => {
         // Assert
-        assert.ok(createRecordStub.calledWithExactly('comment', {
-          isAskMeAnything: false,
-          isDeleted: false,
-          author: 'sessionModel',
-          page: 'page',
-          replyTo: undefined,
-          root: undefined,
-        }));
+        assert.ok(createRecordStub.calledWithExactly(
+          'comment',
+          {
+            isAskMeAnything: false,
+            isDeleted: false,
+            author: 'sessionModel',
+            page: 'page',
+            replyTo: undefined,
+            root: undefined,
+          },
+        ));
         assert.deepEqual(component.get('comment'), this.comment);
       });
     });
 
-    test('should set @comment as comment prop when available', async function(assert) {
+    test('should set @comment as comment prop when available', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -69,8 +72,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleSendCommentClick', function() {
-    test('should send comment', async function(assert) {
+  module('function: handleSendCommentClick', () => {
+    test('should send comment', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -80,8 +83,8 @@ module('Unit | Component | comment composer', function(hooks) {
 
       const factory = this.owner.factoryFor('component:comment-composer');
       const component = await factory.create({
-        'store': { createRecord: sinon.stub().returns(this.comment) },
-        'session': { model: 'sessionModel' },
+        store: { createRecord: sinon.stub().returns(this.comment) },
+        session: { model: 'sessionModel' },
         '--page': 'page',
       });
 
@@ -89,20 +92,18 @@ module('Unit | Component | comment composer', function(hooks) {
       await component.handleSendCommentClick();
 
       // Assert
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
 
-    test('should fire @onSendCommentSuccess when available', async function(assert) {
+    test('should fire @onSendCommentSuccess when available', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const onSendCommentSuccessStub = sinon.stub();
       const factory = this.owner.factoryFor('component:comment-composer');
       const component = await factory.create({
-        'store': { createRecord: sinon.stub().returns(this.comment) },
-        'session': { model: 'sessionModel' },
+        store: { createRecord: sinon.stub().returns(this.comment) },
+        session: { model: 'sessionModel' },
         '--page': 'page',
         '--onSendCommentSuccess': onSendCommentSuccessStub,
       });
@@ -115,8 +116,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleAddAttachmentClick', function() {
-    test('should add comment attachment when total count < 4', async function(assert) {
+  module('function: handleAddAttachmentClick', () => {
+    test('should add comment attachment when total count < 4', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -140,8 +141,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleAskMeAnythingClick', function() {
-    test('should toggle ask me anything in the comment to true', async function(assert) {
+  module('function: handleAskMeAnythingClick', () => {
+    test('should toggle ask me anything in the comment to true', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -155,7 +156,7 @@ module('Unit | Component | comment composer', function(hooks) {
       assert.equal(component.get('comment.isAskMeAnything'), true);
     });
 
-    test('should toggle ask me anything in the comment to false', async function(assert) {
+    test('should toggle ask me anything in the comment to false', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -171,8 +172,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleRemoveAttachmentClick', function() {
-    test('should remove specified comment attachment', async function(assert) {
+  module('function: handleRemoveAttachmentClick', () => {
+    test('should remove specified comment attachment', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -189,8 +190,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleTagEntityClick', function() {
-    test('should tag an entity', async function(assert) {
+  module('function: handleTagEntityClick', () => {
+    test('should tag an entity', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -210,7 +211,7 @@ module('Unit | Component | comment composer', function(hooks) {
       });
     });
 
-    test('should not allow tagging the author', async function(assert) {
+    test('should not allow tagging the author', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -226,8 +227,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleUntagUEntitylick', function() {
-    test('should untag an entity', async function(assert) {
+  module('function: handleUntagUEntitylick', () => {
+    test('should untag an entity', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -246,8 +247,8 @@ module('Unit | Component | comment composer', function(hooks) {
     });
   });
 
-  module('function: handleTextBoxInput', function() {
-    test('should set comment text', async function(assert) {
+  module('function: handleTextBoxInput', () => {
+    test('should set comment text', async function (assert) {
       assert.expect(1);
 
       // Arrange

@@ -4,9 +4,9 @@ import sinon from 'sinon';
 
 import AuthenticatedRoute from 'main/utils/authenticated-route';
 
-module('Unit | Utility | authenticated route', function(hooks) {
-  module('hook: beforeModel', function() {
-    test('should transition to sign-in route when signed out', function(assert) {
+module('Unit | Utility | authenticated route', () => {
+  module('hook: beforeModel', () => {
+    test('should transition to sign-in route when signed out', (assert) => {
       assert.expect(1);
 
       // Arrange
@@ -23,7 +23,7 @@ module('Unit | Utility | authenticated route', function(hooks) {
       assert.ok(transitionToStub.calledWithExactly('sign-in'));
     });
 
-    test('should not transition to sign-in route when signed in', function(assert) {
+    test('should not transition to sign-in route when signed in', (assert) => {
       assert.expect(1);
 
       // Arrange

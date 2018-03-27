@@ -37,9 +37,9 @@ export default Component.extend({
    * Handles send comment click event
    */
   async handleSendCommentClick() {
-    const newComment = this.get('comment');
+    const comment = this.get('comment');
 
-    await newComment.save({ adapterOptions: { onServer: true } });
+    await comment.save({ adapterOptions: { onServer: true } });
     toast('Comment sent');
 
     if (!this.get('--comment')) {
@@ -49,7 +49,7 @@ export default Component.extend({
     }
 
     if (this.get('--onSendCommentSuccess')) {
-      this.get('--onSendCommentSuccess')(newComment);
+      this.get('--onSendCommentSuccess')(comment);
     }
   },
 
@@ -89,9 +89,10 @@ export default Component.extend({
     const comment = this.get('comment');
     const attachments = comment.get('parsedAttachments');
 
-    comment.set('parsedAttachments', attachments.filter((attachment, index) => {
-      return index !== indexToRemove;
-    }));
+    comment.set(
+      'parsedAttachments',
+      attachments.filter((attachment, index) => index !== indexToRemove),
+    );
   },
 
   /**

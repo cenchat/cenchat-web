@@ -22,7 +22,7 @@ export default Component.extend({
     const isSafari = /safari/.test(userAgent);
     const isIos = /iphone|ipod|ipad/.test(userAgent);
 
-    return (isIos && !isStandalone && !isSafari) ? true : false;
+    return isIos && !isStandalone && !isSafari;
   },
 
   /**

@@ -10,18 +10,18 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sign-in/-components/route content', function(hooks) {
+module('Integration | Component | sign-in/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <SignInForm>', async function(assert) {
+  test('should show <SignInForm>', async function (assert) {
     assert.expect(1);
 
     // Arrange

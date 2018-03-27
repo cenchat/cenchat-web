@@ -11,26 +11,24 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/index/-components/route content', function(hooks) {
+module('Integration | Component | sites/site/index/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const site = await run(() => {
-      return this.get('store').findRecord('site', 'site_a');
-    });
+    const site = await run(() => this.get('store').findRecord('site', 'site_a'));
 
     this.set('router', stubService(this, 'router'));
     this.set('site', site);
     this.set('onVerifySiteClick', () => {});
   });
 
-  hooks.afterEach(function() {
+  hooks.afterEach(function () {
     setupAfterEach(this);
   });
 
-  test('should show <TopBar />', async function(assert) {
+  test('should show <TopBar />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -45,10 +43,10 @@ module('Integration | Component | sites/site/index/-components/route content', f
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'site': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { site: 'instance' });
   });
 
-  test('should show <PageCollection /> when site is verified', async function(assert) {
+  test('should show <PageCollection /> when site is verified', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -64,12 +62,12 @@ module('Integration | Component | sites/site/index/-components/route content', f
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'router': 'instance',
-      'pages': 'instance',
+      router: 'instance',
+      pages: 'instance',
     });
   });
 
-  test('should show <SetupGuide /> when site is not verified', async function(assert) {
+  test('should show <SetupGuide /> when site is not verified', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -87,8 +85,8 @@ module('Integration | Component | sites/site/index/-components/route content', f
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'site': 'instance',
-      'onVerifySiteClick': 'function',
+      site: 'instance',
+      onVerifySiteClick: 'function',
     });
   });
 });

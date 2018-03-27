@@ -11,20 +11,16 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment composer', function(hooks) {
+module('Integration | Component | comment composer', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     // Preload parsed attachments
-    await run(() => {
-      return comment.get('parsedAttachments');
-    });
+    await run(() => comment.get('parsedAttachments'));
 
     comment.set('isTextAllowed', false);
     comment.set('isMessageValid', true);
@@ -32,11 +28,11 @@ module('Integration | Component | comment composer', function(hooks) {
     this.set('comment', comment);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <ComposerMessage /> when comment message valid', async function(assert) {
+  test('should show <ComposerMessage /> when comment message valid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -49,13 +45,13 @@ module('Integration | Component | comment composer', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onTextBoxInput': 'function',
-      'onRemoveAttachmentClick': 'function',
+      comment: 'instance',
+      onTextBoxInput: 'function',
+      onRemoveAttachmentClick: 'function',
     });
   });
 
-  test('should show <ComposerMessage /> when text comment is allowed', async function(assert) {
+  test('should show <ComposerMessage /> when text comment is allowed', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -68,13 +64,13 @@ module('Integration | Component | comment composer', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onTextBoxInput': 'function',
-      'onRemoveAttachmentClick': 'function',
+      comment: 'instance',
+      onTextBoxInput: 'function',
+      onRemoveAttachmentClick: 'function',
     });
   });
 
-  test('should hide <ComposerMessage /> when comment message is invalid and text aren\'t allowed', async function(assert) {
+  test('should hide <ComposerMessage /> when comment message is invalid and text aren\'t allowed', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -90,7 +86,7 @@ module('Integration | Component | comment composer', function(hooks) {
     assert.ok(spy.notCalled);
   });
 
-  test('should show <CommentComposerTaggedEntityList /> when there is a tagged entity', async function(assert) {
+  test('should show <CommentComposerTaggedEntityList /> when there is a tagged entity', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -103,12 +99,12 @@ module('Integration | Component | comment composer', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'entities': 'array',
-      'onUntagEntityClick': 'function',
+      entities: 'array',
+      onUntagEntityClick: 'function',
     });
   });
 
-  test('should hide <CommentComposerTaggedEntityList /> when there are no tagged entities', async function(assert) {
+  test('should hide <CommentComposerTaggedEntityList /> when there are no tagged entities', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -123,7 +119,7 @@ module('Integration | Component | comment composer', function(hooks) {
     assert.ok(spy.notCalled);
   });
 
-  test('should show <ComposerToolbar />', async function(assert) {
+  test('should show <ComposerToolbar />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -134,15 +130,15 @@ module('Integration | Component | comment composer', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comment': 'instance',
-      'onAddAttachmentClick': 'function',
-      'onAskMeAnythingClick': 'function',
-      'onSendCommentClick': 'function',
-      'onTagEntityClick': 'function',
+      comment: 'instance',
+      onAddAttachmentClick: 'function',
+      onAskMeAnythingClick: 'function',
+      onSendCommentClick: 'function',
+      onTagEntityClick: 'function',
     });
   });
 
-  test('should add attachment when clicking it', async function(assert) {
+  test('should add attachment when clicking it', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -158,7 +154,7 @@ module('Integration | Component | comment composer', function(hooks) {
     });
   });
 
-  test('should limit adding of attachments to 4 items', async function(assert) {
+  test('should limit adding of attachments to 4 items', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -178,7 +174,7 @@ module('Integration | Component | comment composer', function(hooks) {
     });
   });
 
-  test('should remove attachment when clicking the its remove button', async function(assert) {
+  test('should remove attachment when clicking the its remove button', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -193,7 +189,7 @@ module('Integration | Component | comment composer', function(hooks) {
     });
   });
 
-  test('should disable send button when comment message is invalid', async function(assert) {
+  test('should disable send button when comment message is invalid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -208,7 +204,7 @@ module('Integration | Component | comment composer', function(hooks) {
       .hasAttribute('disabled');
   });
 
-  test('should enable send button when comment is valid', async function(assert) {
+  test('should enable send button when comment is valid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -223,7 +219,7 @@ module('Integration | Component | comment composer', function(hooks) {
       .doesNotHaveAttribute('disabled');
   });
 
-  test('should show hint when text comment isn\'t allowed', async function(assert) {
+  test('should show hint when text comment isn\'t allowed', async function (assert) {
     assert.expect(1);
 
     // Assert
@@ -236,7 +232,7 @@ module('Integration | Component | comment composer', function(hooks) {
     assert.dom('[data-test-comment-composer="hint"]').exists();
   });
 
-  test('should hide hint when text comment is allowed', async function(assert) {
+  test('should hide hint when text comment is allowed', async function (assert) {
     assert.expect(1);
 
     // Arrange

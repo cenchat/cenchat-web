@@ -11,26 +11,24 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar sticker panel', function(hooks) {
+module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar sticker panel', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_a');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
     const stickerPacks = await user.get('stickerPacks');
 
     this.set('stickerPacks', stickerPacks);
     this.set('onAddAttachmentClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should list sticker packs', async function(assert) {
+  test('should list sticker packs', async (assert) => {
     assert.expect(2);
 
     // Act
@@ -49,7 +47,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     });
   });
 
-  test('should list stickers of selected sticker pack', async function(assert) {
+  test('should list stickers of selected sticker pack', async (assert) => {
     assert.expect(2);
 
     // Act
@@ -68,7 +66,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     });
   });
 
-  test('should change selected sticker pack when clicking another one', async function(assert) {
+  test('should change selected sticker pack when clicking another one', async (assert) => {
     assert.expect(3);
 
     // Arrange
@@ -94,7 +92,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     });
   });
 
-  test('should fire an external action when clicking a sticker', async function(assert) {
+  test('should fire an external action when clicking a sticker', async function (assert) {
     assert.expect(1);
 
     // Arrange

@@ -8,15 +8,15 @@ import {
 } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Component | profile bar', function(hooks) {
+module('Unit | Component | profile bar', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.session = stubSession(this, EmberObject.create({ id: 'user_a' }));
   });
 
-  module('function: handleSignOutClick', function() {
-    test('should sign out', async function(assert) {
+  module('function: handleSignOutClick', () => {
+    test('should sign out', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -37,8 +37,8 @@ module('Unit | Component | profile bar', function(hooks) {
     });
   });
 
-  module('function: handleNotificationDropdownClick', function() {
-    test('should mark has new notifications as false', async function(assert) {
+  module('function: handleNotificationDropdownClick', () => {
+    test('should mark has new notifications as false', async function (assert) {
       assert.expect(3);
 
       // Arrange

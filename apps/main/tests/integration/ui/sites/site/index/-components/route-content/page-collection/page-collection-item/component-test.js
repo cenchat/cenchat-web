@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/index/-components/route-content/page-collection/page collection item', function(hooks) {
+module('Integration | Component | sites/site/index/-components/route-content/page-collection/page collection item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const page = await run(() => {
-      return this.get('store').findRecord('page', 'site_a__page_a');
-    });
+    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
 
     this.set('router', stubService(this, 'router'));
     this.set('page', page);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show page info', async function(assert) {
+  test('should show page info', async (assert) => {
     assert.expect(5);
 
     // Act
@@ -57,7 +55,7 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
       .hasText('site_a__page_a');
   });
 
-  test('should hide page image when unavailable', async function(assert) {
+  test('should hide page image when unavailable', async function (assert) {
     assert.expect(1);
 
     // Arrange

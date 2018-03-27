@@ -9,24 +9,22 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-item/comment-item-content/content header', function(hooks) {
+module('Integration | Component | comment-item/comment-item-content/content header', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_a');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
 
     this.set('comment', comment);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show author info', async function(assert) {
+  test('should show author info', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -38,7 +36,7 @@ module('Integration | Component | comment-item/comment-item-content/content head
     assert.dom('[data-test-content-header="comment-author"]').hasText('User A');
   });
 
-  test('should show timestamp', async function(assert) {
+  test('should show timestamp', async (assert) => {
     assert.expect(1);
 
     // Act

@@ -4,11 +4,11 @@ import EmberObject from '@ember/object';
 
 import sinon from 'sinon';
 
-module('Unit | Route | profile/followings', function(hooks) {
+module('Unit | Route | profile/followings', (hooks) => {
   setupTest(hooks);
 
-  module('hook: model', function() {
-    test('should return profile followings', async function(assert) {
+  module('hook: model', () => {
+    test('should return profile followings', async function (assert) {
       assert.expect(1);
 
       // Arrange

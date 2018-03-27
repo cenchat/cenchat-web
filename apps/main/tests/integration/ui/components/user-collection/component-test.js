@@ -11,29 +11,27 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | user-collection', function(hooks) {
+module('Integration | Component | user-collection', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const users = await run(() => {
-      return this.store.query('user', {
-        filter(reference) {
-          return reference.limit(2);
-        },
-      });
-    });
+    const users = await run(() => this.store.query('user', {
+      filter(reference) {
+        return reference.limit(2);
+      },
+    }));
 
     this.set('users', users);
     this.set('type', 'follow');
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <UserCollectionItem /> for each user', async function(assert) {
+  test('should show <UserCollectionItem /> for each user', async function (assert) {
     assert.expect(2);
 
     // Arrange

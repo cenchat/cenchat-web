@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | sites/site/index/-components/route-content/setup guide', function(hooks) {
+module('Integration | Component | sites/site/index/-components/route-content/setup guide', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const site = await run(() => {
-      return this.get('store').findRecord('site', 'site_a');
-    });
+    const site = await run(() => this.get('store').findRecord('site', 'site_a'));
 
     this.set('site', site);
     this.set('onVerifySiteClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should use site ID for the code snippet', async function(assert) {
+  test('should use site ID for the code snippet', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -43,7 +41,7 @@ module('Integration | Component | sites/site/index/-components/route-content/set
     assert.dom('[data-test-setup-guide="code-snippet"]').includesText('site_a');
   });
 
-  test('should fire an external action when clicking verify', async function(assert) {
+  test('should fire an external action when clicking verify', async function (assert) {
     assert.expect(1);
 
     // Arrange

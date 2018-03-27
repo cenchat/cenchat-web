@@ -5,17 +5,17 @@ import EmberObject from '@ember/object';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Component | comment list', function(hooks) {
+module('Unit | Component | comment list', (hooks) => {
   setupTest(hooks);
 
-  module('function: loadMoreComments', function(hooks) {
-    hooks.beforeEach(function() {
+  module('function: loadMoreComments', () => {
+    hooks.beforeEach(function () {
       this.comments = EmberObject.create({
         length: 2,
       });
     });
 
-    test('should re-query for more comments', async function(assert) {
+    test('should re-query for more comments', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -33,7 +33,7 @@ module('Unit | Component | comment list', function(hooks) {
       assert.ok(stub.calledOnce);
     });
 
-    test('should increase limit of comments to show', async function(assert) {
+    test('should increase limit of comments to show', async function (assert) {
       assert.expect(1);
 
       // Arrange

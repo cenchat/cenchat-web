@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | user-collection/user-collection-item', function(hooks) {
+module('Integration | Component | user-collection/user-collection-item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_a');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
 
     this.set('user', user);
     this.set('type', 'follow');
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show user info', async function(assert) {
+  test('should show user info', async (assert) => {
     assert.expect(2);
 
     // Act
@@ -43,7 +41,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.dom('[data-test-user-collection-item="name"]').hasText('User A');
   });
 
-  test('should show user username when available', async function(assert) {
+  test('should show user username when available', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -56,7 +54,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.dom('[data-test-user-collection-item="username"]').hasText('@foo');
   });
 
-  test('should hide user username when unavailable', async function(assert) {
+  test('should hide user username when unavailable', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -66,7 +64,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.dom('[data-test-user-collection-item="username"]').doesNotExist();
   });
 
-  test('should show <FollowUserButton /> when type is follow', async function(assert) {
+  test('should show <FollowUserButton /> when type is follow', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -85,7 +83,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.deepEqual(spy.componentArgsType, { userToFollow: 'instance' });
   });
 
-  test('should hide <FollowUserButton /> when type is not follow', async function(assert) {
+  test('should hide <FollowUserButton /> when type is not follow', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -98,7 +96,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.ok(spy.notCalled);
   });
 
-  test('should show <UnfollowUserButton /> when type is follow', async function(assert) {
+  test('should show <UnfollowUserButton /> when type is follow', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -117,7 +115,7 @@ module('Integration | Component | user-collection/user-collection-item', functio
     assert.deepEqual(spy.componentArgsType, { userToUnfollow: 'instance' });
   });
 
-  test('should hide <UnfollowUserButton /> when type is not follow', async function(assert) {
+  test('should hide <UnfollowUserButton /> when type is not follow', async function (assert) {
     assert.expect(1);
 
     // Arrange

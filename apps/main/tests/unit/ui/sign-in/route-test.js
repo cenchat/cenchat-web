@@ -4,15 +4,15 @@ import { setupTest } from 'ember-qunit';
 import { stubService } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | sign in', function(hooks) {
+module('Unit | Route | sign in', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     stubService(this, 'session', {});
   });
 
-  module('hook: beforeModel', function() {
-    test('should transition to home route when signed in', function(assert) {
+  module('hook: beforeModel', () => {
+    test('should transition to home route when signed in', function (assert) {
       assert.expect(1);
 
       // Arrange

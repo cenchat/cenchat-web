@@ -12,19 +12,17 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | site/page/-components/route-content/page comments', function(hooks) {
+module('Integration | Component | site/page/-components/route-content/page comments', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comments = await run(() => {
-      return this.get('store').query('comment', {
-        filter(reference) {
-          return reference.limit(2);
-        },
-      });
-    });
+    const comments = await run(() => this.get('store').query('comment', {
+      filter(reference) {
+        return reference.limit(2);
+      },
+    }));
 
     this.set('comments', comments);
     this.set('prioritizedComments', []);
@@ -33,11 +31,11 @@ module('Integration | Component | site/page/-components/route-content/page comme
     this.set('onFilterCommentsClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <CommentList />', async function(assert) {
+  test('should show <CommentList />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -56,15 +54,15 @@ module('Integration | Component | site/page/-components/route-content/page comme
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'comments': 'instance',
-      'prioritizedComments': 'array',
-      'emptyStateMessage': 'string',
-      'threadLevel': 'number',
-      'onLoadMoreCommentsClick': 'function',
+      comments: 'instance',
+      prioritizedComments: 'array',
+      emptyStateMessage: 'string',
+      threadLevel: 'number',
+      onLoadMoreCommentsClick: 'function',
     });
   });
 
-  test('should show filter comments button when signed in', async function(assert) {
+  test('should show filter comments button when signed in', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -82,7 +80,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     assert.dom('[data-test-page-comments="filter-comments-button"]').exists();
   });
 
-  test('should hide filter comments button when signed out', async function(assert) {
+  test('should hide filter comments button when signed out', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -103,7 +101,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     assert.dom('[data-test-page-comments="filter-comments-button"]').doesNotExist();
   });
 
-  test('should show active class for filter by relevance to you button when comments are filtered by relevance', async function(assert) {
+  test('should show active class for filter by relevance to you button when comments are filtered by relevance', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -123,7 +121,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       .hasClass('list-item__action--active');
   });
 
-  test('should hide active class for filter by relevance to you button when comments aren\'t filtered by relevance', async function(assert) {
+  test('should hide active class for filter by relevance to you button when comments aren\'t filtered by relevance', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -146,7 +144,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       .doesNotHaveClass('list-item__action--active');
   });
 
-  test('should show active class for filter by all button when comments are filtered by all', async function(assert) {
+  test('should show active class for filter by all button when comments are filtered by all', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -169,7 +167,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       .hasClass('list-item__action--active');
   });
 
-  test('should hide active class for filter by all button when comments aren\'t filtered by all', async function(assert) {
+  test('should hide active class for filter by all button when comments aren\'t filtered by all', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -189,7 +187,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
       .doesNotHaveClass('list-item__action--active');
   });
 
-  test('should fire an external action when rendering while there are no comments filtered by relevance', async function(assert) {
+  test('should fire an external action when rendering while there are no comments filtered by relevance', async function (assert) {
     assert.expect(1);
 
     // Assert
@@ -212,7 +210,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     assert.ok(spy.calledWith('all'));
   });
 
-  test('should fire an external action when clicking filter by relevance to you', async function(assert) {
+  test('should fire an external action when clicking filter by relevance to you', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -236,7 +234,7 @@ module('Integration | Component | site/page/-components/route-content/page comme
     assert.ok(spy.calledWith('relevance'));
   });
 
-  test('should fire an external action when clicking filter by all', async function(assert) {
+  test('should fire an external action when clicking filter by all', async function (assert) {
     assert.expect(1);
 
     // Arrange

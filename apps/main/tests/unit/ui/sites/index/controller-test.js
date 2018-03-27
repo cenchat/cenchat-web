@@ -4,11 +4,11 @@ import { setupTest } from 'ember-qunit';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Controller | sites/index', function(hooks) {
+module('Unit | Controller | sites/index', (hooks) => {
   setupTest(hooks);
 
-  module('function: handleInviteRequestFormSubmit', function() {
-    test('should save beta tester invite request', async function(assert) {
+  module('function: handleInviteRequestFormSubmit', () => {
+    test('should save beta tester invite request', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -27,12 +27,15 @@ module('Unit | Controller | sites/index', function(hooks) {
       }, { preventDefault: sinon.stub() });
 
       // Assert
-      assert.ok(createRecordStub.calledWithExactly('beta-tester', {
-        id: 'user_a',
-        monthlyViews: 'lt-1m',
-        status: 'pending',
-        website: 'http://foobar.com',
-      }));
+      assert.ok(createRecordStub.calledWithExactly(
+        'beta-tester',
+        {
+          id: 'user_a',
+          monthlyViews: 'lt-1m',
+          status: 'pending',
+          website: 'http://foobar.com',
+        },
+      ));
       assert.ok(saveStub.calledOnce);
     });
   });

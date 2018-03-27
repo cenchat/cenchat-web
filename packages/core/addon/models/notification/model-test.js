@@ -6,27 +6,23 @@ import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 
 import { getFixtureData } from '@cenchat/core/test-support';
 
-module('Unit | Model | notification', function(hooks) {
+module('Unit | Model | notification', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     mockFirebase(this.owner, getFixtureData());
   });
 
-  module('function: getCommentTagVisitLink', function() {
-    test('should return the page url where the comment belongs', async function(assert) {
+  module('function: getCommentTagVisitLink', () => {
+    test('should return the page url where the comment belongs', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const store = this.owner.lookup('service:store');
-      const model = await run(() => {
-        return store.findRecord('notification', 'notification_b');
-      });
+      const model = await run(() => store.findRecord('notification', 'notification_b'));
 
       // Act
-      const result = await run(() => {
-        return model.getCommentTagVisitLink();
-      });
+      const result = await run(() => model.getCommentTagVisitLink());
 
       // Assert
       assert.equal(

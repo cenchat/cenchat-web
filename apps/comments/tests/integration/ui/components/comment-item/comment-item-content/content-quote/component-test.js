@@ -9,28 +9,24 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-item/comment-item-content/content quote', function(hooks) {
+module('Integration | Component | comment-item/comment-item-content/content quote', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const comment = await run(() => {
-      return this.get('store').findRecord('comment', 'comment_c');
-    });
+    const comment = await run(() => this.get('store').findRecord('comment', 'comment_c'));
 
-    await run(() => {
-      return comment.get('replyTo');
-    });
+    await run(() => comment.get('replyTo'));
 
     this.set('comment', comment);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show author info', async function(assert) {
+  test('should show author info', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -42,7 +38,7 @@ module('Integration | Component | comment-item/comment-item-content/content quot
     assert.dom('[data-test-content-quote="author-name"]').hasText('User B:');
   });
 
-  test('should show text content', async function(assert) {
+  test('should show text content', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -54,7 +50,7 @@ module('Integration | Component | comment-item/comment-item-content/content quot
     assert.dom('[data-test-content-quote="text"]').hasText('Foobar');
   });
 
-  test('should list stickers content', async function(assert) {
+  test('should list stickers content', async (assert) => {
     assert.expect(3);
 
     // Arrange

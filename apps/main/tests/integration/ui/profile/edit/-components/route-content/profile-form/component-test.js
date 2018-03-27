@@ -10,26 +10,24 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/edit/-components/route-content/profile form', function(hooks) {
+module('Integration | Component | profile/edit/-components/route-content/profile form', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
 
     this.set('user', user);
 
-    this.set('onProfileFormSubmit', () => {
-      return false;
-    });
+    this.set('onProfileFormSubmit', () => false);
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should should enable submit button when name and username is valid', async function(assert) {
+  test('should should enable submit button when name and username is valid', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -52,7 +50,7 @@ module('Integration | Component | profile/edit/-components/route-content/profile
       .doesNotHaveAttribute('disabled');
   });
 
-  test('should disable submit button when username is invalid', async function(assert) {
+  test('should disable submit button when username is invalid', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -76,7 +74,7 @@ module('Integration | Component | profile/edit/-components/route-content/profile
       .hasAttribute('disabled');
   });
 
-  test('should fire an external action when clicking submit', async function(assert) {
+  test('should fire an external action when clicking submit', async function (assert) {
     assert.expect(1);
 
     // Arrange

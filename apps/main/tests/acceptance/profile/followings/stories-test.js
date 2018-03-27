@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | profile/followings');
 
-test('should show followings', async function(assert) {
+test('should show followings', async (assert) => {
   assert.expect(2);
 
   // Arrange

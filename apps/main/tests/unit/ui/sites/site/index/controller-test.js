@@ -5,11 +5,11 @@ import EmberObject from '@ember/object';
 import { stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Controller | sites/site/index', function(hooks) {
+module('Unit | Controller | sites/site/index', (hooks) => {
   setupTest(hooks);
 
-  module('function: handleVerifySiteClick', function() {
-    test('should verify site', async function(assert) {
+  module('function: handleVerifySiteClick', () => {
+    test('should verify site', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -24,12 +24,10 @@ module('Unit | Controller | sites/site/index', function(hooks) {
 
       // Assert
       assert.equal(model.get('isVerified'), true);
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
     });
 
-    test('should rollback attributes when verifying fails', async function(assert) {
+    test('should rollback attributes when verifying fails', async function (assert) {
       assert.expect(3);
 
       // Arrange
@@ -50,9 +48,7 @@ module('Unit | Controller | sites/site/index', function(hooks) {
 
       // Assert
       assert.equal(model.get('isVerified'), true);
-      assert.ok(saveStub.calledWithExactly({
-        adapterOptions: { onServer: true },
-      }));
+      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
       assert.ok(rollbackAttributesStub.calledOnce);
     });
   });

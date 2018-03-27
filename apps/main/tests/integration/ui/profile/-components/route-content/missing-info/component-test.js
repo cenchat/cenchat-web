@@ -5,15 +5,15 @@ import hbs from 'htmlbars-inline-precompile';
 
 import { spyComponent } from '@cenchat/core/test-support';
 
-module('Integration | Component | profile/-components/route-content/missing info', function(hooks) {
+module('Integration | Component | profile/-components/route-content/missing info', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.set('user', { missingInfo: ['username'] });
     this.set('onUsernameSubmit', () => {});
   });
 
-  test('should show <MissingInfoUsername /> when username is missing', async function(assert) {
+  test('should show <MissingInfoUsername /> when username is missing', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -28,11 +28,11 @@ module('Integration | Component | profile/-components/route-content/missing info
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'onUsernameSubmit': 'function',
+      onUsernameSubmit: 'function',
     });
   });
 
-  test('should hide <MissingInfoUsername /> when username is not missing', async function(assert) {
+  test('should hide <MissingInfoUsername /> when username is not missing', async function (assert) {
     assert.expect(1);
 
     // Arrange

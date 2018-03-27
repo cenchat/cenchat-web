@@ -14,28 +14,24 @@ import {
   stubSession,
 } from '@cenchat/core/test-support';
 
-module('Integration | Component | notifications-list', function(hooks) {
+module('Integration | Component | notifications-list', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     mockFirebase(this.owner, getFixtureData());
     stubService(this, 'router', { urlFor: sinon.stub() });
 
     const store = stubService(this, 'store');
-    const user = await run(() => {
-      return store.findRecord('user', 'user_a');
-    });
+    const user = await run(() => store.findRecord('user', 'user_a'));
 
     stubSession(this, user);
 
-    const notifications = await run(() => {
-      return store.findAll('notification');
-    });
+    const notifications = await run(() => store.findAll('notification'));
 
     this.set('notifications', notifications);
   });
 
-  test('should show <NotificationListFollowItem /> for every follow type notification', async function(assert) {
+  test('should show <NotificationListFollowItem /> for every follow type notification', async function (assert) {
     assert.expect(2);
 
     // Arrange
@@ -47,12 +43,12 @@ module('Integration | Component | notifications-list', function(hooks) {
     // Assert
     assert.ok(spy.calledOnce);
     assert.deepEqual(spy.componentArgsType, {
-      'notification': 'instance',
-      'onFollowBackClick': 'function',
+      notification: 'instance',
+      onFollowBackClick: 'function',
     });
   });
 
-  test('should show empty state when there are no notifications', async function(assert) {
+  test('should show empty state when there are no notifications', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -65,7 +61,7 @@ module('Integration | Component | notifications-list', function(hooks) {
     assert.dom('[data-test-notification-list="empty-state"]').exists();
   });
 
-  test('should hide empty state when there are notifications', async function(assert) {
+  test('should hide empty state when there are notifications', async (assert) => {
     assert.expect(1);
 
     // Act

@@ -1,5 +1,5 @@
 <div>
-  <div class="comment-list__prioritized-comments">
+  <div class="{{if --prioritizedComments 'comment-list__prioritized-comments'}}">
     {{#each --prioritizedComments as |comment|}}
       {{comment-item --comment=comment --threadLevel=--threadLevel}}
     {{/each}}

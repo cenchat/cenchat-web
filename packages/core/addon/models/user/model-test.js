@@ -7,23 +7,21 @@ import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 
 import { getFixtureData } from '@cenchat/core/test-support';
 
-module('Unit | Model | user', function(hooks) {
+module('Unit | Model | user', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     mockFirebase(this.owner, getFixtureData());
   });
 
-  module('getter/setter: missingInfo', function() {
-    test('should return an array containing "username" when username is unavailable', async function(assert) {
+  module('getter/setter: missingInfo', () => {
+    test('should return an array containing "username" when username is unavailable', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = model.get('missingInfo');
@@ -32,16 +30,14 @@ module('Unit | Model | user', function(hooks) {
       assert.deepEqual(result, ['username']);
     });
 
-    test('should return an empty array there are no missing info', async function(assert) {
+    test('should return an empty array there are no missing info', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-          username: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+        username: 'user_a',
+      }));
 
       // Act
       const result = model.get('missingInfo');
@@ -51,21 +47,17 @@ module('Unit | Model | user', function(hooks) {
     });
   });
 
-  module('getter/setter: metaInfo', function() {
-    test('should return meta info', async function(assert) {
+  module('getter/setter: metaInfo', () => {
+    test('should return meta info', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
-      run(() => {
-        return model.get('metaInfo');
-      });
+      run(() => model.get('metaInfo'));
 
       // Assert
       await settled();
@@ -73,16 +65,14 @@ module('Unit | Model | user', function(hooks) {
     });
   });
 
-  module('function: isFollowing', function() {
-    test('should return true if user is a following', async function(assert) {
+  module('function: isFollowing', () => {
+    test('should return true if user is a following', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.isFollowing('user_b');
@@ -91,15 +81,13 @@ module('Unit | Model | user', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return false if user is not a following', async function(assert) {
+    test('should return false if user is not a following', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.isFollowing('user_100');
@@ -109,16 +97,14 @@ module('Unit | Model | user', function(hooks) {
     });
   });
 
-  module('function: hasFollower', function() {
-    test('should return true when follower exists', async function(assert) {
+  module('function: hasFollower', () => {
+    test('should return true when follower exists', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.hasFollower('user_b');
@@ -127,15 +113,13 @@ module('Unit | Model | user', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return false when follower does not exists', async function(assert) {
+    test('should return false when follower does not exists', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.hasFollower('user_100');
@@ -145,16 +129,14 @@ module('Unit | Model | user', function(hooks) {
     });
   });
 
-  module('function: isSiteAdmin', function() {
-    test('should return true when site admin', async function(assert) {
+  module('function: isSiteAdmin', () => {
+    test('should return true when site admin', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.isSiteAdmin('site_a');
@@ -163,15 +145,13 @@ module('Unit | Model | user', function(hooks) {
       assert.equal(result, true);
     });
 
-    test('should return false when not a site admin', async function(assert) {
+    test('should return false when not a site admin', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
       const result = await model.isSiteAdmin('site_100');
@@ -181,21 +161,17 @@ module('Unit | Model | user', function(hooks) {
     });
   });
 
-  module('function: getMetaInfo', function() {
-    test('should return the user\'s meta info', async function(assert) {
+  module('function: getMetaInfo', () => {
+    test('should return the user\'s meta info', async function (assert) {
       assert.expect(2);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('user', {
-          id: 'user_a',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
 
       // Act
-      const result = await run(() => {
-        return model.getMetaInfo();
-      });
+      const result = await run(() => model.getMetaInfo());
 
       // Assert
       assert.equal(result.get('id'), 'user_a');

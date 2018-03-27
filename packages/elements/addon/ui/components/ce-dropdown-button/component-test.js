@@ -5,10 +5,10 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-module('Integration | Component | ce-dropdown-button', function(hooks) {
+module('Integration | Component | ce-dropdown-button', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should show yield', async function(assert) {
+  test('should show yield', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -22,7 +22,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="foo"]').exists();
   });
 
-  test('should show text', async function(assert) {
+  test('should show text', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -41,7 +41,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] button').hasText('Foo');
   });
 
-  test('should show icon', async function(assert) {
+  test('should show icon', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -60,7 +60,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] button').hasText('favorite');
   });
 
-  test('should show image', async function(assert) {
+  test('should show image', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -79,7 +79,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] img').hasAttribute('src', 'favorite');
   });
 
-  test('should generate ID for button', async function(assert) {
+  test('should generate ID for button', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -98,7 +98,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] button').hasAttribute('id');
   });
 
-  test('should generate aria-labelledby for list', async function(assert) {
+  test('should generate aria-labelledby for list', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -117,7 +117,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] ul').hasAttribute('aria-labelledby');
   });
 
-  test('should open menu when clicking button', async function(assert) {
+  test('should open menu when clicking button', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -142,7 +142,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.dom('[data-test="host"] ul').hasClass('expanded');
   });
 
-  test('should hide menu when clicking backdrop if dropdown is expanded', async function(assert) {
+  test('should hide menu when clicking backdrop if dropdown is expanded', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -162,16 +162,14 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     await click('[data-test="host"] button');
     await click('[data-test="host"] .backdrop');
 
-    await waitUntil(() => {
-      return this.element.querySelector('[data-test="host"] button')
-        .getAttribute('aria-expanded') === 'false';
-    });
+    await waitUntil(() => this.element.querySelector('[data-test="host"] button')
+      .getAttribute('aria-expanded') === 'false');
 
     // Assert
     assert.dom('[data-test="host"] ul').hasClass('compressed');
   });
 
-  test('should fire an external action when clicking button', async function(assert) {
+  test('should fire an external action when clicking button', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -200,7 +198,7 @@ module('Integration | Component | ce-dropdown-button', function(hooks) {
     assert.ok(stub.calledOnce);
   });
 
-  test('should set lr as default position when position is not available', async function(assert) {
+  test('should set lr as default position when position is not available', async function (assert) {
     assert.expect(1);
 
     // Act

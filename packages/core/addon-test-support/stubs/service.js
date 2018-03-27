@@ -46,7 +46,7 @@ export function stubSession(context, model) {
     },
     isAuthenticated: true,
     uid: 'user_a',
-    model: model,
+    model,
 
     fetch() {
       return stubPromise(true);

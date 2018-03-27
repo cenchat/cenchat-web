@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | profile/edit');
 
-test('should update profile', async function(assert) {
+test('should update profile', async (assert) => {
   assert.expect(1);
 
   // Arrange

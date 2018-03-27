@@ -5,14 +5,14 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-module('Integration | Component | comment-composer/comment-composer-message/message textbox', function(hooks) {
+module('Integration | Component | comment-composer/comment-composer-message/message textbox', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.set('onTextBoxInput', () => {});
   });
 
-  test('should resize textarea when the text overflows', async function(assert) {
+  test('should resize textarea when the text overflows', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -37,7 +37,7 @@ module('Integration | Component | comment-composer/comment-composer-message/mess
     );
   });
 
-  test('should fire an external action when inputting in the field', async function(assert) {
+  test('should fire an external action when inputting in the field', async function (assert) {
     assert.expect(1);
 
     // Arrange

@@ -6,24 +6,22 @@ import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 
 import { getFixtureData } from '@cenchat/core/test-support';
 
-module('Unit | Model | page', function(hooks) {
+module('Unit | Model | page', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     mockFirebase(this.owner, getFixtureData());
   });
 
-  module('getter/setter: decodedSlug', function() {
-    test('should return the decoded slug', async function(assert) {
+  module('getter/setter: decodedSlug', () => {
+    test('should return the decoded slug', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => {
-        return this.owner.lookup('service:store').createRecord('page', {
-          id: 'new_page',
-          slug: '%2Ffoo%2Fbar',
-        });
-      });
+      const model = run(() => this.owner.lookup('service:store').createRecord('page', {
+        id: 'new_page',
+        slug: '%2Ffoo%2Fbar',
+      }));
 
       // Act
       const result = model.get('decodedSlug');
@@ -33,17 +31,15 @@ module('Unit | Model | page', function(hooks) {
     });
   });
 
-  module('function: loadFilteredComments', function() {
-    test('should return all comments', async function(assert) {
+  module('function: loadFilteredComments', () => {
+    test('should return all comments', async function (assert) {
       assert.expect(2);
 
       // Arrange
-      const model = await run(() => {
-        return this.owner.lookup('service:store').findRecord(
-          'page',
-          'site_a__page_a',
-        );
-      });
+      const model = await run(() => this.owner.lookup('service:store').findRecord(
+        'page',
+        'site_a__page_a',
+      ));
 
       // Act
       const result = await model.loadFilteredComments('all');
@@ -53,16 +49,14 @@ module('Unit | Model | page', function(hooks) {
       assert.equal(result.get('lastObject.id'), 'comment_b');
     });
 
-    test('should return relevant comments', async function(assert) {
+    test('should return relevant comments', async function (assert) {
       assert.expect(2);
 
       // Arrange
-      const model = await run(() => {
-        return this.owner.lookup('service:store').findRecord(
-          'page',
-          'site_a__page_a',
-        );
-      });
+      const model = await run(() => this.owner.lookup('service:store').findRecord(
+        'page',
+        'site_a__page_a',
+      ));
 
       model.set('session', {
         model: { id: 'user_a' },

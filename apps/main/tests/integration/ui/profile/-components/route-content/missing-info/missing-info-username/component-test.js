@@ -5,16 +5,14 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-module('Integration | Component | profile/-components/route-content/missing-info/missing info username', function(hooks) {
+module('Integration | Component | profile/-components/route-content/missing-info/missing info username', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.set('onUsernameSubmit', () => {
-      return false;
-    });
+  hooks.beforeEach(function () {
+    this.set('onUsernameSubmit', () => false);
   });
 
-  test('should fire an external action when submitting form', async function(assert) {
+  test('should fire an external action when submitting form', async function (assert) {
     assert.expect(1);
 
     // Arrange

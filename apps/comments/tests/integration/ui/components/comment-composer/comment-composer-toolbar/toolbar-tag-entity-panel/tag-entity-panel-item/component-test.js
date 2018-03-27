@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag entity panel item', function(hooks) {
+module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag entity panel item', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('entity', user);
     this.set('onTagEntityClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show entity', async function(assert) {
+  test('should show entity', async (assert) => {
     assert.expect(3);
 
     // Act
@@ -48,7 +46,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     assert.dom('[data-test-tag-entity-panel-item="username"]').hasText('@user_b');
   });
 
-  test('should fire an external action when clicking user', async function(assert) {
+  test('should fire an external action when clicking user', async function (assert) {
     assert.expect(1);
 
     // Arrange

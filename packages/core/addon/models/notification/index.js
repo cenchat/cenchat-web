@@ -47,12 +47,6 @@ export default Model.extend({
     const store = this.get('store');
     const commentId = this.get('dataMessage.commentId');
 
-    return store.findRecord('comment', commentId).then((comment) => {
-      return comment.get('page');
-    }).then((page) => {
-      return page.get('site').then((site) => {
-        return `http://${site.get('hostname')}${page.get('decodedSlug')}?cenchat_comment=${commentId}`;
-      });
-    });
+    return store.findRecord('comment', commentId).then(comment => comment.get('page')).then(page => page.get('site').then(site => `http://${site.get('hostname')}${page.get('decodedSlug')}?cenchat_comment=${commentId}`));
   },
 });

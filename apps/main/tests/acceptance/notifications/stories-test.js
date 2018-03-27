@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | notifications');
 
-test('should show notifications', async function(assert) {
+test('should show notifications', async (assert) => {
   assert.expect(1);
 
   // Arrange

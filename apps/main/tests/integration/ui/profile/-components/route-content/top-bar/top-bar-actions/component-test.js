@@ -12,10 +12,10 @@ import {
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/-components/route-content/top-bar-actions', function(hooks) {
+module('Integration | Component | profile/-components/route-content/top-bar-actions', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     const user = await this.get('session.model');
@@ -24,11 +24,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     this.set('onSignOutClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show edit profile button when the owner of the profile', async function(assert) {
+  test('should show edit profile button when the owner of the profile', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -43,13 +43,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.dom('[data-test-top-bar-actions="edit-link"]').exists();
   });
 
-  test('should hide edit profile button when not the owner of the profile', async function(assert) {
+  test('should hide edit profile button when not the owner of the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 
@@ -65,7 +63,7 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.dom('[data-test-top-bar-actions="edit-link"]').doesNotExist();
   });
 
-  test('should show sign out button when the owner of the profile', async function(assert) {
+  test('should show sign out button when the owner of the profile', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -80,13 +78,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.dom('[data-test-top-bar-actions="sign-out-button"]').exists();
   });
 
-  test('should hide sign out button when not the owner of the profile', async function(assert) {
+  test('should hide sign out button when not the owner of the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 
@@ -102,7 +98,7 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.dom('[data-test-top-bar-actions="sign-out-button"]').doesNotExist();
   });
 
-  test('should fire an external action when clicking sign out', async function(assert) {
+  test('should fire an external action when clicking sign out', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -122,13 +118,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.ok(spy.calledOnce);
   });
 
-  test('should show <FollowUserButton /> when not following the user', async function(assert) {
+  test('should show <FollowUserButton /> when not following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_c');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_c'));
 
     this.set('user', user);
 
@@ -149,13 +143,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     });
   });
 
-  test('should hide <FollowUserButton /> when following the user', async function(assert) {
+  test('should hide <FollowUserButton /> when following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 
@@ -173,13 +165,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     assert.ok(spy.notCalled);
   });
 
-  test('should show <UnfollowUserButton /> when following the user', async function(assert) {
+  test('should show <UnfollowUserButton /> when following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_b');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
 
     this.set('user', user);
 
@@ -200,13 +190,11 @@ module('Integration | Component | profile/-components/route-content/top-bar-acti
     });
   });
 
-  test('should hide <UnfollowUserButton /> when not following the user', async function(assert) {
+  test('should hide <UnfollowUserButton /> when not following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => {
-      return this.get('store').findRecord('user', 'user_c');
-    });
+    const user = await run(() => this.get('store').findRecord('user', 'user_c'));
 
     this.set('user', user);
 

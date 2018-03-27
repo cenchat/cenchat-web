@@ -11,25 +11,23 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment-composer-message/message image', function(hooks) {
+module('Integration | Component | comment-composer/comment-composer-message/message image', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const sticker = await run(() => {
-      return this.get('store').findRecord('sticker', 'sticker_a1');
-    });
+    const sticker = await run(() => this.get('store').findRecord('sticker', 'sticker_a1'));
 
     this.set('attachment', sticker);
     this.set('onRemoveAttachmentClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show image attachment', async function(assert) {
+  test('should show image attachment', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -46,7 +44,7 @@ module('Integration | Component | comment-composer/comment-composer-message/mess
     );
   });
 
-  test('should fire an external action when clicking remove attachment button', async function(assert) {
+  test('should fire an external action when clicking remove attachment button', async function (assert) {
     assert.expect(1);
 
     // Arrange

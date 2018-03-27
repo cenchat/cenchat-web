@@ -52,9 +52,7 @@ export default Component.extend({
       if (this.get('--onLoadMoreRecords')) {
         this.get('--onLoadMoreRecords')(newLimit);
       } else {
-        query.relationship.relationshipMeta.options.filter = (reference) => {
-          return reference.limit(newLimit);
-        };
+        query.relationship.relationshipMeta.options.filter = reference => reference.limit(newLimit);
 
         query.reload();
       }

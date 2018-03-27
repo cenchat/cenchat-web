@@ -42,7 +42,7 @@ export default Component.extend({
     await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ id: userToFollow.get('id') }),

@@ -10,20 +10,20 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar tag entity panel', function(hooks) {
+module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar tag entity panel', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
     this.set('onTagEntityClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show search result list when there are results from searching', async function(assert) {
+  test('should show search result list when there are results from searching', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -42,7 +42,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     assert.dom('[data-test-toolbar-tag-entity-panel="search-result"]').exists();
   });
 
-  test('should hide search result list when there are no results from searching', async function(assert) {
+  test('should hide search result list when there are no results from searching', async (assert) => {
     assert.expect(1);
 
     // Arrange
@@ -63,7 +63,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
       .doesNotExist();
   });
 
-  test('should show <TagEntityPanelItem /> for every search result when searching for an entity', async function(assert) {
+  test('should show <TagEntityPanelItem /> for every search result when searching for an entity', async function (assert) {
     assert.expect(2);
 
     // Arrange

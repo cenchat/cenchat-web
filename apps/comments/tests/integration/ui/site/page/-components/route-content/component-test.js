@@ -11,26 +11,24 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | site/page/-components/route content', function(hooks) {
+module('Integration | Component | site/page/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const page = await run(() => {
-      return this.get('store').findRecord('page', 'site_a__page_a');
-    });
+    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
 
     this.set('page', page);
     this.set('filterCommentsBy', 'all');
     this.set('onFilterCommentsClick', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <ProfileBar /> when signed in', async function(assert) {
+  test('should show <ProfileBar /> when signed in', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -47,14 +45,14 @@ module('Integration | Component | site/page/-components/route content', function
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'page': 'instance',
-      'isCommentComposerVisible': 'boolean',
-      'headerText': 'string',
-      'onSendCommentSuccess': 'function',
+      page: 'instance',
+      isCommentComposerVisible: 'boolean',
+      headerText: 'string',
+      onSendCommentSuccess: 'function',
     });
   });
 
-  test('should hide <ProfileBar /> when signed out', async function(assert) {
+  test('should hide <ProfileBar /> when signed out', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -75,7 +73,7 @@ module('Integration | Component | site/page/-components/route content', function
     assert.ok(spy.notCalled);
   });
 
-  test('should show <PageComments />', async function(assert) {
+  test('should show <PageComments />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -92,11 +90,11 @@ module('Integration | Component | site/page/-components/route content', function
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'session': 'instance',
-      'comments': 'instance',
-      'prioritizedComments': 'array',
-      'filterCommentsBy': 'string',
-      'onFilterCommentsClick': 'function',
+      session: 'instance',
+      comments: 'instance',
+      prioritizedComments: 'array',
+      filterCommentsBy: 'string',
+      onFilterCommentsClick: 'function',
     });
   });
 });

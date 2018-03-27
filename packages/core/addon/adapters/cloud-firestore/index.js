@@ -37,9 +37,9 @@ export default CloudFirestoreAdapter.extend({
     if (this.isOnServer(snapshot)) {
       const original = this._super;
 
-      return this.setHeaderAuthorization().then(() => {
-        return original.call(this, store, type, snapshot, ...args);
-      });
+      return this.setHeaderAuthorization().then(() => (
+        original.call(this, store, type, snapshot, ...args)
+      ));
     }
 
     return this._super(store, type, snapshot, ...args);
@@ -52,9 +52,9 @@ export default CloudFirestoreAdapter.extend({
     if (this.isOnServer(snapshot)) {
       const original = this._super;
 
-      return this.setHeaderAuthorization().then(() => {
-        return original.call(this, store, type, snapshot, ...args);
-      });
+      return this.setHeaderAuthorization().then(() => (
+        original.call(this, store, type, snapshot, ...args)
+      ));
     }
 
     return this._super(store, type, snapshot, ...args);
@@ -67,9 +67,9 @@ export default CloudFirestoreAdapter.extend({
     if (this.isOnServer(snapshot)) {
       const original = this._super;
 
-      return this.setHeaderAuthorization().then(() => {
-        return original.call(this, store, type, snapshot, ...args);
-      });
+      return this.setHeaderAuthorization().then(() => (
+        original.call(this, store, type, snapshot, ...args)
+      ));
     }
 
     return this._super(store, type, snapshot, ...args);

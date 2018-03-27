@@ -12,7 +12,7 @@ export default Controller.extend({
    */
   filterCommentsBy: computed('session.model', {
     get() {
-      const isAuthenticated = this.get('session.model') ? true : false;
+      const isAuthenticated = this.get('session.model');
 
       return isAuthenticated ? 'relevance' : 'all';
     },

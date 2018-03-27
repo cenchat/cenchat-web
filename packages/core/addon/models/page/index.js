@@ -62,11 +62,11 @@ export default Model.extend({
    * @param {string} filterBy
    * @return {Promise} Comments
    */
-  async loadFilteredComments(filterBy) {
+  loadFilteredComments(filterBy) {
     const pageId = this.get('id');
 
     if (filterBy === 'all') {
-      return await this.get('store').query('comment', {
+      return this.get('store').query('comment', {
         queryId: `${this.get('id')}_all_comments`,
 
         filter(reference) {
@@ -82,7 +82,7 @@ export default Model.extend({
 
     const sessionId = this.get('session.model.id');
 
-    return await this.get('store').query('comment', {
+    return this.get('store').query('comment', {
       queryId: `${this.get('id')}_${sessionId}_relevant_comments`,
 
       buildReference(db) {

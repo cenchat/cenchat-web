@@ -5,15 +5,15 @@ import EmberObject from '@ember/object';
 import { stubSession, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | notifications', function(hooks) {
+module('Unit | Route | notifications', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.session = stubSession(this, EmberObject.create({ id: 'user_a' }));
   });
 
-  module('hook: model', function() {
-    test('should return session model', async function(assert) {
+  module('hook: model', () => {
+    test('should return session model', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -29,8 +29,8 @@ module('Unit | Route | notifications', function(hooks) {
     });
   });
 
-  module('hook: afterModel', function() {
-    test('should mark has new notifications as false', async function(assert) {
+  module('hook: afterModel', () => {
+    test('should mark has new notifications as false', async function (assert) {
       assert.expect(3);
 
       // Arrange

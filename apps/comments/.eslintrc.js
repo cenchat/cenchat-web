@@ -10,15 +10,14 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
+    'airbnb-base',
     'rmmmp/base',
     'rmmmp/ember'
   ],
   env: {
     browser: true
   },
-  rules: {
-    'ember/avoid-leaking-state-in-ember-objects': 'off'
-  },
+  rules: {},
   overrides: [
     // node files
     {

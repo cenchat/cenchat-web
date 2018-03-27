@@ -48,19 +48,21 @@ export default Component.extend({
     const commentId = this.get('--comment.id');
 
     if (this.get('--comment').belongsTo('root').id()) {
-      replies.set('query.filter', (reference) => {
-        return reference
+      replies.set(
+        'query.filter',
+        reference => reference
           .where('replyTo', '==', reference.doc(commentId))
           .orderBy('createdOn')
-          .limit(newLimit);
-      });
+          .limit(newLimit),
+      );
     } else {
-      replies.set('query.filter', (reference) => {
-        return reference
+      replies.set(
+        'query.filter',
+        reference => reference
           .where('root', '==', reference.doc(commentId))
           .orderBy('createdOn')
-          .limit(newLimit);
-      });
+          .limit(newLimit),
+      );
     }
 
     return replies.update();

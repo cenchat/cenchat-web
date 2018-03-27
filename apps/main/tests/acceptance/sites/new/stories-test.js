@@ -5,7 +5,7 @@ import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | sites/new');
 
-test('should create site', async function(assert) {
+test('should create site', async (assert) => {
   assert.expect(1);
 
   // Arrange

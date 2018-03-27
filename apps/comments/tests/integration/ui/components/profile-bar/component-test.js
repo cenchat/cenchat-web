@@ -11,15 +11,13 @@ import {
   setupAfterEach,
 } from 'comments/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile bar', function(hooks) {
+module('Integration | Component | profile bar', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const page = await run(() => {
-      return this.get('store').findRecord('page', 'site_a__page_a');
-    });
+    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
 
     this.set('page', page);
     this.set('isCommentComposerVisible', true);
@@ -28,11 +26,11 @@ module('Integration | Component | profile bar', function(hooks) {
     this.set('onSendCommentSuccess', () => {});
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await setupAfterEach(this);
   });
 
-  test('should show <CommentComposer /> when @isCommentComposerVisible is true', async function(assert) {
+  test('should show <CommentComposer /> when @isCommentComposerVisible is true', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -50,12 +48,12 @@ module('Integration | Component | profile bar', function(hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      'page': 'instance',
-      'onSendCommentSuccess': 'function',
+      page: 'instance',
+      onSendCommentSuccess: 'function',
     });
   });
 
-  test('should hide <CommentComposer /> when @isCommentComposerVisible is false', async function(assert) {
+  test('should hide <CommentComposer /> when @isCommentComposerVisible is false', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -77,7 +75,7 @@ module('Integration | Component | profile bar', function(hooks) {
     assert.ok(spy.notCalled);
   });
 
-  test('should show header text', async function(assert) {
+  test('should show header text', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -94,7 +92,7 @@ module('Integration | Component | profile bar', function(hooks) {
     assert.dom('[data-test-profile-bar="title"]').hasText('Foo');
   });
 
-  test('should show <NotificationList />', async function(assert) {
+  test('should show <NotificationList />', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -111,10 +109,10 @@ module('Integration | Component | profile bar', function(hooks) {
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { 'notifications': 'instance' });
+    assert.deepEqual(spy.componentArgsType, { notifications: 'instance' });
   });
 
-  test('should show notification badge when there are unread notifications', async function(assert) {
+  test('should show notification badge when there are unread notifications', async (assert) => {
     assert.expect(1);
 
     // Act
@@ -133,13 +131,11 @@ module('Integration | Component | profile bar', function(hooks) {
       .hasAttribute('badged');
   });
 
-  test('should hide notification badge when there are no unread notifications', async function(assert) {
+  test('should hide notification badge when there are no unread notifications', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const meta = await run(() => {
-      return this.get('store').findRecord('user-meta-info', 'user_a');
-    });
+    const meta = await run(() => this.get('store').findRecord('user-meta-info', 'user_a'));
 
     meta.set('hasNewNotification', false);
 
