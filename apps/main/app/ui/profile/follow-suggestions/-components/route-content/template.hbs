@@ -7,12 +7,15 @@
         aria-label="Navigate back"
         icon="arrow_back"}}
 
-    <h2>Followings</h2>
+    <h2>Follow suggestions</h2>
   {{/ce-top-bar}}
 
   <div class="side-nav__content">
-    {{#infinite-content --query=--followings --selector=".side-nav__content"}}
-      {{user-collection --users=--followings --type="unfollow"}}
+    {{#infinite-content
+        --query=followSuggestions
+        --selector=".side-nav__content"
+        --onLoadMoreRecords=(action handleLoadMoreRecords)}}
+      {{user-collection --users=followSuggestions --type="follow"}}
     {{/infinite-content}}
   </div>
 

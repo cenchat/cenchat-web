@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('profile', { path: '/profile/:user_id' }, function() {
     this.route('edit');
     this.route('followings');
+    this.route('follow-suggestions');
   });
   this.route('sites', function() {
     this.route('index', { path: '/' }, function() {

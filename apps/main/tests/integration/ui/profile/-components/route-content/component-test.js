@@ -4,7 +4,8 @@ import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent, stubPromise } from '@cenchat/core/test-support';
+import sinon from 'sinon';
 
 import {
   setupBeforeEach,
@@ -17,9 +18,15 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
   hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const user = await this.get('session.model');
+    const userB = run(async () => this.get('store').findRecord('user', 'user_b'));
+    const currentUser = this.get('session.model');
 
-    this.set('user', user);
+    currentUser.set(
+      'getUnfollowedFacebookFriends',
+      sinon.stub().returns(stubPromise(true, [userB])),
+    );
+
+    this.set('user', currentUser);
     this.set('onSignOutClick', () => {});
     this.set('onUsernameSubmit', () => {});
   });
@@ -103,6 +110,50 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
     this.set('user.missingInfo', []);
 
     const spy = spyComponent(this, 'profile/-components/route-content/missing-info');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
+  });
+
+  test('should show <FollowSuggestionCollection /> if current user owns the profile and has a facebook ID', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('user.facebookId', 12345);
+
+    const spy = spyComponent(this, 'profile/-components/route-content/follow-suggestion-collection');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/route-content
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)
+          --onUsernameSubmit=(action onUsernameSubmit)}}
+    `);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, { user: 'instance' });
+  });
+
+  test('should show <FollowSuggestionCollection /> if current user does not own the profile', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+
+    this.set('user', user);
+
+    const spy = spyComponent(this, 'profile/-components/route-content/follow-suggestion-collection');
 
     // Act
     await render(hbs`

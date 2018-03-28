@@ -253,17 +253,14 @@ export default Model.extend({
    *
    * @return {Promise.<boolean>} Resolves to true if a follower. Otherwise, false.
    */
-  async checkIfIsReplyingToFollower() {
+  checkIfIsReplyingToFollower() {
     const replyTo = this.get('replyTo');
 
     if (replyTo.get('id')) {
-      const author = await this.get('author');
-      const authorIdToReplyTo = replyTo.get('author.id');
-
-      return author.hasFollower(authorIdToReplyTo);
+      return this.get('author').then(author => author.hasFollower(replyTo.get('author.id')));
     }
 
-    return false;
+    return Promise.resolve(false);
   },
 
   /**
@@ -271,11 +268,10 @@ export default Model.extend({
    *
    * @return {Promise.<boolean>} Resolves to true if a site admin. Otherwise, false.
    */
-  async checkIfAuthorIsSiteAdmin() {
+  checkIfAuthorIsSiteAdmin() {
     const siteId = this.get('page.site.id');
-    const author = await this.get('author');
 
-    return author.isSiteAdmin(siteId);
+    return this.get('author').then(author => author.isSiteAdmin(siteId));
   },
 
   /**

@@ -11,6 +11,10 @@
           --onUsernameSubmit=(action --onUsernameSubmit)}}
     {{/if}}
 
+    {{#if --user.facebookId}}
+      {{profile/-components/route-content/follow-suggestion-collection --user=--user}}
+    {{/if}}
+
     {{profile/-components/route-content/following-collection --user=--user}}
   {{/if}}
 

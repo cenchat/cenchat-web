@@ -25,6 +25,13 @@ export default function() {
 
   this.transition(
     this.fromRoute('profile.index'),
+    this.toRoute('profile.follow-suggestions'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
+
+  this.transition(
+    this.fromRoute('profile.index'),
     this.toRoute('profile.followings'),
     this.use('toLeft'),
     this.reverse('toRight'),

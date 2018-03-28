@@ -44,7 +44,7 @@ export default Component.extend({
   async loadMoreRecords() {
     const query = this.get('--query');
 
-    if (query.get('length') >= this.get('numOfRecordsLimit')) {
+    if (query.length >= this.get('numOfRecordsLimit')) {
       const newLimit = this.get('numOfRecordsLimit') + 8;
 
       this.set('numOfRecordsLimit', newLimit);
@@ -64,7 +64,7 @@ export default Component.extend({
    */
   handleScroll() {
     requestAnimationFrame(bind(this, () => {
-      let element;
+      let element = this.get('scrollerElement');
 
       if (this.get('scrollerElement') === window) {
         element = document.documentElement;
