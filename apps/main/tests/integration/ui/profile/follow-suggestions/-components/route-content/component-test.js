@@ -1,24 +1,32 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
+import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent, stubPromise } from '@cenchat/core/test-support';
+import sinon from 'sinon';
 
 import {
   setupBeforeEach,
   setupAfterEach,
 } from 'main/tests/helpers/integration-test-setup';
 
-module('Integration | Component | profile/followings/-components/route-content', (hooks) => {
+module('Integration | Component | profile/follow-suggestions/-components/route-content', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
     await setupBeforeEach(this);
 
-    const followings = await this.get('session.model.followings');
+    const userB = run(async () => this.get('store').findRecord('user', 'user_b'));
+    const currentUser = this.get('session.model');
 
-    this.set('followings', followings);
+    currentUser.set(
+      'getUnfollowedFacebookFriends',
+      sinon.stub().returns(stubPromise(true, [userB])),
+    );
+
+    this.set('user', currentUser);
   });
 
   hooks.afterEach(async function () {
@@ -33,11 +41,15 @@ module('Integration | Component | profile/followings/-components/route-content',
 
     // Act
     await render(hbs`
-      {{profile/followings/-components/route-content --followings=followings}}
+      {{profile/follow-suggestions/-components/route-content --user=user}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { query: 'instance', selector: 'string' });
+    assert.deepEqual(spy.componentArgsType, {
+      query: 'array',
+      selector: 'string',
+      onLoadMoreRecords: 'function',
+    });
   });
 
   test('should show <UserCollection />', async function (assert) {
@@ -48,12 +60,12 @@ module('Integration | Component | profile/followings/-components/route-content',
 
     // Act
     await render(hbs`
-      {{profile/followings/-components/route-content --followings=followings}}
+      {{profile/follow-suggestions/-components/route-content --user=user}}
     `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      users: 'instance',
+      users: 'array',
       type: 'string',
     });
   });

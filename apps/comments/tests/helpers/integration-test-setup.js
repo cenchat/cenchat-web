@@ -5,7 +5,7 @@ import {
   stubService,
   stubSession,
 } from '@cenchat/core/test-support';
-import { initialize as initializePromiseToRsvpPromise } from '@cenchat/core/initializers/promise-to-rsvp-promise';
+import { initialize as initializeWindowOverrides } from '@cenchat/core/initializers/window-overrides';
 import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 import sinon from 'sinon';
 
@@ -15,7 +15,7 @@ import sinon from 'sinon';
  * @param {Object} context Application context
  */
 export async function setupBeforeEach(context) {
-  initializePromiseToRsvpPromise(context.owner);
+  initializeWindowOverrides(context.owner);
   mockFirebase(context.owner, getFixtureData());
   stubService(context, 'firebaseui', {
     startAuthUi() {},

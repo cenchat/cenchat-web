@@ -1,11 +1,14 @@
+import { A } from '@ember/array';
 import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import { settled } from '@ember/test-helpers';
 import { setupTest } from 'ember-qunit';
+import EmberObject from '@ember/object';
 
 import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
+import sinon from 'sinon';
 
-import { getFixtureData } from '@cenchat/core/test-support';
+import { getFixtureData, stubPromise } from '@cenchat/core/test-support';
 
 module('Unit | Model | user', (hooks) => {
   setupTest(hooks);
@@ -176,6 +179,58 @@ module('Unit | Model | user', (hooks) => {
       // Assert
       assert.equal(result.get('id'), 'user_a');
       assert.equal(result.get('hasNewNotification'), true);
+    });
+  });
+
+  module('function: getUnfollowedFacebookFriends', () => {
+    hooks.beforeEach(function () {
+      this.originalFetch = window.fetch;
+      window.fetch = sinon.stub().returns(stubPromise(
+        true,
+        {
+          json: sinon.stub().returns(stubPromise(
+            true,
+            {
+              data: [{ id: 123 }, { id: 456 }, { id: 789 }],
+            },
+          )),
+        },
+      ));
+    });
+
+    hooks.afterEach(function () {
+      window.fetch = this.originalFetch;
+    });
+
+    test('should return unfollowed facebook friends', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const isFollowingStub = sinon.stub();
+
+      isFollowingStub.withArgs(123).returns(stubPromise(true, true));
+      isFollowingStub.withArgs(456).returns(stubPromise(true, false));
+      isFollowingStub.withArgs(789).returns(stubPromise(true, true));
+
+      const model = run(() => this.owner.lookup('service:store').createRecord(
+        'user',
+        { id: 'user_a' },
+      ));
+
+      model.set('isFollowing', isFollowingStub);
+      model.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(
+          true,
+          EmberObject.create({ facebookAccessToken: '123qweasd' }),
+        )),
+        query: sinon.stub().returns(stubPromise(true, new A(['user_456']))),
+      });
+
+      // Act
+      const result = await run(() => model.getUnfollowedFacebookFriends(2));
+
+      // Assert
+      assert.deepEqual(result, ['user_456']);
     });
   });
 });

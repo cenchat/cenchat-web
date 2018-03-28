@@ -1,3 +1,5 @@
+/* eslint no-await-in-loop: 'off' */
+
 import { hasMany } from 'ember-data/relationships';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
@@ -214,5 +216,40 @@ export default Model.extend({
       'userMetaInfo',
       this.get('id'),
     ).catch(() => {});
+  },
+
+  /**
+   * Fetches unfollowed Facebook friends
+   *
+   * @param {number} limit
+   * @return {Array.<Model.User>} Unfollowings
+   */
+  async getUnfollowedFacebookFriends(limit) {
+    const facebookId = this.get('facebookId');
+    const userMetaInfo = await this.getMetaInfo();
+    const url = `https://graph.facebook.com/v2.12/${facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const unfollowings = [];
+
+    for (const friend of data.data) {
+      const isFollowing = await this.isFollowing(friend.id);
+
+      if (!isFollowing) {
+        const friendRecord = await this.get('store').query('user', {
+          filter(reference) {
+            return reference.where('facebookId', '==', friend.id).limit(1);
+          },
+        });
+
+        unfollowings.push(friendRecord.get('firstObject'));
+      }
+
+      if (unfollowings.length >= limit) {
+        break;
+      }
+    }
+
+    return unfollowings;
   },
 });
