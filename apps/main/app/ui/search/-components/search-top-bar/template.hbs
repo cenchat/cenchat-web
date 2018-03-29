@@ -1,0 +1,9 @@
+<header class="search-top-bar ce-top-bar" fixed responsive>
+  {{ce-field
+      class="search-top-bar__field"
+      data-test-search-top-bar="field"
+      type="search" 
+      value=--query
+      label="Search for a user"
+      --onInput=(action handleSearchInput)}}
+</header>

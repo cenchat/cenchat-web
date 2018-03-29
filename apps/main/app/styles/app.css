@@ -42,6 +42,10 @@ body {
   height: 120px;
 }
 
+.ce-top-bar.search-top-bar ~ .ce-navbar::before {
+  height: 90px;
+}
+
 strong {
   font-weight: 500;
 }

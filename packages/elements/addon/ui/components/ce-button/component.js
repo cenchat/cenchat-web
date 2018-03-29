@@ -1,3 +1,4 @@
+import { run } from '@ember/runloop';
 import Component from '@ember/component';
 
 import { task } from 'ember-concurrency';
@@ -42,10 +43,18 @@ export default Component.extend({
   /**
    * @override
    */
-  click(event) {
-    if (this.get('--onClick')) {
-      this.get('triggerOnClick').perform(event);
-    }
+  didInsertElement(...args) {
+    this._super(...args);
+
+    // Use this rather than Ember name to consistently follow the order of events.
+    // See: https://medium.com/square-corner-blog/deep-dive-on-ember-events-cf684fd3b808
+    this.get('element').addEventListener('click', (event) => {
+      run(() => {
+        if (this.get('--onClick')) {
+          this.get('triggerOnClick').perform(event);
+        }
+      });
+    });
   },
 
   /**

@@ -24,7 +24,9 @@ export default Component.extend({
   /**
    * Handles follow user's click event
    */
-  async followUser() {
+  async followUser(event) {
+    event.stopPropagation();
+
     const config = getOwner(this).resolveRegistration('config:environment');
     const token = await this.get('session.currentUser').getIdToken();
     const currentUser = this.get('session.model');
