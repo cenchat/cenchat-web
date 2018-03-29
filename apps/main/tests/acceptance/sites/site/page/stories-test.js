@@ -3,7 +3,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | sites/site');
+moduleForAcceptance('Acceptance | sites/site/page');
 
 test('should list pages', async (assert) => {
   assert.expect(2);

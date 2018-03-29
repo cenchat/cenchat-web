@@ -31,6 +31,7 @@ Router.map(function() {
     this.route('terms');
     this.route('privacy');
   });
+  this.route('search');
 });
 
 export default Router;

@@ -24,7 +24,9 @@ export default Component.extend({
   /**
    * Handles unfollow button's click event
    */
-  unfollowUser() {
+  unfollowUser(event) {
+    event.stopPropagation();
+
     const userToUnfollow = this.get('--userToUnfollow');
 
     toast(`Unfollowed ${userToUnfollow.get('displayName')}`, 10000, {
