@@ -30,3 +30,10 @@ a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
   font-weight: 500;
   src: local("Segoe UI Semibold");
 }
+
+@font-face {
+  font-style: italic;
+  font-family: "Segoe UI";
+  font-weight: 400;
+  src: local("Segoe UI Italic");
+}
