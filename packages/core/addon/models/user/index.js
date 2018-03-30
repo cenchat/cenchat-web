@@ -148,6 +148,15 @@ export default Model.extend({
   }),
 
   /**
+   * @type {string}
+   */
+  urlKey: computed('username', {
+    get() {
+      return this.get('username') || this.get('id');
+    },
+  }),
+
+  /**
    * Checks if current user is following the userId
    *
    * @param {string} userId

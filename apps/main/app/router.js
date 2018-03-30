@@ -7,12 +7,23 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('about', function() {
+    this.route('terms');
+    this.route('privacy');
+  });
+  this.route('comments', { path: '/comments/:comment_id' });
+  this.route('docs', function() {
+    this.route('installation', { path : 'installation/:platform' });
+  });
   this.route('home', { path: '/' }, function() {});
+  this.route('notifications');
   this.route('profile', { path: '/profile/:user_id' }, function() {
     this.route('edit');
     this.route('followings');
     this.route('follow-suggestions');
   });
+  this.route('search');
+  this.route('sign-in');
   this.route('sites', function() {
     this.route('index', { path: '/' }, function() {
       this.route('new');
@@ -22,16 +33,6 @@ Router.map(function() {
       this.route('page', { path: '/pages/:page_id' }, function() {});
     });
   });
-  this.route('notifications');
-  this.route('docs', function() {
-    this.route('installation', { path : 'installation/:platform' });
-  });
-  this.route('sign-in');
-  this.route('about', function() {
-    this.route('terms');
-    this.route('privacy');
-  });
-  this.route('search');
 });
 
 export default Router;

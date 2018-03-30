@@ -10,21 +10,12 @@
         icon="notifications"
         badged=--session.model.metaInfo.hasNewNotification}}
 
-    {{#if --session.model.username}}
-      {{ce-icon-link-button
-          data-test-application="profile-username-link"
-          href=(href-to 'profile' --session.model.username)
-          title="Profile"
-          aria-label="Profile"
-          icon="account_circle"}}
-    {{else}}
-      {{ce-icon-link-button
-          data-test-application="profile-id-link"
-          href=(href-to 'profile' --session.model.id)
-          title="Profile"
-          aria-label="Profile"
-          icon="account_circle"}}
-    {{/if}}
+    {{ce-icon-link-button
+        data-test-application="profile-username-link"
+        href=(href-to 'profile' --session.model.urlKey)
+        title="Profile"
+        aria-label="Profile"
+        icon="account_circle"}}
 
     {{ce-icon-link-button
         data-test-application="search-link"

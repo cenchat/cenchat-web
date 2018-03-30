@@ -17,6 +17,24 @@ module('Unit | Model | user', (hooks) => {
     mockFirebase(this.owner, getFixtureData());
   });
 
+  module('getter/setter: metaInfo', () => {
+    test('should return meta info', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
+        id: 'user_a',
+      }));
+
+      // Act
+      run(() => model.get('metaInfo'));
+
+      // Assert
+      await settled();
+      assert.equal(model.get('metaInfo.hasNewNotification'), true);
+    });
+  });
+
   module('getter/setter: missingInfo', () => {
     test('should return an array containing "username" when username is unavailable', async function (assert) {
       assert.expect(1);
@@ -50,21 +68,35 @@ module('Unit | Model | user', (hooks) => {
     });
   });
 
-  module('getter/setter: metaInfo', () => {
-    test('should return meta info', async function (assert) {
+  module('getter/setter: urlKey', () => {
+    test('should return the username when available', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = run(() => (
+        this.owner.lookup('service:store').createRecord('user', { id: 'user_a', username: 'foo' })
+      ));
 
       // Act
-      run(() => model.get('metaInfo'));
+      const result = model.get('urlKey');
 
       // Assert
-      await settled();
-      assert.equal(model.get('metaInfo.hasNewNotification'), true);
+      assert.deepEqual(result, 'foo');
+    });
+
+    test('should return the ID when username is unavailable', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = run(() => (
+        this.owner.lookup('service:store').createRecord('user', { id: 'user_a' })
+      ));
+
+      // Act
+      const result = model.get('urlKey');
+
+      // Assert
+      assert.deepEqual(result, 'user_a');
     });
   });
 

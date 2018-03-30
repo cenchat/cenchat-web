@@ -31,6 +31,25 @@ module('Unit | Model | page', (hooks) => {
     });
   });
 
+  module('getter/setter: url', () => {
+    test('should return the url', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const store = this.owner.lookup('service:store');
+      const site = await run(() => store.findRecord('site', 'site_a'));
+      const model = run(() => (
+        store.createRecord('page', { site, id: 'new_page', slug: '%2Ffoo%2Fbar' })
+      ));
+
+      // Act
+      const result = model.get('url');
+
+      // Arrange
+      assert.equal(result, 'http://site-a.com/foo/bar');
+    });
+  });
+
   module('function: loadFilteredComments', () => {
     test('should return all comments', async function (assert) {
       assert.expect(2);

@@ -42,17 +42,26 @@ export default Model.extend({
 
   /**
    * @type {Ember.Service}
-   * @readonly
    */
   session: inject(),
 
   /**
    * @type {string}
-   * @readonly
    */
   decodedSlug: computed('slug', {
     get() {
       return decodeURIComponent(this.get('slug'));
+    },
+  }),
+
+  /**
+   * @type {string}
+   */
+  url: computed('site.hostname', {
+    get() {
+      const hostname = this.get('site.hostname');
+
+      return hostname ? `http://${hostname}${this.get('decodedSlug')}` : null;
     },
   }),
 

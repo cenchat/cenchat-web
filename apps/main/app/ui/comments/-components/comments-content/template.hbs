@@ -1,0 +1,35 @@
+<main class="comments-content ce-theme-dark">
+  <figure class="comments-content__figure">
+    <blockquote class="comments-content__blockquote">
+      <p class="comments-content__message" data-test-comments-content="message">
+        {{--comment.text}}
+
+        <div class="comments-content__attachment-container">
+          {{#each --comment.parsedAttachments as |attachment|}}
+            <img
+                class="comments-content__attachment"
+                data-test-comments-content="attachment"
+                src="{{attachment.imageUrl}}"
+                alt="{{attachment.description}}">
+          {{/each}}
+        </div>
+      </p>
+    </blockquote>
+
+    <figcaption class="comments-content__figcaption">
+      <a href={{href-to 'profile' --comment.author.urlKey}} data-test-comments-content="author-name">
+        {{--comment.author.displayName}}
+      </a>, a comment on
+
+      <cite>
+        <a
+            data-test-comments-content="page-title"
+            href="{{--comment.page.url}}?cenchat_comment={{--comment.id}}"
+            target="_blank"
+            rel="noopener noreferrer">
+          {{--comment.page.title}}
+        </a>
+      </cite>
+    </figcaption>
+  </figure>
+</main>
