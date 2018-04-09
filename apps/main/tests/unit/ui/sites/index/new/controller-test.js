@@ -43,10 +43,9 @@ module('Unit | Controller | sites/index/new', (hooks) => {
           hostname: 'foo.com',
           name: 'Foo',
           theme: 'light',
-          admins: [{ id: 'user_a' }],
         },
       ));
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
     });
 
     test('should transition to sites.index after creating new site', async function (assert) {

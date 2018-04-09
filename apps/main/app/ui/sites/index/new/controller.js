@@ -11,16 +11,30 @@ export default Controller.extend({
   /**
    * Handles site form's submit event
    *
-   * @param {Object} site
+   * @param {Object} siteData
    * @param {Event} event
    */
-  async handleSiteFormSubmit(site, event) {
+  async handleSiteFormSubmit(siteData, event) {
     event.preventDefault();
 
-    await this.get('store').createRecord('site', {
-      ...site,
-      admins: [this.get('session.model')],
-    }).save({ adapterOptions: { onServer: true } });
+    const site = this.get('store').createRecord('site', { ...siteData });
+    const currentUserId = this.get('session.model.id');
+
+    await site.save({
+      adapterOptions: {
+        include(batch, db) {
+          const currentUserDocRef = db.collection('users').doc(currentUserId);
+          const siteDocRef = db.collection('sites').doc(site.get('id'));
+
+          batch.set(siteDocRef.collection('admins').doc(currentUserId), {
+            cloudFirestoreReference: currentUserDocRef,
+          });
+          batch.set(currentUserDocRef.collection('sitesAsAdmin').doc(site.get('id')), {
+            cloudFirestoreReference: siteDocRef,
+          });
+        },
+      },
+    });
     this.transitionToRoute('sites.index');
     toast('Site added');
   },

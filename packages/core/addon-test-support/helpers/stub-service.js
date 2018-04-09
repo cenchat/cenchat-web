@@ -1,13 +1,15 @@
 import { camelize } from '@ember/string';
 import Service from '@ember/service';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
+
+import { getFixtureData, stubPromise } from '@cenchat/core/test-support';
 
 /**
  * @param {Object} context
  * @param {string} name
  * @param {Object} serviceProperties
- * @return {Service} Service
+ * @return {Ember.Service} Service
  */
 export function stubService(context, name, serviceProperties) {
   if (serviceProperties) {
@@ -23,7 +25,7 @@ export function stubService(context, name, serviceProperties) {
 /**
  * @param {Object} context
  * @param {Model.User} model
- * @return {Service} Session service
+ * @return {Ember.Service} Session service
  */
 export function stubSession(context, model) {
   return stubService(context, 'session', {
@@ -56,4 +58,12 @@ export function stubSession(context, model) {
       return stubPromise(true);
     },
   });
+}
+
+/**
+ * @param {Object} context
+ * @return {Ember.Service} Firebase service
+ */
+export function stubFirebase(context) {
+  return mockFirebase(context.owner, getFixtureData());
 }

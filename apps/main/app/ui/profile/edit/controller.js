@@ -17,12 +17,40 @@ export default Controller.extend({
   async handleProfileFormSubmit(profile, event) {
     event.preventDefault();
 
-    this.set('model.displayName', profile.displayName);
-    this.set('model.displayUsername', profile.username);
-    this.set('model.username', profile.username.toLowerCase());
+    const model = this.get('model');
 
-    await this.get('model').save({ adapterOptions: { onServer: true } });
-    this.transitionToRoute('profile.index');
-    toast('Profile updated');
+    try {
+      model.set('displayName', profile.displayName);
+      model.set('displayUsername', profile.username);
+      model.set('username', profile.username.toLowerCase());
+
+      await model.save({
+        adapterOptions: {
+          include(batch, db) {
+            const changedAttributes = model.changedAttributes();
+
+            if (changedAttributes.username) {
+              const [currentUsername, newUsername] = changedAttributes.username;
+
+              batch.set(db.collection('usernames').doc(newUsername), {
+                cloudFirestoreReference: db.collection('users').doc(model.get('id')),
+              });
+
+              if (currentUsername) {
+                batch.delete(db.collection('usernames').doc(currentUsername));
+              }
+            }
+          },
+        },
+      });
+      this.transitionToRoute('profile.index');
+      toast('Profile updated');
+    } catch (error) {
+      if (error.code === 'permission-denied') {
+        toast('Username already exists');
+      }
+
+      model.rollbackAttributes();
+    }
   },
 });

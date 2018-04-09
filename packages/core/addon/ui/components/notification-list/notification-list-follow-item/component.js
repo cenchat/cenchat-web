@@ -38,8 +38,7 @@ export default Component.extend({
   /**
    * Follows back the user
    */
-  async followBackUser() {
-    await this.get('--onFollowBackClick')(this.get('--notification'));
+  async handleFollowUser() {
     this.set('isFollowingNotificationSender', true);
   },
 });

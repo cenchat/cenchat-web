@@ -57,6 +57,6 @@ module('Integration | Component | sites/site/index/-components/route-content/set
     await click('[data-test-setup-guide="verify-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('site')));
+    assert.ok(spy.calledOnce);
   });
 });

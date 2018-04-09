@@ -5,9 +5,7 @@
 
   <div class="wrapper">
     <article class="card" data-test-setup-guide="empty-state">
-      <header class="card__header">
-        <h3 class="card__heading">Verify your site</h3>
-      </header>
+      <h3 class="card__heading">Verify your site</h3>
 
       <p class="card__message">
         Place the additional <code class="snippet__inline-code">&lt;meta&gt;</code> tag below in the <code class="snippet__inline-code">&lt;head&gt;</code> of {{--site.hostname}} and all of its pages then tap Verify.
@@ -20,7 +18,7 @@
       {{#ce-button
           class="card__action"
           data-test-setup-guide="verify-button"
-          --onClick=(action --onVerifySiteClick --site)}}
+          --onClick=(action --onVerifySiteClick)}}
         Verify
       {{/ce-button}}
     </article>

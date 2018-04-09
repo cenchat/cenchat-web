@@ -1,23 +1,17 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
-import sinon from 'sinon';
-
-import { getFixtureData, stubService } from '@cenchat/core/test-support';
+import { setupTestEnv } from '@cenchat/core/test-support';
 
 module('Integration | Component | notification-list/notification-list-comment-tag-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    mockFirebase(this.owner, getFixtureData());
-    stubService(this, 'router', { urlFor: sinon.stub() });
+    await setupTestEnv(this);
 
-    const store = stubService(this, 'store');
-    const notification = await run(() => store.findRecord('notification', 'notification_b'));
+    const notification = await this.store.findRecord('notification', 'notification_b');
 
     this.set('notification', notification);
   });

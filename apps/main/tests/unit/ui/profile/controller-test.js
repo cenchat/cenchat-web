@@ -76,7 +76,7 @@ module('Unit | Controller | profile', (hooks) => {
 
       // Assert
       assert.equal(model.get('username'), 'foobar');
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
     });
   });
 });

@@ -19,5 +19,5 @@ test('should create site', async (assert) => {
   await click('[data-test-site-form="submit-button"]');
 
   // Assert
-  assert.dom('article[data-test-site-collection-item]').exists({ count: 3 });
+  assert.dom('[data-test-application="toast"]').hasText('Site added');
 });

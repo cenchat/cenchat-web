@@ -2,9 +2,7 @@
   {{#if (eq notification.type 'comment_tag')}}
     {{notification-list/notification-list-comment-tag-item --notification=notification}}
   {{else if (eq notification.type 'follow')}}
-    {{notification-list/notification-list-follow-item
-        --notification=notification
-        --onFollowBackClick=(action handleFollowBackClick)}}
+    {{notification-list/notification-list-follow-item --notification=notification}}
   {{/if}}
 {{else}}
   <li class="list__item" data-test-notification-list="empty-state">

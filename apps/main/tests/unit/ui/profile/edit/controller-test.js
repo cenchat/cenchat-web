@@ -32,7 +32,7 @@ module('Unit | Controller | profile/edit', (hooks) => {
       assert.equal(model.get('displayName'), 'Foo');
       assert.equal(model.get('displayUsername'), 'Bar');
       assert.equal(model.get('username'), 'bar');
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
     });
 
     test('should transition to profile.index after updating profile', async function (assert) {
@@ -58,6 +58,32 @@ module('Unit | Controller | profile/edit', (hooks) => {
 
       // Assert
       assert.ok(transtionToRouteStub.calledWithExactly('profile.index'));
+    });
+
+    test('should rollback profile when failing to save', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const rollbackAttributesStub = sinon.stub();
+      const model = EmberObject.create({
+        rollbackAttributes: rollbackAttributesStub,
+        save: sinon.stub().returns(stubPromise(false, { code: 'permission-denied' })),
+      });
+      const controller = this.owner.lookup('controller:profile/edit');
+
+      controller.set('model', model);
+      controller.set('transitionToRoute', sinon.stub());
+
+      // Act
+      await controller.handleProfileFormSubmit({
+        displayName: 'Foo',
+        username: 'Bar',
+      }, {
+        preventDefault: sinon.stub(),
+      });
+
+      // Assert
+      assert.ok(rollbackAttributesStub.calledOnce);
     });
   });
 });

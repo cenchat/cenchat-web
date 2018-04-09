@@ -1,33 +1,25 @@
-import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
+import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 import sinon from 'sinon';
 
-import {
-  getFixtureData,
-  stubPromise,
-  stubService,
-} from '@cenchat/core/test-support';
+import { setupTestEnv, stubPromise } from '@cenchat/core/test-support';
 
 module('Integration | Component | notification-list/notification-list-follow-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    mockFirebase(this.owner, getFixtureData());
+    await setupTestEnv(this);
 
-    const store = stubService(this, 'store');
-    const notification = await run(() => store.findRecord('notification', 'notification_a'));
-    const toUser = await run(() => notification.get('to'));
+    const notification = await this.store.findRecord('notification', 'notification_a');
+    const toUser = await notification.get('to');
 
     toUser.set('isFollowing', sinon.stub().returns(stubPromise(true, false)));
 
     this.set('toUser', toUser);
     this.set('notification', notification);
-    this.set('onFollowBackClick', () => {});
   });
 
   test('should show notification info', async (assert) => {
@@ -35,9 +27,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item
-          --notification=notification
-          --onFollowBackClick=(action onFollowBackClick)}}
+      {{notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert
@@ -60,15 +50,11 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item
-          --notification=notification
-          --onFollowBackClick=(action onFollowBackClick)}}
+      {{notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert
-    assert
-      .dom('[data-test-notification-list-follow-item="follow-back-button"]')
-      .exists();
+    assert.dom('[data-test-follow-user-button="host"]').exists();
   });
 
   test('should hide follow back button when notification receiver is following the notification sender', async function (assert) {
@@ -83,33 +69,10 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item
-          --notification=notification
-          --onFollowBackClick=(action onFollowBackClick)}}
+      {{notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert
-    assert
-      .dom('[data-test-notification-list-follow-item="follow-back-button"]')
-      .doesNotExist();
-  });
-
-  test('should fire an external action when clicking follow back', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    const spy = sinon.spy(this, 'onFollowBackClick');
-
-    await render(hbs`
-      {{notification-list/notification-list-follow-item
-          --notification=notification
-          --onFollowBackClick=(action onFollowBackClick)}}
-    `);
-
-    // Act
-    await click('[data-test-notification-list-follow-item="follow-back-button"]');
-
-    // Assert
-    assert.ok(spy.calledWith(this.get('notification')));
+    assert.dom('[data-test-follow-user-button="host"]').doesNotExist();
   });
 });

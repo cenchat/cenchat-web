@@ -22,9 +22,6 @@ export default function(name, options = {}) {
           providerData: [{
             photoURL: 'user_a.jpg',
             providerId: 'facebook.com',
-          }, {
-            photoURL: 'user_a.jpg',
-            providerId: 'google.com',
           }],
           uid: 'user_a',
 
