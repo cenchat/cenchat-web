@@ -24,7 +24,7 @@ module('Unit | Component | comment item', (hooks) => {
 
   module('function: handleDeleteCommentClick', () => {
     test('should update comment into delete state', async function (assert) {
-      assert.expect(4);
+      assert.expect(6);
 
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
@@ -39,9 +39,11 @@ module('Unit | Component | comment item', (hooks) => {
 
       // Assert
       assert.equal(this.comment.get('attachments'), null);
+      assert.equal(this.comment.get('isAskMeAnything'), false);
       assert.equal(this.comment.get('isDeleted'), true);
+      assert.equal(this.comment.get('taggedEntities'), null);
       assert.equal(this.comment.get('text', null));
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
     });
   });
 

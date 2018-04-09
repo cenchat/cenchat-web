@@ -39,7 +39,7 @@ export default Component.extend({
   async handleSendCommentClick() {
     const comment = this.get('comment');
 
-    await comment.save({ adapterOptions: { onServer: true } });
+    await comment.save();
     toast('Comment sent');
 
     if (!this.get('--comment')) {

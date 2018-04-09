@@ -17,10 +17,20 @@ export default Controller.extend({
   async handleUsernameSubmit(username, event) {
     event.preventDefault();
 
-    this.set('model.displayUsername', username);
-    this.set('model.username', username.toLocaleLowerCase());
+    const model = this.get('model');
 
-    await this.get('model').save({ adapterOptions: { onServer: true } });
+    model.set('displayUsername', username);
+    model.set('username', username.toLowerCase());
+
+    await model.save({
+      adapterOptions: {
+        include(batch, db) {
+          batch.set(db.collection('usernames').doc(username.toLowerCase()), {
+            cloudFirestoreReference: db.collection('users').doc(model.get('id')),
+          });
+        },
+      },
+    });
     toast('Username saved');
   },
 

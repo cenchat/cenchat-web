@@ -87,7 +87,26 @@ export default Component.extend({
           }
         }
 
-        await user.save({ adapterOptions: { onServer: true } });
+        await user.save({
+          adapterOptions: {
+            include(batch, db) {
+              batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
+                facebookAccessToken: null,
+                hasNewNotification: false,
+              });
+
+              if (user.get('facebookId')) {
+                batch.set(db.collection('facebookIds').doc(user.get('facebookId')), {
+                  cloudFirestoreReference: db.collection('users').doc(currentUser.uid),
+                });
+              }
+            },
+          },
+        });
+      }
+
+      if (credential) {
+        await this.saveFacebookAccessToken(user, credential);
       }
 
       session.set('content.model', user);
@@ -95,12 +114,6 @@ export default Component.extend({
       toast(`Signed in as ${user.get('displayName')}`);
     } catch (e) {
       toast('Couldn\'t sign in. Please try again.');
-
-      return;
-    }
-
-    if (credential) {
-      await this.saveFacebookAccessToken(user, credential);
     }
   },
 

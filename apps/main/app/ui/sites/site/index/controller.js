@@ -1,5 +1,8 @@
+import { getOwner } from '@ember/application';
 import { inject } from '@ember/service';
 import Controller from '@ember/controller';
+
+import fetch from 'fetch';
 
 import toast from '@cenchat/elements/utils/toast';
 
@@ -16,16 +19,27 @@ export default Controller.extend({
 
   /**
    * Handles verify site's click event
+   *
+   * @param {}
    */
   async handleVerifySiteClick() {
-    this.set('model.isVerified', true);
+    const config = getOwner(this).resolveRegistration('config:environment');
+    const token = await this.get('session.currentUser').getIdToken();
+    const response = await fetch(`${config.apiHost}/api/utils/verify-site`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ siteId: this.get('model.id') }),
+    });
 
-    try {
-      await this.get('model').save({ adapterOptions: { onServer: true } });
-      toast('Site verified');
-    } catch (e) {
-      this.get('model').rollbackAttributes();
-      toast(e.errors[0].detail);
+    if (response.ok) {
+      toast('Site is now verified');
+    } else {
+      const data = await response.text();
+
+      toast(data);
     }
   },
 });

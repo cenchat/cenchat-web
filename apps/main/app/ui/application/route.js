@@ -35,10 +35,13 @@ export default Route.extend({
 
         session.set('content.model', model);
 
-        return Promise.all([
-          this.updateFacebookAccessToken(model),
-          this.updateProfile(model),
-        ]);
+        const promises = [this.updateFacebookAccessToken(model)];
+
+        if (this.isCurrentUserProfileOutdated(model)) {
+          promises.push(this.updateCurrentUserProfile(model));
+        }
+
+        return Promise.all(promises);
       } catch (error) {
         session.close();
       }
@@ -71,46 +74,81 @@ export default Route.extend({
   },
 
   /**
-   * Updates the signed in user's profile based on their Facebook data
+   * Gets the Facebook provider data
+   *
+   * @return {Object|null} Facebook provider data or null if not available
+   */
+  getFacebookProviderData() {
+    const currentUser = this.get('session.currentUser');
+
+    for (const provider of currentUser.providerData) {
+      if (provider.providerId.includes('facebook')) {
+        return provider;
+      }
+    }
+
+    return null;
+  },
+
+  /**
+   * Checks if the current user's profile is outdated
+   *
+   * @param {Model.User} profile
+   * @return {boolean} True if outdated. Otherwise, false.
+   */
+  isCurrentUserProfileOutdated(profile) {
+    const facebookProviderData = this.getFacebookProviderData();
+
+    if (
+      profile.get('facebookId') !== facebookProviderData.uid
+      || profile.get('displayName') !== facebookProviderData.displayName
+      || profile.get('photoUrl') !== facebookProviderData.photoURL
+    ) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * Updates the current user's profile based on their Facebook data
    *
    * @param {Model.User} profile
    * @return {Promise} Resolves after successful save
    */
-  updateProfile(profile) {
+  updateCurrentUserProfile(profile) {
     const currentUser = this.get('session.currentUser');
-    let willSave = false;
+    const facebookProviderData = this.getFacebookProviderData();
 
-    for (const provider of currentUser.providerData) {
-      if (
-        provider.providerId.includes('facebook')
-        && (
-          profile.get('facebookId') !== provider.uid
-          || profile.get('displayName') !== provider.displayName
-          || profile.get('photoUrl') !== provider.photoURL
-        )
-      ) {
-        willSave = true;
-        profile.set('facebookId', provider.uid);
-        profile.set('displayName', provider.displayName);
-        profile.set('photoUrl', provider.photoURL);
+    profile.set('facebookId', facebookProviderData.uid);
+    profile.set('displayName', facebookProviderData.displayName);
+    profile.set('photoUrl', facebookProviderData.photoURL);
 
-        break;
-      }
-    }
+    return Promise.all([
+      profile.save({
+        adapterOptions: {
+          include(batch, db) {
+            const changedAttributes = profile.changedAttributes();
 
-    if (willSave) {
-      return Promise.all([
-        profile.save({
-          adapterOptions: { onServer: true },
-        }),
-        currentUser.updateProfile({
-          displayName: profile.get('displayName'),
-          photoURL: profile.get('photoUrl'),
-        }),
-      ]);
-    }
+            if (changedAttributes.facebookId) {
+              const [previousFacebookId, currentFacebookId] = changedAttributes.facebookId;
 
-    return Promise.resolve();
+              batch.set(db.collection('facebookIds').doc(currentFacebookId), {
+                cloudFirestoreReference: db.collection('users').doc(profile.get('id')),
+              });
+
+              if (previousFacebookId) {
+                batch.delete(db.collection('facebookIds').doc(previousFacebookId));
+              }
+            }
+          },
+        },
+      }),
+      currentUser.updateProfile({
+        displayName: profile.get('displayName'),
+        photoURL: profile.get('photoUrl'),
+      }),
+    ]);
   },
 
   actions: {

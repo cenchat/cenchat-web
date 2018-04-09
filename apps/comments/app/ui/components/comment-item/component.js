@@ -42,10 +42,11 @@ export default Component.extend({
 
     comment.set('isAskMeAnything', false);
     comment.set('parsedAttachments', null);
+    comment.set('taggedEntities', null);
     comment.set('text', null);
     comment.set('isDeleted', true);
 
-    await comment.save({ adapterOptions: { onServer: true } });
+    await comment.save();
     toast('Comment deleted');
   },
 

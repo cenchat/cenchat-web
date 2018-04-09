@@ -25,11 +25,10 @@
 
   <div>
     {{#if (eq isFollowingNotificationSender false)}}
-      {{#ce-button
+      {{follow-user-button
           data-test-notification-list-follow-item="follow-back-button"
-          --onClick=(action followBackUser)}}
-        Follow back
-      {{/ce-button}}
+          --userToFollow=--notification.from
+          --onFollowUser=(action handleFollowUser)}}
     {{/if}}
   </div>
 </li>

@@ -92,7 +92,7 @@ module('Unit | Component | comment composer', (hooks) => {
       await component.handleSendCommentClick();
 
       // Assert
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
     });
 
     test('should fire @onSendCommentSuccess when available', async function (assert) {

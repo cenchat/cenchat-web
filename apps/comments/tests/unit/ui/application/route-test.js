@@ -110,10 +110,13 @@ module('Unit | Route | application', (hooks) => {
         {
           id: 'user_a',
           displayName: 'User A',
+          displayUsername: null,
+          facebookId: null,
           photoUrl: 'user_a.jpg',
+          username: null,
         },
       ));
-      assert.ok(saveStub.calledWithExactly({ adapterOptions: { onServer: true } }));
+      assert.ok(saveStub.calledOnce);
       assert.deepEqual(route.get('session.content.model'), user);
     });
 

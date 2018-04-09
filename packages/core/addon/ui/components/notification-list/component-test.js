@@ -1,34 +1,17 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
-import sinon from 'sinon';
-
-import {
-  getFixtureData,
-  spyComponent,
-  stubService,
-  stubSession,
-} from '@cenchat/core/test-support';
+import { spyComponent, setupTestEnv } from '@cenchat/core/test-support';
 
 module('Integration | Component | notifications-list', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    mockFirebase(this.owner, getFixtureData());
-    stubService(this, 'router', { urlFor: sinon.stub() });
+    await setupTestEnv(this);
 
-    const store = stubService(this, 'store');
-    const user = await run(() => store.findRecord('user', 'user_a'));
-
-    stubSession(this, user);
-
-    const notifications = await run(() => store.findAll('notification'));
-
-    this.set('notifications', notifications);
+    this.set('notifications', await this.store.findAll('notification'));
   });
 
   test('should show <NotificationListFollowItem /> for every follow type notification', async function (assert) {
@@ -42,10 +25,7 @@ module('Integration | Component | notifications-list', (hooks) => {
 
     // Assert
     assert.ok(spy.calledOnce);
-    assert.deepEqual(spy.componentArgsType, {
-      notification: 'instance',
-      onFollowBackClick: 'function',
-    });
+    assert.deepEqual(spy.componentArgsType, { notification: 'instance' });
   });
 
   test('should show empty state when there are no notifications', async function (assert) {

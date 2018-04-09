@@ -27,84 +27,147 @@ export default Route.extend({
    */
   async afterModel() {
     const session = this.get('session');
-    const store = this.get('store');
 
     if (session.get('isAuthenticated')) {
       try {
-        const model = await store.findRecord('user', session.get('currentUser.uid'));
+        const model = await this.get('store').findRecord('user', session.get('currentUser.uid'));
 
         session.set('content.model', model);
 
-        await this.updateProfile(model);
+        if (this.isCurrentUserProfileOutdated(model)) {
+          return this.updateCurrentUserProfile(model);
+        }
       } catch (error) {
         if (error.message === 'Document doesn\'t exist') {
-          const currentUser = session.get('currentUser');
-          const record = store.createRecord('user', {
-            id: currentUser.uid,
-            displayName: currentUser.displayName,
-            photoUrl: currentUser.photoURL,
-          });
-
-          for (const provider of currentUser.providerData) {
-            if (provider.providerId.includes('facebook')) {
-              record.set('facebookId', provider.uid);
-
-              break;
-            }
-          }
-
-          await record.save({
-            adapterOptions: { onServer: true },
-          });
-
-          session.set('content.model', record);
+          return this.createCurrentUserRecord();
         }
 
-        await session.close();
+        return session.close();
       }
     }
+
+    return null;
   },
 
   /**
-   * Updates the signed in user's profile based on their Facebook data
+   * Gets the Facebook provider data
+   *
+   * @return {Object|null} Facebook provider data or null if not available
+   */
+  getFacebookProviderData() {
+    const currentUser = this.get('session.currentUser');
+
+    for (const provider of currentUser.providerData) {
+      if (provider.providerId.includes('facebook')) {
+        return provider;
+      }
+    }
+
+    return null;
+  },
+
+  /**
+   * Checks if the current user's profile is outdated
+   *
+   * @param {Model.User} profile
+   * @return {boolean} True if outdated. Otherwise, false.
+   */
+  isCurrentUserProfileOutdated(profile) {
+    const facebookProviderData = this.getFacebookProviderData();
+
+    if (
+      profile.get('facebookId') !== facebookProviderData.uid
+      || profile.get('displayName') !== facebookProviderData.displayName
+      || profile.get('photoUrl') !== facebookProviderData.photoURL
+    ) {
+      return true;
+    }
+
+    return false;
+  },
+
+  /**
+   * Updates the current user's profile based on their Facebook data
    *
    * @param {Model.User} profile
    * @return {Promise} Resolves after successful save
    */
-  updateProfile(profile) {
+  updateCurrentUserProfile(profile) {
     const currentUser = this.get('session.currentUser');
-    let willSave = false;
+    const facebookProviderData = this.getFacebookProviderData();
+
+    profile.set('facebookId', facebookProviderData.uid);
+    profile.set('displayName', facebookProviderData.displayName);
+    profile.set('photoUrl', facebookProviderData.photoURL);
+
+    return Promise.all([
+      profile.save({
+        adapterOptions: {
+          include(batch, db) {
+            const changedAttributes = profile.changedAttributes();
+
+            if (changedAttributes.facebookId) {
+              const [previousFacebookId, currentFacebookId] = changedAttributes.facebookId;
+
+              batch.set(db.collection('facebookIds').doc(currentFacebookId), {
+                cloudFirestoreReference: db.collection('users').doc(profile.get('id')),
+              });
+
+              if (previousFacebookId) {
+                batch.delete(db.collection('facebookIds').doc(previousFacebookId));
+              }
+            }
+          },
+        },
+      }),
+      currentUser.updateProfile({
+        displayName: profile.get('displayName'),
+        photoURL: profile.get('photoUrl'),
+      }),
+    ]);
+  },
+
+  /**
+   * Creates current user record
+   */
+  async createCurrentUserRecord() {
+    const session = this.get('session');
+    const store = this.get('store');
+    const currentUser = session.get('currentUser');
+    const record = store.createRecord('user', {
+      id: currentUser.uid,
+      displayName: currentUser.displayName,
+      displayUsername: null,
+      facebookId: null,
+      photoUrl: currentUser.photoURL,
+      username: null,
+    });
 
     for (const provider of currentUser.providerData) {
-      if (
-        provider.providerId.includes('facebook')
-        && (
-          profile.get('facebookId') !== provider.uid
-          || profile.get('displayName') !== provider.displayName
-          || profile.get('photoUrl') !== provider.photoURL
-        )
-      ) {
-        willSave = true;
-        profile.set('facebookId', provider.uid);
-        profile.set('displayName', provider.displayName);
-        profile.set('photoUrl', provider.photoURL);
+      if (provider.providerId.includes('facebook')) {
+        record.set('facebookId', provider.uid);
 
         break;
       }
     }
 
-    if (willSave) {
-      return Promise.all([
-        profile.save({
-          adapterOptions: { onServer: true },
-        }),
-        currentUser.updateProfile({
-          displayName: profile.get('displayName'),
-          photoURL: profile.get('photoUrl'),
-        }),
-      ]);
-    }
+    await record.save({
+      adapterOptions: {
+        include(batch, db) {
+          batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
+            facebookAccessToken: null,
+            hasNewNotification: false,
+          });
 
-    return Promise.resolve();
+          if (record.get('facebookId')) {
+            batch.set(db.collection('facebookIds').doc(record.get('facebookId')), {
+              cloudFirestoreReference: db.collection('users').doc(currentUser.uid),
+            });
+          }
+        },
+      },
+    });
+
+    session.set('content.model', record);
   },
 });
