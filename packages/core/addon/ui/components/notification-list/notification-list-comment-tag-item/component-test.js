@@ -3,13 +3,13 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestEnv } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/core/test-support';
 
 module('Integration | Component | notification-list/notification-list-comment-tag-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupTestEnv(this);
+    await setupTestState(this);
 
     const notification = await this.store.findRecord('notification', 'notification_b');
 

@@ -1,254 +1,261 @@
-/* eslint no-undef: off */
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'comments/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | ui/routes/site/page');
+module('Acceptance | site/page', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should create page when it does not exist', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Act
-  await visit('/sites/site_a/pages/page_b?slug=foobar');
+  test('should create page when it does not exist', async (assert) => {
+    assert.expect(1);
 
-  // Assert
-  assert.dom('[data-test-comment-item]').exists({ count: 0 });
-});
+    // Act
+    await visit('/sites/site_a/pages/page_b?slug=foobar');
 
-test('should list comments', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-comment-item]').exists({ count: 0 });
+  });
 
-  // Act
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
+  test('should list comments', async (assert) => {
+    assert.expect(1);
 
-  // Assert
-  assert.dom('[data-test-comment-item]').exists({ count: 2 });
-});
+    // Act
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
 
-test('should show a comment on demand', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-comment-item]').exists({ count: 2 });
+  });
 
-  // Act
-  await visit('/sites/site_a/pages/page_a?comment=comment_c&slug=foobar');
+  test('should show a comment on demand', async (assert) => {
+    assert.expect(1);
 
-  // Assert
-  assert.dom('[data-test-comment-item]').exists({ count: 3 });
-});
+    // Act
+    await visit('/sites/site_a/pages/page_a?comment=comment_c&slug=foobar');
 
-test('should load more comments', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-comment-item]').exists({ count: 3 });
+  });
 
-  // Arrange
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
+  test('should load more comments', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-comment-list="load-more-comments-button"]');
+    // Arrange
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
 
-  // Assert
-  assert.dom('[data-test-comment-item]').exists({ count: 3 });
-});
+    // Act
+    await click('[data-test-comment-list="load-more-comments-button"]');
 
-test('should create comment', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-comment-item]').exists({ count: 3 });
+  });
 
-  // Arrange
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-composer-toolbar="sticker-button"]');
-  await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
+  test('should create comment', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-composer-toolbar="send-button"]');
+    // Arrange
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-composer-toolbar="sticker-button"]');
+    await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
 
-  // Assert
-  assert.dom('[data-test-comment-item]').exists({ count: 3 });
-});
+    // Act
+    await click('[data-test-composer-toolbar="send-button"]');
 
-test('should create comment with tagged entities', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-comment-item]').exists({ count: 3 });
+  });
 
-  // Arrange
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-composer-toolbar="sticker-button"]');
-  await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
-  await click('[data-test-comment-composer-toolbar="tag-entity-button"]');
-  await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user_c');
-  await click('[data-test-tag-entity-panel-item="user_c"] button');
+  test('should create comment with tagged entities', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-composer-toolbar="send-button"]');
+    // Arrange
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-composer-toolbar="sticker-button"]');
+    await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
+    await click('[data-test-comment-composer-toolbar="tag-entity-button"]');
+    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user_c');
+    await click('[data-test-tag-entity-panel-item="user_c"] button');
 
-  // Assert
-  assert.dom('[data-test-tagged-entity-list-item="user_c"]').exists();
-});
+    // Act
+    await click('[data-test-composer-toolbar="send-button"]');
 
-test('should edit comment', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-tagged-entity-list-item="user_c"]').exists();
+  });
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_a"]';
-  const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
+  test('should edit comment', async (assert) => {
+    assert.expect(1);
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-page-comments="filter-comments-button"] button');
-  await click('[data-test-page-comments="filter-comments-by-all-button"]');
-  await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
-  await click(`${editFormContainer} [data-test-composer-toolbar="sticker-button"]`);
-  await click(`${editFormContainer} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_a"]';
+    const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
 
-  // Act
-  await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-page-comments="filter-comments-button"] button');
+    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
+    await click(`${editFormContainer} [data-test-composer-toolbar="sticker-button"]`);
+    await click(`${editFormContainer} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
 
-  // Assert
-  assert
-    .dom(`${commentItem} [data-test-content-message="attachment-image"]`)
-    .exists({ count: 3 });
-});
+    // Act
+    await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
 
-test('should edit comment that adds some tagged entities', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert
+      .dom(`${commentItem} [data-test-content-message="attachment-image"]`)
+      .exists({ count: 3 });
+  });
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_a"]';
-  const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
+  test('should edit comment that adds some tagged entities', async (assert) => {
+    assert.expect(1);
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-page-comments="filter-comments-button"] button');
-  await click('[data-test-page-comments="filter-comments-by-all-button"]');
-  await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
-  await click(`${editFormContainer} [data-test-comment-composer-toolbar="tag-entity-button"]`);
-  await fillIn(`${editFormContainer} [data-test-toolbar-tag-entity-panel="search-field"] input`, 'user_c');
-  await click(`${editFormContainer} [data-test-tag-entity-panel-item="user_c"] button`);
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_a"]';
+    const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
 
-  // Act
-  await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
-
-  // Assert
-  assert
-    .dom(`${commentItem} [data-test-tagged-entity-list-item="user_c"]`)
-    .exists();
-});
-
-test('should delete comment', async (assert) => {
-  assert.expect(1);
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-page-comments="filter-comments-button"] button');
+    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
+    await click(`${editFormContainer} [data-test-comment-composer-toolbar="tag-entity-button"]`);
+    await fillIn(`${editFormContainer} [data-test-toolbar-tag-entity-panel="search-field"] input`, 'user_c');
+    await click(`${editFormContainer} [data-test-tag-entity-panel-item="user_c"] button`);
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_a"]';
+    // Act
+    await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
+
+    // Assert
+    assert
+      .dom(`${commentItem} [data-test-tagged-entity-list-item="user_c"]`)
+      .exists();
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
+  test('should delete comment', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-page-comments="filter-comments-button"] button');
-  await click('[data-test-page-comments="filter-comments-by-all-button"]');
-  await click(`${commentItem} [data-test-item-toolbar="delete-button"]`);
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_a"]';
 
-  // Assert
-  assert
-    .dom(`${commentItem} [data-test-content-message="deleted-message"]`)
-    .exists();
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
 
-test('should list comment replies', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click('[data-test-page-comments="filter-comments-button"] button');
+    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click(`${commentItem} [data-test-item-toolbar="delete-button"]`);
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_a"]';
+    // Assert
+    assert
+      .dom(`${commentItem} [data-test-content-message="deleted-message"]`)
+      .exists();
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
+  test('should list comment replies', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-page-comments="filter-comments-button"] button');
-  await click('[data-test-page-comments="filter-comments-by-all-button"]');
-  await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_a"]';
 
-  // Assert
-  assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
 
-test('should load more replies', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click('[data-test-page-comments="filter-comments-button"] button');
+    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_a"]';
+    // Assert
+    assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-page-comments="filter-comments-button"] button');
-  await click('[data-test-page-comments="filter-comments-by-all-button"]');
-  await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
+  test('should load more replies', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-comment-list="load-more-comments-button"]');
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_a"]';
 
-  // Assert
-  assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 4 });
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-page-comments="filter-comments-button"] button');
+    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
 
-test('should create comment reply', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click('[data-test-comment-list="load-more-comments-button"]');
 
-  // Arrange
-  const commentItem = '[data-test-comment-item="comment_b"]';
+    // Assert
+    assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 4 });
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
-  await click(`${commentItem} [data-test-composer-toolbar="sticker-button"]`);
-  await click(`${commentItem} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
+  test('should create comment reply', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click(`${commentItem} [data-test-composer-toolbar="send-button"]`);
+    // Arrange
+    const commentItem = '[data-test-comment-item="comment_b"]';
 
-  // Assert
-  assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
+    await click(`${commentItem} [data-test-composer-toolbar="sticker-button"]`);
+    await click(`${commentItem} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
 
-test('should edit comment reply', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click(`${commentItem} [data-test-composer-toolbar="send-button"]`);
 
-  // Arrange
-  const replyItem = '[data-test-comment-item="comment_b"] [data-test-comment-item="comment_c"]';
-  const editFormContainer = `${replyItem} [data-test-comment-item="edit-form-container"]`;
+    // Assert
+    assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-comment-item="comment_b"] [data-test-item-toolbar="reply-button"]');
-  await click(`${replyItem} [data-test-item-toolbar="edit-button"]`);
-  await click(`${editFormContainer} [data-test-composer-toolbar="sticker-button"]`);
-  await click(`${editFormContainer} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
+  test('should edit comment reply', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
+    // Arrange
+    const replyItem = '[data-test-comment-item="comment_b"] [data-test-comment-item="comment_c"]';
+    const editFormContainer = `${replyItem} [data-test-comment-item="edit-form-container"]`;
 
-  // Assert
-  assert
-    .dom(`${replyItem} [data-test-content-message="attachment-image"]`)
-    .exists({ count: 3 });
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-comment-item="comment_b"] [data-test-item-toolbar="reply-button"]');
+    await click(`${replyItem} [data-test-item-toolbar="edit-button"]`);
+    await click(`${editFormContainer} [data-test-composer-toolbar="sticker-button"]`);
+    await click(`${editFormContainer} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
 
-test('should delete comment reply', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click(`${editFormContainer} ${'[data-test-composer-toolbar="send-button"]'}`);
 
-  // Arrange
-  const replyItem = '[data-test-comment-item="comment_c"]';
+    // Assert
+    assert
+      .dom(`${replyItem} [data-test-content-message="attachment-image"]`)
+      .exists({ count: 3 });
+  });
 
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
-  await click('[data-test-comment-item="comment_b"] [data-test-item-toolbar="reply-button"]');
+  test('should delete comment reply', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click(`${replyItem} [data-test-item-toolbar="delete-button"]`);
+    // Arrange
+    const replyItem = '[data-test-comment-item="comment_c"]';
 
-  // Assert
-  assert
-    .dom(`${replyItem} [data-test-content-message="deleted-message"]`)
-    .exists();
-});
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+    await click('[data-test-comment-item="comment_b"] [data-test-item-toolbar="reply-button"]');
 
-test('should show notifications', async (assert) => {
-  assert.expect(1);
+    // Act
+    await click(`${replyItem} [data-test-item-toolbar="delete-button"]`);
 
-  // Arrange
-  await visit('/sites/site_a/pages/page_a?slug=foobar');
+    // Assert
+    assert
+      .dom(`${replyItem} [data-test-content-message="deleted-message"]`)
+      .exists();
+  });
 
-  // Act
-  await click('[data-test-profile-bar="notification-button"] > button');
+  test('should show notifications', async (assert) => {
+    assert.expect(1);
 
-  // Assert
-  assert.dom('.notification-list-item').exists();
+    // Arrange
+    await visit('/sites/site_a/pages/page_a?slug=foobar');
+
+    // Act
+    await click('[data-test-profile-bar="notification-button"] > button');
+
+    // Assert
+    assert.dom('.notification-list-item').exists();
+  });
 });

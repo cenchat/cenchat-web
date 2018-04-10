@@ -1,22 +1,28 @@
-/* eslint no-undef: off */
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | profile/edit');
+module('Acceptance | profile/edit', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should update profile', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
-  await click('[data-test-top-bar-actions="edit-link"]');
+  test('should update profile', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await fillIn('[data-test-profile-form="display-name-field"] input', 'Bar');
-  await fillIn('[data-test-profile-form="username-field"] input', 'Foo');
-  await click('[data-test-profile-form="submit-button"]');
+    // Arrange
+    await visit('/profile/user_a/edit');
 
-  // Assert
-  assert.dom('[data-test-top-bar="name"]').hasText('Bar');
+    // Act
+    await fillIn('[data-test-profile-form="display-name-field"] input', 'Bar');
+    await fillIn('[data-test-profile-form="username-field"] input', 'Foo');
+    await click('[data-test-profile-form="submit-button"]');
+
+    // Assert
+    assert.dom('[data-test-top-bar="name"]').hasText('Bar');
+  });
 });

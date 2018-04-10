@@ -2,20 +2,13 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit } from '@ember/test-helpers';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
 module('Acceptance | comments', (hooks) => {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    await setupApplicationTestState(this);
   });
 
   test('should show comment', async (assert) => {

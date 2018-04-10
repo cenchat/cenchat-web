@@ -1,12 +1,18 @@
-/* eslint no-undef: off */
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | profile/follow-suggestions');
+module('Acceptance | profile/follow-suggestions', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('TODO: figure out a way to test FB Graph API | should list follow suggestions', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  assert.ok(true);
+  test('TODO: figure out a way to test FB Graph API | should list follow suggestions', async (assert) => {
+    assert.expect(1);
+
+    assert.ok(true);
+  });
 });

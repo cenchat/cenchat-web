@@ -91,6 +91,6 @@ export default Route.extend({
       adapterOptions: { onServer: true },
     });
 
-    await this.transitionTo('site.page', page.get('id').split('__')[1]);
+    this.transitionTo('site.page', page.get('id').split('__')[1]);
   },
 });

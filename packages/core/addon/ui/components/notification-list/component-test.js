@@ -3,13 +3,13 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent, setupTestEnv } from '@cenchat/core/test-support';
+import { spyComponent, setupTestState } from '@cenchat/core/test-support';
 
 module('Integration | Component | notifications-list', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupTestEnv(this);
+    await setupTestState(this);
 
     this.set('notifications', await this.store.findAll('notification'));
   });

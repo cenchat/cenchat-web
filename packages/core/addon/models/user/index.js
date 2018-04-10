@@ -221,10 +221,7 @@ export default Model.extend({
    * @return {Promise.<Model.UserMetaInfo>} User meta info
    */
   getMetaInfo() {
-    return this.get('store').findRecord(
-      'userMetaInfo',
-      this.get('id'),
-    ).catch(() => {});
+    return this.get('store').findRecord('userMetaInfo', this.get('id'));
   },
 
   /**

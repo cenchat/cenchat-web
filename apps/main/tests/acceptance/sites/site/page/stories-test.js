@@ -1,21 +1,24 @@
-/* eslint no-undef: off */
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit } from '@ember/test-helpers';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | sites/site/page');
+module('Acceptance | sites/site/page', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should list pages', async (assert) => {
-  assert.expect(2);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
-  await click('[data-test-application="sites-link"]');
+  test('should list pages', async (assert) => {
+    assert.expect(2);
 
-  // Act
-  await click('[data-test-site-collection-item="site_a"] > div');
+    // Act
+    await visit('/sites/site_a');
 
-  // Assert
-  assert.dom('[data-test-page-collection-item="site_a__page_a"]').exists();
-  assert.dom('[data-test-page-collection-item="site_a__page_b"]').exists();
+    // Assert
+    assert.dom('[data-test-page-collection-item="site_a__page_a"]').exists();
+    assert.dom('[data-test-page-collection-item="site_a__page_b"]').exists();
+  });
 });
