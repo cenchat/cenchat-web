@@ -1,19 +1,23 @@
-/* eslint no-undef: off */
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit } from '@ember/test-helpers';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | notifications');
+module('Acceptance | notifications', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should show notifications', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
+  test('should show notifications', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await click('[data-test-application="notification-link"]');
+    // Act
+    await visit('/notifications');
 
-  // Assert
-  assert.equal(currentURL(), '/notifications');
+    // Assert
+    assert.dom('[data-test-notification-list-follow-item="host"]').exists({ count: 1 });
+  });
 });

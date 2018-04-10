@@ -1,23 +1,28 @@
-/* eslint no-undef: off */
+import { module, test } from 'qunit';
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | sites/index/new');
+module('Acceptance | sites/index/new', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should create site', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
-  await click('[data-test-application="sites-link"]');
-  await click('[data-test-sites-index="new-link"]');
+  test('should create site', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await fillIn('[data-test-site-form="hostname-field"] input', 'foo.com');
-  await fillIn('[data-test-site-form="name-field"] input', 'Foo');
-  await click('[data-test-site-form="submit-button"]');
+    // Arrange
+    await visit('/sites/new');
 
-  // Assert
-  assert.dom('[data-test-application="toast"]').hasText('Site added');
+    // // Act
+    await fillIn('[data-test-site-form="hostname-field"] input', 'foo.com');
+    await fillIn('[data-test-site-form="name-field"] input', 'Foo');
+    await click('[data-test-site-form="submit-button"]');
+
+    // Assert
+    assert.dom('[data-test-application="toast"]').hasText('Site added');
+  });
 });

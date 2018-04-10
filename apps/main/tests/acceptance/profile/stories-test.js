@@ -1,49 +1,56 @@
-/* eslint no-undef: off */
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | profile');
+module('Acceptance | profile', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should set username', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
+  test('should set username', async (assert) => {
+    assert.expect(1);
 
-  // Act
-  await fillIn('[data-test-missing-info-username="field"] input', 'user_a');
-  await click('[data-test-missing-info-username="save-button"]');
+    // Arrange
+    await visit('/profile/user_a');
 
-  // Assert
-  assert.dom('[data-test-missing-info="host"]').doesNotExist();
-});
+    // Act
+    await fillIn('[data-test-missing-info-username="field"] input', 'user_a');
+    await click('[data-test-missing-info-username="save-button"]');
 
-test('should show followings', async (assert) => {
-  assert.expect(2);
+    // Assert
+    assert.dom('[data-test-missing-info="host"]').doesNotExist();
+  });
 
-  // Act
-  await visit('/');
+  test('should show followings', async (assert) => {
+    assert.expect(2);
 
-  // Assert
-  assert.dom('[data-test-user-collection-item="user_b"]').exists();
-  assert.dom('[data-test-user-collection-item="user_d"]').exists();
-});
+    // Act
+    await visit('/profile/user_a');
 
-test('TODO: find a way to test this | should follow a user', async (assert) => {
-  assert.expect(1);
+    // Assert
+    assert.dom('[data-test-user-collection-item="user_b"]').exists();
+    assert.dom('[data-test-user-collection-item="user_d"]').exists();
+  });
 
-  assert.ok(true);
-});
+  test('TODO: find a way to test this | should follow a user', async (assert) => {
+    assert.expect(1);
 
-test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async (assert) => {
-  assert.expect(1);
+    assert.ok(true);
+  });
 
-  assert.ok(true);
-});
+  test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async (assert) => {
+    assert.expect(1);
 
-test('TODO: find a way to test this | should unfollow a user in their own profile', async (assert) => {
-  assert.expect(1);
+    assert.ok(true);
+  });
 
-  assert.ok(true);
+  test('TODO: find a way to test this | should unfollow a user in their own profile', async (assert) => {
+    assert.expect(1);
+
+    assert.ok(true);
+  });
 });

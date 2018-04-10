@@ -1,20 +1,24 @@
-/* eslint no-undef: off */
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit } from '@ember/test-helpers';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | profile/followings');
+module('Acceptance | profile/followings', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should show followings', async (assert) => {
-  assert.expect(2);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
+  test('should show followings', async (assert) => {
+    assert.expect(2);
 
-  // Act
-  await click('[data-test-following-collection="see-all-link"]');
+    // Act
+    await visit('/profile/user_a/followings');
 
-  // Assert
-  assert.dom('.side-nav-outlet [data-test-user-collection-item="user_b"]').exists();
-  assert.dom('.side-nav-outlet [data-test-user-collection-item="user_d"]').exists();
+    // Assert
+    assert.dom('.side-nav-outlet [data-test-user-collection-item="user_b"]').exists();
+    assert.dom('.side-nav-outlet [data-test-user-collection-item="user_d"]').exists();
+  });
 });

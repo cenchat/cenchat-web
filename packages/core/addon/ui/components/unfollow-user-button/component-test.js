@@ -4,13 +4,13 @@ import EmberObject from '@ember/object';
 
 import sinon from 'sinon';
 
-import { setupTestEnv } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/core/test-support';
 
 module('Unit | Component | ununfollow-user-button', (hooks) => {
   setupTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupTestEnv(this);
+    await setupTestState(this);
   });
 
   module('function: ununfollowUser', () => {

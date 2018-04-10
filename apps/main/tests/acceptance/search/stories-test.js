@@ -1,22 +1,28 @@
-/* eslint no-undef: off */
+import { fillIn, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'main/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | search');
+module('Acceptance | search', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should search for user', async (assert) => {
-  assert.expect(3);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Arrange
-  await visit('/');
-  await click('[data-test-application="search-link"]');
+  test('should search for user', async (assert) => {
+    assert.expect(3);
 
-  // Act
-  await fillIn('[data-test-search-top-bar="field"] input', 'user');
+    // Arrange
+    await visit('/search');
 
-  // Assert
-  assert.dom('[data-test-user-collection-item="user_b"]').exists();
-  assert.dom('[data-test-user-collection-item="user_c"]').exists();
-  assert.dom('[data-test-user-collection-item="user_d"]').exists();
+    // Act
+    await fillIn('[data-test-search-top-bar="field"] input', 'user');
+
+    // Assert
+    assert.dom('[data-test-user-collection-item="user_b"]').exists();
+    assert.dom('[data-test-user-collection-item="user_c"]').exists();
+    assert.dom('[data-test-user-collection-item="user_d"]').exists();
+  });
 });

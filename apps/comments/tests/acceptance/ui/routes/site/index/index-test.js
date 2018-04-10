@@ -1,16 +1,23 @@
-/* eslint no-undef: off */
+import { currentURL, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-import { test } from 'qunit';
-import moduleForAcceptance from 'comments/tests/helpers/module-for-acceptance';
+import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-moduleForAcceptance('Acceptance | ui/routes/site/index');
+module('Acceptance | site/index', (hooks) => {
+  setupApplicationTest(hooks);
 
-test('should create page and redirect to it when page does not exist', async (assert) => {
-  assert.expect(1);
+  hooks.beforeEach(async function () {
+    await setupApplicationTestState(this);
+  });
 
-  // Act
-  await visit('/sites/site_a?slug=foobar');
+  test('should create page and redirect to it when page does not exist', async (assert) => {
+    assert.expect(1);
 
-  // Assert
-  assert.notEqual(currentURL(), '/sites/site_a?slug=foobar');
+    // Act
+    await visit('/sites/site_a?slug=foobar');
+
+    // Assert
+    assert.notEqual(currentURL(), '/sites/site_a?slug=foobar');
+  });
 });

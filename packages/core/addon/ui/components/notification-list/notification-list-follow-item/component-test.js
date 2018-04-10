@@ -5,13 +5,13 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-import { setupTestEnv, stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 
 module('Integration | Component | notification-list/notification-list-follow-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupTestEnv(this);
+    await setupTestState(this);
 
     const notification = await this.store.findRecord('notification', 'notification_a');
     const toUser = await notification.get('to');
