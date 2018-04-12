@@ -39,7 +39,6 @@
     "ember-component-css": "^0.6.3",
     "ember-data": "~3.0.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-firebaseui": "^0.1.2",
     "ember-linkify": "^3.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -58,8 +57,7 @@
     "postcss-import": "^11.1.0",
     "qunit-dom": "^0.5.0",
     "stylelint-config-recess-order": "^1.2.4",
-    "stylelint-config-standard": "^18.2.0",
-    "torii": "^0.10.1"
+    "stylelint-config-standard": "^18.2.0"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
