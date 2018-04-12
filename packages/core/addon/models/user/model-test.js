@@ -238,31 +238,40 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
+      const user123 = EmberObject.create({ id: 'user_123' });
+      const user456 = EmberObject.create({ id: 'user_456' });
+      const user789 = EmberObject.create({ id: 'user_789' });
+      const queryStub = sinon.stub();
+
+      queryStub.onCall(0).returns(stubPromise(true, new A([user123])));
+      queryStub.onCall(1).returns(stubPromise(true, new A([user456])));
+      queryStub.onCall(2).returns(stubPromise(true, new A([user789])));
+
       const isFollowingStub = sinon.stub();
 
-      isFollowingStub.withArgs(123).returns(stubPromise(true, true));
-      isFollowingStub.withArgs(456).returns(stubPromise(true, false));
-      isFollowingStub.withArgs(789).returns(stubPromise(true, true));
+      isFollowingStub.withArgs('user_123').returns(stubPromise(true, true));
+      isFollowingStub.withArgs('user_456').returns(stubPromise(true, false));
+      isFollowingStub.withArgs('user_789').returns(stubPromise(true, true));
 
       const model = run(() => this.owner.lookup('service:store').createRecord(
         'user',
         { id: 'user_a' },
       ));
 
-      model.set('isFollowing', isFollowingStub);
       model.set('store', {
         findRecord: sinon.stub().returns(stubPromise(
           true,
           EmberObject.create({ facebookAccessToken: '123qweasd' }),
         )),
-        query: sinon.stub().returns(stubPromise(true, new A(['user_456']))),
+        query: queryStub,
       });
+      model.set('isFollowing', isFollowingStub);
 
       // Act
       const result = await run(() => model.getUnfollowedFacebookFriends(2));
 
       // Assert
-      assert.deepEqual(result, ['user_456']);
+      assert.deepEqual(result, [user456]);
     });
   });
 });

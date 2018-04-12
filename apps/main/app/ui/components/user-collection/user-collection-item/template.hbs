@@ -22,9 +22,9 @@
         alt="{{--user.displayName}}">
   </header>
 
-  {{#if (eq --type 'follow')}}
-    {{follow-user-button --userToFollow=--user}}
-  {{else if (eq --type 'unfollow')}}
-    {{unfollow-user-button --userToUnfollow=--user}}
+  {{#if (eq isUserBeingFollowed true)}}
+    {{unfollow-user-button --userToUnfollow=--user --onUnfollowUser=(action handleUnfollowUser)}}
+  {{else if (eq isUserBeingFollowed false)}}
+    {{follow-user-button --userToFollow=--user --onFollowUser=(action handleFollowUser)}}
   {{/if}}
 </article>

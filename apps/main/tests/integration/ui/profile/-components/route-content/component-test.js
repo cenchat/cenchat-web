@@ -1,25 +1,19 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent, stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
-
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
 
 module('Integration | Component | profile/-components/route content', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const userB = run(async () => this.get('store').findRecord('user', 'user_b'));
-    const currentUser = this.get('session.model');
+    const userB = await this.store.findRecord('user', 'user_b');
+    const currentUser = this.session.model;
 
     currentUser.set(
       'getUnfollowedFacebookFriends',
@@ -29,10 +23,6 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
     this.set('user', currentUser);
     this.set('onSignOutClick', () => {});
     this.set('onUsernameSubmit', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show <TopBar />', async function (assert) {
@@ -84,7 +74,7 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -149,7 +139,7 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -191,7 +181,7 @@ module('Integration | Component | profile/-components/route content', (hooks) =>
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 

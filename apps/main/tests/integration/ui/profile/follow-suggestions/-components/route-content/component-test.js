@@ -64,9 +64,6 @@ module('Integration | Component | profile/follow-suggestions/-components/route-c
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      users: 'array',
-      type: 'string',
-    });
+    assert.deepEqual(spy.componentArgsType, { users: 'array' });
   });
 });

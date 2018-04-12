@@ -15,7 +15,7 @@
       placeholder=(component 'ce-spinner' aria-valuetext='Loading followings')
       as |followings|}}
     {{#if followings}}
-      {{user-collection class="wrapper" --users=followings --type="unfollow"}}
+      {{user-collection class="wrapper" --users=followings}}
     {{else}}
       <article class="card" data-test-following-collection="empty-state">
         <header class="card__header">

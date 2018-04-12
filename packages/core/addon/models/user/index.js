@@ -235,20 +235,19 @@ export default Model.extend({
     const userMetaInfo = await this.getMetaInfo();
     const url = `https://graph.facebook.com/v2.12/${facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
     const response = await fetch(url);
-    const data = await response.json();
+    const { data } = await response.json();
     const unfollowings = [];
 
-    for (const friend of data.data) {
-      const isFollowing = await this.isFollowing(friend.id);
+    for (const { id } of data) {
+      const friends = await this.get('store').query('user', {
+        filter(reference) {
+          return reference.where('facebookId', '==', id).limit(1);
+        },
+      });
+      const friend = friends.get('firstObject');
 
-      if (!isFollowing) {
-        const friendRecord = await this.get('store').query('user', {
-          filter(reference) {
-            return reference.where('facebookId', '==', friend.id).limit(1);
-          },
-        });
-
-        unfollowings.push(friendRecord.get('firstObject'));
+      if (!await this.isFollowing(friend.get('id'))) {
+        unfollowings.push(friend);
       }
 
       if (unfollowings.length >= limit) {

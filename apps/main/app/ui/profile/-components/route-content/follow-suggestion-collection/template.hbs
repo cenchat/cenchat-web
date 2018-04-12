@@ -15,7 +15,7 @@
       placeholder=(component 'ce-spinner' aria-valuetext='Loading follow suggestions')
       as |followSuggestions|}}
     {{#if followSuggestions}}
-      {{user-collection class="wrapper" --users=followSuggestions --type="follow"}}
+      {{user-collection class="wrapper" --users=followSuggestions}}
     {{else}}
       <article class="card" data-test-follow-suggestion-collection="empty-state">
         <h3 class="card__heading">There are no suggestions as of the moment</h3>

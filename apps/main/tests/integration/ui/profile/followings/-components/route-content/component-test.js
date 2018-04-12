@@ -52,9 +52,6 @@ module('Integration | Component | profile/followings/-components/route-content',
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      users: 'instance',
-      type: 'string',
-    });
+    assert.deepEqual(spy.componentArgsType, { users: 'instance' });
   });
 });

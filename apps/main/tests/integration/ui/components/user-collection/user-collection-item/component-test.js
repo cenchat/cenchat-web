@@ -1,30 +1,17 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
-
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
 module('Integration | Component | user-collection/user-collection-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
-
-    this.set('user', user);
-    this.set('type', 'follow');
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    this.set('user', await this.store.findRecord('user', 'user_b'));
   });
 
   test('should show user info', async (assert) => {
@@ -36,26 +23,29 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
     // Assert
     assert.dom('[data-test-user-collection-item="photo"]').hasAttribute(
       'src',
-      'user_a.jpg',
+      'user_b.jpg',
     );
-    assert.dom('[data-test-user-collection-item="name"]').hasText('User A');
+    assert.dom('[data-test-user-collection-item="name"]').hasText('User B');
   });
 
   test('should show user username when available', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('user.displayUsername', 'foo');
+    this.set('user.displayUsername', 'user_b');
 
     // Act
     await render(hbs`{{user-collection/user-collection-item --user=user}}`);
 
     // Assert
-    assert.dom('[data-test-user-collection-item="username"]').hasText('@foo');
+    assert.dom('[data-test-user-collection-item="username"]').hasText('@user_b');
   });
 
-  test('should hide user username when unavailable', async (assert) => {
+  test('should hide user username when unavailable', async function (assert) {
     assert.expect(1);
+
+    // Arrange
+    this.set('user.displayUsername', null);
 
     // Act
     await render(hbs`{{user-collection/user-collection-item --user=user}}`);
@@ -64,26 +54,22 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
     assert.dom('[data-test-user-collection-item="username"]').doesNotExist();
   });
 
-  test('should show <FollowUserButton /> when type is follow', async function (assert) {
+  test('should show <FollowUserButton /> when current user is not following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('type', 'follow');
+    this.set('user', await this.store.findRecord('user', 'user_c'));
 
     const spy = spyComponent(this, 'follow-user-button');
 
     // Act
-    await render(hbs`
-      {{user-collection/user-collection-item
-          --user=user
-          --type=type}}
-    `);
+    await render(hbs`{{user-collection/user-collection-item --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { userToFollow: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { userToFollow: 'instance', onFollowUser: 'function' });
   });
 
-  test('should hide <FollowUserButton /> when type is not follow', async function (assert) {
+  test('should hide <FollowUserButton /> when current user is following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -96,7 +82,7 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
     assert.ok(spy.notCalled);
   });
 
-  test('should show <UnfollowUserButton /> when type is follow', async function (assert) {
+  test('should show <UnfollowUserButton /> when current user is following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -105,20 +91,21 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
     const spy = spyComponent(this, 'unfollow-user-button');
 
     // Act
-    await render(hbs`
-      {{user-collection/user-collection-item
-          --user=user
-          --type=type}}
-    `);
+    await render(hbs`{{user-collection/user-collection-item --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { userToUnfollow: 'instance' });
+    assert.deepEqual(spy.componentArgsType, {
+      userToUnfollow: 'instance',
+      onUnfollowUser: 'function',
+    });
   });
 
-  test('should hide <UnfollowUserButton /> when type is not follow', async function (assert) {
+  test('should hide <UnfollowUserButton /> when current user is not following the user', async function (assert) {
     assert.expect(1);
 
     // Arrange
+    this.set('user', await this.store.findRecord('user', 'user_c'));
+
     const spy = spyComponent(this, 'unfollow-user-button');
 
     // Act
