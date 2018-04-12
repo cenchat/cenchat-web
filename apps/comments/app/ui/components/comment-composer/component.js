@@ -164,10 +164,13 @@ export default Component.extend({
     return this.get('store').createRecord('comment', {
       replyTo,
       root,
+      attachments: null,
       author: this.get('session.model'),
       isAskMeAnything: false,
       isDeleted: false,
       page: this.get('--page'),
+      taggedEntities: null,
+      text: null,
     });
   },
 });
