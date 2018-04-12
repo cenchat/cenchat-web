@@ -18,9 +18,33 @@ export async function setupTestState(context) {
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
   context.set('db', context.get('firebase').firestore());
   context.set('session', stubSession(context));
-  context.set('store', stubService(context, 'store'));
 
-  const user = await run(() => context.store.findRecord('user', 'user_a'));
+  const store = stubService(context, 'store');
+
+  // Workarond to avoid runloop issues
+  context.set('store', {
+    createRecord(...args) {
+      return run(() => store.createRecord(...args));
+    },
+
+    updateRecord(...args) {
+      return run(() => store.updateRecord(...args));
+    },
+
+    findAll(...args) {
+      return run(() => store.findAll(...args));
+    },
+
+    findRecord(...args) {
+      return run(() => store.findRecord(...args));
+    },
+
+    query(...args) {
+      return run(() => store.query(...args));
+    },
+  });
+
+  const user = await context.store.findRecord('user', 'user_a');
 
   context.set('session.model', user);
 }

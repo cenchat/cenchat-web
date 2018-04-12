@@ -43,10 +43,7 @@ module('Integration | Component | profile/-components/route-content/follow-sugge
     await render(hbs`{{profile/-components/route-content/follow-suggestion-collection --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      users: 'array',
-      type: 'string',
-    });
+    assert.deepEqual(spy.componentArgsType, { users: 'array' });
   });
 
   test('should show empty state when there are no follow suggestions :(', async function (assert) {

@@ -13,9 +13,23 @@ export default Component.extend({
   router: inject(),
 
   /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
+  /**
    * @override
    */
   tagName: '',
+
+  /**
+   * @override
+   */
+  init(...args) {
+    this._super(...args);
+
+    this.checkIfUserIsBeingFollowed();
+  },
 
   /**
    * Handles the user's click event
@@ -24,5 +38,28 @@ export default Component.extend({
     const user = this.get('--user');
 
     this.get('router').transitionTo('profile', user.get('username') || user.get('id'));
+  },
+
+  /**
+   * Handles the follow user's click event
+   */
+  handleFollowUser() {
+    this.set('isUserBeingFollowed', true);
+  },
+
+  /**
+   * Handles the unfollow user's click event
+   */
+  handleUnfollowUser() {
+    this.set('isUserBeingFollowed', false);
+  },
+
+  /**
+   * Checks if user is being followed
+   */
+  async checkIfUserIsBeingFollowed() {
+    const currentUser = this.get('session.model');
+
+    this.set('isUserBeingFollowed', await currentUser.isFollowing(this.get('--user.id')));
   },
 });

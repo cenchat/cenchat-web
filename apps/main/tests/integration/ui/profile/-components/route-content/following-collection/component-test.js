@@ -35,10 +35,7 @@ module('Integration | Component | profile/-components/route-content/following co
     await render(hbs`{{profile/-components/route-content/following-collection --user=user}}`);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      users: 'instance',
-      type: 'string',
-    });
+    assert.deepEqual(spy.componentArgsType, { users: 'instance' });
   });
 
   test('should show empty state when there are no followings :(', async function (assert) {
