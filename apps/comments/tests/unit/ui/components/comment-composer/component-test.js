@@ -25,7 +25,7 @@ module('Unit | Component | comment composer', (hooks) => {
     });
   });
 
-  module('lifecycle: init', () => {
+  module('hook: init', () => {
     test('should create a new comment and set it as the comment prop when @comment isn\'t available', async function (assert) {
       assert.expect(2);
 
@@ -45,12 +45,15 @@ module('Unit | Component | comment composer', (hooks) => {
         assert.ok(createRecordStub.calledWithExactly(
           'comment',
           {
+            attachments: null,
             isAskMeAnything: false,
             isDeleted: false,
             author: 'sessionModel',
             page: 'page',
             replyTo: undefined,
             root: undefined,
+            taggedEntities: null,
+            text: null,
           },
         ));
         assert.deepEqual(component.get('comment'), this.comment);
