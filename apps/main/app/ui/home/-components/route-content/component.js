@@ -1,4 +1,5 @@
 import { getOwner } from '@ember/application';
+import { inject } from '@ember/service';
 import Component from '@ember/component';
 
 /**
@@ -7,6 +8,11 @@ import Component from '@ember/component';
  * @extends Ember.Component
  */
 export default Component.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  fastboot: inject(),
+
   /**
    * @override
    */

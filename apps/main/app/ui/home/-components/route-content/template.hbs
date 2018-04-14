@@ -13,7 +13,9 @@
         </p>
       </div>
 
-      {{sign-in-form class="home_route-content__sign-in"}}
+      {{#if (not fastboot.isFastBoot)}}
+        {{sign-in-form class="home_route-content__sign-in"}}
+      {{/if}}
     </header>
 
     {{ce-icon-link-button class="home_route-content__scroll-indicator" href="#marketing" icon="expand_more" size="large"}}

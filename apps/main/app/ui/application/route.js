@@ -1,4 +1,5 @@
 import { inject } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 import Route from '@ember/routing/route';
 
 import firebase from 'firebase';
@@ -9,6 +10,11 @@ import firebase from 'firebase';
  * @extends Ember.Route
  */
 export default Route.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  fastboot: inject(),
+
   /**
    * @type {Ember.Service}
    */
@@ -155,20 +161,17 @@ export default Route.extend({
     /**
      * @override
      */
-    loading(transition, ...args) {
-      this._super(transition, args);
+    didTransition(...args) {
+      this._super(...args);
 
-      const progressBar = document.createElement('div');
+      if (!this.get('fastboot.isFastBoot') && !this.get('isSplashScreenRemoved')) {
+        scheduleOnce('afterRender', () => {
+          const splashScreenElement = document.querySelector('.splash-screen');
 
-      progressBar.id = 'progress-bar';
-      progressBar.className = 'progress-bar';
-      progressBar.setAttribute('role', 'progressbar');
-      progressBar.setAttribute('aria-valuetext', 'Loading page');
-      document.querySelector('body').appendChild(progressBar);
-
-      transition.promise.finally(() => {
-        progressBar.remove();
-      });
+          splashScreenElement.parentNode.removeChild(splashScreenElement);
+          this.set('isSplashScreenRemoved', true);
+        });
+      }
     },
   },
 });

@@ -1,19 +1,17 @@
 <main class="comments-content ce-theme-dark">
   <figure class="comments-content__figure">
     <blockquote class="comments-content__blockquote">
-      <p class="comments-content__message" data-test-comments-content="message">
-        {{--comment.text}}
+      <p class="comments-content__message" data-test-comments-content="message">{{--comment.text}}</p>
 
-        <div class="comments-content__attachment-container">
-          {{#each --comment.parsedAttachments as |attachment|}}
-            <img
-                class="comments-content__attachment"
-                data-test-comments-content="attachment"
-                src="{{attachment.imageUrl}}"
-                alt="{{attachment.description}}">
-          {{/each}}
-        </div>
-      </p>
+      <div class="comments-content__attachment-container">
+        {{#each --comment.parsedAttachments as |attachment|}}
+          <img
+              class="comments-content__attachment"
+              data-test-comments-content="attachment"
+              src="{{attachment.imageUrl}}"
+              alt="{{attachment.description}}">
+        {{/each}}
+      </div>
     </blockquote>
 
     <figcaption class="comments-content__figcaption">

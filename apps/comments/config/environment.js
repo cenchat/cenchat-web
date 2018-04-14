@@ -24,11 +24,8 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    apiHost: ' https://us-central1-cenchat-stg.cloudfunctions.net/app',
-
     // Addon configs
     'ember-component-css': { namespacing: false },
-
     firebase: {
       apiKey: 'AIzaSyCHOPAJdJOzFPrEZ5sKPcQFO7lXX05T4Wk',
       authDomain: 'cenchat-stg.firebaseapp.com',
@@ -37,7 +34,6 @@ module.exports = function(environment) {
       storageBucket: 'cenchat-stg.appspot.com',
       messagingSenderId: '72355646509',
     },
-
     torii: { sessionServiceName: 'session' },
   };
 
@@ -62,7 +58,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'https://us-central1-cenchat-prod.cloudfunctions.net/app',
     ENV.firebase = {
       apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',
       authDomain: 'cenchat-prod.firebaseapp.com',

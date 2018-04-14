@@ -38,6 +38,10 @@
   }
 }
 
+.main--no-splash ~ .splash-screen {
+  display: none;
+}
+
 .section {
   padding-right: 8px;
   padding-left: 8px;
