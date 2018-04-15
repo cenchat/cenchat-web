@@ -1,3 +1,5 @@
+{{head-layout}}
+
 {{yield}}
 
 {{#if --session.model}}
@@ -34,3 +36,8 @@
 {{/if}}
 
 {{ce-toast data-test-application="toast"}}
+
+<div class="splash-screen ce-theme-dark">
+  {{cenchat-c-logo class="splash-screen__logo"}}
+  <div class="splash-screen__progress-bar"></div>
+</div>

@@ -3,6 +3,8 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { spyComponent } from '@cenchat/core/test-support';
+
 import {
   setupBeforeEach,
   setupAfterEach,
@@ -21,8 +23,15 @@ module('Integration | Component | home/-components/route content', (hooks) => {
     await setupAfterEach(this);
   });
 
-  test('nothing to test', async (assert) => {
+  test('should show <SignInForm /> when not in fastboot', async function (assert) {
     assert.expect(1);
+
+    // Arrange
+    const fastboot = this.owner.lookup('service:fastboot');
+
+    fastboot.set('isFastBoot', false);
+
+    const spy = spyComponent(this, 'sign-in-form');
 
     // Act
     await render(hbs`
@@ -31,6 +40,26 @@ module('Integration | Component | home/-components/route content', (hooks) => {
     `);
 
     // Assert
-    assert.ok(true);
+    assert.ok(spy.calledOnce);
+  });
+
+  test('should hide <SignInForm /> when in fastboot', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const fastboot = this.owner.lookup('service:fastboot');
+
+    fastboot.set('isFastBoot', true);
+
+    const spy = spyComponent(this, 'sign-in-form');
+
+    // Act
+    await render(hbs`
+      {{home/-components/route-content
+          --onHandleSignInSuccess=(action onHandleSignInSuccess)}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
   });
 });

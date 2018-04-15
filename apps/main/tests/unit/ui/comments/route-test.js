@@ -1,11 +1,15 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Unit | Route | comment', (hooks) => {
   setupTest(hooks);
+
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
 
   module('hook: model', () => {
     test('should return comment', async function (assert) {
@@ -23,6 +27,42 @@ module('Unit | Route | comment', (hooks) => {
       // Assert
       assert.ok(findRecordStub.calledWithExactly('comment', 'comment_a'));
       assert.equal(result, 'foo');
+    });
+  });
+
+  module('hook: afterModel', () => {
+    test('should set headData', async function (assert) {
+      assert.expect(5);
+
+      // Arrange
+      const model = await this.store.findRecord('comment', 'comment_b');
+      const route = this.owner.lookup('route:comments');
+
+      // Act
+      await route.afterModel(model);
+
+      // Assert
+      assert.equal(route.get('headData.title'), 'User B on Cenchat');
+      assert.equal(route.get('headData.description'), 'Foobar');
+      assert.equal(route.get('headData.url'), 'https://cenchat.com/comments/comment_b');
+      assert.equal(route.get('headData.image'), 'user_b.jpg');
+      assert.equal(route.get('headData.type'), 'article');
+    });
+
+    test('should preload relationships', async function (assert) {
+      assert.expect(3);
+
+      // Arrange
+      const model = await this.store.findRecord('comment', 'comment_b');
+      const route = this.owner.lookup('route:comments');
+
+      // Act
+      await route.afterModel(model);
+
+      // Assert
+      assert.equal(model.get('author.displayName'), 'User B');
+      assert.ok(model.get('parsedAttachments').length > 0);
+      assert.equal(model.get('page.url'), 'http://site-a.com/foo/bar');
     });
   });
 });

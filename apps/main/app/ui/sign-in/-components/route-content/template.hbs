@@ -1,5 +1,7 @@
 {{cenchat-header --fixed=true --responsive=true}}
 
-<main class="sign-in_route-content__main main ce-theme-dark">
-  {{sign-in-form class="sign-in_route-content__form"}}
+<main class="main main--unsectioned">
+  {{#if (not fastboot.isFastBoot)}}
+    {{sign-in-form}}
+  {{/if}}
 </main>

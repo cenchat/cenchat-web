@@ -3,20 +3,13 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
+import { setupTestState } from '@cenchat/core/test-support';
 
 module('Integration | Component | cenchat-header', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    await setupTestState(this);
   });
 
   test('should make header fixed when fixed is true', async (assert) => {
