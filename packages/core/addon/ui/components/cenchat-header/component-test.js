@@ -12,6 +12,20 @@ module('Integration | Component | cenchat-header', (hooks) => {
     await setupTestState(this);
   });
 
+  test('should show yield', async (assert) => {
+    assert.expect(1);
+
+    // Act
+    await render(hbs`
+      {{#cenchat-header responsive=true}}
+        <div data-test="yield">Foo</div>
+      {{/cenchat-header}}
+    `);
+
+    // Assert
+    assert.dom('[data-test="yield"]').exists();
+  });
+
   test('should make header responsive when responsive is true', async (assert) => {
     assert.expect(1);
 

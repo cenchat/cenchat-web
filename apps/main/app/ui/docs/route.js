@@ -1,8 +1,9 @@
-import AuthenticatedRoute from 'main/utils/authenticated-route';
+import Route from '@ember/routing/route';
 
 /**
  * @class Docs
  * @namespace Route
- * @extends Route.AuthenticatedRoute
+ * @extends Ember.Route
  */
-export default AuthenticatedRoute.extend();
+export default Route.extend({
+});

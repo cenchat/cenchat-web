@@ -6,6 +6,10 @@
   fill: #fff;
 }
 
+.home_route-content__top-bar .ce-link-button {
+  color: #fff;
+}
+
 @media (min-width: 960px) {
   .home_route-content__top-bar {
     width: calc(100% + 52px);
