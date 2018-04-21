@@ -35,39 +35,6 @@ module('Unit | Model | user', (hooks) => {
     });
   });
 
-  module('getter/setter: missingInfo', () => {
-    test('should return an array containing "username" when username is unavailable', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
-
-      // Act
-      const result = model.get('missingInfo');
-
-      // Assert
-      assert.deepEqual(result, ['username']);
-    });
-
-    test('should return an empty array there are no missing info', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-        username: 'user_a',
-      }));
-
-      // Act
-      const result = model.get('missingInfo');
-
-      // Arrange
-      assert.deepEqual(result, []);
-    });
-  });
-
   module('getter/setter: urlKey', () => {
     test('should return the username when available', async function (assert) {
       assert.expect(1);

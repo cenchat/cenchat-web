@@ -5,12 +5,6 @@
 
 <main class="layout__main">
   {{#if (eq --session.model.id --user.id)}}
-    {{#if --user.missingInfo}}
-      {{profile/-components/route-content/missing-info
-          --user=--user
-          --onUsernameSubmit=(action --onUsernameSubmit)}}
-    {{/if}}
-
     {{#if --user.facebookId}}
       {{profile/-components/route-content/follow-suggestion-collection --user=--user}}
     {{/if}}

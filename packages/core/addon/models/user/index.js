@@ -133,21 +133,6 @@ export default Model.extend({
   }),
 
   /**
-   * @type {Array.<string>}
-   */
-  missingInfo: computed('username', {
-    get() {
-      const missingInfo = [];
-
-      if (!this.get('username')) {
-        missingInfo.push('username');
-      }
-
-      return missingInfo;
-    },
-  }),
-
-  /**
    * @type {string}
    */
   urlKey: computed('username', {
