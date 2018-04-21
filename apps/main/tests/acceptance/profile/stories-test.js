@@ -1,4 +1,4 @@
-import { click, fillIn, visit } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -9,20 +9,6 @@ module('Acceptance | profile', (hooks) => {
 
   hooks.beforeEach(async function () {
     await setupApplicationTestState(this);
-  });
-
-  test('should set username', async (assert) => {
-    assert.expect(1);
-
-    // Arrange
-    await visit('/profile/user_a');
-
-    // Act
-    await fillIn('[data-test-missing-info-username="field"] input', 'user_a');
-    await click('[data-test-missing-info-username="save-button"]');
-
-    // Assert
-    assert.dom('[data-test-missing-info="host"]').doesNotExist();
   });
 
   test('should show followings', async (assert) => {
