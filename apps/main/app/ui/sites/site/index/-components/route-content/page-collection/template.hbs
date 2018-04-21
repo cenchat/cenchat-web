@@ -1,26 +1,19 @@
-<section class="section">
-  {{#ce-subheader class="section__header"}}
+<section class="layout__section">
+  {{#ce-subheader class="layout__section-header"}}
     <h2>Pages</h2>
   {{/ce-subheader}}
 
-  {{#infinite-content class="wrapper" --query=--pages}}
+  {{#infinite-content --query=--pages}}
     {{#each --pages as |page|}}
-      {{sites/site/index/-components/route-content/page-collection/page-collection-item
-          --router=--router
-          --page=page}}
+      {{sites/site/index/-components/route-content/page-collection/page-collection-item --router=--router --page=page}}
     {{else}}
       <article class="card" data-test-page-collection="empty-state">
         <header class="card__header">
           <h3 class="card__heading">Create some pages</h3>
-
-          <p class="card__subheading">
-            Pages from your site that uses Cenchat Comments will appear here
-          </p>
+          <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>
         </header>
 
-        {{#ce-link-button class="card__action" href=(href-to 'docs')}}
-          See how
-        {{/ce-link-button}}
+        {{#ce-link-button class="card__action" href=(href-to 'docs')}}See how{{/ce-link-button}}
       </article>
     {{/each}}
   {{/infinite-content}}

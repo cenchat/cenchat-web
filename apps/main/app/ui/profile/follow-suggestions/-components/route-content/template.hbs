@@ -11,12 +11,14 @@
   {{/ce-top-bar}}
 
   <div class="side-nav__content">
-    {{#infinite-content
-        --query=followSuggestions
-        --selector=".side-nav__content"
-        --onLoadMoreRecords=(action handleLoadMoreRecords)}}
-      {{user-collection --users=followSuggestions}}
-    {{/infinite-content}}
+    {{#if followSuggestions}}
+      {{#infinite-content
+          --query=followSuggestions
+          --selector=".side-nav__content"
+          --onLoadMoreRecords=(action handleLoadMoreRecords)}}
+        {{user-collection --users=followSuggestions}}
+      {{/infinite-content}}
+    {{/if}}
   </div>
 
   {{yield}}

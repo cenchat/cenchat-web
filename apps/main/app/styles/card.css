@@ -7,16 +7,19 @@
   box-shadow: var(--elevation);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 960px) {
   .card {
     max-width: 420px;
-    margin-right: auto;
-    margin-left: auto;
   }
 }
 
 .card:not(:last-of-type) {
   margin-bottom: 8px;
+}
+
+.card--centerized {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .card__image {

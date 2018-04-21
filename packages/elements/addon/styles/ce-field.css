@@ -15,6 +15,7 @@
 
 .ce-field input {
   border-radius: var(--border-radius-square);
+  appearance: none;
 }
 
 .ce-field select {

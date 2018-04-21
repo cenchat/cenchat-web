@@ -1,14 +1,7 @@
 .ce-top-bar {
-  position: relative;
   width: 100%;
   background-color: var(--item-background-color);
   box-shadow: var(--elevation);
-}
-
-.ce-top-bar[fixed] {
-  position: fixed;
-  top: 0;
-  z-index: 400;
 }
 
 @media (min-width: 960px) {

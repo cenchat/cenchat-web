@@ -30,7 +30,7 @@ module('Integration | Component | user-collection', (hooks) => {
     await render(hbs`{{user-collection --users=users}}`);
 
     // Assert
-    assert.ok(spy.calledTwice);
+    assert.ok(spy.called);
     assert.deepEqual(spy.componentArgsType, { user: 'instance' });
   });
 });

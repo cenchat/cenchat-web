@@ -57,7 +57,7 @@ module('Integration | Component | sites/index/-components/route-content/site col
     `);
 
     // Assert
-    assert.ok(spy.calledTwice);
+    assert.ok(spy.called);
     assert.deepEqual(spy.componentArgsType, {
       router: 'instance',
       site: 'instance',

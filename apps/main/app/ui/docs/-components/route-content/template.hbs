@@ -1,71 +1,32 @@
-{{#ce-top-bar fixed=true responsive=true}}
+{{#ce-top-bar class="layout__header" responsive=true}}
   <h1>Documentations</h1>
 {{/ce-top-bar}}
 
-<main class="main">
-  <section class="section">
-    {{#ce-subheader class="section__header"}}
+<main class="layout__main">
+  <section class="layout__section">
+    {{#ce-subheader class="layout__section-header"}}
       <h2>Installation</h2>
     {{/ce-subheader}}
 
-    <div class="wrapper">
+    {{#masonry-grid --items=platforms as |item|}}
       <article
           class="card clickable"
           tabindex="0"
-          onclick={{action handleInstallationCardClick 'blogger'}}
-          onkeydown={{action handleInstallationCardKeydown 'blogger'}}>
+          onclick={{action handleInstallationCardClick item.id}}
+          onkeydown={{action handleInstallationCardKeydown item.id}}>
         <header class="docs_route-content__platform-header">
           <div class="docs_route-content__platform-text-content">
-            <h3 class="docs_route-content__platform-name">Blogger</h3>
+            <h3 class="docs_route-content__platform-name">{{item.name}}</h3>
+
+            {{#if item.description}}
+              <p class="docs_route-content__platform-description">{{item.description}}</p>
+            {{/if}}
           </div>
 
-          <img
-              class="docs_route-content__platform-logo"
-              src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fblogger%2Fblogger-logo_600.png?alt=media&token=6319c57d-a44e-4062-b99e-24f538a7ff17"
-              alt="Blogger">
+          <img class="docs_route-content__platform-logo" src="{{item.logoUrl}}" alt="{{item.name}}">
         </header>
       </article>
-
-      <article
-          class="card clickable"
-          tabindex="0"
-          onclick={{action handleInstallationCardClick 'wordpress'}}
-          onkeydown={{action handleInstallationCardKeydown 'wordpress'}}>
-        <header class="docs_route-content__platform-header">
-          <div class="docs_route-content__platform-text-content">
-            <h3 class="docs_route-content__platform-name">WordPress</h3>
-          </div>
-
-          <img
-              class="docs_route-content__platform-logo"
-              src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fwordpress%2Fwordpress-logo_500.png?alt=media&token=789368c7-bfd5-496f-96f7-dd9aab796405"
-              alt="WordPress">
-        </header>
-      </article>
-
-      <article
-          class="card clickable"
-          tabindex="0"
-          onclick={{action handleInstallationCardClick 'universal'}}
-          onkeydown={{action handleInstallationCardKeydown 'universal'}}>
-        <header class="docs_route-content__platform-header">
-          <div class="docs_route-content__platform-text-content">
-            <h3 class="docs_route-content__platform-name">
-              Universal
-            </h3>
-
-            <p class="docs_route-content__platform-description">
-              For platforms not listed
-            </p>
-          </div>
-
-          <img
-              class="docs_route-content__platform-logo"
-              src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fhtml5%2Fhtml5-logo_512.png?alt=media&token=0a329fa8-7691-41a0-b764-6ea6845443ea"
-              alt="HTML5">
-        </header>
-      </article>
-    </div>
+    {{/masonry-grid}}
   </section>
 
   {{yield}}

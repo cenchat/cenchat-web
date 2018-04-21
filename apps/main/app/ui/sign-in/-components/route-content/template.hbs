@@ -1,7 +1,9 @@
-{{cenchat-header --fixed=true --responsive=true}}
+{{cenchat-header class="layout__header" responsive=true}}
 
-<main class="main main--unsectioned">
+<main class="layout__main">
   {{#if (not fastboot.isFastBoot)}}
-    {{sign-in-form}}
+    <section class="layout__section layout__section--headerless">
+      {{sign-in-form}}
+    </section>
   {{/if}}
 </main>

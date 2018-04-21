@@ -4,7 +4,6 @@
   align-items: center;
   min-height: calc(100vh - 56px);
   overflow: auto;
-  background-color: #212121;
 }
 
 @media (min-width: 960px) {
@@ -61,7 +60,6 @@
   content: "— ";
 }
 
-.comments-content ~ .ce-navbar,
 .comments-content ~ .ce-toast,
 .comments-content ~ .splash-screen {
   display: none;

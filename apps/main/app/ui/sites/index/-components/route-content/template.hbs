@@ -1,4 +1,4 @@
-{{#ce-top-bar fixed=true responsive=true}}
+{{#ce-top-bar class="layout__header" responsive=true}}
   <h1>Sites</h1>
 
   {{#if (eq --user.betaTesterStatus 'approved')}}
@@ -11,7 +11,7 @@
   {{/if}}
 {{/ce-top-bar}}
 
-<main class="main main--unsectioned">
+<main class="layout__main">
   {{#if --user.betaTesterStatus}}
     {{#if (eq --user.betaTesterStatus 'approved')}}
       {{#async-let

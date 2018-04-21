@@ -19,7 +19,10 @@ html {
   font-family: var(--font-family);
 }
 
-body {
+body,
+body > .ember-view {
+  position: relative;
+  min-height: 100vh;
   background-color: var(--body-background-color);
 }
 
@@ -36,14 +39,6 @@ body {
     margin-bottom: 16px;
     margin-left: 68px;
   }
-}
-
-.ce-top-bar[multi-row] ~ .ce-navbar::before {
-  height: 120px;
-}
-
-.ce-top-bar.search-top-bar ~ .ce-navbar::before {
-  height: 90px;
 }
 
 strong {
