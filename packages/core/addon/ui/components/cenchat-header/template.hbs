@@ -3,7 +3,9 @@
     data-test-cenchat-header="host"
     responsive=responsive
     multi-row=multi-row}}
-  <a href={{href-to 'application'}}>
+  <a class="cenchat-header_logo-link" href={{href-to 'application'}}>
     {{cenchat-wordmark-logo class="cenchat-header__logo"}}
   </a>
+
+  {{yield}}
 {{/ce-top-bar}}
