@@ -5,11 +5,7 @@
     onclick={{action handlePageClick}}
     onkeydown={{action handlePageKeydown}}>
   {{#if --page.imageUrl}}
-    <img
-        class="card__image"
-        data-test-page-collection-item="image"
-        src="{{--page.imageUrl}}"
-        alt="Page cover">
+    <img class="card__image" data-test-page-collection-item="image" src="{{--page.imageUrl}}" alt="Page cover">
   {{/if}}
 
   <header class="card__header">
@@ -18,7 +14,5 @@
     <p class="card__subheading" data-test-page-collection-item="id">{{--page.id}}</p>
   </header>
 
-  <p class="card__message card__short-text" data-test-page-collection-item="description">
-    {{--page.description}}
-  </p>
+  <p class="card__message card__short-text" data-test-page-collection-item="description">{{--page.description}}</p>
 </article>

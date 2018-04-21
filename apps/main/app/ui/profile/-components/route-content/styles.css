@@ -1,9 +1,0 @@
-.profile-route-content__main {
-  padding-top: 112px;
-}
-
-@media (min-width: 960px) {
-  .profile-route-content__main {
-    padding-top: 120px;
-  }
-}

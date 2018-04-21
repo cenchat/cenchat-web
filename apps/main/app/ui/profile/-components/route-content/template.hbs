@@ -3,7 +3,7 @@
     --user=--user
     --onSignOutClick=(action --onSignOutClick)}}
 
-<main class="profile-route-content__main main">
+<main class="layout__main">
   {{#if (eq --session.model.id --user.id)}}
     {{#if --user.missingInfo}}
       {{profile/-components/route-content/missing-info

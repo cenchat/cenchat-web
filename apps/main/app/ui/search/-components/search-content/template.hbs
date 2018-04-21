@@ -1,11 +1,13 @@
-<main class="search-content main">
-  <section class="section">
-    {{#ce-subheader class="section__header"}}
-      <h2>Users</h2>
-    {{/ce-subheader}}
+<main class="layout__main">
+  {{#if --users}}
+    <section class="layout__section">
+      {{#ce-subheader class="layout__section-header"}}
+        <h2>Users</h2>
+      {{/ce-subheader}}
 
-    {{user-collection class="wrapper" --users=--users}}
-  </section>
+      {{user-collection --users=--users}}
+    </section>
+  {{/if}}
 
   {{yield}}
 </main>

@@ -1,3 +1,9 @@
-{{#application/-components/route-content --session=session}}
-  {{outlet}}
-{{/application/-components/route-content}}
+{{head-layout}}
+{{outlet}}
+{{application/-components/application-navbar --session=session}}
+{{ce-toast data-test-application="toast"}}
+
+<div class="splash-screen">
+  {{cenchat-c-logo class="splash-screen__logo"}}
+  <div class="splash-screen__progress-bar"></div>
+</div>

@@ -1,9 +1,8 @@
 {{#ce-top-bar
-    class="cenchat-header ce-theme-dark"
+    class=(concat 'layout__header ' class)
     data-test-cenchat-header="host"
-    fixed=--fixed
-    responsive=--responsive
-    multi-row=--multiRow}}
+    responsive=responsive
+    multi-row=multi-row}}
   <a href={{href-to 'application'}}>
     {{cenchat-wordmark-logo class="cenchat-header__logo"}}
   </a>

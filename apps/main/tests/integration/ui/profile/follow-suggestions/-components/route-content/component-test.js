@@ -1,24 +1,18 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent, stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
-
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
 
 module('Integration | Component | profile/follow-suggestions/-components/route-content', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const userB = run(async () => this.get('store').findRecord('user', 'user_b'));
+    const userB = await this.store.findRecord('user', 'user_b');
     const currentUser = this.get('session.model');
 
     currentUser.set(
@@ -27,10 +21,6 @@ module('Integration | Component | profile/follow-suggestions/-components/route-c
     );
 
     this.set('user', currentUser);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show <InfiniteContent />', async function (assert) {

@@ -1,0 +1,46 @@
+{{#ce-navbar class="layout__nav"}}
+  {{#if --session.model}}
+    {{ce-icon-link-button
+        data-test-application-navbar="notification-link"
+        href=(href-to 'notifications')
+        title="Notifications"
+        aria-label="Notifications"
+        icon="notifications"
+        badged=--session.model.metaInfo.hasNewNotification}}
+
+    {{ce-icon-link-button
+        data-test-application-navbar="profile-link"
+        href=(href-to 'profile' --session.model.urlKey)
+        title="Profile"
+        aria-label="Profile"
+        icon="account_circle"}}
+
+    {{ce-icon-link-button
+        data-test-application-navbar="search-link"
+        href=(href-to 'search')
+        title="Search"
+        aria-label="Search"
+        icon="search"}}
+
+    {{ce-icon-link-button
+        data-test-application-navbar="sites-link"
+        href=(href-to 'sites.index')
+        title="Sites"
+        aria-label="Sites"
+        icon="domain"}}
+  {{else}}
+    {{ce-icon-link-button
+        data-test-application-navbar="home-link"
+        href=(href-to 'home')
+        title="Home"
+        aria-label="Home"
+        icon="home"}}
+
+    {{ce-icon-link-button
+        data-test-application-navbar="sign-in-link"
+        href=(href-to 'sign-in')
+        title="Sign in"
+        aria-label="Sign in"
+        icon="account_circle"}}
+  {{/if}}
+{{/ce-navbar}}

@@ -1,9 +1,9 @@
-<section class="section" data-test-missing-info="host">
-  {{#ce-subheader class="section__header"}}
+<section class="layout__section" data-test-missing-info="host">
+  {{#ce-subheader class="layout__section-header"}}
     <h2>Complete your profile</h2>
   {{/ce-subheader}}
 
-  <div class="wrapper">
+  <div>
     {{#each --user.missingInfo as |missingInfo|}}
       {{#if (eq missingInfo 'username')}}
         {{profile/-components/route-content/missing-info/missing-info-username

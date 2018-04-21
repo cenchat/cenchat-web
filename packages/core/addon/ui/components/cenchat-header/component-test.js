@@ -12,21 +12,11 @@ module('Integration | Component | cenchat-header', (hooks) => {
     await setupTestState(this);
   });
 
-  test('should make header fixed when fixed is true', async (assert) => {
-    assert.expect(1);
-
-    // Act
-    await render(hbs`{{cenchat-header --fixed=true}}`);
-
-    // Assert
-    assert.dom('[data-test-cenchat-header="host"]').hasAttribute('fixed');
-  });
-
   test('should make header responsive when responsive is true', async (assert) => {
     assert.expect(1);
 
     // Act
-    await render(hbs`{{cenchat-header --responsive=true}}`);
+    await render(hbs`{{cenchat-header responsive=true}}`);
 
     // Assert
     assert.dom('[data-test-cenchat-header="host"]').hasAttribute('responsive');
@@ -36,7 +26,7 @@ module('Integration | Component | cenchat-header', (hooks) => {
     assert.expect(1);
 
     // Act
-    await render(hbs`{{cenchat-header --multiRow=true}}`);
+    await render(hbs`{{cenchat-header multi-row=true}}`);
 
     // Assert
     assert.dom('[data-test-cenchat-header="host"]').hasAttribute('multi-row');

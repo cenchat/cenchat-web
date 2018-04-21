@@ -1,4 +1,4 @@
-.sign-in__footer {
+.sign-in-form__footer {
   padding-top: 8px;
   margin: 0 16px 16px;
   font-size: var(--font-size-12);
@@ -8,6 +8,6 @@
   border-top: 1px solid var(--divider-color);
 }
 
-.sign-in__strong {
+.sign-in-form__strong {
   font-weight: 500;
 }

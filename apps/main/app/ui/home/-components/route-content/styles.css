@@ -1,12 +1,22 @@
 .home_route-content__top-bar {
-  background-color: #212121;
-  box-shadow: none;
+  background-color: var(--brand-primary-color);
 }
 
-.home_route-content__logo {
-  width: auto;
-  height: 32px;
-  padding: 6px 20px;
+.home_route-content__top-bar svg {
+  fill: #fff;
+}
+
+@media (min-width: 960px) {
+  .home_route-content__top-bar {
+    width: calc(100% + 52px);
+    margin-left: -52px;
+  }
+
+  .home_route-content__main {
+    width: calc(100% + 52px);
+    margin-left: -52px;
+    overflow: hidden;
+  }
 }
 
 .home_route-content__intro-section {
@@ -139,4 +149,9 @@
     bottom: 16px;
     display: inline-block;
   }
+}
+
+.home_route-content__main ~ .ce-navbar,
+.home_route-content__main ~ .ce-toast {
+  display: none;
 }
