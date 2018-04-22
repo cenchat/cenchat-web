@@ -14,6 +14,34 @@ module('Integration | Component | notifications-list', (hooks) => {
     this.set('notifications', await this.store.findAll('notification'));
   });
 
+  test('should show <NotificationListCommentTagItem /> for every comment_tag type notification', async function (assert) {
+    assert.expect(2);
+
+    // Arrange
+    const spy = spyComponent(this, 'notification-list/notification-list-comment-tag-item');
+
+    // Act
+    await render(hbs`{{notification-list --notifications=notifications}}`);
+
+    // Assert
+    assert.ok(spy.calledOnce);
+    assert.deepEqual(spy.componentArgsType, { notification: 'instance' });
+  });
+
+  test('should show <NotificationListCommentReplyItem /> for every comment_reply type notification', async function (assert) {
+    assert.expect(2);
+
+    // Arrange
+    const spy = spyComponent(this, 'notification-list/notification-list-comment-reply-item');
+
+    // Act
+    await render(hbs`{{notification-list --notifications=notifications}}`);
+
+    // Assert
+    assert.ok(spy.calledOnce);
+    assert.deepEqual(spy.componentArgsType, { notification: 'instance' });
+  });
+
   test('should show <NotificationListFollowItem /> for every follow type notification', async function (assert) {
     assert.expect(2);
 

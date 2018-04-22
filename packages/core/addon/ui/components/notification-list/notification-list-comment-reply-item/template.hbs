@@ -1,23 +1,23 @@
 <li
     class="notification-list-item list__item"
-    data-test-notification-list-comment-tag-item="host">
+    data-test-notification-list-comment-reply-item="host">
   <div class="notification-list-item__row">
     <img
         class="list__avatar list__avatar--circle"
-        data-test-notification-list-comment-tag-item="from-photo"
+        data-test-notification-list-comment-reply-item="from-photo"
         src="{{--notification.from.photoUrl}}"
         alt="{{--notification.from.displayName}}">
     
     <div class="list__multi-line-content">
       <h2
           class="list__primary-text"
-          data-test-notification-list-comment-tag-item="title">
+          data-test-notification-list-comment-reply-item="title">
         {{--notification.displayMessage.title}}
       </h2>
 
       <p
           class="list__secondary-text"
-          data-test-notification-list-comment-tag-item="created-on">
+          data-test-notification-list-comment-reply-item="created-on">
         {{moment-from-now --notification.createdOn}}
       </p>
     </div>
@@ -28,7 +28,7 @@
       {{#ce-link-button
           class="notification-list-item__action-link"
           href=link
-          data-test-notification-list-comment-tag-item="visit-link"}}
+          data-test-notification-list-comment-reply-item="visit-link"}}
         Visit
       {{/ce-link-button}}
     </div>

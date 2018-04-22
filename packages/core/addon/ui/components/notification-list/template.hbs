@@ -1,5 +1,7 @@
 {{#each --notifications as |notification|}}
-  {{#if (eq notification.type 'comment_tag')}}
+  {{#if (eq notification.type 'comment_reply')}}
+    {{notification-list/notification-list-comment-reply-item --notification=notification}}
+  {{else if (eq notification.type 'comment_tag')}}
     {{notification-list/notification-list-comment-tag-item --notification=notification}}
   {{else if (eq notification.type 'follow')}}
     {{notification-list/notification-list-follow-item --notification=notification}}
