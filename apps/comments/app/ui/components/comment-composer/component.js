@@ -1,4 +1,5 @@
 import { inject } from '@ember/service';
+import { typeOf } from '@ember/utils';
 import Component from '@ember/component';
 
 import toast from '@cenchat/elements/utils/toast';
@@ -56,16 +57,28 @@ export default Component.extend({
   /**
    * Handles attachment item click event
    *
-   * @param {Model.Emoji|Model.Sticker} item
+   * @param {Model.Emoji|Model.Sticker|Object} item
    */
   handleAddAttachmentClick(item) {
     const comment = this.get('comment');
+    let attachments = comment.get('attachments');
 
-    if (comment.get('parsedAttachments').length < 4) {
-      comment.set('parsedAttachments', [
-        ...comment.get('parsedAttachments'),
-        item,
-      ]);
+    if (!Array.isArray(attachments)) {
+      attachments = [];
+    }
+
+    if (attachments.length < 4) {
+      if (typeOf(item) === 'instance') {
+        comment.set('attachments', [
+          ...attachments,
+          { id: item.get('id'), type: item.get('constructor.modelName') },
+        ]);
+      } else {
+        comment.set('attachments', [
+          ...attachments,
+          { id: item.id, type: item.type },
+        ]);
+      }
     }
   },
 
@@ -87,11 +100,10 @@ export default Component.extend({
    */
   handleRemoveAttachmentClick(indexToRemove) {
     const comment = this.get('comment');
-    const attachments = comment.get('parsedAttachments');
 
     comment.set(
-      'parsedAttachments',
-      attachments.filter((attachment, index) => index !== indexToRemove),
+      'attachments',
+      comment.get('attachments').filter((attachment, index) => index !== indexToRemove),
     );
   },
 

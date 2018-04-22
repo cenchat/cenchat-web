@@ -1,4 +1,5 @@
 .comment-composer__container {
+  overflow: hidden;
   background-color: var(--text-field-background-color);
   border-radius: var(--border-radius-square);
 }

@@ -309,44 +309,60 @@ module('Unit | Model | comment', (hooks) => {
       }));
 
       // Act
-      await model.get('parsedAttachments');
+      const result = await model.get('parsedAttachments');
 
       // Assert
-      return settled().then(() => {
-        assert.deepEqual(model.get('parsedAttachments'), [sticker]);
-      });
+      assert.deepEqual(result, [sticker]);
     });
 
-    test('should serialize and update the attachments when setting', function (assert) {
+    test('should return the model equivalent for tenor gifs', async function (assert) {
       assert.expect(1);
 
       // Arrange
+      const server = sinon.fakeServer.create();
+
+      server.autoRespond = true;
+      server.autoRespondAfter = 0;
+
+      server.respondWith(
+        'GET',
+        'https://api.tenor.com/v1/gifs?ids=gif_a&key=OZ2DM5UOGY8A&media_filter=minimal',
+        [
+          200,
+          { 'Content-Type': 'application/json' },
+          JSON.stringify({
+            results: [
+              {
+                media: [
+                  {
+                    tinygif: { url: 'http://example.com/image.gif' },
+                  },
+                ],
+                title: 'wow',
+                id: 12345,
+              },
+            ],
+          }),
+        ],
+      );
+
       const store = this.owner.lookup('service:store');
-      const sticker = run(() => store.createRecord('sticker', { id: 'sticker_a' }));
-      const model = run(() => store.createRecord('comment', {}));
+      const model = run(() => store.createRecord('comment', {
+        attachments: [{ id: 'gif_a', type: 'tenor_gif' }],
+      }));
 
       // Act
-      run(() => model.set('parsedAttachments', [sticker]));
+      const result = await model.get('parsedAttachments');
 
       // Assert
-      assert.deepEqual(model.get('attachments'), [{
-        id: 'sticker_a',
-        type: 'sticker',
-      }]);
-    });
-
-    test('should update attachments to a null value when setting to a non-array type', function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const store = this.owner.lookup('service:store');
-      const model = run(() => store.createRecord('comment', {}));
-
-      // Act
-      run(() => model.set('parsedAttachments', 'foo'));
-
-      // Assert
-      assert.deepEqual(model.get('attachments'), null);
+      assert.deepEqual(result, [
+        {
+          id: 12345,
+          description: 'wow',
+          imageUrl: 'http://example.com/image.gif',
+          type: 'tenor_gif',
+        },
+      ]);
     });
   });
 

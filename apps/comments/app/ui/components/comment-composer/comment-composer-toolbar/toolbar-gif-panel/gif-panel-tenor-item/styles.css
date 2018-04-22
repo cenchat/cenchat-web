@@ -1,0 +1,8 @@
+.gif-panel-tenor-item:not(:only-child):not(:last-child) {
+  margin-right: 8px;
+}
+
+.gif-panel-tenor-item img {
+  display: block;
+  height: 200px;
+}

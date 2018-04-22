@@ -24,6 +24,8 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    tenorApiKey: 'OZ2DM5UOGY8A',
+
     // Addon configs
     'ember-component-css': { namespacing: false },
     firebase: {

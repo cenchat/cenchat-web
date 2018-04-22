@@ -4,6 +4,10 @@
   padding-bottom: 8px;
 }
 
+.comment-item__edit-form-container {
+  overflow: hidden;
+}
+
 .comment-item__edit-form-composer {
   flex: 1;
   overflow: hidden;

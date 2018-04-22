@@ -1,9 +1,14 @@
 import { Promise } from 'rsvp';
 import { belongsTo } from 'ember-data/relationships';
 import { computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 import { inject } from '@ember/service';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+
+import { promiseArray } from '@cenchat/core/utils/computed-promise';
+
+import fetch from 'fetch';
 
 /**
  * @class Comment
@@ -174,33 +179,26 @@ export default Model.extend({
   /**
    * @type {Array}
    */
-  parsedAttachments: computed('attachments', {
-    get() {
-      if (Array.isArray(this.get('attachments'))) {
-        const requests = [];
+  parsedAttachments: promiseArray((context) => {
+    if (Array.isArray(context.get('attachments'))) {
+      const requests = [];
 
-        this.get('attachments').forEach((attachment) => {
-          if (attachment.type === 'sticker') {
-            requests.push(this.get('store').findRecord(
-              'sticker',
-              attachment.id,
-            ));
-          }
-        });
+      context.get('attachments').forEach((attachment) => {
+        if (attachment.type === 'sticker') {
+          requests.push(context.get('store').findRecord(
+            'sticker',
+            attachment.id,
+          ));
+        } else if (attachment.type === 'tenor_gif') {
+          requests.push(context.findTenorGif(attachment.id));
+        }
+      });
 
-        Promise.all(requests).then(results => this.set('parsedAttachments', results));
-      }
+      return Promise.all(requests);
+    }
 
-      return this.get('_parsedAttachments');
-    },
-
-    set(key, attachments) {
-      this.set('_parsedAttachments', attachments);
-      this.set('attachments', this.serializeAttachments(attachments));
-
-      return attachments;
-    },
-  }),
+    return Promise.resolve([]);
+  }, 'attachments'),
 
   /**
    * @type {Array}
@@ -243,7 +241,6 @@ export default Model.extend({
     this.set('_isFromFollowing', false);
     this.set('_isAskMeAnythingAllowed', false);
     this.set('_isTextAllowed', false);
-    this.set('_parsedAttachments', []);
     this.set('_parsedTaggedEntities', {});
   },
 
@@ -316,26 +313,20 @@ export default Model.extend({
   },
 
   /**
-   * Serializes a comment's attachments
-   *
-   * @param {Array} attachments
-   * @return {Array} Serialized attachments
+   * @param {string} id
    * @private
    */
-  serializeAttachments(attachments) {
-    if (Array.isArray(attachments)) {
-      const serializedAttachments = [];
+  async findTenorGif(id) {
+    const { tenorApiKey } = getOwner(this).resolveRegistration('config:environment');
+    const response = await fetch(`https://api.tenor.com/v1/gifs?ids=${id}&key=${tenorApiKey}&media_filter=minimal`);
+    const data = await response.json();
+    const gif = data.results[0];
 
-      for (const attachment of attachments) {
-        serializedAttachments.push({
-          id: attachment.get('id'),
-          type: attachment.get('constructor.modelName'),
-        });
-      }
-
-      return serializedAttachments;
-    }
-
-    return null;
+    return {
+      id: gif.id,
+      description: gif.title,
+      imageUrl: gif.media[0].tinygif.url,
+      type: 'tenor_gif',
+    };
   },
 });

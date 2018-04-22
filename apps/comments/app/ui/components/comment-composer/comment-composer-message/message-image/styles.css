@@ -5,8 +5,8 @@
 }
 
 .comment-composer-message-image__image {
-  width: 80px;
   height: 80px;
+  border-radius: var(--border-radius-square);
 }
 
 .comment-composer-message-image__remove-attachment-button {

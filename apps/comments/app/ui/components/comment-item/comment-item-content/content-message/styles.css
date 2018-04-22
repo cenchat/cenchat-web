@@ -3,18 +3,11 @@
   margin-bottom: 0;
 }
 
-.comment-item-content-message__sticker-attachment-image {
-  max-width: 80px;
+.comment-item-content-message__attachment-image {
   max-height: 80px;
   margin-top: 8px;
   margin-bottom: 8px;
-}
-
-.comment-item-content-message__gif-attachment-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 32px;
+  border-radius: var(--border-radius-square);
 }
 
 .comment-item-content-message__text {
