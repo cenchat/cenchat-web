@@ -29,6 +29,7 @@ module.exports = function(environment) {
     },
     apiHost: ' https://us-central1-cenchat-stg.cloudfunctions.net/app',
     commentsHost: 'http://localhost:8000',
+    tenorApiKey: 'OZ2DM5UOGY8A',
 
     // Addon configs
     'ember-component-css': { namespacing: false },

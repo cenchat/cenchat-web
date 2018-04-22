@@ -34,6 +34,6 @@ export default Route.extend({
     // Preload relationships
     const page = await model.get('page');
 
-    await Promise.all([model.get('parsedAttachments'), page.get('site')]);
+    return Promise.all([model.get('parsedAttachments'), page.get('site')]);
   },
 });

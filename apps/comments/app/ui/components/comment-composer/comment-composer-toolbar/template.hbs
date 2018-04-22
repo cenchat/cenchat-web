@@ -12,6 +12,15 @@
           --onClick=(action (mut selectedPanel) 'sticker')}}
 
       {{ce-icon-button
+          data-test-composer-toolbar="gif-button"
+          title="Show GIFs"
+          aria-label="Show GIFs"
+          aria-pressed=(if (eq selectedPanel 'gif') 'true' 'false')
+          icon="gif"
+          square=true
+          --onClick=(action (mut selectedPanel) 'gif')}}
+
+      {{ce-icon-button
           data-test-comment-composer-toolbar="tag-entity-button"
           title="Tag users"
           aria-label="Tag users"
@@ -53,6 +62,9 @@
             --onAddAttachmentClick=(action --onAddAttachmentClick)}}
       {{/async-let}}
     {{/async-let}}
+  {{else if (eq selectedPanel 'gif')}}
+    {{comment-composer/comment-composer-toolbar/toolbar-gif-panel
+        --onAddAttachmentClick=(action --onAddAttachmentClick)}}
   {{else if (eq selectedPanel 'tag')}}
     {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel
         --onTagEntityClick=(action --onTagEntityClick)}}

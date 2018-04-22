@@ -61,7 +61,7 @@ module('Unit | Route | comment', (hooks) => {
 
       // Assert
       assert.equal(model.get('author.displayName'), 'User B');
-      assert.ok(model.get('parsedAttachments').length > 0);
+      assert.ok(model.get('parsedAttachments.length') > 0);
       assert.equal(model.get('page.url'), 'http://site-a.com/foo/bar');
     });
   });

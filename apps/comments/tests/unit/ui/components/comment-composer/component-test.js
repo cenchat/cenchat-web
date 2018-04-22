@@ -124,22 +124,27 @@ module('Unit | Component | comment composer', (hooks) => {
       assert.expect(1);
 
       // Arrange
+      const gif = { id: 'gif_a', type: 'tenor_gif' };
+      const sticker = EmberObject.create({
+        id: 'sticker_a',
+        constructor: { modelName: 'sticker' },
+      });
       const factory = this.owner.factoryFor('component:comment-composer');
       const component = await factory.create({ '--comment': this.comment });
 
       // Act
-      component.handleAddAttachmentClick('new1');
-      component.handleAddAttachmentClick('new2');
-      component.handleAddAttachmentClick('new3');
-      component.handleAddAttachmentClick('new4');
-      component.handleAddAttachmentClick('new5');
+      component.handleAddAttachmentClick(gif);
+      component.handleAddAttachmentClick(sticker);
+      component.handleAddAttachmentClick(gif);
+      component.handleAddAttachmentClick(gif);
+      component.handleAddAttachmentClick(gif);
 
       // Assert
-      assert.deepEqual(this.comment.get('parsedAttachments'), [
-        'new1',
-        'new2',
-        'new3',
-        'new4',
+      assert.deepEqual(this.comment.get('attachments'), [
+        gif,
+        { id: 'sticker_a', type: 'sticker' },
+        gif,
+        gif,
       ]);
     });
   });
@@ -180,7 +185,7 @@ module('Unit | Component | comment composer', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      this.comment.set('parsedAttachments', ['new1', 'new2', 'new3']);
+      this.comment.set('attachments', ['new1', 'new2', 'new3']);
 
       const factory = this.owner.factoryFor('component:comment-composer');
       const component = await factory.create({ '--comment': this.comment });
@@ -189,7 +194,7 @@ module('Unit | Component | comment composer', (hooks) => {
       component.handleRemoveAttachmentClick(1);
 
       // Assert
-      assert.deepEqual(this.comment.get('parsedAttachments'), ['new1', 'new3']);
+      assert.deepEqual(this.comment.get('attachments'), ['new1', 'new3']);
     });
   });
 

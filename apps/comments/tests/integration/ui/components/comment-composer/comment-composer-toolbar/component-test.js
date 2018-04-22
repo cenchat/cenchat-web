@@ -58,6 +58,30 @@ module('Integration | Component | comment-composer/comment composer toolbar', (h
     });
   });
 
+  test('should show <ToolbarGifPanel /> when clicking gif', async function (assert) {
+    assert.expect(2);
+
+    // Arrange
+    const gifButton = '[data-test-composer-toolbar="gif-button"]';
+    const spy = spyComponent(this, 'components/comment-composer/comment-composer-toolbar/toolbar-gif-panel');
+
+    await render(hbs`
+      {{comment-composer/comment-composer-toolbar
+          --comment=comment
+          --onAddAttachmentClick=(action onAddAttachmentClick)
+          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onSendCommentClick=(action onSendCommentClick)
+          --onTagEntityClick=(action onTagEntityClick)}}
+    `);
+
+    // Act
+    await click(gifButton);
+
+    // Assert
+    assert.dom(gifButton).hasAttribute('aria-pressed', 'true');
+    assert.deepEqual(spy.componentArgsType, { onAddAttachmentClick: 'function' });
+  });
+
   test('should show <ToolbarTagEntityPanel /> when clicking tag user', async function (assert) {
     assert.expect(2);
 

@@ -1,0 +1,19 @@
+<div>
+  {{ce-field
+      class="comment-composer-toolbar-gif-panel__search-field"
+      name="search"
+      data-test-toolbar-gif-panel="search-field"
+      type="search"
+      label="Search for GIFs using Tenor"
+      --onInput=(action searchGifs)}}
+
+  {{#if searchResults}}
+    <ul class="comment-composer-toolbar-gif-panel__search-result" data-test-toolbar-gif-panel="search-result">
+      {{#each searchResults as |gif|}}
+        {{comment-composer/comment-composer-toolbar/toolbar-gif-panel/gif-panel-tenor-item
+            --gif=gif
+            --onAddAttachmentClick=(action --onAddAttachmentClick)}}
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>
