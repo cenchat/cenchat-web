@@ -1,4 +1,4 @@
-<div class="side-nav__content">
+{{#infinite-content class="side-nav__content" --query=--usersWithRole --selector=".side-nav__content"}}
   {{sites/site/index/roles/-components/main-content/main-content-form --onSearchUserInput=(action --onSearchUserInput)}}
 
   {{#if --areThereAnyRoleChanges}}
@@ -46,4 +46,4 @@
       </article>
     </section>
   {{/if}}
-</div>
+{{/infinite-content}}
