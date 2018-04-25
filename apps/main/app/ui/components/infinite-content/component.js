@@ -43,18 +43,23 @@ export default Component.extend({
    */
   async loadMoreRecords() {
     const query = this.get('--query');
+    const onLoadMoreRecords = this.get('--onLoadMoreRecords');
 
-    if (query.length >= this.get('numOfRecordsLimit')) {
-      const newLimit = this.get('numOfRecordsLimit') + 8;
+    if (onLoadMoreRecords || query.reload) {
+      if (query.length >= this.get('numOfRecordsLimit')) {
+        const newLimit = this.get('numOfRecordsLimit') + 8;
 
-      this.set('numOfRecordsLimit', newLimit);
+        this.set('numOfRecordsLimit', newLimit);
 
-      if (this.get('--onLoadMoreRecords')) {
-        this.get('--onLoadMoreRecords')(newLimit);
-      } else {
-        query.relationship.relationshipMeta.options.filter = reference => reference.limit(newLimit);
+        if (this.get('--onLoadMoreRecords')) {
+          this.get('--onLoadMoreRecords')(newLimit);
+        } else {
+          query.relationship.relationshipMeta.options.filter = reference => (
+            reference.limit(newLimit)
+          );
 
-        query.reload();
+          query.reload();
+        }
       }
     }
   },

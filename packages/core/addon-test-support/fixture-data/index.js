@@ -193,6 +193,10 @@ export default function getFixtureData() {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
                   },
+
+                  user_c: {
+                    cloudFirestoreReference: '__ref__:users/user_c',
+                  },
                 },
               },
             },
@@ -487,6 +491,14 @@ export default function getFixtureData() {
             username: 'user_c',
 
             __collection__: {
+              sitesAsAdmin: {
+                __doc__: {
+                  site_a: {
+                    cloudFirestoreReference: '__ref__:sites/site_a',
+                  },
+                },
+              },
+
               stickerPacks: {
                 __doc__: {
                   sticker_pack_a: {

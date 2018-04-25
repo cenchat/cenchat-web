@@ -68,9 +68,7 @@ export default Component.extend({
    * @param {Element} target
    */
   handleTextFieldInput(target) {
-    debounce(this, () => {
-      this.processInput(target);
-    }, 1000);
+    debounce(this, 'processInput', target, 1000);
   },
 
   /**

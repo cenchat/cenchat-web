@@ -38,12 +38,13 @@ module('Integration | Component | sites/site/index/-components/route content', (
     await render(hbs`
       {{sites/site/index/-components/route-content
           --router=router
+          --session=session
           --site=site
           --onVerifySiteClick=(action onVerifySiteClick)}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { site: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { site: 'instance', session: 'instance' });
   });
 
   test('should show <PageCollection /> when site is verified', async function (assert) {
@@ -56,6 +57,7 @@ module('Integration | Component | sites/site/index/-components/route content', (
     await render(hbs`
       {{sites/site/index/-components/route-content
           --router=router
+          --session=session
           --site=site
           --onVerifySiteClick=(action onVerifySiteClick)}}
     `);
@@ -79,6 +81,7 @@ module('Integration | Component | sites/site/index/-components/route content', (
     await render(hbs`
       {{sites/site/index/-components/route-content
           --router=router
+          --session=session
           --site=site
           --onVerifySiteClick=(action onVerifySiteClick)}}
     `);

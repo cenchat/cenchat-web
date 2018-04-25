@@ -67,5 +67,6 @@ body > .ember-view {
 
 .layout__section-header {
   width: 100%;
-  padding-left: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
 }

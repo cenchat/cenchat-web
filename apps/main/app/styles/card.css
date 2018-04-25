@@ -96,6 +96,10 @@
   padding-left: 8px;
 }
 
+.card__field:last-child {
+  padding-bottom: 8px;
+}
+
 .card__action {
   float: right;
 }

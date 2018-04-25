@@ -1,0 +1,49 @@
+{{#infinite-content class="side-nav__content" --query=--usersWithRole --selector=".side-nav__content"}}
+  {{sites/site/index/roles/-components/main-content/main-content-form --onSearchUserInput=(action --onSearchUserInput)}}
+
+  {{#if --areThereAnyRoleChanges}}
+    <section class="side-nav__section">
+      {{#ce-subheader class="side-nav__section-header"}}
+        <h5>Pending changes</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/index/roles/-components/main-content/main-content-change-list
+            --roleChange=--roleChange
+            --onRemoveRoleChangeClick=(action --onRemoveRoleChangeClick)}}
+      </article>
+    </section>
+  {{/if}}
+
+  {{#if --usersWithoutRole}}
+    <section class="side-nav__section">
+      {{#ce-subheader class="side-nav__section-header"}}
+        <h5>Non-admins</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/index/roles/-components/main-content/main-content-user-list
+            --users=--usersWithoutRole
+            --hasRole=false
+            --onAddRoleClick=(action --onAddRoleClick)
+            --onRemoveRoleClick=(action --onRemoveRoleClick)}}
+      </article>
+    </section>
+  {{/if}}
+
+  {{#if --usersWithRole}}
+    <section class="side-nav__section">
+      {{#ce-subheader class="side-nav__section-header"}}
+        <h5>Admins</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/index/roles/-components/main-content/main-content-user-list
+            --users=--usersWithRole
+            --hasRole=true
+            --onAddRoleClick=(action --onAddRoleClick)
+            --onRemoveRoleClick=(action --onRemoveRoleClick)}}
+      </article>
+    </section>
+  {{/if}}
+{{/infinite-content}}

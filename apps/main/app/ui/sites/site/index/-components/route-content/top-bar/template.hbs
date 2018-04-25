@@ -1,15 +1,29 @@
-{{#ce-top-bar class="layout__header" responsive=true}}
-  {{ce-icon-link-button
-      href=(href-to 'sites.index')
-      title="Navigate back"
-      aria-label="Navigate back"
-      icon="arrow_back"}}
+{{#ce-top-bar class="layout__header" responsive=true multi-row=true}}
+  {{#ce-top-bar-row}}
+    {{ce-icon-link-button
+        href=(href-to 'sites.index')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
 
-  <h1 data-test-top-bar="name">{{--site.name}}</h1>
+    <h1 data-test-top-bar="name">{{--site.name}}</h1>
+  {{/ce-top-bar-row}}
 
-  {{ce-icon-link-button
-      href=(href-to 'docs')
-      title="Documentation"
-      aria-label="Documentation"
-      icon="info"}}
+  {{#ce-top-bar-row}}
+    {{#async-let on=(async-function --session.model 'isSiteAdmin' --site.id) as |isSiteAdmin|}}
+      {{#if isSiteAdmin}}
+        {{#ce-link-button
+            data-test-top-bar="roles-link"
+            href=(href-to 'sites.site.index.roles')
+            title="Roles"
+            aria-label="Roles"}}
+          Roles
+        {{/ce-link-button}}
+      {{/if}}
+    {{/async-let}}
+
+    {{#ce-link-button href=(href-to 'docs') title="Documentations" aria-label="Documentations"}}
+      Documentations
+    {{/ce-link-button}}
+  {{/ce-top-bar-row}}
 {{/ce-top-bar}}
