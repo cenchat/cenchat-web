@@ -29,7 +29,9 @@ Router.map(function() {
       this.route('new');
     });
     this.route('site', { path : '/:site_id' }, function() {
-      this.route('index', { path: '/' }, function() {});
+      this.route('index', { path: '/' }, function() {
+        this.route('roles');
+      });
       this.route('page', { path: '/pages/:page_id' }, function() {});
     });
   });

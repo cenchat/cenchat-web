@@ -45,6 +45,13 @@ export default function() {
   );
 
   this.transition(
+    this.fromRoute('sites.site.index.index'),
+    this.toRoute('sites.site.index.roles'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
+
+  this.transition(
     this.fromRoute('sites.site.page.index'),
     this.toRoute('sites.site.page.merge'),
     this.use('toLeft'),

@@ -4,20 +4,21 @@ import { visit } from '@ember/test-helpers';
 
 import { setupApplicationTestState } from '@cenchat/core/test-support';
 
-module('Acceptance | sites/site/page', (hooks) => {
+module('Acceptance | sites/site/index', (hooks) => {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(async function () {
     await setupApplicationTestState(this);
   });
 
-  test('nothing to test yet', async (assert) => {
-    assert.expect(1);
+  test('should list pages', async (assert) => {
+    assert.expect(2);
 
     // Act
-    await visit('/sites/site_a/pages/page_a');
+    await visit('/sites/site_a');
 
     // Assert
-    assert.ok(true);
+    assert.dom('[data-test-page-collection-item="site_a__page_a"]').exists();
+    assert.dom('[data-test-page-collection-item="site_a__page_b"]').exists();
   });
 });

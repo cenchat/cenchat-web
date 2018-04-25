@@ -18,6 +18,11 @@ export default Controller.extend({
   router: inject(),
 
   /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
+  /**
    * Handles verify site's click event
    *
    * @param {}

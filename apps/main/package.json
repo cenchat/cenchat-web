@@ -59,7 +59,7 @@
     "normalize.css": "^8.0.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
-    "qunit-dom": "^0.5.0",
+    "qunit-dom": "^0.6.2",
     "stylelint-config-recess-order": "^1.2.4",
     "stylelint-config-standard": "^18.2.0",
     "torii": "^0.10.1"
