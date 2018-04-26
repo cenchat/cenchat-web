@@ -3,12 +3,24 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { setupApplicationTestState } from '@cenchat/core/test-support';
+import sinon from 'sinon';
 
 module('Acceptance | sites/site/index/roles', (hooks) => {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(async function () {
     await setupApplicationTestState(this);
+
+    const server = sinon.fakeServer.create();
+
+    server.autoRespond = true;
+    server.autoRespondAfter = 0;
+
+    server.respondWith(
+      'POST',
+      'https://us-central1-cenchat-stg.cloudfunctions.net/app/api/utils/update-site-roles',
+      [204, {}, ''],
+    );
   });
 
   test('should list admins', async (assert) => {
@@ -22,8 +34,8 @@ module('Acceptance | sites/site/index/roles', (hooks) => {
     assert.dom('[data-test-roles] [data-test-user-list-item="user_c"]').exists();
   });
 
-  test('should add admins', async function (assert) {
-    assert.expect(2);
+  test('should add admins', async (assert) => {
+    assert.expect(1);
 
     // Arrange
     await visit('/sites/site_a/roles');
@@ -34,27 +46,11 @@ module('Acceptance | sites/site/index/roles', (hooks) => {
     await click('[data-test-roles] [data-test-top-bar="save-button"]');
 
     // Assert
-    const adminDocSnapshot = await this.db
-      .collection('sites')
-      .doc('site_a')
-      .collection('admins')
-      .doc('user_b')
-      .get();
-
-    assert.ok(adminDocSnapshot.exists);
-
-    const sitesAsAdminDocSnapshot = await this.db
-      .collection('users')
-      .doc('user_b')
-      .collection('sitesAsAdmin')
-      .doc('site_a')
-      .get();
-
-    assert.ok(sitesAsAdminDocSnapshot.exists);
+    assert.dom('[data-test-application="toast"]').hasText('Roles saved');
   });
 
-  test('should remove admins', async function (assert) {
-    assert.expect(2);
+  test('should remove admins', async (assert) => {
+    assert.expect(1);
 
     // Arrange
     await visit('/sites/site_a/roles');
@@ -65,22 +61,6 @@ module('Acceptance | sites/site/index/roles', (hooks) => {
     await click('[data-test-roles] [data-test-top-bar="save-button"]');
 
     // Assert
-    const adminDocSnapshot = await this.db
-      .collection('sites')
-      .doc('site_a')
-      .collection('admins')
-      .doc('user_c')
-      .get();
-
-    assert.notOk(adminDocSnapshot.exists);
-
-    const sitesAsAdminDocSnapshot = await this.db
-      .collection('users')
-      .doc('user_c')
-      .collection('sitesAsAdmin')
-      .doc('site_a')
-      .get();
-
-    assert.notOk(sitesAsAdminDocSnapshot.exists);
+    assert.dom('[data-test-application="toast"]').hasText('Roles saved');
   });
 });

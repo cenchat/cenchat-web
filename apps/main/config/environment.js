@@ -27,7 +27,7 @@ module.exports = function(environment) {
     fastboot: {
       hostWhitelist: ['cenchat.com', 'www.cenchat.com', /^localhost:\d+$/],
     },
-    apiHost: ' https://us-central1-cenchat-stg.cloudfunctions.net/app',
+    apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app/api',
     commentsHost: 'http://localhost:8000',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
