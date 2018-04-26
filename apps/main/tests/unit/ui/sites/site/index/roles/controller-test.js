@@ -3,6 +3,7 @@ import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
 import { setupTestState } from '@cenchat/core/test-support';
+import sinon from 'sinon';
 
 module('Unit | Controller | sites/site/index/roles', (hooks) => {
   setupTest(hooks);
@@ -162,10 +163,21 @@ module('Unit | Controller | sites/site/index/roles', (hooks) => {
   });
 
   module('function: handleSaveRolesClick', () => {
-    test('should save roles', async function (assert) {
-      assert.expect(4);
+    test('should reset role change when successfully saves', async function (assert) {
+      assert.expect(1);
 
       // Arrange
+      const server = sinon.fakeServer.create();
+
+      server.autoRespond = true;
+      server.autoRespondAfter = 0;
+
+      server.respondWith(
+        'POST',
+        'https://us-central1-cenchat-stg.cloudfunctions.net/app/api/utils/update-site-roles',
+        [204, {}, ''],
+      );
+
       const userToAdd = EmberObject.create({ id: 'user_b' });
       const userToRemove = EmberObject.create({ id: 'user_c' });
       const controller = this.owner.lookup('controller:sites/site/index/roles');
@@ -178,41 +190,12 @@ module('Unit | Controller | sites/site/index/roles', (hooks) => {
       await controller.handleSaveRolesClick();
 
       // Assert
-      const userBAdminDocSnapshot = await this.db
-        .collection('sites')
-        .doc('site_a')
-        .collection('admins')
-        .doc('user_b')
-        .get();
-
-      assert.ok(userBAdminDocSnapshot.exists);
-
-      const userBSitesAsAdminDocSnapshot = await this.db
-        .collection('users')
-        .doc('user_b')
-        .collection('sitesAsAdmin')
-        .doc('site_a')
-        .get();
-
-      assert.ok(userBSitesAsAdminDocSnapshot.exists);
-
-      const userCAdminDocSnapshot = await this.db
-        .collection('sites')
-        .doc('site_a')
-        .collection('admins')
-        .doc('user_c')
-        .get();
-
-      assert.notOk(userCAdminDocSnapshot.exists);
-
-      const userCSitesAsAdminDocSnapshot = await this.db
-        .collection('users')
-        .doc('user_c')
-        .collection('sitesAsAdmin')
-        .doc('site_a')
-        .get();
-
-      assert.notOk(userCSitesAsAdminDocSnapshot.exists);
+      assert.deepEqual(controller.get('roleChange'), {
+        admin: {
+          additions: [],
+          removals: [],
+        },
+      });
     });
   });
 });

@@ -1,7 +1,8 @@
 import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+import { getOwner } from '@ember/application';
 import Controller from '@ember/controller';
 
+import fetch from 'fetch';
 import toast from '@cenchat/elements/utils/toast';
 
 /**
@@ -11,11 +12,6 @@ import toast from '@cenchat/elements/utils/toast';
  */
 export default Controller.extend({
   /**
-   * @type {Ember.Service}
-   */
-  firebase: inject(),
-
-  /**
    * @type {boolean}
    */
   areThereAnyRoleChanges: computed('roleChange', {
@@ -23,6 +19,28 @@ export default Controller.extend({
       const roleChange = this.get('roleChange');
 
       return roleChange.admin.additions.length > 0 || roleChange.admin.removals.length > 0;
+    },
+  }),
+
+  /**
+   * @type {Object}
+   */
+  formattedRoleChange: computed('roleChange', {
+    get() {
+      const formattedRoleChange = {};
+      const roleChange = this.get('roleChange');
+
+      for (const role of Object.keys(roleChange)) {
+        formattedRoleChange[role] = {};
+
+        for (const method of Object.keys(roleChange[role])) {
+          const userIds = roleChange[role][method].map(user => user.get('id'));
+
+          formattedRoleChange[role][method] = userIds;
+        }
+      }
+
+      return formattedRoleChange;
     },
   }),
 
@@ -128,41 +146,33 @@ export default Controller.extend({
    * Saves pending role changes
    */
   async handleSaveRolesClick() {
-    const db = this.get('firebase').firestore();
-    const batch = db.batch();
-    const siteId = this.get('model.site.id');
-    const siteDocRef = db.collection('sites').doc(siteId);
-    const roleChange = this.get('roleChange');
-
-    for (const role of Object.keys(roleChange)) {
-      for (const user of roleChange[role].additions) {
-        const userId = user.get('id');
-        const userDocRef = db.collection('users').doc(userId);
-
-        batch.set(siteDocRef.collection('admins').doc(userId), {
-          cloudFirestoreReference: userDocRef,
-        });
-        batch.set(userDocRef.collection('sitesAsAdmin').doc(siteId), {
-          cloudFirestoreReference: siteDocRef,
-        });
-      }
-
-      for (const user of roleChange[role].removals) {
-        const userId = user.get('id');
-        const userDocRef = db.collection('users').doc(userId);
-
-        batch.delete(siteDocRef.collection('admins').doc(userId));
-        batch.delete(userDocRef.collection('sitesAsAdmin').doc(siteId));
-      }
-    }
-
-    await batch.commit();
-    this.set('roleChange', {
-      admin: {
-        additions: [],
-        removals: [],
+    console.log(this.get('formattedRoleChange'));
+    const config = getOwner(this).resolveRegistration('config:environment');
+    const token = await this.get('session.currentUser').getIdToken();
+    const response = await fetch(`${config.apiHost}/utils/update-site-roles`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        siteId: this.get('model.site.id'),
+        roleChange: this.get('formattedRoleChange'),
+      }),
     });
-    toast('Roles saved');
+
+    if (response.ok) {
+      this.set('roleChange', {
+        admin: {
+          additions: [],
+          removals: [],
+        },
+      });
+      toast('Roles saved');
+    } else {
+      const data = await response.text();
+
+      toast(data);
+    }
   },
 });
