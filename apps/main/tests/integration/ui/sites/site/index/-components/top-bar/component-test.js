@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/core/test-support';
 
-module('Integration | Component | sites/site/index/-components/route-content/top bar', (hooks) => {
+module('Integration | Component | sites/site/index/-components/top-bar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -19,7 +19,7 @@ module('Integration | Component | sites/site/index/-components/route-content/top
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/top-bar
+      {{sites/site/index/-components/top-bar
           --site=site
           --session=session}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Component | sites/site/index/-components/route-content/top
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/top-bar
+      {{sites/site/index/-components/top-bar
           --site=site
           --session=session}}
     `);
@@ -50,7 +50,7 @@ module('Integration | Component | sites/site/index/-components/route-content/top
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/top-bar
+      {{sites/site/index/-components/top-bar
           --site=site
           --session=session}}
     `);

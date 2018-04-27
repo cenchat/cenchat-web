@@ -5,9 +5,11 @@
 
   {{#infinite-content --query=--pages}}
     {{#each --pages as |page|}}
-      {{sites/site/index/-components/route-content/page-collection/page-collection-item --router=--router --page=page}}
+      {{sites/site/index/-components/main-content/main-content-page-collection/page-collection-item
+          --router=--router
+          --page=page}}
     {{else}}
-      <article class="card" data-test-page-collection="empty-state">
+      <article class="card" data-test-main-content-page-collection="empty-state">
         <header class="card__header">
           <h3 class="card__heading">Create some pages</h3>
           <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>

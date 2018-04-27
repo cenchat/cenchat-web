@@ -3,7 +3,7 @@
     <h2>Setup</h2>
   {{/ce-subheader}}
 
-  <article class="card" data-test-setup-guide="empty-state">
+  <article class="card" data-test-main-content-setup-guide="empty-state">
     <h3 class="card__heading">Verify your site</h3>
 
     <p class="card__message">
@@ -11,10 +11,13 @@
     </p>
 
     <p class="card__message snippet">
-      <code class="snippet__block-code" data-test-setup-guide="code-snippet">&lt;meta property="cenchat:id" content="{{--site.id}}"&gt;</code>
+      <code class="snippet__block-code" data-test-main-content-setup-guide="code-snippet">&lt;meta property="cenchat:id" content="{{--site.id}}"&gt;</code>
     </p>
 
-    {{#ce-button class="card__action" data-test-setup-guide="verify-button" --onClick=(action --onVerifySiteClick)}}
+    {{#ce-button
+        class="card__action"
+        data-test-main-content-setup-guide="verify-button"
+        --onClick=(action --onVerifySiteClick)}}
       Verify
     {{/ce-button}}
   </article>

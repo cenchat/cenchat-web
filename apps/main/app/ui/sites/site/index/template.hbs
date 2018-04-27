@@ -1,7 +1,8 @@
-{{#sites/site/index/-components/route-content
-    --router=router
-    --session=session
+{{sites/site/index/-components/top-bar --site=model --session=session}}
+
+{{#sites/site/index/-components/main-content
     --site=model
+    --router=router
     --onVerifySiteClick=(action handleVerifySiteClick)}}
   {{liquid-outlet class="side-nav-outlet"}}
-{{/sites/site/index/-components/route-content}}
+{{/sites/site/index/-components/main-content}}
