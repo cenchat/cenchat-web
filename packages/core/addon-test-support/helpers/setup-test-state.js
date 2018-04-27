@@ -13,10 +13,10 @@ import getFixtureData from '../fixture-data';
 export async function setupTestState(context) {
   initializeWindowOverrides(context.owner);
   stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
-  stubService(context, 'router', { urlFor: sinon.stub() });
 
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
   context.set('db', context.get('firebase').firestore());
+  context.set('router', stubService(context, 'router', { urlFor: sinon.stub() }));
   context.set('session', stubSession(context));
 
   const store = stubService(context, 'store');

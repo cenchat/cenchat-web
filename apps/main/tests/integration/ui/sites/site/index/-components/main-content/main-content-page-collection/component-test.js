@@ -1,31 +1,20 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent, stubService } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
-
-module('Integration | Component | sites/site/index/-components/route-content/page collection', (hooks) => {
+module('Integration | Component | sites/site/index/-components/main-content/main-content-page-collection', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const site = await run(() => this.get('store').findRecord('site', 'site_a'));
-    const pages = await site.get('pages');
+    const site = await this.store.findRecord('site', 'site_a');
 
-    this.set('router', stubService(this, 'router'));
-    this.set('pages', pages);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    this.set('router', this.router);
+    this.set('pages', await site.get('pages'));
   });
 
   test('should show <InfiniteContent />', async function (assert) {
@@ -36,7 +25,7 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/page-collection
+      {{sites/site/index/-components/main-content/main-content-page-collection
           --router=router
           --pages=pages}}
     `);
@@ -49,21 +38,18 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'sites/site/index/-components/route-content/page-collection/page-collection-item');
+    const spy = spyComponent(this, 'sites/site/index/-components/main-content/main-content-page-collection/page-collection-item');
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/page-collection
+      {{sites/site/index/-components/main-content/main-content-page-collection
           --router=router
           --pages=pages}}
     `);
 
     // Assert
     assert.ok(spy.calledTwice);
-    assert.deepEqual(spy.componentArgsType, {
-      router: 'instance',
-      page: 'instance',
-    });
+    assert.deepEqual(spy.componentArgsType, { router: 'instance', page: 'instance' });
   });
 
   test('should show empty state when there are no pages', async function (assert) {
@@ -74,12 +60,12 @@ module('Integration | Component | sites/site/index/-components/route-content/pag
 
     // Act
     await render(hbs`
-      {{sites/site/index/-components/route-content/page-collection
+      {{sites/site/index/-components/main-content/main-content-page-collection
           --router=router
           --pages=pages}}
     `);
 
     // Assert
-    assert.dom('[data-test-page-collection="empty-state"]').exists();
+    assert.dom('[data-test-main-content-page-collection="empty-state"]').exists();
   });
 });

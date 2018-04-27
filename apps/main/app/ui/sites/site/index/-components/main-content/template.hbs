@@ -1,15 +1,13 @@
-{{sites/site/index/-components/route-content/top-bar --site=--site --session=--session}}
-
 <main class="layout__main">
   {{#if --site.isVerified}}
     {{#async-let
         on=(async-property --site.pages)
         placeholder=(component 'ce-spinner' aria-valuetext='Loading pages')
         as |pages|}}
-      {{sites/site/index/-components/route-content/page-collection --router=--router --pages=pages}}
+      {{sites/site/index/-components/main-content/main-content-page-collection --router=--router --pages=pages}}
     {{/async-let}}
   {{else}}
-    {{sites/site/index/-components/route-content/setup-guide
+    {{sites/site/index/-components/main-content/main-content-setup-guide
         --site=--site
         --onVerifySiteClick=(action --onVerifySiteClick)}}
   {{/if}}

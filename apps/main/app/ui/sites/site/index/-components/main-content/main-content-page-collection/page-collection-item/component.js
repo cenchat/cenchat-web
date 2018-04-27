@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 /**
- * @class SitesSiteIndexPageCollectionItem
+ * @class SitesSiteIndexMainContentPageCollectionItem
  * @namespace Component
  * @extends Ember.Component
  */
@@ -12,16 +12,15 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Handles page card's click event
+   * @function
    */
   handlePageClick() {
     this.transitionToPage();
   },
 
   /**
-   * Handles page card's keydown event
-   *
    * @param {Event} event
+   * @function
    */
   handlePageKeydown(event) {
     const code = event.which;
@@ -33,7 +32,7 @@ export default Component.extend({
   },
 
   /**
-   * Transitions to page route
+   * @function
    */
   transitionToPage() {
     this.get('--router').transitionTo('sites.site.page', this.get('--page.id'));

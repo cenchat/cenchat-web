@@ -23,9 +23,7 @@ export default Controller.extend({
   session: inject(),
 
   /**
-   * Handles verify site's click event
-   *
-   * @param {}
+   * @function
    */
   async handleVerifySiteClick() {
     const config = getOwner(this).resolveRegistration('config:environment');
