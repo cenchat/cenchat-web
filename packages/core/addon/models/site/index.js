@@ -45,6 +45,15 @@ export default Model.extend({
   }),
 
   /**
+   * @type {Array.<Model.Comment>}
+   */
+  comments: hasMany('comment', {
+    filter(reference) {
+      return reference.limit(8);
+    },
+  }),
+
+  /**
    * @type {Array.<Model.Page>}
    */
   pages: hasMany('page', {

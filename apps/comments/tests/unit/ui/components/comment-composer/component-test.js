@@ -30,6 +30,8 @@ module('Unit | Component | comment composer', (hooks) => {
       assert.expect(2);
 
       // Arrange
+      const site = { id: 'site_a' };
+      const page = { site, id: 'page_a' };
       const createRecordStub = sinon.stub().returns(this.comment);
       const factory = this.owner.factoryFor('component:comment-composer');
 
@@ -37,7 +39,7 @@ module('Unit | Component | comment composer', (hooks) => {
       const component = await factory.create({
         store: { createRecord: createRecordStub },
         session: { model: 'sessionModel' },
-        '--page': 'page',
+        '--page': page,
       });
 
       return settled().then(() => {
@@ -45,11 +47,12 @@ module('Unit | Component | comment composer', (hooks) => {
         assert.ok(createRecordStub.calledWithExactly(
           'comment',
           {
+            page,
+            site,
             attachments: null,
             isAskMeAnything: false,
             isDeleted: false,
             author: 'sessionModel',
-            page: 'page',
             replyTo: undefined,
             root: undefined,
             taggedEntities: null,
