@@ -181,6 +181,7 @@ export default Component.extend({
       isAskMeAnything: false,
       isDeleted: false,
       page: this.get('--page'),
+      site: this.get('--page.site'),
       taggedEntities: null,
       text: null,
     });

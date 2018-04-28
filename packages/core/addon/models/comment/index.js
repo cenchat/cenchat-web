@@ -67,6 +67,11 @@ export default Model.extend({
   root: belongsTo('comment', { inverse: null }),
 
   /**
+   * @type {Model.Site}
+   */
+  site: belongsTo('site'),
+
+  /**
    * @type {Ember.Service}
    * @readonly
    */
