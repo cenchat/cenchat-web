@@ -1,16 +1,7 @@
-<main class="layout__main">
-  {{#if --site.isVerified}}
-    {{#async-let
-        on=(async-property --site.pages)
-        placeholder=(component 'ce-spinner' aria-valuetext='Loading pages')
-        as |pages|}}
-      {{sites/site/index/-components/main-content/main-content-page-collection --router=--router --pages=pages}}
-    {{/async-let}}
-  {{else}}
-    {{sites/site/index/-components/main-content/main-content-setup-guide
-        --site=--site
-        --onVerifySiteClick=(action --onVerifySiteClick)}}
-  {{/if}}
-
+{{#if --site.isVerified}}
   {{yield}}
-</main>
+{{else}}
+  {{sites/site/index/-components/main-content/main-content-verify-site
+      --site=--site
+      --onVerifySiteClick=(action --onVerifySiteClick)}}
+{{/if}}

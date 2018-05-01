@@ -1,0 +1,9 @@
+<ul class="list">
+  {{#each --users as |user|}}
+    {{sites/site/manage/roles/-components/main-content/main-content-user-list/user-list-item
+        --user=user
+        --hasRole=--hasRole
+        --onAddRoleClick=(action --onAddRoleClick)
+        --onRemoveRoleClick=(action --onRemoveRoleClick)}}
+  {{/each}}
+</ul>

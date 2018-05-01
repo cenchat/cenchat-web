@@ -1,8 +1,5 @@
-{{sites/site/index/-components/top-bar --site=model --session=session}}
+{{sites/site/index/-components/top-bar --site=model}}
 
-{{#sites/site/index/-components/main-content
-    --site=model
-    --router=router
-    --onVerifySiteClick=(action handleVerifySiteClick)}}
-  {{liquid-outlet class="side-nav-outlet"}}
+{{#sites/site/index/-components/main-content --site=model --onVerifySiteClick=(action handleVerifySiteClick)}}
+  {{outlet}}
 {{/sites/site/index/-components/main-content}}

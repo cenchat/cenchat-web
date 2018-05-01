@@ -1,29 +1,35 @@
-{{#ce-top-bar class="layout__header" responsive=true multi-row=true}}
+{{#ce-top-bar class="layout__header" data-test-top-bar="host" responsive=true multi-row=true}}
   {{#ce-top-bar-row}}
-    {{ce-icon-link-button
-        href=(href-to 'sites.index')
-        title="Navigate back"
-        aria-label="Navigate back"
-        icon="arrow_back"}}
-
     <h1 data-test-top-bar="name">{{--site.name}}</h1>
+
+    {{#if --site.isVerified}}
+      {{ce-icon-link-button
+          data-test-top-bar="manage-link"
+          href=(href-to 'sites.site.pages')
+          title="Pages"
+          aria-label="Pages"
+          icon="view_stream"}}
+
+      {{ce-icon-link-button
+          data-test-top-bar="manage-link"
+          href=(href-to 'sites.site.manage')
+          title="Manage"
+          aria-label="Manage"
+          icon="settings"}}
+
+      {{ce-icon-link-button
+          data-test-top-bar="docs-link"
+          href=(href-to 'docs')
+          title="Documentations"
+          aria-label="Documentations"
+          icon="help"}}
+    {{/if}}
   {{/ce-top-bar-row}}
 
-  {{#ce-top-bar-row}}
-    {{#async-let on=(async-function --session.model 'isSiteAdmin' --site.id) as |isSiteAdmin|}}
-      {{#if isSiteAdmin}}
-        {{#ce-link-button
-            data-test-top-bar="roles-link"
-            href=(href-to 'sites.site.index.roles')
-            title="Roles"
-            aria-label="Roles"}}
-          Roles
-        {{/ce-link-button}}
-      {{/if}}
-    {{/async-let}}
-
-    {{#ce-link-button href=(href-to 'docs') title="Documentations" aria-label="Documentations"}}
-      Documentations
-    {{/ce-link-button}}
-  {{/ce-top-bar-row}}
+  {{#if --site.isVerified}}
+    {{#ce-top-bar-row data-test-top-bar="tabs"}}
+      {{#ce-link-button href=(href-to 'sites.site.index.approved-comments')}}Approved{{/ce-link-button}}
+      {{#ce-link-button href=(href-to 'sites.site.index.rejected-comments')}}Rejected{{/ce-link-button}}
+    {{/ce-top-bar-row}}
+  {{/if}}
 {{/ce-top-bar}}

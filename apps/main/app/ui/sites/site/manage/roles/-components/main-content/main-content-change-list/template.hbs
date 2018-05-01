@@ -1,0 +1,15 @@
+<ul class="list">
+  {{#each --roleChange.admin.additions as |user|}}
+    {{sites/site/manage/roles/-components/main-content/main-content-change-list/change-list-item
+        --user=user
+        --description="To be added as an admin"
+        --onRemoveRoleChangeClick=(action --onRemoveRoleChangeClick)}}
+  {{/each}}
+
+  {{#each --roleChange.admin.removals as |user|}}
+    {{sites/site/manage/roles/-components/main-content/main-content-change-list/change-list-item
+        --user=user
+        --description="To be removed from being an admin"
+        --onRemoveRoleChangeClick=(action --onRemoveRoleChangeClick)}}
+  {{/each}}
+</ul>

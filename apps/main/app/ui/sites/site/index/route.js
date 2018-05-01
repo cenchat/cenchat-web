@@ -12,4 +12,18 @@ export default Route.extend({
   model() {
     return this.modelFor('sites.site');
   },
+
+  /**
+   * @override
+   */
+  afterModel(model, { targetName }) {
+    if (
+      model.get('isVerified')
+      && (targetName.includes('approved') || targetName.includes('rejected'))
+    ) {
+      return this.transitionTo(targetName);
+    }
+
+    return this.transitionTo('sites.site.index.approved-comments');
+  },
 });

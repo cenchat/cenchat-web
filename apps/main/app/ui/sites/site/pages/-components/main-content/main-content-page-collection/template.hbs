@@ -1,0 +1,16 @@
+<section class="layout__section layout__section--headerless">
+  {{#infinite-content --query=--pages}}
+    {{#each --pages as |page|}}
+      {{sites/site/pages/-components/main-content/main-content-page-collection/page-collection-item --page=page}}
+    {{else}}
+      <article class="card" data-test-main-content-page-collection="empty-state">
+        <header class="card__header">
+          <h3 class="card__heading">Create some pages</h3>
+          <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>
+        </header>
+
+        {{#ce-link-button class="card__action" href=(href-to 'docs')}}See how{{/ce-link-button}}
+      </article>
+    {{/each}}
+  {{/infinite-content}}
+</section>

@@ -1,28 +1,66 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Unit | Route | sites/site', (hooks) => {
   setupTest(hooks);
 
-  module('hook: model', () => {
-    test('should fetch site as model', async function (assert) {
-      assert.expect(2);
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
+
+  module('hook: beforeModel', () => {
+    test('should transition home when not a site admin', async function (assert) {
+      assert.expect(1);
 
       // Arrange
-      const findRecordStub = sinon.stub().returns(stubPromise(true, 'foo'));
+      const transitionToStub = sinon.stub();
       const route = this.owner.lookup('route:sites/site');
 
-      route.set('store', { findRecord: findRecordStub });
+      route.set('routeName', 'sites.site');
+      route.set('paramsFor', sinon.stub().withArgs('sites.site').returns({ site_id: 'site_c' }));
+      route.set('transitionTo', transitionToStub);
+
+      // Act
+      await route.beforeModel();
+
+      // Assert
+      assert.ok(transitionToStub.called);
+    });
+
+    test('should not transition home when a site admin', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const transitionToStub = sinon.stub();
+      const route = this.owner.lookup('route:sites/site');
+
+      route.set('routeName', 'sites.site');
+      route.set('paramsFor', sinon.stub().withArgs('sites.site').returns({ site_id: 'site_a' }));
+      route.set('transitionTo', transitionToStub);
+
+      // Act
+      await route.beforeModel();
+
+      // Assert
+      assert.ok(transitionToStub.notCalled);
+    });
+  });
+
+  module('hook: model', () => {
+    test('should return site', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const route = this.owner.lookup('route:sites/site');
 
       // Act
       const result = await route.model({ site_id: 'site_a' });
 
       // Assert
-      assert.ok(findRecordStub.calledWithExactly('site', 'site_a'));
-      assert.equal(result, 'foo');
+      assert.equal(result.get('id'), 'site_a');
     });
   });
 });

@@ -47,9 +47,32 @@ export default Model.extend({
   /**
    * @type {Array.<Model.Comment>}
    */
+  approvedComments: hasMany('comment', {
+    inverse: null,
+
+    buildReference(db) {
+      return db.collection('comments');
+    },
+
+    filter(reference, record) {
+      const db = reference.firestore;
+
+      return reference
+        .where('site', '==', db.collection('sites').doc(record.get('id')))
+        .where('status', '==', 'approved')
+        .where('text', '>', '')
+        .orderBy('text')
+        .orderBy('createdOn', 'desc')
+        .limit(8);
+    },
+  }),
+
+  /**
+   * @type {Array.<Model.Comment>}
+   */
   comments: hasMany('comment', {
     filter(reference) {
-      return reference.limit(8);
+      return reference.orderBy('createdOn').limit(8);
     },
   }),
 
@@ -58,7 +81,28 @@ export default Model.extend({
    */
   pages: hasMany('page', {
     filter(reference) {
-      return reference.limit(8);
+      return reference.orderBy('createdOn', 'desc').limit(8);
+    },
+  }),
+
+  /**
+   * @type {Array.<Model.Comment>}
+   */
+  rejectedComments: hasMany('comment', {
+    inverse: null,
+
+    buildReference(db) {
+      return db.collection('comments');
+    },
+
+    filter(reference, record) {
+      const db = reference.firestore;
+
+      return reference
+        .where('site', '==', db.collection('sites').doc(record.get('id')))
+        .where('status', '==', 'rejected')
+        .orderBy('createdOn', 'desc')
+        .limit(8);
     },
   }),
 });

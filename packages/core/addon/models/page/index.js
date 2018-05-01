@@ -83,6 +83,7 @@ export default Model.extend({
 
           return reference
             .where('page', '==', db.collection('pages').doc(pageId))
+            .where('status', '==', 'approved')
             .orderBy('createdOn')
             .limit(2);
         },
@@ -105,6 +106,7 @@ export default Model.extend({
         const db = reference.firestore;
         return reference
           .where('page', '==', db.collection('pages').doc(pageId))
+          .where('status', '==', 'approved')
           .orderBy('createdOn')
           .limit(2);
       },

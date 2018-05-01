@@ -1,3 +1,4 @@
+import { inject } from '@ember/service';
 import Route from '@ember/routing/route';
 
 /**
@@ -7,9 +8,25 @@ import Route from '@ember/routing/route';
  */
 export default Route.extend({
   /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
+  /**
    * @override
    */
-  model(params) {
-    return this.get('store').findRecord('site', params.site_id);
+  async beforeModel() {
+    const { site_id: siteId } = this.paramsFor(this.get('routeName'));
+
+    if (!await this.get('session.model').isSiteAdmin(siteId)) {
+      this.transitionTo('home');
+    }
+  },
+
+  /**
+   * @override
+   */
+  model({ site_id: siteId }) {
+    return this.get('store').findRecord('site', siteId);
   },
 });

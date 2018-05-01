@@ -1,0 +1,21 @@
+<main class="layout__main">
+  {{#infinite-content class="layout__section layout__section--headerless" --query=--sites}}
+    {{#masonry-grid --items=--comments as |item|}}
+      {{sites/site/index/approved-comments/-components/comment-collection/comment-collection-item
+          --comment=item
+          --onRejectCommentClick=(action --onRejectCommentClick)}}
+    {{else}}
+      <article class="card" data-test-comment-collection="empty-state">
+        <header class="card__header">
+          <h2 class="card__heading">Nothing here right now</h2>
+
+          <p class="card__subheading">
+            Comments with texts will be shown here so you can review and reject those that are inappropriate.
+          </p>
+        </header>
+      </article>
+    {{/masonry-grid}}
+  {{/infinite-content}}
+
+  {{yield}}
+</main>

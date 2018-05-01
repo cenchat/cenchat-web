@@ -37,6 +37,11 @@ export default Model.extend({
   isDeleted: attr('boolean'),
 
   /**
+   * @type {string}
+   */
+  status: attr('string'),
+
+  /**
    * @type {Object}
    */
   taggedEntities: attr(),
