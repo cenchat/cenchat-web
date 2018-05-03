@@ -1,0 +1,15 @@
+{{#side-nav data-test-roles}}
+  {{sites/site/manage/roles/-components/top-bar
+      --areThereAnyRoleChanges=areThereAnyRoleChanges
+      --onSaveRolesClick=(action handleSaveRolesClick)}}
+  {{sites/site/manage/roles/-components/main-content
+      --roleChange=roleChange
+      --usersWithRole=usersWithRole
+      --usersWithoutRole=usersWithoutRole
+      --areThereAnyRoleChanges=areThereAnyRoleChanges
+      --onSearchUserInput=(action handleSearchUserInput)
+      --onAddRoleClick=(action handleAddRoleClick)
+      --onRemoveRoleClick=(action handleRemoveRoleClick)
+      --onRemoveRoleChangeClick=(action handleRemoveRoleChangeClick)}}
+  {{yield}}
+{{/side-nav}}

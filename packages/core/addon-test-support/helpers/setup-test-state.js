@@ -22,27 +22,29 @@ export async function setupTestState(context) {
   const store = stubService(context, 'store');
 
   // Workarond to avoid runloop issues
-  context.set('store', {
+  store.reopen({
     createRecord(...args) {
-      return run(() => store.createRecord(...args));
+      return run(() => this._super(...args));
     },
 
     updateRecord(...args) {
-      return run(() => store.updateRecord(...args));
+      return run(() => this._super(...args));
     },
 
     findAll(...args) {
-      return run(() => store.findAll(...args));
+      return run(() => this._super(...args));
     },
 
     findRecord(...args) {
-      return run(() => store.findRecord(...args));
+      return run(() => this._super(...args));
     },
 
     query(...args) {
-      return run(() => store.query(...args));
+      return run(() => this._super(...args));
     },
   });
+
+  context.set('store', store);
 
   const user = await context.store.findRecord('user', 'user_a');
 

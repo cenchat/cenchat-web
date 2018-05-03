@@ -6,6 +6,7 @@ body > .ember-view {
     "main"
     "nav";
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100vw;
 }
 
 @media (min-width: 960px) {

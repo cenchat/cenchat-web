@@ -30,10 +30,18 @@ Router.map(function() {
     });
     this.route('site', { path : '/:site_id' }, function() {
       this.route('index', { path: '/' }, function() {
+        this.route('approved-comments');
+        this.route('rejected-comments');
+      });
+      this.route('pages');
+      this.route('manage', function() {
         this.route('roles');
       });
-      this.route('page', { path: '/pages/:page_id' }, function() {});
     });
+  });
+
+  this.route('site', function() {
+    this.route('site', function() {});
   });
 });
 

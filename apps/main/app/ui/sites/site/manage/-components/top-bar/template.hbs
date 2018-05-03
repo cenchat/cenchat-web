@@ -1,0 +1,13 @@
+{{#ce-top-bar}}
+  {{ce-icon-link-button
+      data-test-top-bar="navigate-back-link"
+      href=(href-to 'sites.site.index')
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"}}
+
+  {{#ce-top-bar-multi-heading}}
+    <h1>Manage</h1>
+    <p data-test-top-bar="site-name">{{--site.name}}</p>
+  {{/ce-top-bar-multi-heading}}
+{{/ce-top-bar}}

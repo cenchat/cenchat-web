@@ -51,7 +51,7 @@ module('Acceptance | site/page', (hooks) => {
     await click('[data-test-comment-list="load-more-comments-button"]');
 
     // Assert
-    assert.dom('[data-test-comment-item]').exists({ count: 3 });
+    assert.dom('[data-test-comment-item]').exists({ count: 4 });
   });
 
   test('should create comment', async (assert) => {
@@ -185,7 +185,7 @@ module('Acceptance | site/page', (hooks) => {
     await click('[data-test-comment-list="load-more-comments-button"]');
 
     // Assert
-    assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 4 });
+    assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 5 });
   });
 
   test('should create comment reply', async (assert) => {
