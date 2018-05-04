@@ -1,0 +1,33 @@
+.docs_installation-item__header {
+  display: flex;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.docs_installation-item__text-content {
+  flex: 1;
+}
+
+.docs_installation-item__logo {
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: 16px;
+}
+
+.docs_installation-item__name {
+  padding: 24px 0 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  color: var(--font-primary-color);
+}
+
+.docs_installation-item__description {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-14);
+  color: var(--font-secondary-color);
+}

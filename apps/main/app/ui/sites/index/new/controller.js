@@ -9,10 +9,9 @@ import toast from '@cenchat/elements/utils/toast';
  */
 export default Controller.extend({
   /**
-   * Handles site form's submit event
-   *
    * @param {Object} siteData
    * @param {Event} event
+   * @function
    */
   async handleSiteFormSubmit(siteData, event) {
     event.preventDefault();

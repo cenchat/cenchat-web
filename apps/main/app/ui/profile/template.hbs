@@ -1,7 +1,5 @@
-{{#profile/-components/route-content
-    --session=session
-    --user=model
-    --onSignOutClick=(action handleSignOutClick)
-    --onUsernameSubmit=(action handleUsernameSubmit)}}
+{{profile/-components/top-bar --session=session --user=model --onSignOutClick=(action handleSignOutClick)}}
+
+{{#profile/-components/main-content --session=session --user=model}}
   {{liquid-outlet class="side-nav-outlet"}}
-{{/profile/-components/route-content}}
+{{/profile/-components/main-content}}

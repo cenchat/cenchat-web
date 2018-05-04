@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Unit | Route | sites/site', (hooks) => {
@@ -56,11 +56,15 @@ module('Unit | Route | sites/site', (hooks) => {
       // Arrange
       const route = this.owner.lookup('route:sites/site');
 
+      route.set('store', {
+        findRecord: sinon.stub().withArgs('site', 'site_a').returns(stubPromise(true, 'foo')),
+      });
+
       // Act
       const result = await route.model({ site_id: 'site_a' });
 
       // Assert
-      assert.equal(result.get('id'), 'site_a');
+      assert.equal(result, 'foo');
     });
   });
 });

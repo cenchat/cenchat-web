@@ -1,0 +1,24 @@
+<article
+    class="card clickable"
+    data-test-installation-item="host"
+    tabindex="0"
+    onclick={{action --onInstallationItemClick --item.id}}
+    onkeydown={{action --onInstallationItemKeydown --item.id}}>
+  <header class="docs_installation-item__header">
+    <div class="docs_installation-item__text-content">
+      <h3 class="docs_installation-item__name" data-test-installation-item="name">{{--item.name}}</h3>
+
+      {{#if --item.description}}
+        <p class="docs_installation-item__description" data-test-installation-item="description">
+          {{--item.description}}
+        </p>
+      {{/if}}
+    </div>
+
+    <img
+        class="docs_installation-item__logo"
+        data-test-installation-item="logo"
+        src="{{--item.logoUrl}}"
+        alt="{{--item.name}}">
+  </header>
+</article>
