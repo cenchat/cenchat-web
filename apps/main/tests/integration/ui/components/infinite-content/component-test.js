@@ -3,7 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | infinite content', (hooks) => {
+module('Integration | Component | infinite-content', (hooks) => {
   setupRenderingTest(hooks);
 
   test('should show yield', async (assert) => {

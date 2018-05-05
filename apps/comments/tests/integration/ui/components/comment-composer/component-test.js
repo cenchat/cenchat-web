@@ -1,35 +1,25 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment composer', (hooks) => {
+module('Integration | Component | comment-composer', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
+    const comment = await this.store.findRecord('comment', 'comment_a');
 
     // Preload parsed attachments
-    await run(() => comment.get('parsedAttachments'));
+    await comment.get('parsedAttachments');
 
     comment.set('isTextAllowed', false);
     comment.set('isMessageValid', true);
 
     this.set('comment', comment);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show <ComposerMessage /> when comment message valid', async function (assert) {
@@ -149,9 +139,7 @@ module('Integration | Component | comment composer', (hooks) => {
     await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
 
     // Assert
-    assert.dom('[data-test-message-image="attachment-image"]').exists({
-      count: 3,
-    });
+    assert.dom('[data-test-message-image="attachment-image"]').exists({ count: 3 });
   });
 
   test('should limit adding of attachments to 4 items', async (assert) => {
@@ -169,9 +157,7 @@ module('Integration | Component | comment composer', (hooks) => {
     await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
 
     // Assert
-    assert.dom('[data-test-message-image="attachment-image"]').exists({
-      count: 4,
-    });
+    assert.dom('[data-test-message-image="attachment-image"]').exists({ count: 4 });
   });
 
   test('should remove attachment when clicking the its remove button', async (assert) => {
@@ -184,9 +170,7 @@ module('Integration | Component | comment composer', (hooks) => {
     await click('[data-test-message-image="remove-attachment-button"]');
 
     // Assert
-    assert.dom('[data-test-message-image="attachment-image"]').exists({
-      count: 1,
-    });
+    assert.dom('[data-test-message-image="attachment-image"]').exists({ count: 1 });
   });
 
   test('should disable send button when comment message is invalid', async function (assert) {
@@ -199,9 +183,7 @@ module('Integration | Component | comment composer', (hooks) => {
     await render(hbs`{{comment-composer --comment=comment}}`);
 
     // Assert
-    assert
-      .dom('[data-test-composer-toolbar="send-button"]')
-      .hasAttribute('disabled');
+    assert.dom('[data-test-composer-toolbar="send-button"]').hasAttribute('disabled');
   });
 
   test('should enable send button when comment is valid', async function (assert) {
@@ -214,9 +196,7 @@ module('Integration | Component | comment composer', (hooks) => {
     await render(hbs`{{comment-composer --comment=comment}}`);
 
     // Assert
-    assert
-      .dom('[data-test-composer-toolbar="send-button"]')
-      .doesNotHaveAttribute('disabled');
+    assert.dom('[data-test-composer-toolbar="send-button"]').doesNotHaveAttribute('disabled');
   });
 
   test('should show hint when text comment isn\'t allowed', async function (assert) {

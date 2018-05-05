@@ -3,25 +3,17 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
-
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
 
 module('Integration | Component | search/-components/search-top-bar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
     this.set('query', null);
     this.set('onSearchInput', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should fire an external action when typing in the search field', async function (assert) {

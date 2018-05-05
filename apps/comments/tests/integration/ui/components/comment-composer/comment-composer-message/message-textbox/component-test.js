@@ -3,12 +3,15 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Integration | Component | comment-composer/comment-composer-message/message textbox', (hooks) => {
+module('Integration | Component | comment-composer/comment-composer-message/message-textbox', (hooks) => {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function () {
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+
     this.set('onTextBoxInput', () => {});
   });
 

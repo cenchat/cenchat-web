@@ -1,34 +1,24 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment-composer/comment composer toolbar', (hooks) => {
+module('Integration | Component | comment-composer/comment-composer-toolbar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
+    const comment = await this.store.findRecord('comment', 'comment_a');
 
     this.set('comment', comment);
     this.set('onAddAttachmentClick', () => {});
     this.set('onAskMeAnythingClick', () => {});
     this.set('onSendCommentClick', () => {});
     this.set('onTagEntityClick', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show <ToolbarStickerPanel /> when clicking sticker', async function (assert) {

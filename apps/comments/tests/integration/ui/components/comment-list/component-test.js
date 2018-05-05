@@ -1,27 +1,21 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment list', (hooks) => {
+module('Integration | Component | comment-list', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comments = await run(() => this.get('store').query('comment', {
+    const comments = await this.store.query('comment', {
       filter(reference) {
         return reference.limit(2);
       },
-    }));
+    });
 
     this.set('comments', comments);
     this.set('prioritizedComments', []);
@@ -29,15 +23,11 @@ module('Integration | Component | comment list', (hooks) => {
     this.set('threadLevel', 2);
   });
 
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
-  });
-
   test('should show <CommentItem /> for every new comment', async function (assert) {
     assert.expect(2);
 
     // Arrange
-    const prioritizedComment = await run(() => this.get('store').findRecord('comment', 'comment_c'));
+    const prioritizedComment = await this.store.findRecord('comment', 'comment_c');
 
     this.set('prioritizedComments', [prioritizedComment]);
 
@@ -136,9 +126,7 @@ module('Integration | Component | comment list', (hooks) => {
     `);
 
     // Assert
-    assert
-      .dom('[data-test-comment-list="load-more-comments-button"]')
-      .exists();
+    assert.dom('[data-test-comment-list="load-more-comments-button"]').exists();
   });
 
   test('should hide load more comments button when number of comments is < the current limit', async function (assert) {
@@ -157,8 +145,6 @@ module('Integration | Component | comment list', (hooks) => {
     `);
 
     // Assert
-    assert
-      .dom('[data-test-comment-list="load-more-comments-button"]')
-      .doesNotExist();
+    assert.dom('[data-test-comment-list="load-more-comments-button"]').doesNotExist();
   });
 });

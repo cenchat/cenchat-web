@@ -1,6 +1,5 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -38,7 +37,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -73,7 +72,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -113,7 +112,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_c'));
+    const user = await this.store.findRecord('user', 'user_c');
 
     this.set('user', user);
 
@@ -138,7 +137,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -160,7 +159,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_b'));
+    const user = await this.store.findRecord('user', 'user_b');
 
     this.set('user', user);
 
@@ -185,7 +184,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.expect(1);
 
     // Arrange
-    const user = await run(() => this.get('store').findRecord('user', 'user_c'));
+    const user = await this.store.findRecord('user', 'user_c');
 
     this.set('user', user);
 

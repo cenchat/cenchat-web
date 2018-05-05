@@ -1,23 +1,18 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment-item/comment item toolbar', (hooks) => {
+module('Integration | Component | comment-item/comment-item-toolbar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a'));
+    const comment = await this.store.findRecord('comment', 'comment_a');
 
     this.set('comment', comment);
     this.set('threadLevel', 1);
@@ -25,10 +20,6 @@ module('Integration | Component | comment-item/comment item toolbar', (hooks) =>
     this.set('onDeleteCommentClick', () => {});
     this.set('onShareCommentClick', () => {});
     this.set('onReplyToCommentClick', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show delete button when signed in user is the author and comment isn\'t flagged as deleted', async (assert) => {

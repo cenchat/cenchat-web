@@ -1,30 +1,21 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment-composer/comment-composer-message/message image', (hooks) => {
+module('Integration | Component | comment-composer/comment-composer-message/message-image', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const sticker = await run(() => this.get('store').findRecord('sticker', 'sticker_a1'));
+    const sticker = await this.store.findRecord('sticker', 'sticker_a1');
 
     this.set('attachment', sticker);
     this.set('onRemoveAttachmentClick', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show image attachment', async (assert) => {

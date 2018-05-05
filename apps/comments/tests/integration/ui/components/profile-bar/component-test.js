@@ -1,33 +1,23 @@
 import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | profile bar', (hooks) => {
+module('Integration | Component | profile-bar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const page = await run(() => this.get('store').findRecord('page', 'site_a__page_a'));
+    const page = await this.store.findRecord('page', 'site_a__page_a');
 
     this.set('page', page);
     this.set('isCommentComposerVisible', true);
     this.set('headerText', 'Foo');
     this.set('onSignOutClick', () => {});
     this.set('onSendCommentSuccess', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show <CommentComposer /> when @isCommentComposerVisible is true', async function (assert) {
@@ -126,16 +116,14 @@ module('Integration | Component | profile bar', (hooks) => {
     `);
 
     // Assert
-    assert
-      .dom('[data-test-profile-bar="notification-button"] > button')
-      .hasAttribute('badged');
+    assert.dom('[data-test-profile-bar="notification-button"] > button').hasAttribute('badged');
   });
 
   test('should hide notification badge when there are no unread notifications', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const meta = await run(() => this.get('store').findRecord('user-meta-info', 'user_a'));
+    const meta = await this.store.findRecord('user-meta-info', 'user_a');
 
     meta.set('hasNewNotification', false);
 
@@ -150,8 +138,6 @@ module('Integration | Component | profile bar', (hooks) => {
     `);
 
     // Assert
-    assert
-      .dom('[data-test-profile-bar="notification-button"]')
-      .doesNotHaveAttribute('badged');
+    assert.dom('[data-test-profile-bar="notification-button"]').doesNotHaveAttribute('badged');
   });
 });

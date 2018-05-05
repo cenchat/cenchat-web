@@ -1,27 +1,19 @@
 import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
+import { setupTestState } from '@cenchat/core/test-support';
 
-module('Integration | Component | comment-item/comment-item-content/content-tagged-entity-list/tagged entity list item', (hooks) => {
+module('Integration | Component | comment-item/comment-item-content/content-tagged-entity-list/tagged-entity-list-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
+    const user = await this.store.findRecord('user', 'user_a');
 
     this.set('entity', user);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show user photo', async (assert) => {
@@ -34,17 +26,8 @@ module('Integration | Component | comment-item/comment-item-content/content-tagg
     `);
 
     // Assert
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute(
-      'src',
-      'user_a.jpg',
-    );
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute(
-      'title',
-      'User A',
-    );
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute(
-      'alt',
-      'User A',
-    );
+    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('src', 'user_a.jpg');
+    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('title', 'User A');
+    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('alt', 'User A');
   });
 });

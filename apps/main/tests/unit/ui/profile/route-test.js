@@ -1,20 +1,13 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
+import { setupTestState } from '@cenchat/core/test-support';
 
 module('Unit | Route | profile', (hooks) => {
   setupTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    await setupTestState(this);
   });
 
   module('hook: model', () => {
