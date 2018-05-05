@@ -95,8 +95,8 @@ module('Acceptance | site/page', (hooks) => {
     const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
 
     await visit('/sites/site_a/pages/page_a?slug=foobar');
-    await click('[data-test-page-comments="filter-comments-button"] button');
-    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click('[data-test-main-content-page-comments="filter-comments-button"] button');
+    await click('[data-test-main-content-page-comments="filter-comments-by-all-button"]');
     await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
     await click(`${editFormContainer} [data-test-composer-toolbar="sticker-button"]`);
     await click(`${editFormContainer} [data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]`);
@@ -118,8 +118,8 @@ module('Acceptance | site/page', (hooks) => {
     const editFormContainer = `${commentItem} [data-test-comment-item="edit-form-container"]`;
 
     await visit('/sites/site_a/pages/page_a?slug=foobar');
-    await click('[data-test-page-comments="filter-comments-button"] button');
-    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click('[data-test-main-content-page-comments="filter-comments-button"] button');
+    await click('[data-test-main-content-page-comments="filter-comments-by-all-button"]');
     await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
     await click(`${editFormContainer} [data-test-comment-composer-toolbar="tag-entity-button"]`);
     await fillIn(`${editFormContainer} [data-test-toolbar-tag-entity-panel="search-field"] input`, 'user_c');
@@ -143,8 +143,8 @@ module('Acceptance | site/page', (hooks) => {
     await visit('/sites/site_a/pages/page_a?slug=foobar');
 
     // Act
-    await click('[data-test-page-comments="filter-comments-button"] button');
-    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click('[data-test-main-content-page-comments="filter-comments-button"] button');
+    await click('[data-test-main-content-page-comments="filter-comments-by-all-button"]');
     await click(`${commentItem} [data-test-item-toolbar="delete-button"]`);
 
     // Assert
@@ -162,8 +162,8 @@ module('Acceptance | site/page', (hooks) => {
     await visit('/sites/site_a/pages/page_a?slug=foobar');
 
     // Act
-    await click('[data-test-page-comments="filter-comments-button"] button');
-    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click('[data-test-main-content-page-comments="filter-comments-button"] button');
+    await click('[data-test-main-content-page-comments="filter-comments-by-all-button"]');
     await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
 
     // Assert
@@ -177,8 +177,8 @@ module('Acceptance | site/page', (hooks) => {
     const commentItem = '[data-test-comment-item="comment_a"]';
 
     await visit('/sites/site_a/pages/page_a?slug=foobar');
-    await click('[data-test-page-comments="filter-comments-button"] button');
-    await click('[data-test-page-comments="filter-comments-by-all-button"]');
+    await click('[data-test-main-content-page-comments="filter-comments-button"] button');
+    await click('[data-test-main-content-page-comments="filter-comments-by-all-button"]');
     await click(`${commentItem} [data-test-item-toolbar="reply-button"]`);
 
     // Act

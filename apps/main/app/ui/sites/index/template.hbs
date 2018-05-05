@@ -1,6 +1,19 @@
-{{#sites/index/-components/route-content
+{{#ce-top-bar class="layout__header" responsive=true}}
+  <h1>Sites</h1>
+
+  {{#if (eq --user.betaTesterStatus 'approved')}}
+    {{ce-icon-link-button
+        data-test-top-bar="new-link"
+        href=(href-to 'sites.index.new')
+        title="New site"
+        aria-label="New site"
+        icon="add"}}
+  {{/if}}
+{{/ce-top-bar}}
+
+{{#sites/index/-components/main-content
     --router=router
     --user=model
     --onInviteRequestFormSubmit=(action handleInviteRequestFormSubmit)}}
   {{liquid-outlet class="side-nav-outlet"}}
-{{/sites/index/-components/route-content}}
+{{/sites/index/-components/main-content}}

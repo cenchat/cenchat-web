@@ -1,3 +1,14 @@
-{{#profile/followings/-components/route-content --followings=model}}
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        data-test-profile-edit="navigate-back-link"
+        href=(href-to 'profile')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+    <h2>Followings</h2>
+  {{/ce-top-bar}}
+
+  {{profile/followings/-components/main-content --users=model}}
   {{outlet}}
-{{/profile/followings/-components/route-content}}
+{{/side-nav}}

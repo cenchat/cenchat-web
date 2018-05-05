@@ -1,3 +1,15 @@
-{{#docs/installation/-components/route-content --platform=model}}
-  {{outlet}}
-{{/docs/installation/-components/route-content}}
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        href=(href-to 'docs')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+
+    <h2>{{model}}</h2>
+  {{/ce-top-bar}}
+
+  {{docs/installation/-components/main-content --platform=model}}
+
+  {{yield}}
+{{/side-nav}}

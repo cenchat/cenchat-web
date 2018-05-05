@@ -21,11 +21,4 @@ export default Route.extend({
       this.transitionTo('sites.index');
     }
   },
-
-  /**
-   * @override
-   */
-  model() {
-    return this.modelFor('sites.index');
-  },
 });

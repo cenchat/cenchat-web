@@ -1,5 +1,16 @@
-{{#sites/index/new/-components/route-content
-    --user=model
-    --onSiteFormSubmit=(action handleSiteFormSubmit)}}
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        href=(href-to 'sites.index')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+    <h2>Add site</h2>
+  {{/ce-top-bar}}
+
+  <div class="side-nav__content">
+    {{sites/index/new/-components/site-form --onSiteFormSubmit=(action handleSiteFormSubmit)}}
+  </div>
+
   {{outlet}}
-{{/sites/index/new/-components/route-content}}
+{{/side-nav}}

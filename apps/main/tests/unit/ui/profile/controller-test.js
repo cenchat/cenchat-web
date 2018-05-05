@@ -1,24 +1,14 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import EmberObject from '@ember/object';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
-
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
 
 module('Unit | Controller | profile', (hooks) => {
   setupTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
+    await setupTestState(this);
   });
 
   module('function: handleSignOutClick', () => {
@@ -55,28 +45,6 @@ module('Unit | Controller | profile', (hooks) => {
 
       // Assert
       assert.ok(transitionToStub.calledWithExactly('home'));
-    });
-  });
-
-  module('function: handleUsernameSubmit', () => {
-    test('should save username', async function (assert) {
-      assert.expect(2);
-
-      // Arrange
-      const saveStub = sinon.stub().returns(stubPromise(true));
-      const model = EmberObject.create({ save: saveStub });
-      const controller = this.owner.lookup('controller:profile');
-
-      controller.set('model', model);
-
-      // Act
-      await controller.handleUsernameSubmit('foobar', {
-        preventDefault: sinon.stub(),
-      });
-
-      // Assert
-      assert.equal(model.get('username'), 'foobar');
-      assert.ok(saveStub.calledOnce);
     });
   });
 });

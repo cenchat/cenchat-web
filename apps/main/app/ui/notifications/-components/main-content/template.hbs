@@ -1,0 +1,14 @@
+<main class="layout__main">
+  {{#async-let
+      on=(async-property --user.notifications)
+      placeholder=(component 'ce-spinner' aria-valuetext='Loading notifications')
+      as |notifications|}}
+    {{#infinite-content class="layout__section layout__section--headerless" --query=notifications}}
+      <ul class="card card--centerized list">
+        {{notification-list --notifications=notifications}}
+      </ul>
+    {{/infinite-content}}
+  {{/async-let}}
+
+  {{yield}}
+</main>

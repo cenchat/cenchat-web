@@ -1,0 +1,46 @@
+import { module, test } from 'qunit';
+import { render } from '@ember/test-helpers';
+import { setupRenderingTest } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
+
+module('Integration | Component | profile/-components/main-content/following-collection', (hooks) => {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+
+    const user = this.get('session.model');
+
+    this.set('user', user);
+  });
+
+  test('should show <UserCollection />', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const spy = spyComponent(this, 'user-collection');
+
+    // Act
+    await render(hbs`{{profile/-components/main-content/following-collection --user=user}}`);
+
+    // Assert
+    assert.deepEqual(spy.componentArgsType, { users: 'instance' });
+  });
+
+  test('should show empty state when there are no followings :(', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('user', {
+      followings: Promise.resolve([]),
+    });
+
+    // Act
+    await render(hbs`{{profile/-components/main-content/following-collection --user=user}}`);
+
+    // Assert
+    assert.dom('[data-test-following-collection="empty-state"]').exists();
+  });
+});

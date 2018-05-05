@@ -2,14 +2,14 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
-import { stubService } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Unit | Route | home', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function () {
-    stubService(this, 'session', {});
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
   });
 
   module('hook: beforeModel', () => {

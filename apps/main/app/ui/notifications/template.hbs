@@ -1,3 +1,7 @@
-{{#notifications/-components/route-content --user=model}}
+{{#ce-top-bar class="layout__header" responsive=true}}
+  <h1>Notifications</h1>
+{{/ce-top-bar}}
+
+{{#notifications/-components/main-content --user=model}}
   {{outlet}}
-{{/notifications/-components/route-content}}
+{{/notifications/-components/main-content}}

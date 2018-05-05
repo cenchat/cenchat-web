@@ -1,3 +1,20 @@
-{{#docs/-components/route-content --router=router}}
+{{#ce-top-bar class="layout__header" responsive=true}}
+  <h1>Documentations</h1>
+{{/ce-top-bar}}
+
+<main class="layout__main">
+  <section class="layout__section">
+    {{#ce-subheader class="layout__section-header"}}
+      <h2>Installation</h2>
+    {{/ce-subheader}}
+
+    {{#masonry-grid --items=platforms as |item|}}
+      {{docs/-components/installation-item
+          --item=item
+          --onInstallationItemClick=(action handleInstallationItemClick)
+          --onInstallationItemKeydown=(action handleInstallationItemKeydown)}}
+    {{/masonry-grid}}
+  </section>
+
   {{liquid-outlet class="side-nav-outlet"}}
-{{/docs/-components/route-content}}
+</main>

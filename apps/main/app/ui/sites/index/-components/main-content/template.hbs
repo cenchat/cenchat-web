@@ -1,0 +1,25 @@
+<main class="layout__main">
+  {{#if --user.betaTesterStatus}}
+    {{#if (eq --user.betaTesterStatus 'approved')}}
+      {{#async-let
+          on=(async-property --user.sitesAsAdmin)
+          placeholder=(component 'ce-spinner' aria-valuetext='Loading sites administered')
+          as |sitesAsAdmin|}}
+        {{sites/index/-components/main-content/main-content-site-collection  --router=--router --sites=sitesAsAdmin}}
+      {{/async-let}}
+    {{else if (eq --user.betaTesterStatus 'pending')}}
+      <article class="card">
+        <h2 class="card__heading">You've already applied for an invite</h2>
+
+        <p class="card__message">
+          Our approval process is based on our current needs. We may hold your request until then.
+        </p>
+      </article>
+    {{else if (eq --user.betaTesterStatus 'unapplied')}}
+      {{sites/index/-components/main-content/main-content-invite-form
+          --onInviteRequestFormSubmit=(action --onInviteRequestFormSubmit)}}
+    {{/if}}
+  {{/if}}
+
+  {{yield}}
+</main>

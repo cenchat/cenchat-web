@@ -1,4 +1,3 @@
-import { capitalize } from '@ember/string';
 import Route from '@ember/routing/route';
 
 /**
@@ -11,6 +10,6 @@ export default Route.extend({
    * @override
    */
   model(params) {
-    return capitalize(params.platform);
+    return params.platform.toLowerCase();
   },
 });
