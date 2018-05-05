@@ -1,22 +1,22 @@
-.sign-in_route-content__top-bar {
+.sign-in_main-content__top-bar {
   background-color: #212121;
   box-shadow: none;
 }
 
-.sign-in_route-content__logo {
+.sign-in_main-content__logo {
   width: auto;
   height: 32px;
   padding: 6px 20px;
 }
 
-.sign-in_route-content__main {
+.sign-in_main-content__main {
   height: 100vh;
   padding: 8px;
   overflow: hidden;
   background-color: #212121;
 }
 
-.sign-in_route-content__card {
+.sign-in_main-content__card {
   width: 100%;
   overflow: hidden;
   font-family: var(--font-family);
@@ -26,7 +26,7 @@
 }
 
 @media (min-width: 600px) {
-  .sign-in_route-content__card {
+  .sign-in_main-content__card {
     max-width: 420px;
     margin-right: auto;
     margin-left: auto;

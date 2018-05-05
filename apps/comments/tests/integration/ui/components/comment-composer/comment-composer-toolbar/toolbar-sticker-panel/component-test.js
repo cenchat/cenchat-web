@@ -1,31 +1,22 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar sticker panel', (hooks) => {
+module('Integration | Component | comment-composer/comment-composer-toolbar/toolbar-sticker-panel', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const user = await run(() => this.get('store').findRecord('user', 'user_a'));
+    const user = await this.store.findRecord('user', 'user_a');
     const stickerPacks = await user.get('stickerPacks');
 
     this.set('stickerPacks', stickerPacks);
     this.set('onAddAttachmentClick', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should list sticker packs', async (assert) => {

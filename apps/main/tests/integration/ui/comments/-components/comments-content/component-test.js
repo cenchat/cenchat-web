@@ -1,27 +1,19 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import { run } from '@ember/runloop';
 import hbs from 'htmlbars-inline-precompile';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'main/tests/helpers/integration-test-setup';
+import { setupTestState } from '@cenchat/core/test-support';
 
 module('Integration | Component | comments/-components/comments-content', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_b'));
+    const comment = await this.store.findRecord('comment', 'comment_b');
 
     this.set('comment', comment);
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show comment', async (assert) => {

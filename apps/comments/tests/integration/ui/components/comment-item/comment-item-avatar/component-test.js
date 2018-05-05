@@ -1,31 +1,22 @@
 import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import {
-  setupBeforeEach,
-  setupAfterEach,
-} from 'comments/tests/helpers/integration-test-setup';
-
-module('Integration | Component | comment-item/comment item avatar', (hooks) => {
+module('Integration | Component | comment-item/comment-item-avatar', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
-    await setupBeforeEach(this);
+    await setupTestState(this);
 
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_b'));
+    const comment = await this.store.findRecord('comment', 'comment_b');
 
     comment.set('isFromFollowing', false);
     this.set('comment', comment);
     this.set('onToggleQuoteClick', () => {});
-  });
-
-  hooks.afterEach(async function () {
-    await setupAfterEach(this);
   });
 
   test('should show author image', async (assert) => {
@@ -39,10 +30,7 @@ module('Integration | Component | comment-item/comment item avatar', (hooks) => 
     `);
 
     // Assert
-    assert.dom('[data-test-item-avatar="author-image"]').hasAttribute(
-      'src',
-      'user_b.jpg',
-    );
+    assert.dom('[data-test-item-avatar="author-image"]').hasAttribute('src', 'user_b.jpg');
   });
 
   test('should show following badge when author is a following', async function (assert) {
@@ -96,9 +84,9 @@ module('Integration | Component | comment-item/comment item avatar', (hooks) => 
     assert.expect(1);
 
     // Arrange
-    const comment = await run(() => this.get('store').findRecord('comment', 'comment_a', {
+    const comment = await this.store.findRecord('comment', 'comment_a', {
       adapterOptions: { path: 'comments/site_a/page_a' },
-    }));
+    });
 
     this.set('comment', comment);
 
