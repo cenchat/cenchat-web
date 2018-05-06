@@ -14,7 +14,7 @@ module('Integration | Component | sites/site/manage/-components/top-bar', (hooks
     this.set('site', await this.store.findRecord('site', 'site_a'));
   });
 
-  test('should show site name', async (assert) => {
+  test('should show site name', async function (assert) {
     assert.expect(1);
 
     // Act

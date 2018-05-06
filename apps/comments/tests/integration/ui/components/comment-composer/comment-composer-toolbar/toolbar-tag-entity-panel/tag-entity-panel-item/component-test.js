@@ -18,7 +18,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     this.set('onTagEntityClick', () => {});
   });
 
-  test('should show entity', async (assert) => {
+  test('should show entity', async function (assert) {
     assert.expect(3);
 
     // Act

@@ -15,7 +15,7 @@ module('Integration | Component | sites/site/index/-components/main-content', (h
     this.set('onVerifySiteClick', () => {});
   });
 
-  test('should show yield when site is verified', async (assert) => {
+  test('should show yield when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act

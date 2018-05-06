@@ -33,7 +33,7 @@ module('Integration | Component | sites/site/manage/roles/-components/top-bar', 
     assert.dom('[data-test-top-bar="save-button"]').isDisabled();
   });
 
-  test('should enable save button when there are role changes', async (assert) => {
+  test('should enable save button when there are role changes', async function (assert) {
     assert.expect(1);
 
     // Act

@@ -19,7 +19,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     this.set('onAddAttachmentClick', () => {});
   });
 
-  test('should list sticker packs', async (assert) => {
+  test('should list sticker packs', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -38,7 +38,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     });
   });
 
-  test('should list stickers of selected sticker pack', async (assert) => {
+  test('should list stickers of selected sticker pack', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -57,7 +57,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     });
   });
 
-  test('should change selected sticker pack when clicking another one', async (assert) => {
+  test('should change selected sticker pack when clicking another one', async function (assert) {
     assert.expect(3);
 
     // Arrange

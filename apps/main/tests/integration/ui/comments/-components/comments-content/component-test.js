@@ -16,7 +16,7 @@ module('Integration | Component | comments/-components/comments-content', (hooks
     this.set('comment', comment);
   });
 
-  test('should show comment', async (assert) => {
+  test('should show comment', async function (assert) {
     assert.expect(5);
 
     // Act

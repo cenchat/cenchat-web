@@ -11,7 +11,7 @@ module('Acceptance | sites/index', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should show sites', async (assert) => {
+  test('should show sites', async function (assert) {
     assert.expect(2);
 
     // Act

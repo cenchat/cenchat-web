@@ -11,7 +11,7 @@ module('Acceptance | search', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should search for user', async (assert) => {
+  test('should search for user', async function (assert) {
     assert.expect(3);
 
     // Arrange

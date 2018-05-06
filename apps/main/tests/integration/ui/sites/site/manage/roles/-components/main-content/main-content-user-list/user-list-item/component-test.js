@@ -18,7 +18,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     this.set('onRemoveRoleClick', () => {});
   });
 
-  test('should show user', async (assert) => {
+  test('should show user', async function (assert) {
     assert.expect(3);
 
     // Act
@@ -36,7 +36,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     assert.dom('[data-test-user-list-item="username"]').hasText('@user_b');
   });
 
-  test('should show remove role button when user has a role', async (assert) => {
+  test('should show remove role button when user has a role', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -111,7 +111,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     assert.dom('[data-test-user-list-item="add-role-button"]').exists();
   });
 
-  test('should hide add role button when user has a role', async (assert) => {
+  test('should hide add role button when user has a role', async function (assert) {
     assert.expect(1);
 
     // Act

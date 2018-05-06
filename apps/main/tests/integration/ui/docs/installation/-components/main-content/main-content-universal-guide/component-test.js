@@ -12,7 +12,7 @@ module('Integration | Component | docs/installation/-components/main-content/mai
     await setupTestState(this);
   });
 
-  test('nothing to test so far', async (assert) => {
+  test('nothing to test so far', async function (assert) {
     assert.expect(1);
 
     // Act

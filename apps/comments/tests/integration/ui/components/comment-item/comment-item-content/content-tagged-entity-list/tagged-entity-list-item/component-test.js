@@ -16,7 +16,7 @@ module('Integration | Component | comment-item/comment-item-content/content-tagg
     this.set('entity', user);
   });
 
-  test('should show user photo', async (assert) => {
+  test('should show user photo', async function (assert) {
     assert.expect(3);
 
     // Act

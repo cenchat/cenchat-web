@@ -17,7 +17,7 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
     this.set('onSignOutClick', () => {});
   });
 
-  test('should show user info', async (assert) => {
+  test('should show user info', async function (assert) {
     assert.expect(2);
 
     // Act

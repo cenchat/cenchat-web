@@ -23,7 +23,7 @@ module('Acceptance | sites/site/index', (hooks) => {
     );
   });
 
-  test('should be able to verify site when not yet verified', async (assert) => {
+  test('should be able to verify site when not yet verified', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -36,7 +36,7 @@ module('Acceptance | sites/site/index', (hooks) => {
     assert.dom('[data-test-application="toast"]').hasText('Site is now verified');
   });
 
-  test('should transition to approved comments when site is verified', async (assert) => {
+  test('should transition to approved comments when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act

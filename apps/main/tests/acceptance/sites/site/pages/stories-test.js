@@ -11,7 +11,7 @@ module('Acceptance | sites/site/pages', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should list pages', async (assert) => {
+  test('should list pages', async function (assert) {
     assert.expect(2);
 
     // Act

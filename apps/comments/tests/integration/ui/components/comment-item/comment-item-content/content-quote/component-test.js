@@ -19,7 +19,7 @@ module('Integration | Component | comment-item/comment-item-content/content-quot
     this.set('comment', comment);
   });
 
-  test('should show author info', async (assert) => {
+  test('should show author info', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -31,7 +31,7 @@ module('Integration | Component | comment-item/comment-item-content/content-quot
     assert.dom('[data-test-content-quote="author-name"]').hasText('User B:');
   });
 
-  test('should show text content', async (assert) => {
+  test('should show text content', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -43,7 +43,7 @@ module('Integration | Component | comment-item/comment-item-content/content-quot
     assert.dom('[data-test-content-quote="text"]').hasText('Foobar');
   });
 
-  test('should list stickers content', async (assert) => {
+  test('should list stickers content', async function (assert) {
     assert.expect(3);
 
     // Arrange

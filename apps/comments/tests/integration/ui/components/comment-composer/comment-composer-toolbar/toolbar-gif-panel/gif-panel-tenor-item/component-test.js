@@ -22,7 +22,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     this.set('onAddAttachmentClick', () => {});
   });
 
-  test('should show gif', async (assert) => {
+  test('should show gif', async function (assert) {
     assert.expect(2);
 
     // Act

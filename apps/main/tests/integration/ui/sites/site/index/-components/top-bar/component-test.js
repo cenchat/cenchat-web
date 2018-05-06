@@ -14,7 +14,7 @@ module('Integration | Component | sites/site/index/-components/top-bar', (hooks)
     this.set('site', await this.store.findRecord('site', 'site_a'));
   });
 
-  test('should show site name', async (assert) => {
+  test('should show site name', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -26,7 +26,7 @@ module('Integration | Component | sites/site/index/-components/top-bar', (hooks)
     assert.dom('[data-test-top-bar="name"]').hasText('Site A');
   });
 
-  test('should show manage link when site is verified', async (assert) => {
+  test('should show manage link when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -53,7 +53,7 @@ module('Integration | Component | sites/site/index/-components/top-bar', (hooks)
     assert.dom('[data-test-top-bar="manage-link"]').doesNotExist();
   });
 
-  test('should show docs link when site is verified', async (assert) => {
+  test('should show docs link when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -80,7 +80,7 @@ module('Integration | Component | sites/site/index/-components/top-bar', (hooks)
     assert.dom('[data-test-top-bar="docs-link"]').doesNotExist();
   });
 
-  test('should show tabs when site is verified', async (assert) => {
+  test('should show tabs when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act

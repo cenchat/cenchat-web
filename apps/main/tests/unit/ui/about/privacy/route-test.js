@@ -4,7 +4,7 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Route | about/privacy', (hooks) => {
   setupTest(hooks);
 
-  test('nothing to test', async (assert) => {
+  test('nothing to test', async function (assert) {
     assert.expect(1);
 
     assert.ok(true);

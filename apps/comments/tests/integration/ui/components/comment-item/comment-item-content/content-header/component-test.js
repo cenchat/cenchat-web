@@ -16,7 +16,7 @@ module('Integration | Component | comment-item/comment-item-content/content-head
     this.set('comment', comment);
   });
 
-  test('should show author info', async (assert) => {
+  test('should show author info', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -28,7 +28,7 @@ module('Integration | Component | comment-item/comment-item-content/content-head
     assert.dom('[data-test-content-header="comment-author"]').hasText('User A');
   });
 
-  test('should show timestamp', async (assert) => {
+  test('should show timestamp', async function (assert) {
     assert.expect(1);
 
     // Act

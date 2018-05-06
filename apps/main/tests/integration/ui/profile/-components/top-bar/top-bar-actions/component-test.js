@@ -18,7 +18,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     this.set('onSignOutClick', () => {});
   });
 
-  test('should show edit profile button when the owner of the profile', async (assert) => {
+  test('should show edit profile button when the owner of the profile', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -53,7 +53,7 @@ module('Integration | Component | profile/-components/top-bar/top-bar-actions', 
     assert.dom('[data-test-top-bar-actions="edit-link"]').doesNotExist();
   });
 
-  test('should show sign out button when the owner of the profile', async (assert) => {
+  test('should show sign out button when the owner of the profile', async function (assert) {
     assert.expect(1);
 
     // Act

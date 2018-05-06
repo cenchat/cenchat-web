@@ -46,7 +46,7 @@ module('Integration | Component | comment-item/comment-item-content/content-mess
     assert.dom('[data-test-content-message="deleted-message"]').doesNotExist();
   });
 
-  test('should show text content when available', async (assert) => {
+  test('should show text content when available', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -74,7 +74,7 @@ module('Integration | Component | comment-item/comment-item-content/content-mess
     assert.dom('[data-test-content-message="text"]').doesNotExist();
   });
 
-  test('should list stickers attachment', async (assert) => {
+  test('should list stickers attachment', async function (assert) {
     assert.expect(3);
 
     // Arrange

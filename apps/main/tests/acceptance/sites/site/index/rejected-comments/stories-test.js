@@ -11,7 +11,7 @@ module('Acceptance | sites/site/index/rejected-comments', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should list rejected comments', async (assert) => {
+  test('should list rejected comments', async function (assert) {
     assert.expect(1);
 
     // Act

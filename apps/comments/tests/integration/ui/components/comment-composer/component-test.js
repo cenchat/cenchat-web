@@ -128,7 +128,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     });
   });
 
-  test('should add attachment when clicking it', async (assert) => {
+  test('should add attachment when clicking it', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -142,7 +142,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.dom('[data-test-message-image="attachment-image"]').exists({ count: 3 });
   });
 
-  test('should limit adding of attachments to 4 items', async (assert) => {
+  test('should limit adding of attachments to 4 items', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -160,7 +160,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.dom('[data-test-message-image="attachment-image"]').exists({ count: 4 });
   });
 
-  test('should remove attachment when clicking the its remove button', async (assert) => {
+  test('should remove attachment when clicking the its remove button', async function (assert) {
     assert.expect(1);
 
     // Arrange

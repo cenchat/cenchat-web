@@ -65,7 +65,7 @@ module('Integration | Component | profile-bar', (hooks) => {
     assert.ok(spy.notCalled);
   });
 
-  test('should show header text', async (assert) => {
+  test('should show header text', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -102,7 +102,7 @@ module('Integration | Component | profile-bar', (hooks) => {
     assert.deepEqual(spy.componentArgsType, { notifications: 'instance' });
   });
 
-  test('should show notification badge when there are unread notifications', async (assert) => {
+  test('should show notification badge when there are unread notifications', async function (assert) {
     assert.expect(1);
 
     // Act

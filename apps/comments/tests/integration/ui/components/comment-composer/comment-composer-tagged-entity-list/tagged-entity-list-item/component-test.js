@@ -18,7 +18,7 @@ module('Integration | Component | comment-composer/comment-composer-tagged-entit
     this.set('onUntagEntityClick', () => {});
   });
 
-  test('should show user photo', async (assert) => {
+  test('should show user photo', async function (assert) {
     assert.expect(3);
 
     // Act
