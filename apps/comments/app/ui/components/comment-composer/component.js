@@ -182,6 +182,7 @@ export default Component.extend({
       isDeleted: false,
       page: this.get('--page'),
       site: this.get('--page.site'),
+      status: 'approved',
       taggedEntities: null,
       text: null,
     });

@@ -84,64 +84,6 @@ module('Unit | Route | application', (hooks) => {
       assert.equal(route.get('session.model'), this.user);
     });
 
-    test('should create record when fetching session model fails', async function (assert) {
-      assert.expect(3);
-
-      // Arrange
-      const saveStub = sinon.stub().returns(stubPromise(true));
-      const user = EmberObject.create({ save: saveStub });
-      const createRecordStub = sinon.stub().returns(user);
-      const route = this.owner.lookup('route:application');
-
-      route.set('session', this.session);
-      route.set('store', {
-        createRecord: createRecordStub,
-        findRecord: sinon.stub().returns(stubPromise(false, {
-          message: 'Document doesn\'t exist',
-        })),
-      });
-
-      // Act
-      await route.afterModel();
-
-      // Assert
-      assert.ok(createRecordStub.calledWithExactly(
-        'user',
-        {
-          id: 'user_a',
-          displayName: 'User A',
-          displayUsername: null,
-          facebookId: null,
-          photoUrl: 'user_a.jpg',
-          username: null,
-        },
-      ));
-      assert.ok(saveStub.calledOnce);
-      assert.deepEqual(route.get('session.content.model'), user);
-    });
-
-    test('should sign out when create record fails', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const closeSpy = sinon.spy(this.session, 'close');
-      const route = this.owner.lookup('route:application');
-
-      route.set('session', this.session);
-      route.set('store', {
-        createRecord: sinon.stub().returns({
-          save: sinon.stub().returns(stubPromise(false)),
-        }),
-        findRecord: sinon.stub().returns(stubPromise(true)),
-      });
-
-      // Act
-      await route.afterModel();
-
-      // Assert
-      assert.ok(closeSpy.calledOnce);
-    });
-
     test('should update profile when Facebook UID is outdated with Facebook info', async function (assert) {
       assert.expect(5);
 

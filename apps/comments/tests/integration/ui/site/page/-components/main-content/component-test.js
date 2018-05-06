@@ -1,5 +1,5 @@
+import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -61,11 +61,11 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     assert.ok(spy.notCalled);
   });
 
-  test('should show <MainContentPageComments />', async function (assert) {
+  test('should show <MainContentComments />', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'site/page/-components/main-content/main-content-page-comments');
+    const spy = spyComponent(this, 'site/page/-components/main-content/main-content-comments');
 
     // Act
     await render(hbs`
@@ -83,6 +83,30 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
       prioritizedComments: 'array',
       filterCommentsBy: 'string',
       onFilterCommentsClick: 'function',
+      onSignInClick: 'function',
     });
+  });
+
+  test('should show <SignInForm /> when clicking sign in', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('session.model', null);
+
+    const spy = spyComponent(this, 'sign-in-form');
+
+    await render(hbs`
+      {{site/page/-components/main-content
+          --session=session
+          --page=page
+          --filterCommentsBy=filterCommentsBy
+          --onFilterCommentsClick=(action onFilterCommentsClick)}}
+    `);
+
+    // Act
+    await click('[data-test-comments-header="sign-in-button"]');
+
+    // Assert
+    assert.ok(spy.calledOnce);
   });
 });

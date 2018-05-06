@@ -1,0 +1,48 @@
+{{#ce-subheader class="section-header"}}
+  <h1 class="section-header__title" data-test-comments-header="heading">Comments</h1>
+
+  {{#if --session.model}}
+    {{#ce-dropdown-button
+        data-test-comments-header="filter-comments-button"
+        icon="filter_list"
+        position="ll"}}
+      <li class="list__item">
+        <button
+            class="list__action {{if (eq --filterCommentsBy 'relevance') 'list-item__action--active'}}"
+            data-test-comments-header="filter-comments-by-relevance-button"
+            onclick={{action --onFilterCommentsClick 'relevance'}}>
+          <div>
+            <div class="list__single-line-content">Relevant to you</div>
+          </div>
+        </button>
+      </li>
+
+      <li class="list__item">
+        <button
+            class="list__action {{if (eq --filterCommentsBy 'all') 'list-item__action--active'}}"
+            data-test-comments-header="filter-comments-by-all-button"
+            onclick={{action --onFilterCommentsClick 'all'}}>
+          <div>
+            <div class="list__single-line-content">All</div>
+          </div>
+        </button>
+      </li>
+    {{/ce-dropdown-button}}
+  {{else}}
+    {{#if isInIosUiWebView}}
+      {{ce-icon-button
+          class="site-page_main-content-comments-header__open-safari-button"
+          title="Open in Safari to sign in"
+          aria-label="Open in Safari to sign in"
+          icon="account_circle"
+          --onClick=(action showOpenInSafariToast)}}
+    {{else}}
+      {{ce-icon-button
+          data-test-comments-header="sign-in-button"
+          title="Sign in"
+          aria-label="Sign in"
+          icon="account_circle"
+          --onClick=(action --onSignInClick)}}
+    {{/if}}
+  {{/if}}
+{{/ce-subheader}}

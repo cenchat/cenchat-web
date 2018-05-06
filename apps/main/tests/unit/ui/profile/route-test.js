@@ -15,7 +15,7 @@ module('Unit | Route | profile', (hooks) => {
 
       // Arrange
       const user = EmberObject.create({
-        facebookId: 'fb_id',
+        metaInfo: EmberObject.create({ facebookAccessToken: 'foobar' }),
         followings: 'followings_foo',
 
         getUnfollowedFacebookFriends() {
@@ -44,7 +44,7 @@ module('Unit | Route | profile', (hooks) => {
 
       // Arrange
       const user = EmberObject.create({
-        facebookId: 'fb_id',
+        metaInfo: EmberObject.create({ facebookAccessToken: 'foobar' }),
         followings: 'followings_foo',
 
         getUnfollowedFacebookFriends() {
@@ -69,11 +69,14 @@ module('Unit | Route | profile', (hooks) => {
       });
     });
 
-    test('should return record that matches a username alongside its followings and an empty following suggestions if user record is not connected to a facebook account', async function (assert) {
+    test('should return record that matches a username alongside its followings and an empty following suggestions if user has a facebook access token', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const user = EmberObject.create({ followings: 'followings_foo' });
+      const user = EmberObject.create({
+        metaInfo: EmberObject.create({ facebookAccessToken: null }),
+        followings: 'followings_foo',
+      });
       const route = this.owner.lookup('route:profile');
 
       route.set('store', {
@@ -87,11 +90,14 @@ module('Unit | Route | profile', (hooks) => {
       assert.deepEqual(result, { user, followings: 'followings_foo' });
     });
 
-    test('should return record that matches an ID alongside its followings and following suggestions if querying for a username returns nothing and user record is not connected to a facebook account', async function (assert) {
+    test('should return record that matches an ID alongside its followings and following suggestions if querying for a username returns nothing and user has a facebook access token', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const user = EmberObject.create({ followings: 'followings_foo' });
+      const user = EmberObject.create({
+        metaInfo: EmberObject.create({ facebookAccessToken: null }),
+        followings: 'followings_foo',
+      });
       const route = this.owner.lookup('route:profile');
 
       route.set('store', {

@@ -44,13 +44,13 @@ export default Component.extend({
           this.fetchOrCreateUserRecord(currentUser, credential);
         },
       },
-      signInOptions: [{
-        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        scopes: ['public_profile', 'user_friends'],
-      }, {
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        requireDisplayName: true,
-      }],
+      signInFlow: 'popup',
+      signInOptions: [
+        {
+          provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          scopes: ['public_profile', 'user_friends'],
+        },
+      ],
       tosUrl: 'https://cenchat.com/about/terms',
     });
   },
