@@ -1,20 +1,18 @@
 import { A } from '@ember/array';
 import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
-import { settled } from '@ember/test-helpers';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 import sinon from 'sinon';
 
-import { getFixtureData, stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 
 module('Unit | Model | user', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function () {
-    mockFirebase(this.owner, getFixtureData());
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
   });
 
   module('getter/setter: metaInfo', () => {
@@ -22,16 +20,18 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = this.store.createRecord('user', { id: 'user_100' });
+
+      sinon
+        .stub(model.store, 'findRecord')
+        .withArgs('userMetaInfo', 'user_100')
+        .returns(stubPromise(true, 'foo'));
 
       // Act
-      run(() => model.get('metaInfo'));
+      const result = await model.get('metaInfo');
 
       // Assert
-      await settled();
-      assert.equal(model.get('metaInfo.hasNewNotification'), true);
+      assert.equal(result, 'foo');
     });
   });
 
@@ -40,9 +40,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => (
-        this.owner.lookup('service:store').createRecord('user', { id: 'user_a', username: 'foo' })
-      ));
+      const model = this.store.createRecord('user', { id: 'user_100', username: 'foo' });
 
       // Act
       const result = model.get('urlKey');
@@ -55,15 +53,13 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => (
-        this.owner.lookup('service:store').createRecord('user', { id: 'user_a' })
-      ));
+      const model = this.store.createRecord('user', { id: 'user_100' });
 
       // Act
       const result = model.get('urlKey');
 
       // Assert
-      assert.deepEqual(result, 'user_a');
+      assert.deepEqual(result, 'user_100');
     });
   });
 
@@ -72,9 +68,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = await this.store.findRecord('user', 'user_a');
 
       // Act
       const result = await model.isFollowing('user_b');
@@ -87,9 +81,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = this.store.createRecord('user', { id: 'user_100' });
 
       // Act
       const result = await model.isFollowing('user_100');
@@ -104,9 +96,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = await this.store.findRecord('user', 'user_a');
 
       // Act
       const result = await model.hasFollower('user_b');
@@ -119,9 +109,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = this.store.createRecord('user', { id: 'user_100' });
 
       // Act
       const result = await model.hasFollower('user_100');
@@ -136,9 +124,7 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = await this.store.findRecord('user', 'user_a');
 
       // Act
       const result = await model.isSiteAdmin('site_a');
@@ -151,33 +137,13 @@ module('Unit | Model | user', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
+      const model = this.store.createRecord('user', { id: 'user_100' });
 
       // Act
       const result = await model.isSiteAdmin('site_100');
 
       // Assert
       assert.equal(result, false);
-    });
-  });
-
-  module('function: getMetaInfo', () => {
-    test('should return the user\'s meta info', async function (assert) {
-      assert.expect(2);
-
-      // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
-
-      // Act
-      const result = await run(() => model.getMetaInfo());
-
-      // Assert
-      assert.equal(result.get('id'), 'user_a');
-      assert.equal(result.get('hasNewNotification'), true);
     });
   });
 
@@ -220,10 +186,7 @@ module('Unit | Model | user', (hooks) => {
       isFollowingStub.withArgs('user_456').returns(stubPromise(true, false));
       isFollowingStub.withArgs('user_789').returns(stubPromise(true, true));
 
-      const model = run(() => this.owner.lookup('service:store').createRecord(
-        'user',
-        { id: 'user_a' },
-      ));
+      const model = this.store.createRecord('user', { id: 'user_100' });
 
       model.set('store', {
         findRecord: sinon.stub().returns(stubPromise(

@@ -93,13 +93,7 @@ export default Model.extend({
    */
   isMessageValid: computed('attachments', 'text', {
     get() {
-      if (
-        this.get('text')
-        || (
-          this.get('attachments')
-          && this.get('attachments').length > 0
-        )
-      ) {
+      if (this.get('text') || (this.get('attachments') && this.get('attachments').length > 0)) {
         return true;
       }
 
@@ -213,34 +207,22 @@ export default Model.extend({
   /**
    * @type {Array}
    */
-  parsedTaggedEntities: computed('taggedEntities', {
-    get() {
-      const requests = [];
-      const taggedEntities = this.get('taggedEntities');
+  parsedTaggedEntities: promiseArray((context) => {
+    const requests = [];
+    const taggedEntities = context.get('taggedEntities');
 
-      if (taggedEntities) {
-        for (const entity of Object.keys(taggedEntities)) {
-          if (taggedEntities[entity] === 'user') {
-            const findRecord = this.get('store').findRecord('user', entity);
+    if (taggedEntities) {
+      for (const entity of Object.keys(taggedEntities)) {
+        if (taggedEntities[entity] === 'user') {
+          const findRecord = context.get('store').findRecord('user', entity);
 
-            requests.push(findRecord);
-          }
+          requests.push(findRecord);
         }
       }
+    }
 
-      Promise.all(requests).then((results) => {
-        this.set('parsedTaggedEntities', results);
-      });
-
-      return this.get('_parsedTaggedEntities');
-    },
-
-    set(key, taggedEntities) {
-      this.set('_parsedTaggedEntities', taggedEntities);
-
-      return taggedEntities;
-    },
-  }),
+    return Promise.all(requests);
+  }, 'taggedEntities'),
 
   /**
    * @override
@@ -251,7 +233,6 @@ export default Model.extend({
     this.set('_isFromFollowing', false);
     this.set('_isAskMeAnythingAllowed', false);
     this.set('_isTextAllowed', false);
-    this.set('_parsedTaggedEntities', {});
   },
 
   /**

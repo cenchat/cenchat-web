@@ -27,6 +27,6 @@ export default Controller.extend({
       status: 'pending',
     }).save();
 
-    this.set('model.betaTesterStatus', 'pending');
+    this.set('model.betaTester.status', 'pending');
   },
 });

@@ -6,6 +6,8 @@ import { inject } from '@ember/service';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
+import { promiseObject } from '@cenchat/core/utils/computed-promise';
+
 /**
  * @class User
  * @namespace Model
@@ -95,42 +97,18 @@ export default Model.extend({
   firebase: inject(),
 
   /**
-   * @type {string}
+   * @type {Model.BetaTester}
    */
-  betaTesterStatus: computed('_betaTester.status', {
-    get() {
-      if (!this.get('_betaTester')) {
-        this.get('store').findRecord('betaTester', this.get('id')).then(betaTester => (
-          this.set('_betaTester', betaTester)
-        )).catch(() => this.set('_betaTester', { status: 'unapplied' }));
-
-        return null;
-      }
-
-      return this.get('_betaTester.status');
-    },
-
-    set(key, value) {
-      return value;
-    },
-  }),
+  betaTester: promiseObject(context => (
+    context.get('store').findRecord('betaTester', context.get('id'))
+  )),
 
   /**
    * @type {Model.UserMetaInfo}
    */
-  metaInfo: computed('_metaInfo', {
-    get() {
-      if (!this.get('_metaInfo')) {
-        this.get('store').findRecord('userMetaInfo', this.get('id')).then(metaInfo => (
-          this.set('_metaInfo', metaInfo)
-        ));
-
-        return null;
-      }
-
-      return this.get('_metaInfo');
-    },
-  }),
+  metaInfo: promiseObject(context => (
+    context.get('store').findRecord('userMetaInfo', context.get('id'))
+  )),
 
   /**
    * @type {string}
@@ -201,15 +179,6 @@ export default Model.extend({
   },
 
   /**
-   * Returns the user's meta info
-   *
-   * @return {Promise.<Model.UserMetaInfo>} User meta info
-   */
-  getMetaInfo() {
-    return this.get('store').findRecord('userMetaInfo', this.get('id'));
-  },
-
-  /**
    * Fetches unfollowed Facebook friends
    *
    * @param {number} limit
@@ -217,7 +186,7 @@ export default Model.extend({
    */
   async getUnfollowedFacebookFriends(limit) {
     const facebookId = this.get('facebookId');
-    const userMetaInfo = await this.getMetaInfo();
+    const userMetaInfo = await this.get('metaInfo');
     const url = `https://graph.facebook.com/v2.12/${facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
     const response = await fetch(url);
     const { data } = await response.json();

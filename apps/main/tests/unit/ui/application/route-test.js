@@ -39,11 +39,8 @@ module('Unit | Route | application', (hooks) => {
       this.user = EmberObject.create({
         displayName: 'User A',
         facebookId: '12345',
+        metaInfo: EmberObject.create(),
         photoUrl: 'user_a.jpg',
-
-        getMetaInfo() {
-          return stubPromise(true, EmberObject.create());
-        },
 
         save() {
           return stubPromise(true);
@@ -267,10 +264,7 @@ module('Unit | Route | application', (hooks) => {
         save: saveStub,
       });
 
-      this.user.set(
-        'getMetaInfo',
-        sinon.stub().returns(stubPromise(true, userMetaInfo)),
-      );
+      this.user.set('metaInfo', userMetaInfo);
 
       const authData = {
         credential: { accessToken: '67890' },

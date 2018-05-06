@@ -329,18 +329,22 @@ export default function getFixtureData() {
       userMetaInfos: {
         __doc__: {
           user_a: {
+            facebookAccessToken: null,
             hasNewNotification: true,
           },
 
           user_b: {
+            facebookAccessToken: null,
             hasNewNotification: true,
           },
 
           user_c: {
+            facebookAccessToken: null,
             hasNewNotification: false,
           },
 
           user_d: {
+            facebookAccessToken: null,
             hasNewNotification: false,
           },
         },
@@ -350,6 +354,7 @@ export default function getFixtureData() {
         __doc__: {
           user_a: {
             displayName: 'User A',
+            facebookId: null,
             photoUrl: 'user_a.jpg',
 
             __collection__: {
@@ -486,6 +491,7 @@ export default function getFixtureData() {
           user_b: {
             displayName: 'User B',
             displayUsername: 'user_b',
+            facebookId: null,
             photoUrl: 'user_b.jpg',
             username: 'user_b',
 
@@ -567,6 +573,7 @@ export default function getFixtureData() {
           user_c: {
             displayName: 'User C',
             displayUsername: 'user_c',
+            facebookId: null,
             photoUrl: 'user_c.jpg',
             username: 'user_c',
 
@@ -600,6 +607,7 @@ export default function getFixtureData() {
           user_d: {
             displayName: 'User D',
             displayUsername: 'user_d',
+            facebookId: null,
             photoUrl: 'user_d.jpg',
             username: 'user_d',
 

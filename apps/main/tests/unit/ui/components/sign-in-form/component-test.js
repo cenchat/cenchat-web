@@ -113,9 +113,7 @@ module('Unit | Component | sign in form', (hooks) => {
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
       const userMetaInfo = EmberObject.create({ save: saveStub });
-      const user = EmberObject.create({
-        getMetaInfo: sinon.stub().returns(userMetaInfo),
-      });
+      const user = EmberObject.create({ metaInfo: userMetaInfo });
       const factory = this.owner.factoryFor('component:sign-in-form');
       const component = await factory.create({
         session: this.session,

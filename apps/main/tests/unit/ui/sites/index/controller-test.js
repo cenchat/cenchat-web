@@ -12,7 +12,7 @@ module('Unit | Controller | sites/index', (hooks) => {
       assert.expect(2);
 
       // Arrange
-      const model = { id: 'user_a' };
+      const model = { id: 'user_a', betaTester: {} };
       const saveStub = sinon.stub().returns(stubPromise(true));
       const createRecordStub = sinon.stub().returns({ save: saveStub });
       const controller = this.owner.lookup('controller:sites/index');
