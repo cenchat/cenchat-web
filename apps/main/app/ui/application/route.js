@@ -62,7 +62,7 @@ export default Route.extend({
    * @param {Model.User} profile
    */
   async updateFacebookAccessToken(profile) {
-    const meta = await profile.getMetaInfo();
+    const meta = await profile.get('metaInfo');
 
     if (meta.get('facebookAccessToken')) {
       const credential = firebase

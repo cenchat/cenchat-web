@@ -89,7 +89,7 @@ module('Integration | Component | comment-composer', (hooks) => {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
-      entities: 'array',
+      entities: 'instance',
       onUntagEntityClick: 'function',
     });
   });

@@ -124,7 +124,7 @@ export default Component.extend({
    * @param {Object} credential
    */
   async saveFacebookAccessToken(user, credential) {
-    const meta = await user.getMetaInfo();
+    const meta = await user.get('metaInfo');
 
     meta.set('facebookAccessToken', credential.accessToken);
 

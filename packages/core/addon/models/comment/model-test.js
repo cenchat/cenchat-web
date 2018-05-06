@@ -382,12 +382,10 @@ module('Unit | Model | comment', (hooks) => {
       }));
 
       // Act
-      await model.get('parsedTaggedEntities');
+      const result = await model.get('parsedTaggedEntities');
 
       // Assert
-      return settled().then(() => {
-        assert.deepEqual(model.get('parsedTaggedEntities'), [user]);
-      });
+      assert.deepEqual(result, [user]);
     });
   });
 

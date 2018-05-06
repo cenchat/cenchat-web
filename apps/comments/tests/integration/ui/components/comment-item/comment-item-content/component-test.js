@@ -103,7 +103,7 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { entities: 'array' });
+    assert.deepEqual(spy.componentArgsType, { entities: 'instance' });
   });
 
   test('should hide <ContentTaggedEntityList /> when there are no tagged users', async function (assert) {
