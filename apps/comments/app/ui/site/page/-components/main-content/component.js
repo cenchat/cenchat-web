@@ -28,14 +28,17 @@ export default Component.extend({
   },
 
   /**
-   * Handles the send comment success event
-   *
    * @param {Model.Comment} newComment
+   * @function
    */
   handleSendCommentSuccess(newComment) {
-    this.set('prioritizedComments', [
-      ...this.get('prioritizedComments'),
-      newComment,
-    ]);
+    this.set('prioritizedComments', [...this.get('prioritizedComments'), newComment]);
+  },
+
+  /**
+   * @function
+   */
+  handleSignInClick() {
+    this.set('isSignInVisible', true);
   },
 });

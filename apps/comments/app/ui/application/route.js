@@ -38,10 +38,6 @@ export default Route.extend({
           return this.updateCurrentUserProfile(model);
         }
       } catch (error) {
-        if (error.message === 'Document doesn\'t exist') {
-          return this.createCurrentUserRecord();
-        }
-
         return session.close();
       }
     }
@@ -50,9 +46,9 @@ export default Route.extend({
   },
 
   /**
-   * Gets the Facebook provider data
-   *
    * @return {Object|null} Facebook provider data or null if not available
+   * @function
+   * @private
    */
   getFacebookProviderData() {
     const currentUser = this.get('session.currentUser');
@@ -67,10 +63,10 @@ export default Route.extend({
   },
 
   /**
-   * Checks if the current user's profile is outdated
-   *
    * @param {Model.User} profile
    * @return {boolean} True if outdated. Otherwise, false.
+   * @function
+   * @private
    */
   isCurrentUserProfileOutdated(profile) {
     const facebookProviderData = this.getFacebookProviderData();
@@ -87,10 +83,10 @@ export default Route.extend({
   },
 
   /**
-   * Updates the current user's profile based on their Facebook data
-   *
    * @param {Model.User} profile
    * @return {Promise} Resolves after successful save
+   * @function
+   * @private
    */
   updateCurrentUserProfile(profile) {
     const currentUser = this.get('session.currentUser');
@@ -125,49 +121,5 @@ export default Route.extend({
         photoURL: profile.get('photoUrl'),
       }),
     ]);
-  },
-
-  /**
-   * Creates current user record
-   */
-  async createCurrentUserRecord() {
-    const session = this.get('session');
-    const store = this.get('store');
-    const currentUser = session.get('currentUser');
-    const record = store.createRecord('user', {
-      id: currentUser.uid,
-      displayName: currentUser.displayName,
-      displayUsername: null,
-      facebookId: null,
-      photoUrl: currentUser.photoURL,
-      username: null,
-    });
-
-    for (const provider of currentUser.providerData) {
-      if (provider.providerId.includes('facebook')) {
-        record.set('facebookId', provider.uid);
-
-        break;
-      }
-    }
-
-    await record.save({
-      adapterOptions: {
-        include(batch, db) {
-          batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
-            facebookAccessToken: null,
-            hasNewNotification: false,
-          });
-
-          if (record.get('facebookId')) {
-            batch.set(db.collection('facebookIds').doc(record.get('facebookId')), {
-              cloudFirestoreReference: db.collection('users').doc(currentUser.uid),
-            });
-          }
-        },
-      },
-    });
-
-    session.set('content.model', record);
   },
 });

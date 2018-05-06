@@ -55,6 +55,7 @@ module('Unit | Component | comment composer', (hooks) => {
             author: 'sessionModel',
             replyTo: undefined,
             root: undefined,
+            status: 'approved',
             taggedEntities: null,
             text: null,
           },

@@ -27,7 +27,9 @@ export default AuthenticatedRoute.extend({
     if (hash.user) {
       hash.followings = hash.user.get('followings');
 
-      if (hash.user.get('facebookId')) {
+      const metaInfo = await hash.user.get('metaInfo');
+
+      if (metaInfo.get('facebookAccessToken')) {
         hash.followingSuggestions = hash.user.getUnfollowedFacebookFriends(4);
       }
     }
