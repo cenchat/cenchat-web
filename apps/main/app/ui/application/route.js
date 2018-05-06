@@ -57,9 +57,9 @@ export default Route.extend({
   },
 
   /**
-   * Updates the Facebook access token
-   *
    * @param {Model.User} profile
+   * @function
+   * @private
    */
   async updateFacebookAccessToken(profile) {
     const meta = await profile.get('metaInfo');
@@ -80,9 +80,9 @@ export default Route.extend({
   },
 
   /**
-   * Gets the Facebook provider data
-   *
    * @return {Object|null} Facebook provider data or null if not available
+   * @function
+   * @private
    */
   getFacebookProviderData() {
     const currentUser = this.get('session.currentUser');
@@ -97,10 +97,10 @@ export default Route.extend({
   },
 
   /**
-   * Checks if the current user's profile is outdated
-   *
    * @param {Model.User} profile
    * @return {boolean} True if outdated. Otherwise, false.
+   * @function
+   * @private
    */
   isCurrentUserProfileOutdated(profile) {
     const facebookProviderData = this.getFacebookProviderData();
@@ -117,10 +117,10 @@ export default Route.extend({
   },
 
   /**
-   * Updates the current user's profile based on their Facebook data
-   *
    * @param {Model.User} profile
    * @return {Promise} Resolves after successful save
+   * @function
+   * @private
    */
   updateCurrentUserProfile(profile) {
     const currentUser = this.get('session.currentUser');

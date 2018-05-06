@@ -236,36 +236,8 @@ export default Model.extend({
   },
 
   /**
-   * Checks if author of the comment to reply to is a follower of the
-   * current user
-   *
-   * @return {Promise.<boolean>} Resolves to true if a follower. Otherwise, false.
-   */
-  checkIfIsReplyingToFollower() {
-    const replyTo = this.get('replyTo');
-
-    if (replyTo.get('id')) {
-      return this.get('author').then(author => author.hasFollower(replyTo.get('author.id')));
-    }
-
-    return Promise.resolve(false);
-  },
-
-  /**
-   * Checks if the author is a site admin
-   *
-   * @return {Promise.<boolean>} Resolves to true if a site admin. Otherwise, false.
-   */
-  checkIfAuthorIsSiteAdmin() {
-    const siteId = this.get('page.site.id');
-
-    return this.get('author').then(author => author.isSiteAdmin(siteId));
-  },
-
-  /**
-   * Loads comment replies
-   *
    * @return {Promise} Resolves to the comment replies
+   * @function
    */
   loadReplies() {
     const commentId = this.get('id');
@@ -304,7 +276,34 @@ export default Model.extend({
   },
 
   /**
+   * @return {Promise.<boolean>} Resolves to true if a follower. Otherwise, false.
+   * @function
+   * @private
+   */
+  checkIfIsReplyingToFollower() {
+    const replyTo = this.get('replyTo');
+
+    if (replyTo.get('id')) {
+      return this.get('author').then(author => author.hasFollower(replyTo.get('author.id')));
+    }
+
+    return Promise.resolve(false);
+  },
+
+  /**
+   * @return {Promise.<boolean>} Resolves to true if a site admin. Otherwise, false.
+   * @function
+   * @private
+   */
+  checkIfAuthorIsSiteAdmin() {
+    const siteId = this.get('page.site.id');
+
+    return this.get('author').then(author => author.isSiteAdmin(siteId));
+  },
+
+  /**
    * @param {string} id
+   * @function
    * @private
    */
   async findTenorGif(id) {

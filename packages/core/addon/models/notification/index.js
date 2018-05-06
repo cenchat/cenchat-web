@@ -39,9 +39,8 @@ export default Model.extend({
   to: belongsTo('user', { inverse: 'notifications' }),
 
   /**
-   * Returns the visit link for notification
-   *
    * @return {Promise.<string>} Resolves to the visit link
+   * @function
    */
   async getCommentVisitLink() {
     const store = this.get('store');

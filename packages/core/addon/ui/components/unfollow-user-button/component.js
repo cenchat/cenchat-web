@@ -32,7 +32,7 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Handles unfollow button's click event
+   * @function
    */
   unfollowUser(event) {
     event.stopPropagation();

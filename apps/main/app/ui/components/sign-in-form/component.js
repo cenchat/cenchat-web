@@ -56,10 +56,10 @@ export default Component.extend({
   },
 
   /**
-   * Fetches or creates a user record
-   *
    * @param {firebase.User} currentUser
    * @param {firebase.auth.AuthCredential} credential
+   * @function
+   * @private
    */
   async fetchOrCreateUserRecord(currentUser, credential) {
     const session = this.get('session');
@@ -118,10 +118,10 @@ export default Component.extend({
   },
 
   /**
-   * Saves the current user's Facebook access token if available
-   *
    * @param {Model.User} user
    * @param {Object} credential
+   * @function
+   * @private
    */
   async saveFacebookAccessToken(user, credential) {
     const meta = await user.get('metaInfo');

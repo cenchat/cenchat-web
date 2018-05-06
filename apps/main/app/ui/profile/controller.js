@@ -7,7 +7,7 @@ import Controller from '@ember/controller';
  */
 export default Controller.extend({
   /**
-   * Handles sign out click task
+   * @function
    */
   async handleSignOutClick() {
     await this.get('session').close();

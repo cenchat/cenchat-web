@@ -24,9 +24,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles the profile form's data change event
-   *
    * @param {Element} target
+   * @function
    */
   handleProfileFormDataChange(target) {
     this.set('profile', {

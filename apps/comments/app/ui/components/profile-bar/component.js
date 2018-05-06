@@ -18,16 +18,15 @@ export default Component.extend({
   store: inject(),
 
   /**
-   * Handles sign out click event
-   *
    * @return {Promise} Resolves when session has signed out
+   * @function
    */
   handleSignOutClick() {
     return this.get('session').close();
   },
 
   /**
-   * Handles notification dropdown click
+   * @function
    */
   async handleNotificationDropdownClick() {
     const userMetaInfo = await this.get('store').findRecord(

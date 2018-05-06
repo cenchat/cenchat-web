@@ -58,9 +58,9 @@ export default Component.extend({
   },
 
   /**
-   * Handles the click event
-   *
    * @param {Event} event
+   * @function
+   * @private
    */
   triggerOnClick: task(function* (event) {
     this.set('disabled', true);

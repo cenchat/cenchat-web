@@ -76,10 +76,9 @@ export default CloudFirestoreAdapter.extend({
   },
 
   /**
-   * Returns if request is for a server
-   *
    * @param {Object} snapshot
    * @return {boolean} True if for a server. Otherwise, false.
+   * @function
    * @private
    */
   isOnServer(snapshot) {
@@ -91,9 +90,8 @@ export default CloudFirestoreAdapter.extend({
   },
 
   /**
-   * Sets the header authorization if signed in
-   *
    * @return {Promise} Resolves after setting header authorization when signed in. Otherwise, just resolves.
+   * @function
    * @private
    */
   setHeaderAuthorization() {

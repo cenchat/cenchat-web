@@ -63,18 +63,16 @@ export default Component.extend({
   },
 
   /**
-   * Handles the text field's input event
-   *
    * @param {Element} target
+   * @function
    */
   handleTextFieldInput(target) {
     debounce(this, 'processInput', target, 1000);
   },
 
   /**
-   * Handles the select field's change event
-   *
    * @param {Element} target
+   * @function
    */
   handleSelectFieldChange(target) {
     const onChange = this.get('--onChange');
@@ -85,7 +83,8 @@ export default Component.extend({
   },
 
   /**
-   * Checks and set what the field type is
+   * @function
+   * @private
    */
   checkAndSetFieldType() {
     const type = this.get('type');
@@ -98,9 +97,9 @@ export default Component.extend({
   },
 
   /**
-   * Gets the tag name of the field
-   *
    * @return {string} Field tag name
+   * @function
+   * @private
    */
   getFieldTagName() {
     if (this.get('isMultiTextField')) {
@@ -113,9 +112,9 @@ export default Component.extend({
   },
 
   /**
-   * Processes the input
-   *
    * @param {Element} target
+   * @function
+   * @private
    */
   processInput(target) {
     // Set isInvalid to false to destroy the feedback element
@@ -142,9 +141,9 @@ export default Component.extend({
   },
 
   /**
-   * Returns the validation feedback if any
-   *
    * @return {string|null} Feedback
+   * @function
+   * @private
    */
   getValidationFeedback() {
     const fieldTagName = this.getFieldTagName();

@@ -7,7 +7,7 @@ let currentTeardownSchedule;
 let currentScheduledAction;
 
 /**
- * Triggers the scheduled action
+ * @function
  */
 function triggerScheduledAction() {
   if (currentScheduledAction) {
@@ -16,7 +16,7 @@ function triggerScheduledAction() {
 }
 
 /**
- * Removes the button element
+ * @function
  */
 function teardownButtonElement() {
   if (buttonElement) {
@@ -26,9 +26,8 @@ function teardownButtonElement() {
 }
 
 /**
- * Schedules a toast's teardown
- *
  * @param {number} duration
+ * @function
  */
 function scheduleToastTeardown(duration) {
   currentTeardownSchedule = later(() => {
@@ -39,9 +38,8 @@ function scheduleToastTeardown(duration) {
 }
 
 /**
- * Waits for a toast element to finish it's transition
- *
  * @return {Promise} Resolves after the toast element's transition
+ * @function
  */
 function waitForToastElementTransition() {
   return new RSVP.Promise((resolve) => {
@@ -57,9 +55,8 @@ function waitForToastElementTransition() {
 }
 
 /**
- * Setup a toast's button element
- *
  * @param {Object} options
+ * @function
  */
 function setupButtonElement(options) {
   if (Object.prototype.hasOwnProperty.call(options, 'text')) {
@@ -84,11 +81,10 @@ function setupButtonElement(options) {
 }
 
 /**
- * Shows a toast
- *
  * @param {string} text
  * @param {number} [duration=5000]
  * @param {Object} [buttonOptions={}]
+ * @function
  */
 export default async function toast(text, duration = 5000, buttonOptions = {}) {
   toastElement = document.querySelector('.ce-toast');

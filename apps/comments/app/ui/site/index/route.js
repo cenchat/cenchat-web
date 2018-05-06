@@ -49,9 +49,8 @@ export default Route.extend({
   },
 
   /**
-   * Queries for a page based on the site and slug
-   *
    * @return {Promise} Resolves to an array matching the query
+   * @function
    * @private
    */
   queryPage() {
@@ -70,9 +69,8 @@ export default Route.extend({
   },
 
   /**
-   * Creates a new page then transitions to its route
-   *
    * @return {Promise} Resolves to the transition object
+   * @function
    * @private
    */
   async createAndTransitionToPage() {

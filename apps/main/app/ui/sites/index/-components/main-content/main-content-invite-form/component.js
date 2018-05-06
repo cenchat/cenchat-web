@@ -17,9 +17,8 @@ export default Component.extend({
   inviteRequest: { website: null, monthlyViews: 'lt-1m' },
 
   /**
-   * Handles the invite request form's data change event
-   *
    * @param {Element} target
+   * @function
    */
   handleInviteRequestFormDataChange(target) {
     this.set('inviteRequest', {

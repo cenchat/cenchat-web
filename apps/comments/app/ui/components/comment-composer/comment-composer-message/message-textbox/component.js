@@ -21,9 +21,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles the field's input event
-   *
    * @param {Object} event
+   * @function
    */
   handleFieldInput(event) {
     this.resizeField();
@@ -31,7 +30,8 @@ export default Component.extend({
   },
 
   /**
-   * Resizes the field depending on the amount of text
+   * @function
+   * @private
    */
   resizeField() {
     const textarea = this.element.querySelector('textarea');

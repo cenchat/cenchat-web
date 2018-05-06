@@ -35,7 +35,7 @@ export default Component.extend({
   isReplySectionVisible: false,
 
   /**
-   * Handles delete comment click event
+   * @function
    */
   async handleDeleteCommentClick() {
     const comment = this.get('--comment');
@@ -51,7 +51,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles share comment's click event
+   * @function
    */
   async handleShareCommentClick() {
     if (navigator.share) {
@@ -69,7 +69,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles toggle quote click event
+   * @function
    */
   handleToggleQuoteClick() {
     if (this.get('isQuoteVisible')) {
@@ -80,7 +80,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles cancel edit click event
+   * @function
    */
   handleCancelEditClick() {
     this.get('--comment').rollbackAttributes();
@@ -88,9 +88,8 @@ export default Component.extend({
   },
 
   /**
-   * Selects the share comment link value
-   *
    * @param {Element} element
+   * @function
    */
   selectShareCommentLinkValue(element) {
     element.select();

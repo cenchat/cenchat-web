@@ -66,10 +66,9 @@ export default Model.extend({
   }),
 
   /**
-   * Loads filtered comments
-   *
    * @param {string} filterBy
    * @return {Promise} Comments
+   * @function
    */
   loadFilteredComments(filterBy) {
     const pageId = this.get('id');

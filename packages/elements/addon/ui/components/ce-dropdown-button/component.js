@@ -81,9 +81,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles the button's click event
-   *
    * @param {Object} event
+   * @function
    */
   handleButtonClick(event) {
     event.stopPropagation();
@@ -95,7 +94,8 @@ export default Component.extend({
   },
 
   /**
-   * Opens the dropdown menu
+   * @function
+   * @private
    */
   openMenu() {
     const menu = this.element.querySelector('.menu');
@@ -110,9 +110,9 @@ export default Component.extend({
   },
 
   /**
-   * Closes the dropdown menu
-   *
    * @param {boolean} willFocusOnButton
+   * @function
+   * @private
    */
   closeMenu(willFocusOnButton) {
     const menu = this.element.querySelector('.menu');

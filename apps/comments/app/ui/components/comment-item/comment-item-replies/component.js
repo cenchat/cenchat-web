@@ -26,9 +26,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles the send comment success event
-   *
    * @param {Model.Comment} newReply
+   * @function
    */
   handleSendCommentSuccess(newReply) {
     this.set('prioritizedReplies', [
@@ -38,11 +37,10 @@ export default Component.extend({
   },
 
   /**
-   * Handles the load more comments click event
-   *
    * @param {Array.<Model.Comment>} replies
    * @param {number} newLimit
    * @return {Promise} Resolves when the comments query has been updated
+   * @function
    */
   handleLoadMoreCommentsClick(replies, newLimit) {
     const commentId = this.get('--comment.id');

@@ -32,7 +32,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles the user's click event
+   * @function
    */
   handleUserClick() {
     const user = this.get('--user');
@@ -41,21 +41,22 @@ export default Component.extend({
   },
 
   /**
-   * Handles the follow user's click event
+   * @function
    */
   handleFollowUser() {
     this.set('isUserBeingFollowed', true);
   },
 
   /**
-   * Handles the unfollow user's click event
+   * @function
    */
   handleUnfollowUser() {
     this.set('isUserBeingFollowed', false);
   },
 
   /**
-   * Checks if user is being followed
+   * @function
+   * @private
    */
   async checkIfUserIsBeingFollowed() {
     const currentUser = this.get('session.model');

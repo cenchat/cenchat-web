@@ -32,7 +32,7 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Handles follow user's click event
+   * @function
    */
   async followUser(event) {
     event.stopPropagation();

@@ -12,9 +12,8 @@ export default Controller.extend({
   queryParams: ['query'],
 
   /**
-   * Handles the search's input event
-   *
    * @param {string} value
+   * @function
    */
   handleSearchInput(value) {
     this.set('query', value);

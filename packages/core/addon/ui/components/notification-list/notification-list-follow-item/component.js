@@ -36,7 +36,7 @@ export default Component.extend({
   },
 
   /**
-   * Follows back the user
+   * @function
    */
   async handleFollowUser() {
     this.set('isFollowingNotificationSender', true);

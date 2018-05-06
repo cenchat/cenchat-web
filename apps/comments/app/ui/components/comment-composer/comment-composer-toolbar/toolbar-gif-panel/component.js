@@ -21,9 +21,8 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Searches for gifs given a query
-   *
    * @param {Element} target
+   * @function
    */
   async searchGifs(target) {
     const query = target.value.toLowerCase();

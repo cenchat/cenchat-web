@@ -13,10 +13,9 @@ export default Controller.extend({
   router: inject(),
 
   /**
-   * Handles invite request form's submit event
-   *
    * @param {Object} inviteRequest
    * @param {Event} event
+   * @function
    */
   async handleInviteRequestFormSubmit(inviteRequest, event) {
     event.preventDefault();

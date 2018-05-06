@@ -12,9 +12,8 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Handles the search's input event
-   *
    * @param {Element} target
+   * @function
    */
   handleSearchInput(target) {
     this.get('--onSearchInput')(target.value);

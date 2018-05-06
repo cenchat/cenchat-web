@@ -120,10 +120,9 @@ export default Model.extend({
   }),
 
   /**
-   * Checks if current user is following the userId
-   *
    * @param {string} userId
    * @return {Promise} Resolves to true if following userId. Otherwise, false.
+   * @function
    */
   async isFollowing(userId) {
     const db = this.get('firebase').firestore();
@@ -138,10 +137,9 @@ export default Model.extend({
   },
 
   /**
-   * Checks if the user has `userId` as a follower
-   *
    * @param {string} userId
    * @return {Promise.<boolean>} Resolves to true if is a follower. Otherwise, false.
+   * @function
    */
   async hasFollower(userId) {
     const db = this.get('firebase').firestore();
@@ -156,10 +154,9 @@ export default Model.extend({
   },
 
   /**
-   * Checks if the user is a site admin of `siteId`
-   *
    * @param {string} siteId
    * @return {Promise.<boolean>} Resolves to true if is a site admin. Otherwise, false.
+   * @function
    */
   async isSiteAdmin(siteId) {
     const db = this.get('firebase').firestore();
@@ -179,10 +176,9 @@ export default Model.extend({
   },
 
   /**
-   * Fetches unfollowed Facebook friends
-   *
    * @param {number} limit
    * @return {Array.<Model.User>} Unfollowings
+   * @function
    */
   async getUnfollowedFacebookFriends(limit) {
     const facebookId = this.get('facebookId');

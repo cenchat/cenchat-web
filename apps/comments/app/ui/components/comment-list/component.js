@@ -17,7 +17,7 @@ export default Component.extend({
   limit: 2,
 
   /**
-   * Load more comments
+   * @function
    */
   async loadMoreComments() {
     const comments = this.get('--comments');

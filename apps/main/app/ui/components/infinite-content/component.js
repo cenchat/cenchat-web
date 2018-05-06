@@ -39,7 +39,28 @@ export default Component.extend({
   },
 
   /**
-   * Loads more next set of --query
+   * @function
+   */
+  handleScroll() {
+    requestAnimationFrame(bind(this, () => {
+      let element = this.get('scrollerElement');
+
+      if (this.get('scrollerElement') === window) {
+        element = document.documentElement;
+      }
+
+      const { scrollHeight, scrollTop, clientHeight } = element;
+      const threshold = scrollHeight / 4;
+
+      if (scrollHeight - scrollTop - clientHeight <= threshold) {
+        this.loadMoreRecords();
+      }
+    }));
+  },
+
+  /**
+   * @function
+   * @private
    */
   async loadMoreRecords() {
     const query = this.get('--query');
@@ -62,25 +83,5 @@ export default Component.extend({
         }
       }
     }
-  },
-
-  /**
-   * Handles an element's on scroll event
-   */
-  handleScroll() {
-    requestAnimationFrame(bind(this, () => {
-      let element = this.get('scrollerElement');
-
-      if (this.get('scrollerElement') === window) {
-        element = document.documentElement;
-      }
-
-      const { scrollHeight, scrollTop, clientHeight } = element;
-      const threshold = scrollHeight / 4;
-
-      if (scrollHeight - scrollTop - clientHeight <= threshold) {
-        this.loadMoreRecords();
-      }
-    }));
   },
 });

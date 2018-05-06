@@ -35,7 +35,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles send comment click event
+   * @function
    */
   async handleSendCommentClick() {
     const comment = this.get('comment');
@@ -55,9 +55,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles attachment item click event
-   *
    * @param {Model.Emoji|Model.Sticker|Object} item
+   * @function
    */
   handleAddAttachmentClick(item) {
     const comment = this.get('comment');
@@ -83,7 +82,7 @@ export default Component.extend({
   },
 
   /**
-   * Handles ask me anything click event
+   * @function
    */
   handleAskMeAnythingClick() {
     if (this.get('comment.isAskMeAnything')) {
@@ -94,9 +93,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles remove attachment click event
-   *
    * @param {number} indexToRemove
+   * @function
    */
   handleRemoveAttachmentClick(indexToRemove) {
     const comment = this.get('comment');
@@ -108,9 +106,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles tag entity's click event
-   *
    * @param {Model} entity
+   * @function
    */
   handleTagEntityClick(entity) {
     if (entity.get('id') !== this.get('comment.author.id')) {
@@ -122,9 +119,8 @@ export default Component.extend({
   },
 
   /**
-   * Handles untag entity's click event
-   *
    * @param {Model} entity
+   * @function
    */
   handleUntagEntityClick(entity) {
     const taggedEntities = { ...this.get('comment.taggedEntities') };
@@ -139,16 +135,16 @@ export default Component.extend({
   },
 
   /**
-   * Handles textbox input event
-   *
    * @param {string} value
+   * @function
    */
   handleTextBoxInput(value) {
     this.set('comment.text', value);
   },
 
   /**
-   * Setup comment
+   * @function
+   * @private
    */
   async setupComment() {
     if (this.get('--comment')) {
@@ -161,9 +157,9 @@ export default Component.extend({
   },
 
   /**
-   * Creates a new comment
-   *
    * @return {Promise.<Model.Comment>} Resolves with the created comment
+   * @function
+   * @private
    */
   async createComment() {
     const replyTo = this.get('--replyTo');

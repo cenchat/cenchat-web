@@ -43,12 +43,12 @@ export default Component.extend({
   },
 
   /**
-   * Handles the submit event
-   *
    * @param {Event} event
+   * @function
+   * @private
    */
   triggerOnSubmit: task(function* (event) {
-    const submitButton = this.getSubmitButton();
+    const submitButton = this.get('element').querySelector('[type="submit"]');
 
     submitButton.disabled = true;
     submitButton.setAttribute('performing', '');
@@ -60,13 +60,4 @@ export default Component.extend({
       submitButton.removeAttribute('performing');
     }
   }).drop(),
-
-  /**
-   * Returns the submit button element of the component
-   *
-   * @return {Element} Submit button element
-   */
-  getSubmitButton() {
-    return this.get('element').querySelector('[type="submit"]');
-  },
 });

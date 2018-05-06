@@ -12,16 +12,15 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Handles site card's click event
+   * @function
    */
   handleSiteClick() {
     this.transitionToSite();
   },
 
   /**
-   * Handles site card's keydown event
-   *
    * @param {Event} event
+   * @function
    */
   handleSiteKeydown(event) {
     const code = event.which;
@@ -33,7 +32,8 @@ export default Component.extend({
   },
 
   /**
-   * Transitions to site route
+   * @function
+   * @private
    */
   transitionToSite() {
     this.get('--router').transitionTo('sites.site', this.get('--site.id'));

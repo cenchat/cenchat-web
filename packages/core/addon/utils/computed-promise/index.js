@@ -7,6 +7,7 @@ import PromiseProxyMixin from '@ember/object/promise-proxy-mixin';
  * @param {Function} callback
  * @param {...string} keys
  * @return {Promise} Resolves to the promise array
+ * @function
  */
 export function promiseArray(callback, ...keys) {
   return computed(...keys, {
@@ -22,6 +23,7 @@ export function promiseArray(callback, ...keys) {
  * @param {Function} callback
  * @param {...string} keys
  * @return {Promise} Resolves to the promise object
+ * @function
  */
 export function promiseObject(callback, ...keys) {
   return computed(...keys, {

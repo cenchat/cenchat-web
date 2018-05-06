@@ -30,14 +30,14 @@ export default Component.extend({
   },
 
   /**
-   * Handles follow user's click event
+   * @function
    */
   async handleFollowUser() {
     this.set('isFollowingUser', true);
   },
 
   /**
-   * Handles unfollow user's click event
+   * @function
    */
   async handleUnfollowUser() {
     this.set('isFollowingUser', false);

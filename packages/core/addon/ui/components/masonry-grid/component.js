@@ -79,7 +79,8 @@ export default Component.extend({
   },
 
   /**
-   * Sets the number of columns based on the parent node's client width
+   * @function
+   * @private
    */
   setNumOfColumns() {
     // 864 = max width of 2 cards including the margin

@@ -31,10 +31,9 @@ export default Route.extend({
   },
 
   /**
-   * Finds a page. Will create it if it doesn't exist.
-   *
    * @param {string} pageIdPostfix
    * @return {Promise} Page
+   * @function
    * @private
    */
   async findOrCreatePage(pageIdPostfix) {

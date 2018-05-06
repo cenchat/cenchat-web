@@ -18,9 +18,8 @@ export default Component.extend({
   tagName: '',
 
   /**
-   * Searches for entities given a query
-   *
    * @param {Element} target
+   * @function
    */
   async searchEntities(target) {
     const query = target.value.toLowerCase();

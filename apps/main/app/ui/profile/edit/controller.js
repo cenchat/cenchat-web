@@ -9,10 +9,9 @@ import toast from '@cenchat/elements/utils/toast';
  */
 export default Controller.extend({
   /**
-   * Handles profile form's submit event
-   *
    * @param {Object} profile
    * @param {Event} event
+   * @function
    */
   async handleProfileFormSubmit(profile, event) {
     event.preventDefault();
