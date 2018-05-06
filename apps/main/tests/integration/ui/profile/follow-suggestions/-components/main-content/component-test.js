@@ -3,8 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState, spyComponent, stubPromise } from '@cenchat/core/test-support';
-import sinon from 'sinon';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
 module('Integration | Component | profile/follow-suggestions/-components/main-content', (hooks) => {
   setupRenderingTest(hooks);
@@ -13,14 +12,8 @@ module('Integration | Component | profile/follow-suggestions/-components/main-co
     await setupTestState(this);
 
     const userB = await this.store.findRecord('user', 'user_b');
-    const currentUser = this.get('session.model');
 
-    currentUser.set(
-      'getUnfollowedFacebookFriends',
-      sinon.stub().returns(stubPromise(true, [userB])),
-    );
-
-    this.set('user', currentUser);
+    this.set('followSuggestions', [userB]);
   });
 
   test('should show <InfiniteContent />', async function (assert) {
@@ -31,7 +24,7 @@ module('Integration | Component | profile/follow-suggestions/-components/main-co
 
     // Act
     await render(hbs`
-      {{profile/follow-suggestions/-components/main-content --user=user}}
+      {{profile/follow-suggestions/-components/main-content --followSuggestions=followSuggestions}}
     `);
 
     // Assert
@@ -50,7 +43,7 @@ module('Integration | Component | profile/follow-suggestions/-components/main-co
 
     // Act
     await render(hbs`
-      {{profile/follow-suggestions/-components/main-content --user=user}}
+      {{profile/follow-suggestions/-components/main-content --followSuggestions=followSuggestions}}
     `);
 
     // Assert

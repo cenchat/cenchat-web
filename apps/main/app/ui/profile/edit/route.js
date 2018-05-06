@@ -10,6 +10,6 @@ export default ProfileOwnerRoute.extend({
    * @override
    */
   model() {
-    return this.modelFor('profile');
+    return this.modelFor('profile').user;
   },
 });

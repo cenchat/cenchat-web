@@ -9,7 +9,10 @@ module('Unit | Route | notifications', (hooks) => {
   setupTest(hooks);
 
   hooks.beforeEach(function () {
-    this.session = stubSession(this, EmberObject.create({ id: 'user_a' }));
+    this.session = stubSession(this, EmberObject.create({
+      id: 'user_a',
+      notifications: 'foo',
+    }));
   });
 
   module('hook: model', () => {
@@ -25,7 +28,7 @@ module('Unit | Route | notifications', (hooks) => {
       const result = await route.model();
 
       // Act
-      assert.equal(result.get('id'), 'user_a');
+      assert.equal(result, 'foo');
     });
   });
 

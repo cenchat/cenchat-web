@@ -1,3 +1,4 @@
+import { inject } from '@ember/service';
 import Component from '@ember/component';
 
 /**
@@ -6,6 +7,11 @@ import Component from '@ember/component';
  * @extends Ember.Component
  */
 export default Component.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
   /**
    * @override
    */
@@ -17,23 +23,15 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    this.loadFollowSuggestions(8);
-  },
-
-  /**
-   * @param {number} newLimit
-   * @function
-   */
-  handleLoadMoreRecords(newLimit) {
-    this.loadFollowSuggestions(newLimit);
+    this.set('followSuggestions', this.get('--followSuggestions'));
   },
 
   /**
    * @param {number} limit
    * @function
    */
-  async loadFollowSuggestions(limit) {
-    const followSuggestions = await this.get('--user').getUnfollowedFacebookFriends(limit);
+  async handleLoadMoreRecords(limit) {
+    const followSuggestions = await this.get('session.model').getUnfollowedFacebookFriends(limit);
 
     this.set('followSuggestions', followSuggestions);
   },

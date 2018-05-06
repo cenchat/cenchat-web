@@ -11,9 +11,7 @@ module('Integration | Component | notifications/-components/main-content', (hook
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    const user = await this.get('session.model');
-
-    this.set('user', user);
+    this.set('notifications', await this.get('session.model.notifications'));
   });
 
   test('should show <NotificationList />', async function (assert) {
@@ -23,7 +21,7 @@ module('Integration | Component | notifications/-components/main-content', (hook
     const spy = spyComponent(this, 'notification-list');
 
     // Act
-    await render(hbs`{{notifications/-components/main-content --user=user}}`);
+    await render(hbs`{{notifications/-components/main-content --notifications=notifications}}`);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, { notifications: 'instance' });

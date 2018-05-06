@@ -1,10 +1,10 @@
 <main class="layout__main">
   {{#if (eq --session.model.id --user.id)}}
     {{#if --user.facebookId}}
-      {{profile/-components/main-content/follow-suggestion-collection --user=--user}}
+      {{profile/-components/main-content/follow-suggestion-collection --followingSuggestions=--followingSuggestions}}
     {{/if}}
 
-    {{profile/-components/main-content/following-collection --user=--user}}
+    {{profile/-components/main-content/following-collection --followings=--followings}}
   {{/if}}
 
   {{yield}}
