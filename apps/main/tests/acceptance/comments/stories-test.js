@@ -11,7 +11,7 @@ module('Acceptance | comments', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should show comment', async (assert) => {
+  test('should show comment', async function (assert) {
     assert.expect(5);
 
     // Act

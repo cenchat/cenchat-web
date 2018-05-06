@@ -15,7 +15,7 @@ module('Integration | Component | sites/index/new/-components/site-form', (hooks
     this.set('onSiteFormSubmit', () => false);
   });
 
-  test('should should enable submit button when hostname and name is valid', async (assert) => {
+  test('should should enable submit button when hostname and name is valid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -31,7 +31,7 @@ module('Integration | Component | sites/index/new/-components/site-form', (hooks
     assert.dom('[data-test-site-form="submit-button"]').doesNotHaveAttribute('disabled');
   });
 
-  test('should disable submit button when hostname is invalid', async (assert) => {
+  test('should disable submit button when hostname is invalid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -48,7 +48,7 @@ module('Integration | Component | sites/index/new/-components/site-form', (hooks
     assert.dom('[data-test-site-form="submit-button"]').hasAttribute('disabled');
   });
 
-  test('should disable submit button when name is empty', async (assert) => {
+  test('should disable submit button when name is empty', async function (assert) {
     assert.expect(1);
 
     // Arrange

@@ -12,7 +12,7 @@ module('Integration | Component | sign-in-form', (hooks) => {
     await setupTestState(this);
   });
 
-  test('nothing to test', async (assert) => {
+  test('nothing to test', async function (assert) {
     assert.expect(1);
 
     // Act

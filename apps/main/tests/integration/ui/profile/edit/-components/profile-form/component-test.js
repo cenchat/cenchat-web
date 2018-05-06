@@ -18,7 +18,7 @@ module('Integration | Component | profile/edit/-components/profile-form', (hooks
     this.set('onProfileFormSubmit', () => false);
   });
 
-  test('should should enable submit button when name and username is valid', async (assert) => {
+  test('should should enable submit button when name and username is valid', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -36,7 +36,7 @@ module('Integration | Component | profile/edit/-components/profile-form', (hooks
     assert.dom('[data-test-profile-form="submit-button"]').doesNotHaveAttribute('disabled');
   });
 
-  test('should disable submit button when username is invalid', async (assert) => {
+  test('should disable submit button when username is invalid', async function (assert) {
     assert.expect(1);
 
     // Arrange

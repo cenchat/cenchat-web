@@ -17,7 +17,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     this.set('onRemoveRoleChangeClick', () => {});
   });
 
-  test('should show user', async (assert) => {
+  test('should show user', async function (assert) {
     assert.expect(4);
 
     // Act

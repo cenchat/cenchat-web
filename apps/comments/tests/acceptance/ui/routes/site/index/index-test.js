@@ -11,7 +11,7 @@ module('Acceptance | site/index', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should create page and redirect to it when page does not exist', async (assert) => {
+  test('should create page and redirect to it when page does not exist', async function (assert) {
     assert.expect(1);
 
     // Act

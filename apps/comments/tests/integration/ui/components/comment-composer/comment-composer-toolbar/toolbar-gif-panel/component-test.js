@@ -47,7 +47,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     this.server.restore();
   });
 
-  test('should show list matching gif when searching', async (assert) => {
+  test('should show list matching gif when searching', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -63,7 +63,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     assert.dom('[data-test-toolbar-gif-panel="search-result"]').exists();
   });
 
-  test('should hide list matching gif when not searching', async (assert) => {
+  test('should hide list matching gif when not searching', async function (assert) {
     assert.expect(1);
 
     // Act

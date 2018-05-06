@@ -14,7 +14,7 @@ module('Integration | Component | sites/index/-components/main-content/main-cont
     this.set('site', await this.store.findRecord('site', 'site_b'));
   });
 
-  test('should show site info', async (assert) => {
+  test('should show site info', async function (assert) {
     assert.expect(5);
 
     // Act

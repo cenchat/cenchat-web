@@ -19,7 +19,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     this.set('onToggleQuoteClick', () => {});
   });
 
-  test('should show author image', async (assert) => {
+  test('should show author image', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -50,7 +50,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     assert.dom('[data-test-item-avatar="following-badge"]').exists();
   });
 
-  test('should hide following badge when author isn\'t a following', async (assert) => {
+  test('should hide following badge when author isn\'t a following', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -64,7 +64,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     assert.dom('[data-test-item-avatar="following-badge"]').doesNotExist();
   });
 
-  test('should show show quote button when available', async (assert) => {
+  test('should show show quote button when available', async function (assert) {
     assert.expect(1);
 
     // Act

@@ -17,7 +17,7 @@ module('Integration | Component | site/page/-components/main-content/main-conten
     this.set('onSignInClick', () => {});
   });
 
-  test('should show filter comments button when signed in', async (assert) => {
+  test('should show filter comments button when signed in', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -52,7 +52,7 @@ module('Integration | Component | site/page/-components/main-content/main-conten
     assert.dom('[data-test-comments-header="filter-comments-button"]').doesNotExist();
   });
 
-  test('should show active class for filter by relevance to you button when comments are filtered by relevance', async (assert) => {
+  test('should show active class for filter by relevance to you button when comments are filtered by relevance', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -112,7 +112,7 @@ module('Integration | Component | site/page/-components/main-content/main-conten
       .hasClass('list-item__action--active');
   });
 
-  test('should hide active class for filter by all button when comments aren\'t filtered by all', async (assert) => {
+  test('should hide active class for filter by all button when comments aren\'t filtered by all', async function (assert) {
     assert.expect(1);
 
     // Act

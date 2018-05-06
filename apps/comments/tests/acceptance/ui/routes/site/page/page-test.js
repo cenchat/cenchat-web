@@ -11,7 +11,7 @@ module('Acceptance | site/page', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should create page when it does not exist', async (assert) => {
+  test('should create page when it does not exist', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -21,7 +21,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 0 });
   });
 
-  test('should list comments', async (assert) => {
+  test('should list comments', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -31,7 +31,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 2 });
   });
 
-  test('should show a comment on demand', async (assert) => {
+  test('should show a comment on demand', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -41,7 +41,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 3 });
   });
 
-  test('should load more comments', async (assert) => {
+  test('should load more comments', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -54,7 +54,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 4 });
   });
 
-  test('should create comment', async (assert) => {
+  test('should create comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -69,7 +69,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 3 });
   });
 
-  test('should create comment with tagged entities', async (assert) => {
+  test('should create comment with tagged entities', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -87,7 +87,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom('[data-test-tagged-entity-list-item="user_c"]').exists();
   });
 
-  test('should edit comment', async (assert) => {
+  test('should edit comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -110,7 +110,7 @@ module('Acceptance | site/page', (hooks) => {
       .exists({ count: 3 });
   });
 
-  test('should edit comment that adds some tagged entities', async (assert) => {
+  test('should edit comment that adds some tagged entities', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -134,7 +134,7 @@ module('Acceptance | site/page', (hooks) => {
       .exists();
   });
 
-  test('should delete comment', async (assert) => {
+  test('should delete comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -153,7 +153,7 @@ module('Acceptance | site/page', (hooks) => {
       .exists();
   });
 
-  test('should list comment replies', async (assert) => {
+  test('should list comment replies', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -170,7 +170,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
   });
 
-  test('should load more replies', async (assert) => {
+  test('should load more replies', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -188,7 +188,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 5 });
   });
 
-  test('should create comment reply', async (assert) => {
+  test('should create comment reply', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -206,7 +206,7 @@ module('Acceptance | site/page', (hooks) => {
     assert.dom(`${commentItem} [data-test-comment-item]`).exists({ count: 2 });
   });
 
-  test('should edit comment reply', async (assert) => {
+  test('should edit comment reply', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -228,7 +228,7 @@ module('Acceptance | site/page', (hooks) => {
       .exists({ count: 3 });
   });
 
-  test('should delete comment reply', async (assert) => {
+  test('should delete comment reply', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -246,7 +246,7 @@ module('Acceptance | site/page', (hooks) => {
       .exists();
   });
 
-  test('should show notifications', async (assert) => {
+  test('should show notifications', async function (assert) {
     assert.expect(1);
 
     // Arrange

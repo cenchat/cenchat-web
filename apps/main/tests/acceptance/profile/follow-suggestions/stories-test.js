@@ -10,7 +10,7 @@ module('Acceptance | profile/follow-suggestions', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('TODO: figure out a way to test FB Graph API | should list follow suggestions', async (assert) => {
+  test('TODO: figure out a way to test FB Graph API | should list follow suggestions', async function (assert) {
     assert.expect(1);
 
     assert.ok(true);

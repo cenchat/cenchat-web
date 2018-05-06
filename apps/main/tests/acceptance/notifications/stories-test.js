@@ -11,7 +11,7 @@ module('Acceptance | notifications', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should show notifications', async (assert) => {
+  test('should show notifications', async function (assert) {
     assert.expect(1);
 
     // Act

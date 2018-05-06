@@ -23,7 +23,7 @@ module('Acceptance | sites/site/manage/roles', (hooks) => {
     );
   });
 
-  test('should list admins', async (assert) => {
+  test('should list admins', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -34,7 +34,7 @@ module('Acceptance | sites/site/manage/roles', (hooks) => {
     assert.dom('[data-test-roles] [data-test-user-list-item="user_c"]').exists();
   });
 
-  test('should add admins', async (assert) => {
+  test('should add admins', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -49,7 +49,7 @@ module('Acceptance | sites/site/manage/roles', (hooks) => {
     assert.dom('[data-test-application="toast"]').hasText('Roles saved');
   });
 
-  test('should remove admins', async (assert) => {
+  test('should remove admins', async function (assert) {
     assert.expect(1);
 
     // Arrange

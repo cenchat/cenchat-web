@@ -12,7 +12,7 @@ module('Integration | Component | sites/site/manage/-components/manage-list', (h
     await setupTestState(this);
   });
 
-  test('nothing to test so far', async (assert) => {
+  test('nothing to test so far', async function (assert) {
     assert.expect(1);
 
     // Act

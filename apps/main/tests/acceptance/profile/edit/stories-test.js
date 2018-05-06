@@ -11,7 +11,7 @@ module('Acceptance | profile/edit', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should update profile', async (assert) => {
+  test('should update profile', async function (assert) {
     assert.expect(1);
 
     // Arrange

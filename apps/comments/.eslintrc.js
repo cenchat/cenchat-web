@@ -35,6 +35,6 @@ module.exports = {
         browser: false,
         node: true
       }
-    }
-  ]
+    },
+  ],
 };

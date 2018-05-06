@@ -11,7 +11,7 @@ module('Acceptance | sites/site/index/approved-comments', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should list approved comments', async (assert) => {
+  test('should list approved comments', async function (assert) {
     assert.expect(4);
 
     // Act

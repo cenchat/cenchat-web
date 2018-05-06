@@ -14,7 +14,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     this.set('onTagEntityClick', () => {});
   });
 
-  test('should show search result list when there are results from searching', async (assert) => {
+  test('should show search result list when there are results from searching', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -30,7 +30,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     assert.dom('[data-test-toolbar-tag-entity-panel="search-result"]').exists();
   });
 
-  test('should hide search result list when there are no results from searching', async (assert) => {
+  test('should hide search result list when there are no results from searching', async function (assert) {
     assert.expect(1);
 
     // Arrange

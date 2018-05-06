@@ -22,7 +22,7 @@ module('Integration | Component | docs/-components/installation-item', (hooks) =
     this.set('onInstallationItemKeydown', () => {});
   });
 
-  test('should show item', async (assert) => {
+  test('should show item', async function (assert) {
     assert.expect(4);
 
     // Act

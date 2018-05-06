@@ -11,7 +11,7 @@ module('Acceptance | profile/followings', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should show followings', async (assert) => {
+  test('should show followings', async function (assert) {
     assert.expect(2);
 
     // Act

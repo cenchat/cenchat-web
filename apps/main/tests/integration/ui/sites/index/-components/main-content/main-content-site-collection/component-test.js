@@ -69,7 +69,7 @@ module('Integration | Component | sites/index/-components/main-content/main-cont
     assert.dom('[data-test-main-content-site-collection="empty-state"]').exists();
   });
 
-  test('should hide empty state when there is at least 1 site', async (assert) => {
+  test('should hide empty state when there is at least 1 site', async function (assert) {
     assert.expect(1);
 
     // Act

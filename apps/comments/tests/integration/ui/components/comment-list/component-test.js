@@ -113,7 +113,7 @@ module('Integration | Component | comment-list', (hooks) => {
     assert.dom('[data-test-comment-list="empty-state"]').doesNotExist();
   });
 
-  test('should show load more comments button when number of comments is >= to the current limit', async (assert) => {
+  test('should show load more comments button when number of comments is >= to the current limit', async function (assert) {
     assert.expect(1);
 
     // Act

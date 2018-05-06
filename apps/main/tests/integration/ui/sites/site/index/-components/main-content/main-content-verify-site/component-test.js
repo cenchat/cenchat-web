@@ -16,7 +16,7 @@ module('Integration | Component | sites/site/index/-components/main-content/main
     this.set('onVerifySiteClick', () => {});
   });
 
-  test('should use site ID for the code snippet', async (assert) => {
+  test('should use site ID for the code snippet', async function (assert) {
     assert.expect(1);
 
     // Act

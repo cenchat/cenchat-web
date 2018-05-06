@@ -59,7 +59,7 @@ module('Integration | Component | comment-item', (hooks) => {
     });
   });
 
-  test('should hide <CommentItemContent /> when editing message', async (assert) => {
+  test('should hide <CommentItemContent /> when editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -103,7 +103,7 @@ module('Integration | Component | comment-item', (hooks) => {
     });
   });
 
-  test('should hide <CommentItemToolbar /> when editing message', async (assert) => {
+  test('should hide <CommentItemToolbar /> when editing message', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -162,7 +162,7 @@ module('Integration | Component | comment-item', (hooks) => {
     assert.ok(spy.notCalled);
   });
 
-  test('TODO: find a way to test navigate.share | should show share comment link when clicking share comment', async (assert) => {
+  test('TODO: find a way to test navigate.share | should show share comment link when clicking share comment', async function (assert) {
     assert.expect(1);
 
     // // Arrange
@@ -183,7 +183,7 @@ module('Integration | Component | comment-item', (hooks) => {
     assert.ok(true);
   });
 
-  test('should hide share comment link by default', async (assert) => {
+  test('should hide share comment link by default', async function (assert) {
     assert.expect(1);
 
     // Act

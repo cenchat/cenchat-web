@@ -6,7 +6,7 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | side-nav', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('should show yield', async (assert) => {
+  test('should show yield', async function (assert) {
     assert.expect(1);
 
     // Act

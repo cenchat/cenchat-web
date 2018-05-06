@@ -18,7 +18,7 @@ module('Integration | Component | comment-composer/comment-composer-message/mess
     this.set('onRemoveAttachmentClick', () => {});
   });
 
-  test('should show image attachment', async (assert) => {
+  test('should show image attachment', async function (assert) {
     assert.expect(1);
 
     // Act

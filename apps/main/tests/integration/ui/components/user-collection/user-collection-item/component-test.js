@@ -14,7 +14,7 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
     this.set('user', await this.store.findRecord('user', 'user_b'));
   });
 
-  test('should show user info', async (assert) => {
+  test('should show user info', async function (assert) {
     assert.expect(2);
 
     // Act

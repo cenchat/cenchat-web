@@ -22,7 +22,7 @@ module('Integration | Component | comment-item/comment-item-toolbar', (hooks) =>
     this.set('onReplyToCommentClick', () => {});
   });
 
-  test('should show delete button when signed in user is the author and comment isn\'t flagged as deleted', async (assert) => {
+  test('should show delete button when signed in user is the author and comment isn\'t flagged as deleted', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -109,7 +109,7 @@ module('Integration | Component | comment-item/comment-item-toolbar', (hooks) =>
     assert.ok(spy.calledWith(this.get('comment')));
   });
 
-  test('should show edit button when signed in user is the author and comment isn\'t flagged as deleted', async (assert) => {
+  test('should show edit button when signed in user is the author and comment isn\'t flagged as deleted', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -220,7 +220,7 @@ module('Integration | Component | comment-item/comment-item-toolbar', (hooks) =>
     assert.ok(spy.calledOnce);
   });
 
-  test('should show reply button when thread level < 2', async (assert) => {
+  test('should show reply button when thread level < 2', async function (assert) {
     assert.expect(1);
 
     // Act

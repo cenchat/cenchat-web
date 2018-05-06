@@ -11,7 +11,7 @@ module('Acceptance | profile', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('should show followings', async (assert) => {
+  test('should show followings', async function (assert) {
     assert.expect(2);
 
     // Act
@@ -22,19 +22,19 @@ module('Acceptance | profile', (hooks) => {
     assert.dom('[data-test-user-collection-item="user_d"]').exists();
   });
 
-  test('TODO: find a way to test this | should follow a user', async (assert) => {
+  test('TODO: find a way to test this | should follow a user', async function (assert) {
     assert.expect(1);
 
     assert.ok(true);
   });
 
-  test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async (assert) => {
+  test('TODO: find a way to test this | should unfollow a user in the current user\'s profile', async function (assert) {
     assert.expect(1);
 
     assert.ok(true);
   });
 
-  test('TODO: find a way to test this | should unfollow a user in their own profile', async (assert) => {
+  test('TODO: find a way to test this | should unfollow a user in their own profile', async function (assert) {
     assert.expect(1);
 
     assert.ok(true);
