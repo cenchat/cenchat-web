@@ -10,16 +10,12 @@
     {{/ce-link-button}}
   {{/ce-subheader}}
 
-  {{#async-let
-      on=(async-function --user 'getUnfollowedFacebookFriends' 4)
-      placeholder=(component 'ce-spinner' aria-valuetext='Loading follow suggestions')
-      as |followSuggestions|}}
-    {{#if followSuggestions}}
-      {{user-collection --users=followSuggestions}}
-    {{else}}
-      <article class="card" data-test-follow-suggestion-collection="empty-state">
-        <h3 class="card__heading">There are no suggestions as of the moment</h3>
-      </article>
-    {{/if}}
-  {{/async-let}}
+  
+  {{#if --followSuggestions}}
+    {{user-collection --users=--followSuggestions}}
+  {{else}}
+    <article class="card" data-test-follow-suggestion-collection="empty-state">
+      <h3 class="card__heading">There are no suggestions as of the moment</h3>
+    </article>
+  {{/if}}
 </section>

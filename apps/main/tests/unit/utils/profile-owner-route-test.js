@@ -13,7 +13,7 @@ module('Unit | Utility | profile-owner-route', () => {
       // Arrange
       const transitionToStub = sinon.stub();
       const modelForProfile = EmberObject.create({ id: 'user_b' });
-      const modelForStub = sinon.stub().returns(modelForProfile);
+      const modelForStub = sinon.stub().returns({ user: modelForProfile });
       const route = ProfileOwnerRoute.create({
         session: {
           model: { id: 'user_a' },
@@ -36,7 +36,7 @@ module('Unit | Utility | profile-owner-route', () => {
       // Arrange
       const transitionToStub = sinon.stub();
       const modelForProfile = EmberObject.create({ id: 'user_a' });
-      const modelForStub = sinon.stub().returns(modelForProfile);
+      const modelForStub = sinon.stub().returns({ user: modelForProfile });
       const route = ProfileOwnerRoute.create({
         session: {
           model: { id: 'user_a' },

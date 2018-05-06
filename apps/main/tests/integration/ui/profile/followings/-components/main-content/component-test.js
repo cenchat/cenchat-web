@@ -11,9 +11,7 @@ module('Integration | Component | profile/followings/-components/main-content', 
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    const followings = await this.get('session.model.followings');
-
-    this.set('users', followings);
+    this.set('followings', await this.get('session.model.followings'));
   });
 
   test('should show <InfiniteContent />', async function (assert) {
@@ -24,7 +22,7 @@ module('Integration | Component | profile/followings/-components/main-content', 
 
     // Act
     await render(hbs`
-      {{profile/followings/-components/main-content --users=users}}
+      {{profile/followings/-components/main-content --followings=followings}}
     `);
 
     // Assert
@@ -39,7 +37,7 @@ module('Integration | Component | profile/followings/-components/main-content', 
 
     // Act
     await render(hbs`
-      {{profile/followings/-components/main-content --users=users}}
+      {{profile/followings/-components/main-content --followings=followings}}
     `);
 
     // Assert

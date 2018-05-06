@@ -11,9 +11,7 @@ module('Integration | Component | profile/-components/main-content/following-col
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    const user = this.get('session.model');
-
-    this.set('user', user);
+    this.set('followings', await this.get('session.model.followings'));
   });
 
   test('should show <UserCollection />', async function (assert) {
@@ -23,7 +21,7 @@ module('Integration | Component | profile/-components/main-content/following-col
     const spy = spyComponent(this, 'user-collection');
 
     // Act
-    await render(hbs`{{profile/-components/main-content/following-collection --user=user}}`);
+    await render(hbs`{{profile/-components/main-content/following-collection --followings=followings}}`);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, { users: 'instance' });
@@ -33,12 +31,10 @@ module('Integration | Component | profile/-components/main-content/following-col
     assert.expect(1);
 
     // Arrange
-    this.set('user', {
-      followings: Promise.resolve([]),
-    });
+    this.set('followings', []);
 
     // Act
-    await render(hbs`{{profile/-components/main-content/following-collection --user=user}}`);
+    await render(hbs`{{profile/-components/main-content/following-collection --followings=followings}}`);
 
     // Assert
     assert.dom('[data-test-following-collection="empty-state"]').exists();

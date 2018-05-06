@@ -10,7 +10,7 @@ export default Route.extend({
    * @override
    */
   beforeModel() {
-    if (this.modelFor('profile').get('id') !== this.get('session.model.id')) {
+    if (this.modelFor('profile').user.get('id') !== this.get('session.model.id')) {
       this.transitionTo('profile');
     }
   },

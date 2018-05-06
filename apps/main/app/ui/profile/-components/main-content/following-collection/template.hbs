@@ -10,21 +10,16 @@
     {{/ce-link-button}}
   {{/ce-subheader}}
 
-  {{#async-let
-      on=(async-property --user.followings)
-      placeholder=(component 'ce-spinner' aria-valuetext='Loading followings')
-      as |followings|}}
-    {{#if followings}}
-      {{user-collection --users=followings}}
-    {{else}}
-      <article class="card" data-test-following-collection="empty-state">
-        <header class="card__header">
-          <h3 class="card__heading">Follow people you like</h3>
-          <p class="card__subheading">Look them up by searching for their usernames. Once you've added them, you'll be able to see their comments first when reading articles. If they follow you back, you'll be able to reply to them with texts.</p>
-        </header>
+  {{#if --followings}}
+    {{user-collection --users=--followings}}
+  {{else}}
+    <article class="card" data-test-following-collection="empty-state">
+      <header class="card__header">
+        <h3 class="card__heading">Follow people you like</h3>
+        <p class="card__subheading">Look them up by searching for their usernames. Once you've added them, you'll be able to see their comments first when reading articles. If they follow you back, you'll be able to reply to them with texts.</p>
+      </header>
 
-        {{#ce-link-button class="card__action" href=(href-to 'search')}}Search them{{/ce-link-button}}
-      </article>
-    {{/if}}
-  {{/async-let}}
+      {{#ce-link-button class="card__action" href=(href-to 'search')}}Search them{{/ce-link-button}}
+    </article>
+  {{/if}}
 </section>

@@ -7,20 +7,18 @@ module('Unit | Route | profile/edit', (hooks) => {
   setupTest(hooks);
 
   module('hook: model', () => {
-    test('should use profile route model as model', async function (assert) {
-      assert.expect(2);
+    test('should return profile route model', async function (assert) {
+      assert.expect(1);
 
       // Arrange
-      const modelForStub = sinon.stub().returns('foo');
       const route = this.owner.lookup('route:profile/edit');
 
-      route.set('modelFor', modelForStub);
+      route.set('modelFor', sinon.stub().withArgs('profile').returns({ user: 'foo' }));
 
       // Act
       const result = await route.model();
 
       // Assert
-      assert.ok(modelForStub.calledWithExactly('profile'));
       assert.equal(result, 'foo');
     });
   });

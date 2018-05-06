@@ -3,8 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState, spyComponent, stubPromise } from '@cenchat/core/test-support';
-import sinon from 'sinon';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
 module('Integration | Component | profile/-components/main-content', (hooks) => {
   setupRenderingTest(hooks);
@@ -15,12 +14,9 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
     const userB = await this.store.findRecord('user', 'user_b');
     const currentUser = this.session.model;
 
-    currentUser.set(
-      'getUnfollowedFacebookFriends',
-      sinon.stub().returns(stubPromise(true, [userB])),
-    );
-
     this.set('user', currentUser);
+    this.set('followingSuggestions', [userB]);
+    this.set('followings', await currentUser.get('followings'));
   });
 
   test('should show <FollowSuggestionCollection /> if current user owns the profile and has a facebook ID', async function (assert) {
@@ -33,14 +29,18 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
 
     // Act
     await render(hbs`
-      {{profile/-components/main-content --session=session --user=user}}
+      {{profile/-components/main-content
+          --session=session
+          --user=user
+          --followingSuggestions=followingSuggestions
+          --followings=followings}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { user: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { followingSuggestions: 'array' });
   });
 
-  test('should show <FollowSuggestionCollection /> if current user does not own the profile', async function (assert) {
+  test('should hide <FollowSuggestionCollection /> if current user does not own the profile', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -52,7 +52,11 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
 
     // Act
     await render(hbs`
-      {{profile/-components/main-content --session=session --user=user}}
+      {{profile/-components/main-content
+          --session=session
+          --user=user
+          --followingSuggestions=followingSuggestions
+          --followings=followings}}
     `);
 
     // Assert
@@ -67,11 +71,15 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
 
     // Act
     await render(hbs`
-      {{profile/-components/main-content --session=session --user=user}}
+      {{profile/-components/main-content
+          --session=session
+          --user=user
+          --followingSuggestions=followingSuggestions
+          --followings=followings}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { user: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { followings: 'instance' });
   });
 
   test('should hide <FollowingCollection /> if current user doesn\'t own the profile', async function (assert) {
@@ -86,7 +94,11 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
 
     // Act
     await render(hbs`
-      {{profile/-components/main-content --session=session --user=user}}
+      {{profile/-components/main-content
+          --session=session
+          --user=user
+          --followingSuggestions=followingSuggestions
+          --followings=followings}}
     `);
 
     // Assert
