@@ -100,7 +100,10 @@ export default Model.extend({
    * @type {Model.BetaTester}
    */
   betaTester: promiseObject(context => (
-    context.get('store').findRecord('betaTester', context.get('id'))
+    context.get('store').findRecord(
+      'betaTester',
+      context.get('id'),
+    ).catch(() => ({ status: 'unapplied' }))
   )),
 
   /**

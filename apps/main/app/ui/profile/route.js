@@ -30,7 +30,7 @@ export default AuthenticatedRoute.extend({
       const metaInfo = await hash.user.get('metaInfo');
 
       if (metaInfo.get('facebookAccessToken')) {
-        hash.followingSuggestions = hash.user.getUnfollowedFacebookFriends(4);
+        hash.followSuggestions = hash.user.getUnfollowedFacebookFriends(4);
       }
     }
 
