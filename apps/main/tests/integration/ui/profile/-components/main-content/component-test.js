@@ -15,16 +15,14 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
     const currentUser = this.session.model;
 
     this.set('user', currentUser);
-    this.set('followingSuggestions', [userB]);
+    this.set('followSuggestions', [userB]);
     this.set('followings', await currentUser.get('followings'));
   });
 
-  test('should show <FollowSuggestionCollection /> if current user owns the profile and has a facebook ID', async function (assert) {
+  test('should show <FollowSuggestionCollection /> if current user owns the profile and has suggestions', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('user.facebookId', 12345);
-
     const spy = spyComponent(this, 'profile/-components/main-content/follow-suggestion-collection');
 
     // Act
@@ -32,12 +30,12 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
       {{profile/-components/main-content
           --session=session
           --user=user
-          --followingSuggestions=followingSuggestions
+          --followSuggestions=followSuggestions
           --followings=followings}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { followingSuggestions: 'array' });
+    assert.deepEqual(spy.componentArgsType, { followSuggestions: 'array' });
   });
 
   test('should hide <FollowSuggestionCollection /> if current user does not own the profile', async function (assert) {
@@ -55,7 +53,28 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
       {{profile/-components/main-content
           --session=session
           --user=user
-          --followingSuggestions=followingSuggestions
+          --followSuggestions=followSuggestions
+          --followings=followings}}
+    `);
+
+    // Assert
+    assert.ok(spy.notCalled);
+  });
+
+  test('should hide <FollowSuggestionCollection /> if current user owns the profile but has no suggestions', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('followSuggestions', []);
+
+    const spy = spyComponent(this, 'profile/-components/main-content/follow-suggestion-collection');
+
+    // Act
+    await render(hbs`
+      {{profile/-components/main-content
+          --session=session
+          --user=user
+          --followSuggestions=followSuggestions
           --followings=followings}}
     `);
 
@@ -74,7 +93,7 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
       {{profile/-components/main-content
           --session=session
           --user=user
-          --followingSuggestions=followingSuggestions
+          --followSuggestions=followSuggestions
           --followings=followings}}
     `);
 
@@ -97,7 +116,7 @@ module('Integration | Component | profile/-components/main-content', (hooks) => 
       {{profile/-components/main-content
           --session=session
           --user=user
-          --followingSuggestions=followingSuggestions
+          --followSuggestions=followSuggestions
           --followings=followings}}
     `);
 

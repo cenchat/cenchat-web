@@ -28,17 +28,4 @@ module('Integration | Component | profile/-components/main-content/follow-sugges
     // Assert
     assert.deepEqual(spy.componentArgsType, { users: 'array' });
   });
-
-  test('should show empty state when there are no follow suggestions :(', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    this.set('followSuggestions', []);
-
-    // Act
-    await render(hbs`{{profile/-components/main-content/follow-suggestion-collection --followSuggestions=followSuggestions}}`);
-
-    // Assert
-    assert.dom('[data-test-follow-suggestion-collection="empty-state"]').exists();
-  });
 });

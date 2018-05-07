@@ -1,7 +1,7 @@
 {{#ce-top-bar class="layout__header" responsive=true}}
   <h1>Sites</h1>
 
-  {{#if (eq --user.betaTester.status 'approved')}}
+  {{#if (eq model.betaTester.status 'approved')}}
     {{ce-icon-link-button
         data-test-top-bar="new-link"
         href=(href-to 'sites.index.new')

@@ -10,12 +10,5 @@
     {{/ce-link-button}}
   {{/ce-subheader}}
 
-  
-  {{#if --followSuggestions}}
-    {{user-collection --users=--followSuggestions}}
-  {{else}}
-    <article class="card" data-test-follow-suggestion-collection="empty-state">
-      <h3 class="card__heading">There are no suggestions as of the moment</h3>
-    </article>
-  {{/if}}
+  {{user-collection --users=--followSuggestions}}
 </section>

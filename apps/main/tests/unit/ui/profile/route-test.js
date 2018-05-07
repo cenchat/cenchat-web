@@ -35,7 +35,7 @@ module('Unit | Route | profile', (hooks) => {
       assert.deepEqual(result, {
         user,
         followings: 'followings_foo',
-        followingSuggestions: 'followSuggestions_foo',
+        followSuggestions: 'followSuggestions_foo',
       });
     });
 
@@ -65,7 +65,7 @@ module('Unit | Route | profile', (hooks) => {
       assert.deepEqual(result, {
         user,
         followings: 'followings_foo',
-        followingSuggestions: 'followSuggestions_foo',
+        followSuggestions: 'followSuggestions_foo',
       });
     });
 
