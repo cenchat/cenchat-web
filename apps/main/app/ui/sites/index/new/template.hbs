@@ -9,7 +9,9 @@
   {{/ce-top-bar}}
 
   <div class="side-nav__content">
-    {{sites/index/new/-components/site-form --onSiteFormSubmit=(action handleSiteFormSubmit)}}
+    <section class="side-nav__section side-nav__section--headerless">
+      {{sites/index/new/-components/site-form --onSiteFormSubmit=(action handleSiteFormSubmit)}}
+    </section>
   </div>
 
   {{outlet}}

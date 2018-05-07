@@ -10,7 +10,9 @@
   {{/ce-top-bar}}
 
   <div class="side-nav__content">
-    {{profile/edit/-components/profile-form --user=model --onProfileFormSubmit=(action handleProfileFormSubmit)}}
+    <section class="side-nav__section side-nav__section--headerless">
+      {{profile/edit/-components/profile-form --user=model --onProfileFormSubmit=(action handleProfileFormSubmit)}}
+    </section>
   </div>
 
   {{outlet}}
