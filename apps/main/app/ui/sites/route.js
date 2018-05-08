@@ -10,6 +10,6 @@ export default AuthenticatedRoute.extend({
    * @override
    */
   model() {
-    return this.get('session.model');
+    return this.get('session.model.sitesAsAdmin');
   },
 });

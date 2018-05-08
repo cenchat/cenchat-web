@@ -1,6 +1,6 @@
+import { click, currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from '@ember/test-helpers';
 
 import { setupApplicationTestState } from '@cenchat/core/test-support';
 
@@ -11,13 +11,16 @@ module('Acceptance | sites/site/manage', (hooks) => {
     await setupApplicationTestState(this);
   });
 
-  test('nothing to test so far', async function (assert) {
+  test('should transition to sites.site.manage.roles when clicking roles', async function (assert) {
     assert.expect(1);
 
-    // Act
+    // Arrange
     await visit('/sites/site_a/manage');
 
+    // Act
+    await click('[data-test-manage-list="roles-link"]');
+
     // Assert
-    assert.ok(true);
+    assert.equal(currentURL(), '/sites/site_a/manage/roles');
   });
 });

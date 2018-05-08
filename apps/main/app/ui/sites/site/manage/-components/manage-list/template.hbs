@@ -1,1 +1,10 @@
-{{yield}}
+<article class="card card--centerized">
+  <ul class="list">
+    <li class="list__item">
+      <a class="list__action" data-test-manage-list="roles-link" href="{{href-to 'sites.site.manage.roles'}}">
+        {{#ce-icon class="list__icon"}}supervisor_account{{/ce-icon}}
+        <h2 class="list__primary-text">Roles</h2>
+      </a>
+    </li>
+  </ul>
+</article>

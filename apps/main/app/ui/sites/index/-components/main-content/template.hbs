@@ -1,12 +1,7 @@
 <main class="layout__main">
-  {{#if (eq --user.betaTester.status 'approved')}}
-    {{#async-let
-        on=(async-property --user.sitesAsAdmin)
-        placeholder=(component 'ce-spinner' aria-valuetext='Loading sites administered')
-        as |sitesAsAdmin|}}
-      {{sites/index/-components/main-content/main-content-site-collection  --router=--router --sites=sitesAsAdmin}}
-    {{/async-let}}
-  {{else if (eq --user.betaTester.status 'pending')}}
+  {{#if (or (eq --session.model.betaTester.status 'approved') --sitesAsAdmin)}}
+    {{sites/index/-components/main-content/main-content-site-collection  --router=--router --sites=--sitesAsAdmin}}
+  {{else if (eq --session.model.betaTester.status 'pending')}}
     <section class="layout__section layout__section--headerless">
       <article class="card card--centerized">
         <h2 class="card__heading">You've already applied for an invite</h2>
@@ -16,7 +11,7 @@
         </p>
       </article>
     </section>
-  {{else if (eq --user.betaTester.status 'unapplied')}}
+  {{else if (eq --session.model.betaTester.status 'unapplied')}}
     <section class="layout__section layout__section--headerless">
       {{sites/index/-components/main-content/main-content-invite-form
           --onInviteRequestFormSubmit=(action --onInviteRequestFormSubmit)}}

@@ -1,4 +1,4 @@
-import { visit } from '@ember/test-helpers';
+import { click, currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -9,6 +9,19 @@ module('Acceptance | profile', (hooks) => {
 
   hooks.beforeEach(async function () {
     await setupApplicationTestState(this);
+  });
+
+  test('should transition to profile.edit when clicking edit', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/profile/user_a');
+
+    // Act
+    await click('[data-test-top-bar-actions="edit-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/profile/user_a/edit');
   });
 
   test('should show followings', async function (assert) {

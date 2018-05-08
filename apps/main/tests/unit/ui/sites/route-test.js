@@ -1,23 +1,19 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { stubService } from '@cenchat/core/test-support';
-
 module('Unit | Route | sites', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function () {
-    stubService(this, 'session', {});
-  });
-
   module('hook: model', () => {
-    test('should return session model', async function (assert) {
+    test('should return current user sites as admin', async function (assert) {
       assert.expect(1);
 
       // Arrange
       const route = this.owner.lookup('route:sites');
 
-      route.set('session', { model: 'foo' });
+      route.set('session', {
+        model: { sitesAsAdmin: 'foo' },
+      });
 
       // Act
       const result = await route.model();

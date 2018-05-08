@@ -36,7 +36,7 @@ module('Acceptance | sites/site/index', (hooks) => {
     assert.dom('[data-test-application="toast"]').hasText('Site is now verified');
   });
 
-  test('should transition to approved comments when site is verified', async function (assert) {
+  test('should transition to sites.site.index.approved-comments when site is verified', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -44,5 +44,70 @@ module('Acceptance | sites/site/index', (hooks) => {
 
     // Assert
     assert.equal(currentURL(), '/sites/site_a/approved-comments');
+  });
+
+  test('should transition to sites.site.pages when clicking pages', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a');
+
+    // Act
+    await click('[data-test-top-bar="pages-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/sites/site_a/pages');
+  });
+
+  test('should transition to sites.site.manage when clicking manage', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a');
+
+    // Act
+    await click('[data-test-top-bar="manage-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/sites/site_a/manage');
+  });
+
+  test('should transition to docs when clicking docs', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a');
+
+    // Act
+    await click('[data-test-top-bar="docs-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/docs');
+  });
+
+  test('should transition to sites.site.index.approved-comments when clicking approved comments', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a');
+
+    // Act
+    await click('[data-test-top-bar="approved-comments-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/sites/site_a/approved-comments');
+  });
+
+  test('should transition to sites.site.index.rejected-comments when clicking rejected comments', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a');
+
+    // Act
+    await click('[data-test-top-bar="rejected-comments-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/sites/site_a/rejected-comments');
   });
 });
