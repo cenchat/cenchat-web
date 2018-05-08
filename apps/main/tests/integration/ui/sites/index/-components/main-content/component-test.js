@@ -11,7 +11,7 @@ module('Integration | Component | sites/index/-components/main-content', (hooks)
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    this.set('user', this.get('session.model'));
+    this.set('sitesAsAdmin', this.get('session.model.sitesAsAdmin'));
   });
 
   test('should show <MainContentSiteCollection /> for sites as admin', async function (assert) {
@@ -22,7 +22,10 @@ module('Integration | Component | sites/index/-components/main-content', (hooks)
 
     // Act
     await render(hbs`
-      {{sites/index/-components/main-content --router=router --user=user}}
+      {{sites/index/-components/main-content
+          --router=router
+          --session=session
+          --sitesAsAdmin=sitesAsAdmin}}
     `);
 
     // Assert

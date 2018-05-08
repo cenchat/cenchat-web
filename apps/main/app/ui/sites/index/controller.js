@@ -13,6 +13,11 @@ export default Controller.extend({
   router: inject(),
 
   /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
+  /**
    * @param {Object} inviteRequest
    * @param {Event} event
    * @function

@@ -1,3 +1,4 @@
+import { inject } from '@ember/service';
 import Route from '@ember/routing/route';
 
 /**
@@ -7,11 +8,16 @@ import Route from '@ember/routing/route';
  */
 export default Route.extend({
   /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
+  /**
    * @override
    */
   async beforeModel() {
-    const user = this.modelFor('sites.index');
-    const betaTester = await this.get('store').findRecord('betaTester', user.get('id'));
+    const user = this.get('session.model');
+    const betaTester = await user.get('betaTester');
 
     try {
       if (betaTester.get('status') !== 'approved') {
