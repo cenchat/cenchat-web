@@ -18,6 +18,7 @@ yarn-error.log
 testem.log
 firebase-debug.log
 Thumbs.db
+vim.exe.stackdump
 
 # ember-try
 .node_modules.ember-try/
