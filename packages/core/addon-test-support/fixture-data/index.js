@@ -184,6 +184,20 @@ export default function getFixtureData() {
             from: '__ref__:users/user_b',
             to: '__ref__:users/user_a',
           },
+
+          notification_d: {
+            dataMessage: {
+              commentId: 'comment_b',
+            },
+            displayMessage: {
+              body: null,
+              title: 'User B commented in a page at Site A',
+            },
+            createdOn: new Date(),
+            type: 'comment_at_site',
+            from: '__ref__:users/user_b',
+            to: '__ref__:users/user_a',
+          },
         },
       },
 

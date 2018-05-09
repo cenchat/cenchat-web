@@ -1,0 +1,36 @@
+<li
+    class="notification-list-item list__item"
+    data-test-notification-list-comment-at-site-item="host">
+  <div class="notification-list-item__row">
+    <img
+        class="list__avatar list__avatar--circle"
+        data-test-notification-list-comment-at-site-item="from-photo"
+        src="{{--notification.from.photoUrl}}"
+        alt="{{--notification.from.displayName}}">
+    
+    <div class="list__multi-line-content">
+      <h2
+          class="list__primary-text"
+          data-test-notification-list-comment-at-site-item="title">
+        {{--notification.displayMessage.title}}
+      </h2>
+
+      <p
+          class="list__secondary-text"
+          data-test-notification-list-comment-at-site-item="created-on">
+        {{moment-from-now --notification.createdOn}}
+      </p>
+    </div>
+  </div>
+
+  {{#async-let on=(async-function --notification 'getCommentVisitLink') as |link|}}
+    <div>
+      {{#ce-link-button
+          class="notification-list-item__action-link"
+          href=link
+          data-test-notification-list-comment-at-site-item="visit-link"}}
+        Visit
+      {{/ce-link-button}}
+    </div>
+  {{/async-let}}
+</li>
