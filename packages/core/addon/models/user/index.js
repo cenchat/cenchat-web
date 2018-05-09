@@ -116,6 +116,15 @@ export default Model.extend({
   /**
    * @type {string}
    */
+  largePhotoUrl: computed('facebookId', {
+    get() {
+      return `https://graph.facebook.com/${this.get('facebookId')}/picture?type=large`;
+    },
+  }),
+
+  /**
+   * @type {string}
+   */
   urlKey: computed('username', {
     get() {
       return this.get('username') || this.get('id');

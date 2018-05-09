@@ -18,7 +18,7 @@ module('Unit | Controller | sites/index', (hooks) => {
       const controller = this.owner.lookup('controller:sites/index');
 
       controller.set('store', { createRecord: createRecordStub });
-      controller.set('model', model);
+      controller.set('session', { model });
 
       // Act
       await controller.handleInviteRequestFormSubmit({

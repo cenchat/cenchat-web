@@ -17,13 +17,16 @@ module('Integration | Component | user-collection/user-collection-item', (hooks)
   test('should show user info', async function (assert) {
     assert.expect(2);
 
+    // Arrange
+    this.set('user.facebookId', '12345');
+
     // Act
     await render(hbs`{{user-collection/user-collection-item --user=user}}`);
 
     // Assert
     assert.dom('[data-test-user-collection-item="photo"]').hasAttribute(
       'src',
-      'user_b.jpg',
+      'https://graph.facebook.com/12345/picture?type=large',
     );
     assert.dom('[data-test-user-collection-item="name"]').hasText('User B');
   });

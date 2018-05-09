@@ -27,10 +27,10 @@ export default Controller.extend({
 
     await this.get('store').createRecord('beta-tester', {
       ...inviteRequest,
-      id: this.get('model.id'),
+      id: this.get('session.model.id'),
       status: 'pending',
     }).save();
 
-    this.set('model.betaTester.status', 'pending');
+    this.set('session.model.betaTester.status', 'pending');
   },
 });

@@ -1,5 +1,7 @@
 <div class="side-nav__content">
-  {{#infinite-content --query=--followings --selector=".side-nav__content"}}
-    {{user-collection --users=--followings}}
-  {{/infinite-content}}
+  <section class="side-nav__section side-nav__section--headerless">
+    {{#infinite-content --query=--followings --selector=".side-nav__content"}}
+      {{user-collection --users=--followings}}
+    {{/infinite-content}}
+  </section>
 </div>

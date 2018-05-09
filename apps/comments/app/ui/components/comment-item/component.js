@@ -40,14 +40,23 @@ export default Component.extend({
   async handleDeleteCommentClick() {
     const comment = this.get('--comment');
 
+    comment.set('attachments', null);
     comment.set('isAskMeAnything', false);
-    comment.set('parsedAttachments', null);
     comment.set('taggedEntities', null);
     comment.set('text', null);
     comment.set('isDeleted', true);
 
-    await comment.save();
-    toast('Comment deleted');
+    toast('Comment deleted', 10000, {
+      text: 'Undo',
+
+      action: () => {
+        comment.rollbackAttributes();
+      },
+
+      scheduledAction: async () => {
+        comment.save();
+      },
+    });
   },
 
   /**

@@ -28,7 +28,7 @@ module.exports = function(environment) {
       hostWhitelist: ['cenchat.com', 'www.cenchat.com', /^localhost:\d+$/],
     },
     apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app/api',
-    commentsHost: 'http://localhost:8000',
+    commentsHost: 'http://192.168.1.14:8000',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
     // Addon configs
