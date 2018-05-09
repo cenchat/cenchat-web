@@ -17,13 +17,15 @@ module.exports = {
   env: {
     browser: true
   },
-  rules: {},
+  rules: {
+  },
   overrides: [
     // node files
     {
       files: [
-        'testem.js',
         'ember-cli-build.js',
+        'testem.js',
+        'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js'
       ],
