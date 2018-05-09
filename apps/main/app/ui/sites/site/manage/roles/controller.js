@@ -66,9 +66,14 @@ export default Controller.extend({
     let usersWithRole = [];
 
     if (query && query.trim()) {
+      const lowerCasedQuery = query.toLowerCase();
       const users = await this.get('store').query('user', {
         filter(reference) {
-          return reference.orderBy('username').startAt(query).endAt(`${query}\uf8ff`).limit(8);
+          return reference
+            .orderBy('username')
+            .startAt(lowerCasedQuery)
+            .endAt(`${lowerCasedQuery}\uf8ff`)
+            .limit(8);
         },
       });
       const isAdminChecks = [];

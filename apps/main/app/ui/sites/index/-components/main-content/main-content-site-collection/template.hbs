@@ -1,16 +1,18 @@
-{{#infinite-content class="layout__section layout__section--headerless" --query=--sites}}
-  {{#masonry-grid --items=--sites as |item|}}
-    {{sites/index/-components/main-content/main-content-site-collection/site-collection-item
-        --router=--router
-        --site=item}}
-  {{else}}
-    <article class="card card--centerized" data-test-main-content-site-collection="empty-state">
-      <header class="card__header">
-        <h2 class="card__heading">Get started</h2>
-        <p class="card__subheading">Provide a commenting system on your website that's free of online harassments</p>
-      </header>
+<section class="layout__section layout__section--headerless">
+  {{#infinite-content --query=--sites}}
+    {{#masonry-grid --items=--sites as |item|}}
+      {{sites/index/-components/main-content/main-content-site-collection/site-collection-item
+          --router=--router
+          --site=item}}
+    {{else}}
+      <article class="card card--centerized" data-test-main-content-site-collection="empty-state">
+        <header class="card__header">
+          <h2 class="card__heading">Get started</h2>
+          <p class="card__subheading">Provide a commenting system on your website that's free of online harassments</p>
+        </header>
 
-      {{#ce-link-button class="card__action" href=(href-to 'sites.index.new')}}Add site{{/ce-link-button}}
-    </article>
-  {{/masonry-grid}}
-{{/infinite-content}}
+        {{#ce-link-button class="card__action" href=(href-to 'sites.index.new')}}Add site{{/ce-link-button}}
+      </article>
+    {{/masonry-grid}}
+  {{/infinite-content}}
+</section>

@@ -1,3 +1,4 @@
+import { inject } from '@ember/service';
 import AuthenticatedRoute from 'main/utils/authenticated-route';
 import RSVP from 'rsvp';
 
@@ -7,6 +8,11 @@ import RSVP from 'rsvp';
  * @extends Route.AuthenticatedRoute
  */
 export default AuthenticatedRoute.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  session: inject(),
+
   /**
    * @override
    */
@@ -24,7 +30,11 @@ export default AuthenticatedRoute.extend({
       hash.user = query.get('firstObject');
     }
 
-    if (hash.user) {
+    if (
+      hash.user
+      && this.get('session.model')
+      && this.get('session.model.id') === hash.user.get('id')
+    ) {
       hash.followings = hash.user.get('followings');
 
       const metaInfo = await hash.user.get('metaInfo');

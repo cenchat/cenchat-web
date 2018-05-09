@@ -1,9 +1,11 @@
 <main class="layout__main">
-  {{#infinite-content class="layout__section layout__section--headerless" --query=--notifications}}
-    <ul class="card card--centerized list">
-      {{notification-list --notifications=--notifications}}
-    </ul>
-  {{/infinite-content}}
+  <section class="layout__section layout__section--headerless">
+    {{#infinite-content --query=--notifications}}
+      <ul class="card card--centerized list">
+        {{notification-list --notifications=--notifications}}
+      </ul>
+    {{/infinite-content}}
+  </section>
 
   {{yield}}
 </main>
