@@ -14,7 +14,7 @@
   color: var(--toast-color);
   background-color: var(--toast-background-color);
   border-radius: var(--border-radius-square);
-  transform: translateY(100%);
+  transform: translateY(200%);
   box-shadow: var(--elevation);
   box-sizing: border-box;
   transition-duration: 195ms;
@@ -34,7 +34,7 @@
     max-width: 568px;
     min-width: 288px;
     margin: 16px;
-    transform: translateY(140%);
+    transform: translateY(calc(100% + 32px));
   }
 }
 
@@ -53,6 +53,12 @@
 @media (min-width: 600px) {
   .ce-toast[opened] {
     transition-duration: 295ms;
+  }
+}
+
+@media (min-width: 960px) {
+  .ce-toast[opened] {
+    transform: translateY(0);
   }
 }
 

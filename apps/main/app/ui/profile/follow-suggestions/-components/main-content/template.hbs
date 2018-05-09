@@ -1,10 +1,12 @@
 <div class="side-nav__content">
   {{#if followSuggestions}}
-    {{#infinite-content
-        --query=followSuggestions
-        --selector=".side-nav__content"
-        --onLoadMoreRecords=(action handleLoadMoreRecords)}}
-      {{user-collection --users=followSuggestions}}
-    {{/infinite-content}}
+    <section class="side-nav__section side-nav__section--headerless">
+      {{#infinite-content
+          --query=followSuggestions
+          --selector=".side-nav__content"
+          --onLoadMoreRecords=(action handleLoadMoreRecords)}}
+        {{user-collection --users=followSuggestions}}
+      {{/infinite-content}}
+    </section>
   {{/if}}
 </div>
