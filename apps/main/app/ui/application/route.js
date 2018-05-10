@@ -168,7 +168,10 @@ export default Route.extend({
         scheduleOnce('afterRender', () => {
           const splashScreenElement = document.querySelector('.splash-screen');
 
-          splashScreenElement.parentNode.removeChild(splashScreenElement);
+          if (splashScreenElement) {
+            document.body.removeChild(splashScreenElement);
+          }
+
           this.set('isSplashScreenRemoved', true);
         });
       }
