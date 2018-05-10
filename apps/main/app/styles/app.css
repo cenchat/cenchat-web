@@ -20,8 +20,7 @@ html {
   background-color: #000;
 }
 
-body,
-body > .ember-view {
+.app {
   position: relative;
   min-height: 100vh;
   background-color: var(--body-background-color);

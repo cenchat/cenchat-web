@@ -1,5 +1,5 @@
 .layout,
-body > .ember-view {
+.app {
   display: grid;
   grid-template-areas:
     "header"
@@ -11,7 +11,7 @@ body > .ember-view {
 
 @media (min-width: 960px) {
   .layout,
-  body > .ember-view {
+  .app {
     grid-template-areas:
       ". header"
       ". main";
