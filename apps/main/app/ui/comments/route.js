@@ -27,9 +27,10 @@ export default Route.extend({
 
     this.set('headData.title', `${author.get('displayName')} on Cenchat`);
     this.set('headData.description', model.get('text') || '&nbsp;');
-    this.set('headData.url', `https://cenchat.com/comments/${model.get('id')}`);
     this.set('headData.image', author.get('largePhotoUrl'));
+    this.set('headData.url', `https://cenchat.com/comments/${model.get('id')}`);
     this.set('headData.type', 'article');
+    this.set('headData.author', author.get('displayName'));
 
     // Preload relationships
     const page = await model.get('page');
