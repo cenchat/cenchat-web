@@ -32,7 +32,7 @@ module('Unit | Route | comment', (hooks) => {
 
   module('hook: afterModel', () => {
     test('should set headData', async function (assert) {
-      assert.expect(5);
+      assert.expect(6);
 
       // Arrange
       const model = await this.store.findRecord('comment', 'comment_b');
@@ -48,12 +48,13 @@ module('Unit | Route | comment', (hooks) => {
       // Assert
       assert.equal(route.get('headData.title'), 'User B on Cenchat');
       assert.equal(route.get('headData.description'), 'Foobar');
-      assert.equal(route.get('headData.url'), 'https://cenchat.com/comments/comment_b');
       assert.equal(
         route.get('headData.image'),
         'https://graph.facebook.com/foobar/picture?type=large',
       );
+      assert.equal(route.get('headData.url'), 'https://cenchat.com/comments/comment_b');
       assert.equal(route.get('headData.type'), 'article');
+      assert.equal(route.get('headData.author'), 'User B');
     });
 
     test('should preload relationships', async function (assert) {
