@@ -17,10 +17,7 @@ export default AuthenticatedRoute.extend({
    * @override
    */
   async afterModel() {
-    const userMetaInfo = await this.get('store').findRecord(
-      'userMetaInfo',
-      this.get('session.model.id'),
-    );
+    const userMetaInfo = await this.get('session.model.metaInfo');
 
     userMetaInfo.set('hasNewNotification', false);
     userMetaInfo.save();

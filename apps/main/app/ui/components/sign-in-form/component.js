@@ -40,8 +40,8 @@ export default Component.extend({
     this.set('uiConfig', {
       credentialHelper: firebaseui.auth.CredentialHelper.NONE,
       callbacks: {
-        signInSuccess: (currentUser, credential) => {
-          this.fetchOrCreateUserRecord(currentUser, credential);
+        signInSuccessWithAuthResult: ({ credential, user }) => {
+          this.fetchOrCreateUserRecord(user, credential);
         },
       },
       signInFlow: 'popup',
