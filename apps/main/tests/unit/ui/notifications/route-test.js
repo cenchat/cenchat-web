@@ -11,6 +11,13 @@ module('Unit | Route | notifications', (hooks) => {
   hooks.beforeEach(function () {
     this.session = stubSession(this, EmberObject.create({
       id: 'user_a',
+      metaInfo: EmberObject.create({
+        hasNewNotification: true,
+
+        save() {
+          return stubPromise(true);
+        },
+      }),
       notifications: 'foo',
     }));
   });
@@ -34,27 +41,20 @@ module('Unit | Route | notifications', (hooks) => {
 
   module('hook: afterModel', () => {
     test('should mark has new notifications as false', async function (assert) {
-      assert.expect(3);
+      assert.expect(2);
 
       // Arrange
-      const saveStub = sinon.stub().returns(stubPromise(true));
-      const meta = EmberObject.create({
-        hasNewNotification: true,
-        save: saveStub,
-      });
-      const findRecordStub = sinon.stub().returns(stubPromise(true, meta));
+      const saveSpy = sinon.spy(this.session.model.metaInfo, 'save');
       const route = this.owner.lookup('route:notifications');
 
       route.set('session', this.session);
-      route.set('store', { findRecord: findRecordStub });
 
       // Act
       await route.afterModel();
 
       // Assert
-      assert.ok(findRecordStub.calledWithExactly('userMetaInfo', 'user_a'));
-      assert.equal(meta.get('hasNewNotification'), false);
-      assert.ok(saveStub.calledOnce);
+      assert.equal(this.session.model.metaInfo.get('hasNewNotification'), false);
+      assert.ok(saveSpy.calledOnce);
     });
   });
 });
