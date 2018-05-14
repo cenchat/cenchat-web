@@ -11,7 +11,7 @@
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
   line-height: 1.25rem;
-  color: var(--toast-color);
+  color: var(--toast-text-color);
   background-color: var(--toast-background-color);
   border-radius: var(--border-radius-square);
   transform: translateY(200%);
@@ -83,7 +83,6 @@
 }
 
 .ce-toast__button {
-  --button-default-color: var(--toast-button-color);
   --button-hover-background-color: var(--toast-button-hover-background-color);
   --button-active-background-color: var(--toast-button-active-background-color);
 }

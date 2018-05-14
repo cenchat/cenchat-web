@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: var(--brand-primary-color);
+  background-color: var(--navbar-background-color);
   box-shadow: var(--elevation);
 }
 
@@ -14,8 +14,11 @@
 }
 
 .ce-navbar .ce-icon-link-button {
+  --button-hover-background-color: var(--navbar-button-hover-background-color);
+  --button-active-background-color: var(--navbar-button-active-background-color);
+
   display: flex;
   flex: 1;
   justify-content: center;
-  color: var(--navbar-color);
+  color: var(--navbar-text-color);
 }

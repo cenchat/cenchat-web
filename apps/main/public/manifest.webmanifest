@@ -3,8 +3,8 @@
   "short_name":"Cenchat",
   "start_url":"/",
   "display":"standalone",
-  "background_color":"#212121",
-  "theme_color":"#000",
+  "background_color":"#fafafa",
+  "theme_color":"#e0e0e0",
   "description":"Conversations in a unique but familiar way",
   "icons":[
     {

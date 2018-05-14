@@ -16,7 +16,7 @@ module('Unit | Route | site', (hooks) => {
       await route.afterModel(EmberObject.create({ theme: 'light' }));
 
       // Assert
-      assert.ok(document.body.classList.contains('ce-theme-light'));
+      assert.ok(document.body.classList.contains('light-theme'));
     });
   });
 });

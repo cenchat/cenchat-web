@@ -2,14 +2,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-a {
-  color: #0091ea;
-}
-
-a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
-  color: #ea80fc;
-}
-
 /**
  * Reset Segoe UI font to include font-weight 500
  */

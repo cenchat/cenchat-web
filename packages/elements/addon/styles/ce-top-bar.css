@@ -1,6 +1,7 @@
 .ce-top-bar {
   width: 100%;
-  background-color: var(--item-background-color);
+  color: var(--font-primary-color);
+  background-color: var(--fixed-surface-background-color);
   box-shadow: var(--elevation);
 }
 

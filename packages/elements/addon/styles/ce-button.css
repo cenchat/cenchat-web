@@ -5,7 +5,7 @@
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
   line-height: 36px;
-  color: var(--button-default-color);
+  color: inherit;
   text-align: center;
   text-transform: uppercase;
   background: none;
@@ -20,7 +20,7 @@
 .ce-button div {
   position: relative;
   height: 36px;
-  min-width: 88px;
+  min-width: 66px;
   padding-right: 8px;
   padding-left: 8px;
   border-radius: var(--border-radius-square);
@@ -41,7 +41,7 @@
 }
 
 .ce-button:disabled {
-  color: var(--button-disabled-color);
+  color: var(--button-disabled-text-color);
 }
 
 .ce-button:disabled div {

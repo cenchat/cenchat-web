@@ -1,0 +1,58 @@
+.cenchat-theme {
+  /* Colors */
+  --dark-87: rgba(0, 0, 0, 0.87);
+  --dark-54: rgba(0, 0, 0, 0.54);
+  --dark-38: rgba(0, 0, 0, 0.38);
+  --dark-12: rgba(0, 0, 0, 0.12);
+  --brand-primary-color: #212121;
+  --brand-transparent-primary-color: rgba(33, 33, 33, 0.98);
+
+  /* Scaffolding */
+  --body-background-color: #fafafa;
+  --surface-background-color: #fff;
+  --fixed-surface-background-color: rgba(255, 255, 255, 0.98);
+  --active-background-color: #bdbdbd;
+  --hover-background-color: #eee;
+  --disabled-text-color: var(--dark-38);
+  --error-color: var(--red);
+
+  /* Buttons */
+  --button-hover-background-color: var(--hover-background-color);
+  --button-active-background-color: var(--active-background-color);
+  --button-disabled-text-color: var(--disabled-text-color);
+
+  /* Divider */
+  --divider-color: var(--dark-12);
+
+  /* List */
+  --list-item-disabled-text-color: var(--disabled-text-color);
+  --list-item-hover-background-color: var(--hover-background-color);
+  --list-item-active-background-color: var(--active-background-color);
+
+  /* Nav bar */
+  --navbar-text-color: #fff;
+  --navbar-background-color: var(--brand-transparent-primary-color);
+  --navbar-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --navbar-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--dark-12);
+  --progress-bar-moving-color: var(--dark-87);
+
+  /* Text fields */
+  --text-field-background-color: #f5f5f5;
+
+  /* Toast */
+  --toast-text-color: #fff;
+  --toast-background-color: rgba(48, 48, 48, 0.98);
+  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Top bar */
+  --top-bar-background-color: var(--fixed-surface-background-color);
+
+  /* Typography */
+  --font-primary-color: var(--dark-87);
+  --font-secondary-color: var(--dark-54);
+  --font-hint-color: var(--dark-38);
+}

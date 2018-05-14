@@ -1,21 +1,4 @@
 :root {
-  /* Colors */
-  --dark-87: rgba(0, 0, 0, 0.87);
-  --dark-54: rgba(0, 0, 0, 0.54);
-  --dark-38: rgba(0, 0, 0, 0.38);
-  --dark-12: rgba(0, 0, 0, 0.12);
-  --light-100: rgba(255, 255, 255, 1);
-  --light-70: rgba(255, 255, 255, 0.7);
-  --light-50: rgba(255, 255, 255, 0.5);
-  --light-12: rgba(255, 255, 255, 0.12);
-  --highlight-dark-1: rgba(153, 153, 153, 0.1);
-  --highlight-dark-2: rgba(153, 153, 153, 0.4);
-  --highlight-light-1: rgba(204, 204, 204, 0.1);
-  --highlight-light-2: rgba(204, 204, 204, 0.25);
-  --brand-primary-color: #212121;
-  --item-background-color: transparent;
-  --red: #ff5252;
-
   /* Elevation */
   --elevation: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 
