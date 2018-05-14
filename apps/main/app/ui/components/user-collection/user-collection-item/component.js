@@ -35,9 +35,20 @@ export default Component.extend({
    * @function
    */
   handleUserClick() {
-    const user = this.get('--user');
+    this.transitionToProfile();
+  },
 
-    this.get('router').transitionTo('profile', user.get('username') || user.get('id'));
+  /**
+   * @param {Event} event
+   * @function
+   */
+  handleUserKeydown(event) {
+    const code = event.which;
+
+    if (code === 13 || code === 32) {
+      event.preventDefault();
+      this.transitionToProfile();
+    }
   },
 
   /**
@@ -56,7 +67,6 @@ export default Component.extend({
 
   /**
    * @function
-   * @private
    */
   async checkIfUserIsBeingFollowed() {
     const currentUser = this.get('session.model');
@@ -68,5 +78,14 @@ export default Component.extend({
         this.set('isUserBeingFollowed', isUserBeingFollowed);
       }
     }
+  },
+
+  /**
+   * @function
+   */
+  transitionToProfile() {
+    const user = this.get('--user');
+
+    this.get('router').transitionTo('profile', user.get('username') || user.get('id'));
   },
 });
