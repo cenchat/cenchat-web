@@ -7,5 +7,5 @@
 }
 
 .sites-index_site-collection-item__unverified {
-  color: var(--red);
+  color: var(--error-color);
 }

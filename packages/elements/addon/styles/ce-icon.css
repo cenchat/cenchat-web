@@ -1,5 +1,5 @@
 .ce-icon {
-  color: var(--icon-default-color);
+  color: inherit;
 }
 
 .ce-icon[size="small"] {

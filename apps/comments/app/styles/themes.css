@@ -1,7 +1,91 @@
-.ce-theme-light {
+.light-theme {
+  /* Colors */
+  --dark-87: rgba(0, 0, 0, 0.87);
+  --dark-54: rgba(0, 0, 0, 0.54);
+  --dark-38: rgba(0, 0, 0, 0.38);
+  --dark-12: rgba(0, 0, 0, 0.12);
+
+  /* Scaffolding */
+  --body-background-color: #fff;
+  --fixed-surface-background-color: #fff;
+  --active-background-color: #bdbdbd;
+  --hover-background-color: #eee;
+  --disabled-text-color: var(--dark-38);
+  --error-color: var(--red);
   --chat-bubble-background-color: rgba(0, 0, 0, 0.06);
+
+  /* Buttons */
+  --button-hover-background-color: var(--hover-background-color);
+  --button-active-background-color: var(--active-background-color);
+  --button-disabled-text-color: var(--disabled-text-color);
+
+  /* Divider */
+  --divider-color: var(--dark-12);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--dark-12);
+  --progress-bar-moving-color: var(--dark-87);
+
+  /* Text fields */
+  --text-field-background-color: #f5f5f5;
+
+  /* Toast */
+  --toast-text-color: #fff;
+  --toast-background-color: rgba(48, 48, 48, 0.98);
+  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Typography */
+  --font-primary-color: var(--dark-87);
+  --font-secondary-color: var(--dark-54);
+  --font-hint-color: var(--dark-38);
+
+  color: var(--font-primary-color);
+  background-color: var(--body-background-color);
 }
 
-.ce-theme-dark {
+.dark-theme {
+  /* Colors */
+  --light-100: rgba(255, 255, 255, 1);
+  --light-70: rgba(255, 255, 255, 0.7);
+  --light-50: rgba(255, 255, 255, 0.5);
+  --light-12: rgba(255, 255, 255, 0.12);
+
+  /* Scaffolding */
+  --body-background-color: #303030;
+  --fixed-surface-background-color: #424242;
+  --active-background-color: rgba(204, 204, 204, 0.25);
+  --hover-background-color: rgba(204, 204, 204, 0.1);
+  --disabled-text-color: var(--light-50);
+  --error-color: var(--red);
   --chat-bubble-background-color: rgba(255, 255, 255, 0.06);
+
+  /* Buttons */
+  --button-hover-background-color: var(--hover-background-color);
+  --button-active-background-color: var(--active-background-color);
+  --button-disabled-text-color: var(--disabled-text-color);
+
+  /* Divider */
+  --divider-color: var(--light-12);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--light-12);
+  --progress-bar-moving-color: var(--light-100);
+
+  /* Text fields */
+  --text-field-background-color: rgba(204, 204, 204, 0.1);
+
+  /* Toast */
+  --toast-text-color: #fff;
+  --toast-background-color: #fafafa;
+  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Typography */
+  --font-primary-color: var(--light-100);
+  --font-secondary-color: var(--light-70);
+  --font-hint-color: var(--light-50);
+
+  color: var(--font-primary-color);
+  background-color: var(--body-background-color);
 }

@@ -1,7 +1,3 @@
-.user-collection-item {
-  cursor: pointer;
-}
-
 .user-collection-item__header {
   display: flex;
   padding-right: 16px;

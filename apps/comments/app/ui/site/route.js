@@ -17,7 +17,6 @@ export default Route.extend({
    * @override
    */
   afterModel(model) {
-    document.body.classList.remove('ce-theme-dark');
-    document.body.classList.add(`ce-theme-${model.get('theme')}`);
+    document.body.classList.add(`${model.get('theme')}-theme`);
   },
 });

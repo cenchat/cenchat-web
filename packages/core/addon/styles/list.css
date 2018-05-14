@@ -27,7 +27,7 @@
 }
 
 .list__action:disabled {
-  color: var(--list-item-disabled-color) !important;
+  color: var(--list-item-disabled-text-color) !important;
 }
 
 a.list__action {

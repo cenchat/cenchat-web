@@ -8,6 +8,7 @@
 @import "snippets.css";
 @import "splash-screen.css";
 @import "pod-styles";
+@import "theme.css";
 
 *,
 *::before,
@@ -17,13 +18,22 @@
 
 html {
   font-family: var(--font-family);
-  background-color: #000;
+  background-color: #e0e0e0;
 }
 
 .app {
   position: relative;
   min-height: 100vh;
+  color: var(--font-primary-color);
   background-color: var(--body-background-color);
+}
+
+a {
+  color: var(--brand-primary-color);
+}
+
+a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
+  color: var(--brand-primary-color);
 }
 
 .clickable {

@@ -23,7 +23,6 @@
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
   line-height: 2rem;
-  color: var(--font-primary-color);
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
