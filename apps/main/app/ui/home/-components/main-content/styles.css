@@ -141,3 +141,25 @@
 .home_main-content ~ .ce-toast {
   display: none;
 }
+
+.home_main-content__footer {
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.home_main-content__footer-link {
+  font-size: var(--font-size-12);
+  color: var(--font-hint-color) !important;
+  text-decoration: none;
+}
+
+.home_main-content__footer-link:first-child {
+  margin-right: 8px;
+  margin-left: 16px;
+}
+
+.home_main-content__footer-contact-us-link {
+  margin-right: 16px;
+  margin-left: auto;
+}

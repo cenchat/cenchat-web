@@ -1,9 +1,9 @@
 <div class="side-nav__content">
-  {{#if (eq --platform 'blogger')}}
+  {{#if (eq --platform.id 'blogger')}}
     {{docs/installation/-components/main-content/main-content-blogger-guide}}
-  {{else if (eq --platform 'wordpress')}}
+  {{else if (eq --platform.id 'wordpress')}}
     {{docs/installation/-components/main-content/main-content-wordpress-guide}}
-  {{else if (eq --platform 'universal')}}
+  {{else if (eq --platform.id 'universal')}}
     {{docs/installation/-components/main-content/main-content-universal-guide}}
   {{/if}}
 </div>

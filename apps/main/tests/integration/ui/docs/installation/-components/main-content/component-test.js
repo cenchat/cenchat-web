@@ -16,7 +16,7 @@ module('Integration | Component | docs/installation/-components/main-content', (
     assert.expect(1);
 
     // Arrange
-    this.set('platform', 'blogger');
+    this.set('platform', { id: 'blogger' });
 
     const spy = spyComponent(this, 'docs/installation/-components/main-content/main-content-blogger-guide');
 
@@ -33,7 +33,7 @@ module('Integration | Component | docs/installation/-components/main-content', (
     assert.expect(1);
 
     // Arrange
-    this.set('platform', 'wordpress');
+    this.set('platform', { id: 'wordpress' });
 
     const spy = spyComponent(this, 'docs/installation/-components/main-content/main-content-wordpress-guide');
 
@@ -50,7 +50,7 @@ module('Integration | Component | docs/installation/-components/main-content', (
     assert.expect(1);
 
     // Arrange
-    this.set('platform', 'universal');
+    this.set('platform', { id: 'universal' });
 
     const spy = spyComponent(this, 'docs/installation/-components/main-content/main-content-universal-guide');
 

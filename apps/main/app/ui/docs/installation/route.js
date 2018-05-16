@@ -9,7 +9,7 @@ export default Route.extend({
   /**
    * @override
    */
-  model(params) {
-    return params.platform.toLowerCase();
+  model({ platform }) {
+    return platform;
   },
 });
