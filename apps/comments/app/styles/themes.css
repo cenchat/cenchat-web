@@ -22,6 +22,11 @@
   /* Divider */
   --divider-color: var(--dark-12);
 
+  /* List */
+  --list-item-disabled-text-color: var(--disabled-text-color);
+  --list-item-hover-background-color: var(--hover-background-color);
+  --list-item-active-background-color: var(--active-background-color);
+
   /* Progress bar */
   --progress-bar-background-color: var(--dark-12);
   --progress-bar-moving-color: var(--dark-87);
@@ -67,6 +72,11 @@
 
   /* Divider */
   --divider-color: var(--light-12);
+
+  /* List */
+  --list-item-disabled-text-color: var(--disabled-text-color);
+  --list-item-hover-background-color: var(--hover-background-color);
+  --list-item-active-background-color: var(--active-background-color);
 
   /* Progress bar */
   --progress-bar-background-color: var(--light-12);

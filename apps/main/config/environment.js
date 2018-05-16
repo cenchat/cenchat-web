@@ -27,7 +27,7 @@ module.exports = function(environment) {
     fastboot: {
       hostWhitelist: ['cenchat.com', 'www.cenchat.com', /^localhost:\d+$/],
     },
-    apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app/api',
+    apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app',
     commentsHost: 'http://192.168.1.14:8000',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
@@ -65,7 +65,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'https://cenchat.com/api',
+    ENV.apiHost = 'https://cenchat.com',
     ENV.commentsHost = 'https://comments.cenchat.com',
     ENV.firebase = {
       apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',

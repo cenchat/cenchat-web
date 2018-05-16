@@ -153,7 +153,7 @@ export default Controller.extend({
   async handleSaveRolesClick() {
     const config = getOwner(this).resolveRegistration('config:environment');
     const token = await this.get('session.currentUser').getIdToken();
-    const response = await fetch(`${config.apiHost}/utils/update-site-roles`, {
+    const response = await fetch(`${config.apiHost}/api/utils/update-site-roles`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

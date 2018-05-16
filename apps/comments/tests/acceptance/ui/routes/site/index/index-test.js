@@ -15,9 +15,9 @@ module('Acceptance | site/index', (hooks) => {
     assert.expect(1);
 
     // Act
-    await visit('/sites/site_a?slug=foobar');
+    await visit('/sites/site_a?slug=foobardee');
 
     // Assert
-    assert.notEqual(currentURL(), '/sites/site_a?slug=foobar');
+    assert.notEqual(currentURL(), '/sites/site_a?slug=foobardee');
   });
 });

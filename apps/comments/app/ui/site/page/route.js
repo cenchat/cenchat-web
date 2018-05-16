@@ -42,7 +42,9 @@ export default Route.extend({
     const store = this.get('store');
 
     try {
-      return await store.findRecord('page', pageId);
+      const page = await store.findRecord('page', pageId);
+
+      return page;
     } catch (e) {
       const { slug } = this.paramsFor(this.get('routeName'));
 
