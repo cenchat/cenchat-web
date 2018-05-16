@@ -13,7 +13,7 @@ Router.map(function() {
   });
   this.route('comments', { path: '/comments/:comment_id' });
   this.route('docs', function() {
-    this.route('installation', { path : 'installation/:platform' });
+    this.route('installation', { path : 'installation/:platform_id' });
   });
   this.route('home', { path: '/' }, function() {});
   this.route('notifications');

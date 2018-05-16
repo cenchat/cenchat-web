@@ -6,10 +6,4 @@ import Route from '@ember/routing/route';
  * @extends Ember.Route
  */
 export default Route.extend({
-  /**
-   * @override
-   */
-  model({ platform }) {
-    return platform;
-  },
 });
