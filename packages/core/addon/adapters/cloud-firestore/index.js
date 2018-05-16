@@ -15,6 +15,13 @@ export default CloudFirestoreAdapter.extend({
   session: inject(),
 
   /**
+   * TODO: Remove this once https://github.com/rmmmp/ember-cloud-firestore-adapter/issues/60
+   *       is resolved
+   * @type {null}
+   */
+  firestoreSettings: null,
+
+  /**
    * @type {string}
    */
   namespace: 'api',

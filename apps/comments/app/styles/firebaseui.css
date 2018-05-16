@@ -21,7 +21,7 @@
 
 .firebaseui-input-invalid {
   color: var(--font-primary-color);
-  border-color: var(--red);
+  border-color: var(--error-color);
 }
 
 .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
@@ -33,7 +33,7 @@
 }
 
 .firebaseui-error {
-  color: var(--red);
+  color: var(--error-color);
 }
 
 .firebaseui-text {

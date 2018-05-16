@@ -1,23 +1,26 @@
-<article class="card" data-test-site-collection-item="{{--site.id}}">
-  <div class="clickable" tabindex="0" onclick={{action handleSiteClick}} onkeydown={{action handleSiteKeydown}}>
-    {{#if --site.imageUrl}}
-      <img class="card__image" data-test-site-collection-item="image" src="{{--site.imageUrl}}" alt="{{--site.name}}">
+<article
+    class="card clickable"
+    data-test-site-collection-item="{{--site.id}}"
+    tabindex="0"
+    onclick={{action handleSiteClick}}
+    onkeydown={{action handleSiteKeydown}}>
+  {{#if --site.imageUrl}}
+    <img class="card__image" data-test-site-collection-item="image" src="{{--site.imageUrl}}" alt="{{--site.name}}">
+  {{/if}}
+
+  <header class="sites-index_site-collection-item__header card__header card__header--small">
+    <div class="sites-index_site-collection-item__header-primary-info">
+      <h3 class="card__heading card__heading--small" data-test-site-collection-item="name">{{--site.name}}</h3>
+      <p class="card__subheading" data-test-site-collection-item="hostname">{{--site.hostname}}</p>
+      <p class="card__subheading" data-test-site-collection-item="id">{{--site.id}}</p>
+    </div>
+
+    {{#if (not --site.isVerified)}}
+      <p
+          class="sites-index_site-collection-item__unverified card__subheading"
+          data-test-site-collection-item="unverified">
+        Unverified
+      </p>
     {{/if}}
-
-    <header class="sites-index_site-collection-item__header card__header card__header--small">
-      <div class="sites-index_site-collection-item__header-primary-info">
-        <h3 class="card__heading card__heading--small" data-test-site-collection-item="name">{{--site.name}}</h3>
-        <p class="card__subheading" data-test-site-collection-item="hostname">{{--site.hostname}}</p>
-        <p class="card__subheading" data-test-site-collection-item="id">{{--site.id}}</p>
-      </div>
-
-      {{#if (not --site.isVerified)}}
-        <p
-            class="sites-index_site-collection-item__unverified card__subheading"
-            data-test-site-collection-item="unverified">
-          Unverified
-        </p>
-      {{/if}}
-    </header>
-  </div>
+  </header>
 </article>

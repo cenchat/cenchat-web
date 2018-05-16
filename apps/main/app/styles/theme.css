@@ -14,7 +14,7 @@
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
   --disabled-text-color: var(--dark-38);
-  --error-color: var(--red);
+  --error-color: #ff5252;
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);

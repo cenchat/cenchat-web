@@ -23,7 +23,7 @@
   position: absolute;
   top: -4px;
   right: 12px;
-  color: var(--red);
+  color: var(--error-color);
 }
 
 .comment-item-avatar__toggle-quote-button {

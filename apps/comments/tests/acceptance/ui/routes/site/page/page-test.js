@@ -15,10 +15,10 @@ module('Acceptance | site/page', (hooks) => {
     assert.expect(1);
 
     // Act
-    await visit('/sites/site_a/pages/page_b?slug=foobar');
+    await visit('/sites/site_a/pages/page_c?slug=foobardee');
 
     // Assert
-    assert.dom('[data-test-comment-item]').exists({ count: 0 });
+    assert.dom('[data-test-comment-list="empty-state"]').exists();
   });
 
   test('should list comments', async function (assert) {

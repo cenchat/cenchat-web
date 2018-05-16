@@ -1,7 +1,9 @@
 <article
     class="card clickable"
     data-test-user-collection-item="{{--user.id}}"
-    onclick={{action handleUserClick}}>
+    tabindex="0"
+    onclick={{action handleUserClick}}
+    onkeydown={{action handleUserKeydown}}>
   <header class="user-collection-item__header">
     <div class="user-collection-item__text-content">
       <h3 class="user-collection-item__name" data-test-user-collection-item="name">

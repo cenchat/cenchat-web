@@ -28,7 +28,7 @@ export default Controller.extend({
   async handleVerifySiteClick() {
     const config = getOwner(this).resolveRegistration('config:environment');
     const token = await this.get('session.currentUser').getIdToken();
-    const response = await fetch(`${config.apiHost}/utils/verify-site`, {
+    const response = await fetch(`${config.apiHost}/api/utils/verify-site`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
