@@ -1,12 +1,7 @@
 {{#side-nav}}
   {{#ce-top-bar}}
-    {{ce-icon-link-button
-        href=(href-to 'docs')
-        title="Navigate back"
-        aria-label="Navigate back"
-        icon="arrow_back"}}
-
-    <h2>{{model}}</h2>
+    {{ce-icon-link-button href=(href-to 'docs') title="Navigate back" aria-label="Navigate back" icon="arrow_back"}}
+    <h2>{{model.name}}</h2>
   {{/ce-top-bar}}
 
   {{docs/installation/-components/main-content --platform=model}}
