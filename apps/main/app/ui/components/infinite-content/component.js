@@ -32,16 +32,24 @@ export default Component.extend({
     const element = selector ? document.querySelector(selector) : window;
 
     this.set('scrollerElement', element);
+    this.set('handleScroll', () => debounce(this, 'loadMoreRecordsWhenAtBottom', 150));
 
-    this.get('scrollerElement').addEventListener('scroll', bind(this, () => {
-      debounce(this, this.handleScroll, 150);
-    }));
+    this.get('scrollerElement').addEventListener('scroll', this.get('handleScroll'));
+  },
+
+  /**
+   * @override
+   */
+  willDestroyElement(...args) {
+    this._super(...args);
+
+    this.get('scrollerElement').removeEventListener('scroll', this.get('handleScroll'));
   },
 
   /**
    * @function
    */
-  handleScroll() {
+  loadMoreRecordsWhenAtBottom() {
     requestAnimationFrame(bind(this, () => {
       let element = this.get('scrollerElement');
 
@@ -52,7 +60,10 @@ export default Component.extend({
       const { scrollHeight, scrollTop, clientHeight } = element;
       const threshold = scrollHeight / 4;
 
-      if (scrollHeight - scrollTop - clientHeight <= threshold) {
+      if (
+        scrollHeight - scrollTop - clientHeight <= threshold
+        && !this.get('isDestroyed')
+      ) {
         this.loadMoreRecords();
       }
     }));
