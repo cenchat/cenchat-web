@@ -31,6 +31,7 @@ export default Component.extend({
     'href',
     'aria-pressed',
     'target',
+    'rel',
     'disabled',
     'size',
     'onclick',

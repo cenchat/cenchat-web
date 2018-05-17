@@ -33,6 +33,7 @@ export default Component.extend({
     'aria-label',
     'aria-pressed',
     'target',
+    'rel',
     'disabled',
     'badged',
     'square',

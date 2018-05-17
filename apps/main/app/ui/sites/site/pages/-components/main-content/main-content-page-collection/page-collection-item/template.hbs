@@ -1,18 +1,16 @@
-<article
-    class="card clickable"
-    data-test-page-collection-item="{{--page.id}}"
-    tabindex="0"
-    onclick={{action handlePageClick}}
-    onkeydown={{action handlePageKeydown}}>
+<article class="card" data-test-page-collection-item="{{--page.id}}">
   {{#if --page.imageUrl}}
     <img class="card__image" data-test-page-collection-item="image" src="{{--page.imageUrl}}" alt="Page cover">
   {{/if}}
 
   <header class="card__header">
-    <h3 class="card__heading" data-test-page-collection-item="title">{{--page.title}}</h3>
-    <p class="card__subheading" data-test-page-collection-item="slug">{{--page.decodedSlug}}</p>
-    <p class="card__subheading" data-test-page-collection-item="id">{{--page.id}}</p>
+    <h3 class="card__heading card__short-text" data-test-page-collection-item="title">{{--page.title}}</h3>
+    <p class="card__subheading card__short-text" data-test-page-collection-item="id">ID: {{--page.shortId}}</p>
   </header>
 
   <p class="card__message card__short-text" data-test-page-collection-item="description">{{--page.description}}</p>
+
+  {{#ce-link-button class="card__action" href=--page.url target="_blank" rel="noopener noreferrer"}}
+    Visit
+  {{/ce-link-button}}
 </article>

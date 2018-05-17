@@ -15,7 +15,7 @@ module('Integration | Component | sites/index/-components/main-content/main-cont
   });
 
   test('should show site info', async function (assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     // Act
     await render(hbs`
@@ -28,7 +28,6 @@ module('Integration | Component | sites/index/-components/main-content/main-cont
     assert.dom('[data-test-site-collection-item="image"]').hasAttribute('src', 'site_b.jpg');
     assert.dom('[data-test-site-collection-item="name"]').hasText('Site B');
     assert.dom('[data-test-site-collection-item="hostname"]').hasText('site-b.com');
-    assert.dom('[data-test-site-collection-item="id"]').hasText('site_b');
     assert.dom('[data-test-site-collection-item="unverified"]').exists();
   });
 

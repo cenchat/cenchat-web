@@ -57,6 +57,15 @@ export default Model.extend({
   /**
    * @type {string}
    */
+  shortId: computed('id', {
+    get() {
+      return this.get('id').split('__')[1];
+    },
+  }),
+
+  /**
+   * @type {string}
+   */
   url: computed('site.hostname', {
     get() {
       const hostname = this.get('site.hostname');

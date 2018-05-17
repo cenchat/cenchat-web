@@ -19,7 +19,7 @@ module('Unit | Model | page', (hooks) => {
 
       // Arrange
       const model = run(() => this.owner.lookup('service:store').createRecord('page', {
-        id: 'new_page',
+        id: 'new__page',
         slug: '%2Ffoo%2Fbar',
       }));
 
@@ -31,6 +31,23 @@ module('Unit | Model | page', (hooks) => {
     });
   });
 
+  module('getter/setter: shortId', () => {
+    test('should return the value after the double underscore of the ID', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = run(() => this.owner.lookup('service:store').createRecord('page', {
+        id: 'new__page',
+      }));
+
+      // Act
+      const result = model.get('shortId');
+
+      // Arrange
+      assert.equal(result, 'page');
+    });
+  });
+
   module('getter/setter: url', () => {
     test('should return the url', async function (assert) {
       assert.expect(1);
@@ -39,7 +56,7 @@ module('Unit | Model | page', (hooks) => {
       const store = this.owner.lookup('service:store');
       const site = await run(() => store.findRecord('site', 'site_a'));
       const model = run(() => (
-        store.createRecord('page', { site, id: 'new_page', slug: '%2Ffoo%2Fbar' })
+        store.createRecord('page', { site, id: 'new__page', slug: '%2Ffoo%2Fbar' })
       ));
 
       // Act

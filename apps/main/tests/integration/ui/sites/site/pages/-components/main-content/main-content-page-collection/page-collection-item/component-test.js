@@ -15,7 +15,7 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
   });
 
   test('should show page info', async function (assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     // Act
     await render(hbs`
@@ -27,8 +27,7 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
     assert.dom('[data-test-page-collection-item="image"]').hasAttribute('src', 'page_a.jpg');
     assert.dom('[data-test-page-collection-item="title"]').hasText('Page A Title');
     assert.dom('[data-test-page-collection-item="description"]').hasText('Page A Description');
-    assert.dom('[data-test-page-collection-item="slug"]').hasText('/foo/bar');
-    assert.dom('[data-test-page-collection-item="id"]').hasText('site_a__page_a');
+    assert.dom('[data-test-page-collection-item="id"]').hasText('ID: page_a');
   });
 
   test('should hide page image when unavailable', async function (assert) {
