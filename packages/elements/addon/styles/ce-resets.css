@@ -8,7 +8,7 @@ html {
 @font-face {
   font-family: "Segoe UI";
   font-weight: 300;
-  src: local("Segoe UI Semilight");
+  src: local("Segoe UI Light");
 }
 
 @font-face {

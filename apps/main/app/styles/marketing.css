@@ -4,8 +4,14 @@
   background-color: #fff;
 }
 
+.marketing--dark {
+  background-color: #212121;
+}
+
 .marketing__heading {
   padding-top: 56px;
+  padding-right: 16px;
+  padding-left: 16px;
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-34);
@@ -15,35 +21,21 @@
   text-align: center;
 }
 
-.marketing__benefit {
-  width: 100%;
-  max-width: 1000px;
+.marketing--dark .marketing__heading {
+  color: rgba(255, 255, 255, 1);
+}
+
+.marketing__benefit-list {
   padding-top: 40px;
   padding-bottom: 40px;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
 }
 
-@media (min-width: 960px) {
-  .marketing__benefit {
-    display: flex;
-    text-align: left;
-  }
-}
-
-.marketing__benefit--reverse {
-  flex-direction: row-reverse;
-}
-
-.marketing__benefit-image {
-  display: block;
-  width: 350px;
-  max-width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  border-radius: var(--border-radius-square);
-  box-shadow: var(--elevation);
+.marketing__benefit-list-item {
+  padding: 16px;
 }
 
 .marketing__benefit-heading {
@@ -55,6 +47,10 @@
   color: var(--font-primary-color);
 }
 
+.marketing--dark .marketing__benefit-heading {
+  color: rgba(255, 255, 255, 1);
+}
+
 .marketing__benefit-message {
   margin-top: 0;
   margin-bottom: 0;
@@ -64,23 +60,6 @@
   color: var(--font-secondary-color);
 }
 
-.marketing__benefit-image-container {
-  flex: 1;
-  padding: 16px;
-}
-
-.marketing__benefit-text-container {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 16px;
-}
-
-@media (min-width: 960px) {
-  .marketing__benefit-text-container {
-    padding-top: 0;
-    padding-right: 16px;
-    padding-left: 16px;
-  }
+.marketing--dark .marketing__benefit-message {
+  color: rgba(255, 255, 255, 0.7);
 }
