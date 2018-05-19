@@ -1,3 +1,11 @@
-<section class="{{class}}">
+<section class="sign-in-form {{class}}">
+  {{ce-icon-button
+      class="sign-in-form__info-button"
+      title="Show additional info when signing in"
+      aria-label="Show additional info when signing in"
+      icon="info_outline"
+      size="small"
+      --onClick=(action showAdditionalInfo)}}
+
   {{firebaseui-auth uiConfig=uiConfig}}
 </section>

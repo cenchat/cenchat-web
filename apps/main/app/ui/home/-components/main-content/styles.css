@@ -153,9 +153,20 @@
   }
 }
 
-.home_main-content ~ .ce-navbar,
-.home_main-content ~ .ce-toast {
+.home_main-content ~ .ce-navbar {
   display: none;
+}
+
+.home_main-content ~ .ce-toast {
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 960px) {
+  .home_main-content ~ .ce-toast {
+    bottom: 16px;
+    left: 16px;
+    margin-left: 0 !important;
+  }
 }
 
 .home_main-content__footer {

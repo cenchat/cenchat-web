@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('about', function() {
     this.route('terms');
     this.route('privacy');
+    this.route('rules');
   });
   this.route('comments', { path: '/comments/:comment_id' });
   this.route('docs', function() {
