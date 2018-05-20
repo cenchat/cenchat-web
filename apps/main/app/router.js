@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('edit');
     this.route('followings');
     this.route('follow-suggestions');
+    this.route('settings');
   });
   this.route('search');
   this.route('sign-in');

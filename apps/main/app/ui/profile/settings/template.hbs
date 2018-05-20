@@ -1,0 +1,18 @@
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        data-test-profile-edit="navigate-back-link"
+        href=(href-to 'profile')
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+    <h2>Settings</h2>
+  {{/ce-top-bar}}
+
+  <div class="side-nav__content">
+    {{profile/settings/-components/security-settings
+        --onDeleteAccountToastCompletion=(action handleDeleteAccountToastCompletion)}}
+  </div>
+
+  {{outlet}}
+{{/side-nav}}

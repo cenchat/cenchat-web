@@ -18,10 +18,23 @@ module('Acceptance | profile', (hooks) => {
     await visit('/profile/user_a');
 
     // Act
-    await click('[data-test-top-bar-actions="edit-link"]');
+    await click('[data-test-top-bar="edit-link"]');
 
     // Assert
     assert.equal(currentURL(), '/profile/user_a/edit');
+  });
+
+  test('should transition to profile.settings when clicking settings', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/profile/user_a');
+
+    // Act
+    await click('[data-test-top-bar="settings-link"]');
+
+    // Assert
+    assert.equal(currentURL(), '/profile/user_a/settings');
   });
 
   test('should show followings', async function (assert) {

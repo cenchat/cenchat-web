@@ -1,9 +1,10 @@
+import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState, spyComponent } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/core/test-support';
+import sinon from 'sinon';
 
 module('Integration | Component | profile/-components/top-bar', (hooks) => {
   setupRenderingTest(hooks);
@@ -33,13 +34,12 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
     assert.dom('[data-test-top-bar="name"]').hasText('User A');
   });
 
-  test('should show <TopBarActions />', async function (assert) {
+  test('should fire an external action when clicking sign out', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'profile/-components/top-bar/top-bar-actions');
+    const spy = sinon.spy(this, 'onSignOutClick');
 
-    // Act
     await render(hbs`
       {{profile/-components/top-bar
           --session=session
@@ -47,11 +47,10 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
           --onSignOutClick=(action onSignOutClick)}}
     `);
 
+    // Act
+    await click('[data-test-top-bar="sign-out-button"]');
+
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      session: 'instance',
-      user: 'instance',
-      onSignOutClick: 'function',
-    });
+    assert.ok(spy.calledOnce);
   });
 });
