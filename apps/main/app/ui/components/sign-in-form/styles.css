@@ -18,7 +18,3 @@
   text-align: center;
   border-top: 1px solid var(--divider-color);
 }
-
-.sign-in-form__strong {
-  font-weight: 500;
-}
