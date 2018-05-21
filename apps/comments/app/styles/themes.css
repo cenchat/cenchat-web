@@ -86,7 +86,7 @@
   --text-field-background-color: rgba(204, 204, 204, 0.1);
 
   /* Toast */
-  --toast-text-color: #fff;
+  --toast-text-color: rgba(0, 0, 0, 0.87);
   --toast-background-color: #fafafa;
   --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
   --toast-button-active-background-color: rgba(204, 204, 204, 0.25);

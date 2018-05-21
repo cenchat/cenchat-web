@@ -15,9 +15,13 @@
     </blockquote>
 
     <figcaption class="comments-content__figcaption">
-      <a href={{href-to 'profile' --comment.author.urlKey}} data-test-comments-content="author-name">
-        {{--comment.author.displayName}}
-      </a>, a comment on
+      {{#if --comment.author}}
+        <a href={{href-to 'profile' --comment.author.urlKey}} data-test-comments-content="author-name">
+          {{--comment.author.displayName}}
+        </a>, a comment on
+      {{else}}
+        {{--comment.authorOrAnonymous.displayName}}, a comment on
+      {{/if}}
 
       <cite>
         <a

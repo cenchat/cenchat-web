@@ -23,18 +23,18 @@ export default Route.extend({
    * @override
    */
   async afterModel(model) {
-    const author = await model.get('author');
+    const author = await model.authorOrAnonymous;
 
-    this.set('headData.title', `${author.get('displayName')} on Cenchat`);
-    this.set('headData.description', model.get('text') || '&nbsp;');
-    this.set('headData.image', author.get('largePhotoUrl'));
-    this.set('headData.url', `https://cenchat.com/comments/${model.get('id')}`);
+    this.set('headData.title', `${author.displayName} on Cenchat`);
+    this.set('headData.description', model.text || '&nbsp;');
+    this.set('headData.image', author.largePhotoUrl);
+    this.set('headData.url', `https://cenchat.com/comments/${model.id}`);
     this.set('headData.type', 'article');
-    this.set('headData.author', author.get('displayName'));
+    this.set('headData.author', author.displayName);
 
     // Preload relationships
-    const page = await model.get('page');
+    const page = await model.page;
 
-    return Promise.all([model.get('parsedAttachments'), page.get('site')]);
+    return Promise.all([model.parsedAttachments, page.get('site')]);
   },
 });

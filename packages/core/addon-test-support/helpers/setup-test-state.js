@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import { initialize as initializeWindowOverrides } from '@cenchat/core/initializers/window-overrides';
 import { stubService, stubSession } from './stub-service';
 import getFixtureData from '../fixture-data';
+import stubPromise from './stub-promise';
 
 /**
  * @param {Object} context
@@ -50,7 +51,14 @@ export async function setupTestState(context) {
  * @param {Object} context
  */
 export async function setupApplicationTestState(context) {
+  stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
+
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
+  context.set('firebase.auth', () => ({
+    signOut() {
+      return stubPromise(true);
+    },
+  }));
   context.set('db', context.get('firebase').firestore());
 
   const session = context.owner.lookup('service:session');

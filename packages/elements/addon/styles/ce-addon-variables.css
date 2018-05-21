@@ -21,4 +21,14 @@
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --line-height-12: 1.25rem;
+  --line-height-14: 1.5rem;
+  --line-height-15: 1.5rem;
+  --line-height-16: 1.75rem;
+  --line-height-20: 2rem;
+  --line-height-24: 2rem;
+  --line-height-34: 2.5rem;
+  --line-height-45: 3rem;
+  --line-height-56: 3.5rem;
+  --line-height-112: 7rem;
 }

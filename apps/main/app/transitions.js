@@ -38,6 +38,13 @@ export default function() {
   );
 
   this.transition(
+    this.fromRoute('profile.index'),
+    this.toRoute('profile.settings'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
+
+  this.transition(
     this.fromRoute('sites.index.index'),
     this.toRoute('sites.index.new'),
     this.use('toLeft'),

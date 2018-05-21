@@ -1,5 +1,5 @@
 <div data-test-item-toolbar="host" role="toolbar" aria-label="Comment toolbar">
-  {{#if (and (not --comment.isDeleted) (eq --comment.author.id --session.model.id))}}
+  {{#if (and --session.model (not --comment.isDeleted) (eq --comment.author.id --session.model.id))}}
     {{ce-icon-button
         data-test-item-toolbar="delete-button"
         title="Delete"

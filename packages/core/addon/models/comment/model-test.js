@@ -1,23 +1,47 @@
 import { module, test } from 'qunit';
-import { run } from '@ember/runloop';
 import { settled } from '@ember/test-helpers';
 import { setupTest } from 'ember-qunit';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 import sinon from 'sinon';
 
-import {
-  getFixtureData,
-  stubPromise,
-  stubSession,
-} from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 
 module('Unit | Model | comment', (hooks) => {
   setupTest(hooks);
 
-  hooks.beforeEach(function () {
-    mockFirebase(this.owner, getFixtureData());
-    stubSession(this);
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
+
+  module('getter/setter: authorOrAnonymous', () => {
+    test('should return author when available', function (assert) {
+      assert.expect(2);
+
+      // Arrange
+      const author = this.store.createRecord('user', { displayName: 'Foo', photoUrl: 'foo.jpg' });
+      const model = this.store.createRecord('comment', { author });
+
+      // Act
+      const result = model.get('authorOrAnonymous');
+
+      // Assert
+      assert.equal(result.get('displayName'), 'Foo');
+      assert.equal(result.get('photoUrl'), 'foo.jpg');
+    });
+
+    test('should return anonymous author when author is not available', function (assert) {
+      assert.expect(2);
+
+      // Arrange
+      const model = this.store.createRecord('comment', {});
+
+      // Act
+      const result = model.get('authorOrAnonymous');
+
+      // Assert
+      assert.equal(result.displayName, 'Anonymous');
+      assert.equal(result.photoUrl, 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
+    });
   });
 
   module('getter/setter: isMessageValid', () => {
@@ -25,9 +49,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        text: 'Foo',
-      }));
+      const model = this.store.createRecord('comment', { text: 'Foo' });
 
       // Act
       const result = model.get('isMessageValid');
@@ -40,9 +62,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        attachments: ['Foo'],
-      }));
+      const model = this.store.createRecord('comment', { attachments: ['Foo'] });
 
       // Act
       const result = model.get('isMessageValid');
@@ -55,7 +75,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {}));
+      const model = this.store.createRecord('comment', {});
 
       // Act
       const result = model.get('isMessageValid');
@@ -71,20 +91,20 @@ module('Unit | Model | comment', (hooks) => {
 
       // Arrange
       const isFollowingStub = sinon.stub().returns(stubPromise(true, true));
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+      const author = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('comment', {
         author,
-        session: { model: { isFollowing: isFollowingStub } },
-      }));
+        session: {
+          model: { isFollowing: isFollowingStub },
+        },
+      });
 
       // Act
       await model.get('isFromFollowing');
 
       return settled().then(() => {
         // Assert
-        assert.ok(isFollowingStub.calledWithExactly('user_a'));
+        assert.ok(isFollowingStub.calledWithExactly('user_100'));
         assert.equal(model.get('isFromFollowing'), true);
       });
     });
@@ -94,20 +114,39 @@ module('Unit | Model | comment', (hooks) => {
 
       // Arrange
       const isFollowingStub = sinon.stub().returns(stubPromise(true, false));
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user_a',
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+      const author = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('comment', {
         author,
-        session: { model: { isFollowing: isFollowingStub } },
-      }));
+        session: {
+          model: { isFollowing: isFollowingStub },
+        },
+      });
 
       // Act
       await model.get('isFromFollowing');
 
       return settled().then(() => {
         // Assert
-        assert.ok(isFollowingStub.calledWithExactly('user_a'));
+        assert.ok(isFollowingStub.calledWithExactly('user_100'));
+        assert.equal(model.get('isFromFollowing'), false);
+      });
+    });
+
+    test('should return false when comment does not have an author', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = this.store.createRecord('comment', {
+        session: {
+          model: {},
+        },
+      });
+
+      // Act
+      await model.get('isFromFollowing');
+
+      return settled().then(() => {
+        // Assert
         assert.equal(model.get('isFromFollowing'), false);
       });
     });
@@ -116,9 +155,9 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
+      const model = this.store.createRecord('comment', {
         session: { model: null },
-      }));
+      });
 
       // Act
       const result = await model.get('isFromFollowing');
@@ -133,12 +172,8 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user',
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-      }));
+      const author = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('comment', { author });
 
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, true)));
 
@@ -155,12 +190,8 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user',
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-      }));
+      const author = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('comment', { author });
 
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, false)));
 
@@ -179,9 +210,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        text: 'Foobar',
-      }));
+      const model = this.store.createRecord('comment', { text: 'Foobar' });
 
       // Act
       const result = model.get('isTextAllowed');
@@ -194,13 +223,11 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        id: 'comment_a',
+      const replyTo = this.store.createRecord('comment', {
+        id: 'comment_100',
         isAskMeAnything: true,
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        replyTo,
-      }));
+      });
+      const model = this.store.createRecord('comment', { replyTo });
 
       // Act
       model.get('isTextAllowed');
@@ -215,19 +242,12 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user',
-      }));
-      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        id: 'comment_a',
-        author,
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-        replyTo,
-      }));
+      const author = this.store.createRecord('user', { id: 'user_100' });
 
       author.set('hasFollower', () => stubPromise(true, true));
+
+      const replyTo = this.store.createRecord('comment', { id: 'comment_100', author });
+      const model = this.store.createRecord('comment', { author, replyTo });
 
       // Act
       model.get('isTextAllowed');
@@ -242,19 +262,13 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user',
-      }));
-      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-        replyTo,
-      }));
+      const author = this.store.createRecord('user', { id: 'user_100' });
 
       author.set('hasFollower', () => stubPromise(true, false));
       author.set('isSiteAdmin', () => stubPromise(true, true));
+
+      const replyTo = this.store.createRecord('comment', { author });
+      const model = this.store.createRecord('comment', { author, replyTo });
 
       // Act
       model.get('isTextAllowed');
@@ -269,19 +283,30 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const author = run(() => this.owner.lookup('service:store').createRecord('user', {
-        id: 'user',
-      }));
-      const replyTo = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-      }));
-      const model = run(() => this.owner.lookup('service:store').createRecord('comment', {
-        author,
-        replyTo,
-      }));
+      const author = this.store.createRecord('user', { id: 'user_100' });
 
       author.set('hasFollower', () => stubPromise(true, false));
       author.set('isSiteAdmin', () => stubPromise(true, false));
+
+      const replyTo = this.store.createRecord('comment', { author });
+      const model = this.store.createRecord('comment', { author, replyTo });
+
+      // Act
+      model.get('isTextAllowed');
+
+      return settled().then(() => {
+        // Arrange
+        assert.equal(model.get('isTextAllowed'), false);
+      });
+    });
+
+    test('should return false when replying to has not author', function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const author = this.store.createRecord('user', { id: 'user_100' });
+      const replyTo = this.store.createRecord('comment', { id: 'comment_100' });
+      const model = this.store.createRecord('comment', { author, replyTo });
 
       // Act
       model.get('isTextAllowed');
@@ -298,15 +323,14 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const store = this.owner.lookup('service:store');
-      const sticker = run(() => store.createRecord('sticker', { id: 'sticker_a' }));
-      const model = run(() => store.createRecord('comment', {
+      const sticker = this.store.createRecord('sticker', { id: 'sticker_a' });
+      const model = this.store.createRecord('comment', {
         store: {
           findRecord: sinon.stub().returns(stubPromise(true, sticker)),
         },
 
         attachments: [{ id: 'sticker_a', type: 'sticker' }],
-      }));
+      });
 
       // Act
       const result = await model.get('parsedAttachments');
@@ -346,10 +370,9 @@ module('Unit | Model | comment', (hooks) => {
         ],
       );
 
-      const store = this.owner.lookup('service:store');
-      const model = run(() => store.createRecord('comment', {
+      const model = this.store.createRecord('comment', {
         attachments: [{ id: 'gif_a', type: 'tenor_gif' }],
-      }));
+      });
 
       // Act
       const result = await model.get('parsedAttachments');
@@ -371,15 +394,14 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const store = this.owner.lookup('service:store');
-      const user = run(() => store.createRecord('user', { id: 'user_a' }));
-      const model = run(() => store.createRecord('comment', {
+      const user = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('comment', {
         store: {
           findRecord: sinon.stub().returns(stubPromise(true, user)),
         },
 
         taggedEntities: { user_a: 'user' },
-      }));
+      });
 
       // Act
       const result = await model.get('parsedTaggedEntities');
@@ -394,8 +416,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const store = this.owner.lookup('service:store');
-      const model = await run(() => store.findRecord('comment', 'comment_b'));
+      const model = await this.store.findRecord('comment', 'comment_b');
 
       // Act
       const result = model.get('replies');
@@ -408,8 +429,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(1);
 
       // Arrange
-      const store = this.owner.lookup('service:store');
-      const model = await run(() => store.findRecord('comment', 'comment_a'));
+      const model = await this.store.findRecord('comment', 'comment_a');
 
       // Act
       const result = model.get('replies');

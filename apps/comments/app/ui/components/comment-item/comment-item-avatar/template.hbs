@@ -1,16 +1,24 @@
 <div class="comment-item-avatar">
   <div class="comment-item-avatar__author-image-container">
-    <a
-        class="comment-item-avatar__author-image-link"
-        href="https://cenchat.com/profile/{{if --comment.author.username --comment.author.username --comment.author.id}}"
-        target="_blank"
-        rel="noopener noreferrer">
+    {{#if --comment.author}}
+      <a
+          class="comment-item-avatar__author-image-link"
+          href="https://cenchat.com/profile/{{--comment.author.urlKey}}"
+          target="_blank"
+          rel="noopener noreferrer">
+        <img
+            class="comment-item-avatar__author-image"
+            data-test-item-avatar="author-image"
+            src="{{--comment.author.photoUrl}}"
+            alt="">
+      </a>
+    {{else}}
       <img
           class="comment-item-avatar__author-image"
-          data-test-item-avatar="author-image"
-          src="{{--comment.author.photoUrl}}"
+          data-test-item-avatar="anonymous-author-image"
+          src="{{--comment.authorOrAnonymous.photoUrl}}"
           alt="">
-    </a>
+    {{/if}}
     
     {{#if --comment.isFromFollowing}}
       {{#ce-icon
@@ -33,7 +41,7 @@
         onclick={{action --onToggleQuoteClick}}>
       {{#ce-icon size="small"}}reply{{/ce-icon}}
 
-      <img src="{{--comment.replyTo.author.photoUrl}}" alt="">
+      <img src="{{--comment.replyTo.authorOrAnonymous.photoUrl}}" alt="">
     </button>
   {{/if}}
 </div>

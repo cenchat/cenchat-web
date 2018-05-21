@@ -89,6 +89,23 @@ export default Model.extend({
   session: inject(),
 
   /**
+   * @type {Model.User|Object}
+   */
+  authorOrAnonymous: computed('author', {
+    get() {
+      if (this.get('author.id')) {
+        return this.get('author');
+      }
+
+      return {
+        displayName: 'Anonymous',
+        largePhotoUrl: 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114',
+        photoUrl: 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114',
+      };
+    },
+  }),
+
+  /**
    * @type {boolean}
    */
   isMessageValid: computed('attachments', 'text', {
@@ -109,9 +126,13 @@ export default Model.extend({
       if (this.get('session.model')) {
         const authorId = this.belongsTo('author').id();
 
-        this.get('session.model').isFollowing(authorId).then(result => (
-          this.set('isFromFollowing', result)
-        ));
+        if (authorId) {
+          this.get('session.model').isFollowing(authorId).then(result => (
+            this.set('isFromFollowing', result)
+          ));
+        } else {
+          this.set('_isFromFollowing', false);
+        }
       } else {
         this.set('_isFromFollowing', false);
       }
@@ -283,7 +304,7 @@ export default Model.extend({
   checkIfIsReplyingToFollower() {
     const replyTo = this.get('replyTo');
 
-    if (replyTo.get('id')) {
+    if (replyTo.get('id') && replyTo.get('author.id')) {
       return this.get('author').then(author => author.hasFollower(replyTo.get('author.id')));
     }
 

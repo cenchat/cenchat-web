@@ -126,4 +126,14 @@ export default Component.extend({
 
     return record;
   },
+
+  /**
+   * @function
+   */
+  showAdditionalInfo() {
+    toast(
+      'We collect your name, email, and photo in order for us and other Cenchat users to identify you. In addition, we also collect your friend list. This is only used to give you suggestions on who to follow.',
+      20000,
+    );
+  },
 });

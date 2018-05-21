@@ -1,5 +1,8 @@
 .sign-in-form {
   position: relative;
+  max-width: 366px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .sign-in-form__info-button {

@@ -59,11 +59,20 @@
 
 .home_main-content__intro-subheading {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 16px;
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-light);
   line-height: 2rem;
   color: var(--font-secondary-color);
+}
+
+.home_main-content__intro-caption {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-16);
+  font-style: italic;
+  line-height: var(--font-size-16);
+  color: var(--font-hint-color);
 }
 
 .home_main-content__sign-in {
@@ -153,9 +162,20 @@
   }
 }
 
-.home_main-content ~ .ce-navbar,
-.home_main-content ~ .ce-toast {
+.home_main-content ~ .ce-navbar {
   display: none;
+}
+
+.home_main-content ~ .ce-toast {
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 960px) {
+  .home_main-content ~ .ce-toast {
+    bottom: 16px;
+    left: 16px;
+    margin-left: 0 !important;
+  }
 }
 
 .home_main-content__footer {
