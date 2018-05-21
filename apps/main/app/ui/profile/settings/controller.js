@@ -1,3 +1,4 @@
+import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
@@ -20,6 +21,12 @@ export default Controller.extend({
       adapterOptions: { onServer: true },
     });
     await this.get('session').close();
-    this.transitionToRoute('home');
+
+    const config = getOwner(this).resolveRegistration('config:environment');
+
+    if (config.environment !== 'test') {
+      // Use native reload instead of transitioning to home to reset Store and Firestore state
+      window.location.reload();
+    }
   },
 });

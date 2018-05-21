@@ -33,6 +33,23 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     assert.dom('[data-test-item-avatar="author-image"]').hasAttribute('src', 'user_b.jpg');
   });
 
+  test('should show anonymous author image when author is not available', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('comment.author', null);
+
+    // Act
+    await render(hbs`
+      {{comment-item/comment-item-avatar
+          --comment=comment
+          --onToggleQuoteClick=(action onToggleQuoteClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-item-avatar="anonymous-author-image"]').exists();
+  });
+
   test('should show following badge when author is a following', async function (assert) {
     assert.expect(1);
 

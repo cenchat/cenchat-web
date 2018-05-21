@@ -25,8 +25,6 @@ module('Unit | Controller | profile/settings', function (hooks) {
       const destroyRecordSpy = sinon.spy(model, 'destroyRecord');
       const controller = this.owner.lookup('controller:profile/settings');
 
-      sinon.stub(controller, 'transitionToRoute');
-
       controller.set('model', model);
       controller.set('session', session);
 
@@ -56,8 +54,6 @@ module('Unit | Controller | profile/settings', function (hooks) {
       const closeSpy = sinon.spy(session, 'close');
       const controller = this.owner.lookup('controller:profile/settings');
 
-      sinon.stub(controller, 'transitionToRoute');
-
       controller.set('model', model);
       controller.set('session', session);
 
@@ -66,33 +62,6 @@ module('Unit | Controller | profile/settings', function (hooks) {
 
       // Assert
       assert.ok(closeSpy.calledOnce);
-    });
-
-    test('should transition to home route', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const model = {
-        destroyRecord() {
-          return stubPromise(true);
-        },
-      };
-      const session = {
-        close() {
-          return stubPromise(true);
-        },
-      };
-      const controller = this.owner.lookup('controller:profile/settings');
-      const transitionToRouteStub = sinon.stub(controller, 'transitionToRoute');
-
-      controller.set('model', model);
-      controller.set('session', session);
-
-      // Act
-      await controller.handleDeleteAccountToastCompletion();
-
-      // Assert
-      assert.ok(transitionToRouteStub.calledWithExactly('home'));
     });
   });
 });
