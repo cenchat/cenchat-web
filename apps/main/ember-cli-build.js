@@ -5,6 +5,13 @@ const cssimport = require('postcss-import');
 const cssnext = require('postcss-cssnext');
 
 module.exports = function (defaults) {
+  const filesToExclude = [];
+
+  // TODO: Remove this once Module Unification lands
+  if (EmberApp.env() === 'production') {
+    filesToExclude.push('**/*-test.js');
+  }
+
   const app = new EmberApp(defaults, {
     babel: {
       plugins: ['transform-async-to-generator', 'transform-object-rest-spread'],
@@ -12,6 +19,10 @@ module.exports = function (defaults) {
     fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'woff'],
       replaceExtensions: ['html', 'css', 'js', 'webmanifest'],
+    },
+    funnel: {
+      // TODO: Remove this once Module Unification lands
+      exclude: filesToExclude,
     },
     postcssOptions: {
       compile: {
