@@ -43,7 +43,7 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
     `);
 
     // Assert
-    assert.ok(spy.calledTwice);
+    assert.equal(spy.callCount, 4);
     assert.deepEqual(spy.componentArgsType, { page: 'instance' });
   });
 

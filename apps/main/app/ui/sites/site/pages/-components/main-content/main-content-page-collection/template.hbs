@@ -1,14 +1,12 @@
-<section class="layout__section layout__section--headerless">
-  {{#infinite-content --query=--pages}}
-    {{#each --pages as |page|}}
-      {{sites/site/pages/-components/main-content/main-content-page-collection/page-collection-item --page=page}}
-    {{else}}
-      <article class="card card--centerized" data-test-main-content-page-collection="empty-state">
-        <header class="card__header">
-          <h3 class="card__heading">Nothing here right now</h3>
-          <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>
-        </header>
-      </article>
-    {{/each}}
-  {{/infinite-content}}
-</section>
+{{#infinite-content class="layout__section layout__section--headerless" --query=--pages}}
+  {{#masonry-grid --items=--pages as |item|}}
+    {{sites/site/pages/-components/main-content/main-content-page-collection/page-collection-item --page=item}}
+  {{else}}
+    <article class="card card--centerized" data-test-main-content-page-collection="empty-state">
+      <header class="card__header">
+        <h3 class="card__heading">Nothing here right now</h3>
+        <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>
+      </header>
+    </article>
+  {{/masonry-grid}}
+{{/infinite-content}}
