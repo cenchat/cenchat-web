@@ -32,7 +32,7 @@
   --progress-bar-moving-color: var(--dark-87);
 
   /* Text fields */
-  --text-field-background-color: #f5f5f5;
+  --text-field-background-color: rgba(153, 153, 153, 0.1);
 
   /* Toast */
   --toast-text-color: #fff;
