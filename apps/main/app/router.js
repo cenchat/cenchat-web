@@ -1,9 +1,43 @@
+import { classify } from '@ember/string';
+import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
 const Router = EmberRouter.extend({
+  fastboot: service(),
+  metrics: service(),
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
+
+  didTransition(...args) {
+    this._super(...args);
+
+    if (!this.get('fastboot.isFastBoot')) {
+      this.trackPageForAnalytics();
+    }
+
+    return true;
+  },
+
+  getSimpleRouteName(routeName) {
+    let parsedRouteName = routeName;
+
+    if (parsedRouteName.endsWith('.index')) {
+      parsedRouteName = parsedRouteName.replace('.index', '');
+    }
+
+    return classify(parsedRouteName);
+  },
+
+  trackPageForAnalytics() {
+    scheduleOnce('afterRender', this, () => {
+      const page = document.location.pathname;
+      const title = this.getSimpleRouteName(this.get('currentRouteName') || '');
+
+      this.get('metrics').trackPage({ page, title });
+    });
+  },
 });
 
 Router.map(function() {

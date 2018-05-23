@@ -41,6 +41,18 @@ module.exports = function(environment) {
       storageBucket: 'cenchat-stg.appspot.com',
       messagingSenderId: '72355646509',
     },
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['development', 'production'],
+        config: {
+          id: 'UA-66650537-2',
+          debug: environment === 'development',
+          trace: environment === 'development',
+          sendHitTask: environment !== 'development',
+        },
+      },
+    ],
     torii: { sessionServiceName: 'session' },
   };
 
