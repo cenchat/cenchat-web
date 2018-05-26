@@ -1,10 +1,20 @@
 <main class="layout__main">
   {{#if (eq --session.model.id --user.id)}}
+    <div class="profile_main-content__info" data-test-main-content="self-info">
+      {{profile/-components/main-content/main-content-info --session=--session --user=--user}}
+    </div>
+
     {{#if --followSuggestions}}
       {{profile/-components/main-content/follow-suggestion-collection --followSuggestions=--followSuggestions}}
     {{/if}}
 
     {{profile/-components/main-content/following-collection --followings=--followings}}
+  {{else}}
+    <div
+        class="profile_main-content__info profile_main-content__info--centerized"
+        data-test-main-content="user-info">
+      {{profile/-components/main-content/main-content-info --session=--session --user=--user}}
+    </div>
   {{/if}}
 
   {{yield}}

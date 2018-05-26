@@ -1,0 +1,19 @@
+<div class="profile_main-content-info">
+  <img
+      class="profile_main-content-info__photo"
+      data-test-main-content-info="photo"
+      src="{{--user.largePhotoUrl}}"
+      alt="{{--user.displayName}}">
+
+  {{#if --user.shortBio}}
+    <h2 class="profile_main-content-info__short-bio" data-test-main-content-info="short-bio">{{--user.shortBio}}</h2>
+  {{/if}}
+
+  {{#if (not-eq --session.model.id --user.id)}}
+    {{#if (eq isUserBeingFollowed true)}}
+      {{unfollow-user-button --userToUnfollow=--user --onUnfollowUser=(action handleUnfollowUser)}}
+    {{else if (eq isUserBeingFollowed false)}}
+      {{follow-user-button --userToFollow=--user --onFollowUser=(action handleFollowUser)}}
+    {{/if}}
+  {{/if}}
+</div>

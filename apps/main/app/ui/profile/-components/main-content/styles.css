@@ -1,0 +1,21 @@
+.profile_main-content__info {
+  padding-top: 24px;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 960px) {
+  .profile_main-content__info {
+    max-width: 420px;
+  }
+}
+
+.profile_main-content__info--centerized {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-top: 0;
+}

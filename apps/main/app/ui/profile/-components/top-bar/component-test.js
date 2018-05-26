@@ -19,7 +19,7 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
   });
 
   test('should show user info', async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     // Act
     await render(hbs`
@@ -30,7 +30,6 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
     `);
 
     // Assert
-    assert.dom('[data-test-top-bar="photo"]').hasAttribute('src', 'user_a.jpg');
     assert.dom('[data-test-top-bar="name"]').hasText('User A');
   });
 

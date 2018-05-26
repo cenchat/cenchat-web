@@ -1,0 +1,32 @@
+.profile_main-content-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .profile_main-content-info {
+    max-width: 420px;
+  }
+}
+
+.profile_main-content-info__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+
+.profile_main-content-info__photo:only-child {
+  margin-bottom: 24px;
+}
+
+.profile_main-content-info__short-bio {
+  padding: 24px 16px 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-24);
+  color: var(--font-primary-color);
+  text-align: center;
+}
