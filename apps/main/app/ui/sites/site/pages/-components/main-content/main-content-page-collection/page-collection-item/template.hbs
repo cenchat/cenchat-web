@@ -4,11 +4,9 @@
   {{/if}}
 
   <header class="card__header">
-    <h3 class="card__heading card__short-text" data-test-page-collection-item="title">{{--page.title}}</h3>
-    <p class="card__subheading card__short-text" data-test-page-collection-item="id">ID: {{--page.shortId}}</p>
+    <h3 class="card__heading" data-test-page-collection-item="title">{{--page.title}}</h3>
+    <p class="card__subheading" data-test-page-collection-item="id">ID: {{--page.shortId}}</p>
   </header>
-
-  <p class="card__message card__short-text" data-test-page-collection-item="description">{{--page.description}}</p>
 
   {{#ce-link-button class="card__action" href=--page.url target="_blank" rel="noopener noreferrer"}}
     Visit
