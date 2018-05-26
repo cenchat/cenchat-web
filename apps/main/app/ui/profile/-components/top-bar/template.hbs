@@ -1,28 +1,31 @@
 {{#ce-top-bar class="layout__header" responsive=true}}
   <img class="profile_top-bar__photo" data-test-top-bar="photo" src="{{--user.photoUrl}}" alt="{{--user.displayName}}">
   <h1 data-test-top-bar="name">{{--user.displayName}}</h1>
-  {{ce-icon-link-button
-      data-test-top-bar="edit-link"
-      href=(href-to 'profile.edit')
-      title="Edit profile"
-      aria-label="Edit profile"
-      icon="edit"}}
 
-  {{#ce-dropdown-button icon="more_vert" position="ll"}}
-    <li class="list__item">
-      <a class="list__action" data-test-top-bar="settings-link" href={{href-to 'profile.settings'}}>
-        <div>
-          <div class="list__single-line-content">Settings</div>
-        </div>
-      </a>
-    </li>
+  {{#if (eq --session.model.id --user.id)}}
+    {{ce-icon-link-button
+        data-test-top-bar="edit-link"
+        href=(href-to 'profile.edit')
+        title="Edit profile"
+        aria-label="Edit profile"
+        icon="edit"}}
 
-    <li class="list__item">
-      <button class="list__action" data-test-top-bar="sign-out-button" onclick={{action --onSignOutClick}}>
-        <div>
-          <div class="list__single-line-content">Sign out</div>
-        </div>
-      </button>
-    </li>
-  {{/ce-dropdown-button}}
+    {{#ce-dropdown-button data-test-top-bar="more-button" icon="more_vert" position="ll"}}
+      <li class="list__item">
+        <a class="list__action" data-test-top-bar="settings-link" href={{href-to 'profile.settings'}}>
+          <div>
+            <div class="list__single-line-content">Settings</div>
+          </div>
+        </a>
+      </li>
+
+      <li class="list__item">
+        <button class="list__action" data-test-top-bar="sign-out-button" onclick={{action --onSignOutClick}}>
+          <div>
+            <div class="list__single-line-content">Sign out</div>
+          </div>
+        </button>
+      </li>
+    {{/ce-dropdown-button}}
+  {{/if}}
 {{/ce-top-bar}}

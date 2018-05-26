@@ -34,6 +34,76 @@ module('Integration | Component | profile/-components/top-bar', (hooks) => {
     assert.dom('[data-test-top-bar="name"]').hasText('User A');
   });
 
+  test('should show edit link when current user owns the profile', async function (assert) {
+    assert.expect(1);
+
+    // Act
+    await render(hbs`
+      {{profile/-components/top-bar
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-top-bar="edit-link"]').exists();
+  });
+
+  test('should hide edit link when current user does not own the profile', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await this.store.findRecord('user', 'user_b');
+
+    this.set('user', user);
+
+    // Act
+    await render(hbs`
+      {{profile/-components/top-bar
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-top-bar="edit-link"]').doesNotExist();
+  });
+
+  test('should show more button when current user owns the profile', async function (assert) {
+    assert.expect(1);
+
+    // Act
+    await render(hbs`
+      {{profile/-components/top-bar
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-top-bar="more-button"]').exists();
+  });
+
+  test('should hide more button when current user does not own the profile', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const user = await this.store.findRecord('user', 'user_b');
+
+    this.set('user', user);
+
+    // Act
+    await render(hbs`
+      {{profile/-components/top-bar
+          --session=session
+          --user=user
+          --onSignOutClick=(action onSignOutClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-top-bar="more-button"]').doesNotExist();
+  });
+
   test('should fire an external action when clicking sign out', async function (assert) {
     assert.expect(1);
 
