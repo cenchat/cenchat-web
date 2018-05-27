@@ -26,7 +26,7 @@ module('Integration | Component | masonry-grid', (hooks) => {
     `);
 
     // Assert
-    assert.dom('[data-test-masonry-grid="column"]:nth-child(1)').hasText('1 3 5');
-    assert.dom('[data-test-masonry-grid="column"]:nth-child(2)').hasText('2 4');
+    assert.dom('[data-test-masonry-grid="column"]:nth-child(1)').hasText('1 4 5');
+    assert.dom('[data-test-masonry-grid="column"]:nth-child(2)').hasText('2 3');
   });
 });

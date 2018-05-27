@@ -1,6 +1,6 @@
 <main class="layout__main">
   {{#infinite-content class="layout__section layout__section--headerless" --query=--comments}}
-    {{#masonry-grid --items=--comments as |item|}}
+    {{#masonry-grid --items=(sort-by 'createdOn:desc' --comments) as |item|}}
       {{sites/site/index/rejected-comments/-components/comment-collection/comment-collection-item
           --comment=item
           --onApproveCommentClick=(action --onApproveCommentClick)}}

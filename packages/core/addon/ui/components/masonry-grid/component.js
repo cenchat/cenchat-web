@@ -37,6 +37,7 @@ export default Component.extend({
     get() {
       const columnGroupedItems = [];
       const numOfColumns = this.get('numOfColumns');
+      let direction = 'right';
       let currentColumn = 0;
 
       this.get('--items').forEach((item) => {
@@ -46,10 +47,22 @@ export default Component.extend({
 
         columnGroupedItems[currentColumn].push(item);
 
-        if (currentColumn + 1 < numOfColumns) {
-          currentColumn += 1;
-        } else {
-          currentColumn = 0;
+        if (direction === 'right') {
+          if (currentColumn + 1 === numOfColumns) {
+            direction = 'left';
+          } else {
+            currentColumn += 1;
+          }
+
+          return;
+        }
+
+        if (direction === 'left') {
+          if (currentColumn - 1 === -1) {
+            direction = 'right';
+          } else {
+            currentColumn -= 1;
+          }
         }
       });
 

@@ -13,6 +13,9 @@ module.exports = function (defaults) {
   }
 
   const app = new EmberApp(defaults, {
+    'ember-composable-helpers': {
+      only: ['sort-by'],
+    },
     babel: {
       plugins: ['transform-async-to-generator', 'transform-object-rest-spread'],
     },
