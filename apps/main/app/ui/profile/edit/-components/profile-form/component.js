@@ -19,6 +19,7 @@ export default Component.extend({
 
     this.set('profile', {
       displayName: this.get('--user.displayName'),
+      shortBio: this.get('--user.shortBio'),
       username: this.get('--user.displayUsername'),
     });
   },

@@ -68,11 +68,16 @@ module('Integration | Component | profile/edit/-components/profile-form', (hooks
     `);
 
     // Act
-    await fillIn('[data-test-profile-form="display-name-field"] input', 'Foo Bar');
-    await fillIn('[data-test-profile-form="username-field"] input', 'Foo');
+    await fillIn('[data-test-profile-form="display-name-field"] input', 'Display Name');
+    await fillIn('[data-test-profile-form="short-bio-field"] input', 'Short Bio');
+    await fillIn('[data-test-profile-form="username-field"] input', 'Username');
     await click('[data-test-profile-form="submit-button"]');
 
     // Assert
-    assert.ok(spy.calledWith({ displayName: 'Foo Bar', username: 'Foo' }));
+    assert.ok(spy.calledWith({
+      displayName: 'Display Name',
+      shortBio: 'Short Bio',
+      username: 'Username',
+    }));
   });
 });

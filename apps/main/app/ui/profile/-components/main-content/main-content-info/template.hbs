@@ -5,8 +5,14 @@
       src="{{--user.largePhotoUrl}}"
       alt="{{--user.displayName}}">
 
+  {{#if --user.displayUsername}}
+    <p class="profile_main-content-info__username" data-test-main-content-info="username">
+      @{{--user.displayUsername}}
+    </p>
+  {{/if}}
+
   {{#if --user.shortBio}}
-    <h2 class="profile_main-content-info__short-bio" data-test-main-content-info="short-bio">{{--user.shortBio}}</h2>
+    <p class="profile_main-content-info__short-bio" data-test-main-content-info="short-bio">{{--user.shortBio}}</p>
   {{/if}}
 
   {{#if (not-eq --session.model.id --user.id)}}

@@ -35,6 +35,11 @@ export default Model.extend({
   photoUrl: attr('string'),
 
   /**
+   * @type {string}
+   */
+  shortBio: attr('string'),
+
+  /**
    * Lower cased version of `displayUsername`
    *
    * @type {string}

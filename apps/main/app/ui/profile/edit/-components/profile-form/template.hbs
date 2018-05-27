@@ -12,6 +12,16 @@
 
   {{ce-field
       class="card__field"
+      name="shortBio"
+      data-test-profile-form="short-bio-field"
+      type="text"
+      maxlength="160"
+      value=profile.shortBio
+      label="Short bio"
+      --onInput=(action handleProfileFormDataChange)}}
+
+  {{ce-field
+      class="card__field"
       name="username"
       data-test-profile-form="username-field"
       type="text"

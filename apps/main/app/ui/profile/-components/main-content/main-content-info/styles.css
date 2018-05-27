@@ -16,12 +16,12 @@
   border-radius: 50%;
 }
 
-.profile_main-content-info__photo:only-child {
+.profile_main-content-info__photo:last-child {
   margin-bottom: 24px;
 }
 
+.profile_main-content-info__username,
 .profile_main-content-info__short-bio {
-  padding: 24px 16px 16px;
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-24);
@@ -29,4 +29,20 @@
   line-height: var(--line-height-24);
   color: var(--font-primary-color);
   text-align: center;
+}
+
+.profile_main-content-info__username {
+  padding: 24px 16px 8px;
+}
+
+.profile_main-content-info__username:only-of-type {
+  padding-bottom: 16px;
+}
+
+.profile_main-content-info__short-bio {
+  padding: 0 16px 16px;
+}
+
+.profile_main-content-info__short-bio:only-of-type {
+  padding-top: 24px;
 }

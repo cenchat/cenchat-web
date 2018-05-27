@@ -368,8 +368,11 @@ export default function getFixtureData() {
         __doc__: {
           user_a: {
             displayName: 'User A',
+            displayUsername: null,
             facebookId: null,
             photoUrl: 'user_a.jpg',
+            shortBio: null,
+            username: null,
 
             __collection__: {
               followers: {
@@ -507,6 +510,7 @@ export default function getFixtureData() {
             displayUsername: 'user_b',
             facebookId: null,
             photoUrl: 'user_b.jpg',
+            shortBio: null,
             username: 'user_b',
 
             __collection__: {
@@ -589,6 +593,7 @@ export default function getFixtureData() {
             displayUsername: 'user_c',
             facebookId: null,
             photoUrl: 'user_c.jpg',
+            shortBio: null,
             username: 'user_c',
 
             __collection__: {
@@ -623,6 +628,7 @@ export default function getFixtureData() {
             displayUsername: 'user_d',
             facebookId: null,
             photoUrl: 'user_d.jpg',
+            shortBio: null,
             username: 'user_d',
 
             __collection__: {

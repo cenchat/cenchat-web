@@ -12,17 +12,20 @@ module('Acceptance | profile/edit', (hooks) => {
   });
 
   test('should update profile', async function (assert) {
-    assert.expect(1);
+    assert.expect(3);
 
     // Arrange
     await visit('/profile/user_a/edit');
 
     // Act
-    await fillIn('[data-test-profile-form="display-name-field"] input', 'Bar');
-    await fillIn('[data-test-profile-form="username-field"] input', 'Foo');
+    await fillIn('[data-test-profile-form="display-name-field"] input', 'Display Name');
+    await fillIn('[data-test-profile-form="short-bio-field"] input', 'Short Bio');
+    await fillIn('[data-test-profile-form="username-field"] input', 'Username');
     await click('[data-test-profile-form="submit-button"]');
 
     // Assert
-    assert.dom('[data-test-top-bar="name"]').hasText('Bar');
+    assert.dom('[data-test-top-bar="name"]').hasText('Display Name');
+    assert.dom('[data-test-main-content-info="short-bio"]').hasText('Short Bio');
+    assert.dom('[data-test-main-content-info="username"]').hasText('@Username');
   });
 });

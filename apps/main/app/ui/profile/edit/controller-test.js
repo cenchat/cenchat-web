@@ -10,7 +10,7 @@ module('Unit | Controller | profile/edit', (hooks) => {
 
   module('function: handleProfileFormSubmit', () => {
     test('should update profile', async function (assert) {
-      assert.expect(4);
+      assert.expect(5);
 
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
@@ -22,16 +22,18 @@ module('Unit | Controller | profile/edit', (hooks) => {
 
       // Act
       await controller.handleProfileFormSubmit({
-        displayName: 'Foo',
-        username: 'Bar',
+        displayName: 'Display Name',
+        shortBio: 'Short Bio',
+        username: 'Username',
       }, {
         preventDefault: sinon.stub(),
       });
 
       // Assert
-      assert.equal(model.get('displayName'), 'Foo');
-      assert.equal(model.get('displayUsername'), 'Bar');
-      assert.equal(model.get('username'), 'bar');
+      assert.equal(model.get('displayName'), 'Display Name');
+      assert.equal(model.get('displayUsername'), 'Username');
+      assert.equal(model.get('shortBio'), 'Short Bio');
+      assert.equal(model.get('username'), 'username');
       assert.ok(saveStub.calledOnce);
     });
 

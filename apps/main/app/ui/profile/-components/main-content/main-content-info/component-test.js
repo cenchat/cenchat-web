@@ -59,6 +59,36 @@ module('Integration | Component | profile/-components/main-content/main-content-
     assert.dom('[data-test-main-content-info="short-bio"]').doesNotExist();
   });
 
+  test('should show username when available', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('user.displayUsername', 'Foo');
+    this.set('user.username', 'foo');
+
+    await render(hbs`
+      {{profile/-components/main-content/main-content-info --session=session --user=user}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-main-content-info="username"]').hasText('@Foo');
+  });
+
+  test('should hide username when unavailable', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('user.displayUsername', null);
+    this.set('user.username', null);
+
+    await render(hbs`
+      {{profile/-components/main-content/main-content-info --session=session --user=user}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-main-content-info="username"]').doesNotExist();
+  });
+
   test('should show follow button when not following user', async function (assert) {
     assert.expect(2);
 
