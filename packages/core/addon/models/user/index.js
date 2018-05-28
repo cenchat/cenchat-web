@@ -51,10 +51,7 @@ export default Model.extend({
    */
   followers: hasMany('user', {
     inverse: 'followings',
-
-    filter(reference) {
-      return reference.limit(8);
-    },
+    limit: 8,
   }),
 
   /**
@@ -62,10 +59,7 @@ export default Model.extend({
    */
   followings: hasMany('user', {
     inverse: 'followers',
-
-    filter(reference) {
-      return reference.limit(8);
-    },
+    limit: 8,
   }),
 
   /**
@@ -73,10 +67,7 @@ export default Model.extend({
    */
   notifications: hasMany('notification', {
     inverse: 'to',
-
-    filter(reference) {
-      return reference.limit(10);
-    },
+    limit: 8,
   }),
 
   /**
@@ -84,10 +75,7 @@ export default Model.extend({
    */
   sitesAsAdmin: hasMany('site', {
     inverse: 'admins',
-
-    filter(reference) {
-      return reference.limit(8);
-    },
+    limit: 8,
   }),
 
   /**
@@ -207,8 +195,10 @@ export default Model.extend({
 
     for (const { id } of data) {
       const friends = await this.get('store').query('user', {
+        limit: 1,
+
         filter(reference) {
-          return reference.where('facebookId', '==', id).limit(1);
+          return reference.where('facebookId', '==', id);
         },
       });
       const friend = friends.get('firstObject');

@@ -28,16 +28,9 @@ export default Component.extend({
    * @function
    */
   async handleLoadMoreCommentsClick(newLimit) {
-    const pageId = await this.get('--comments.firstObject.page.id');
+    this.set('--comments.query.limit', newLimit);
 
-    this.get('--comments').set('query.filter', (reference) => {
-      const db = reference.firestore;
-
-      return reference
-        .where('page', '==', db.collection('pages').doc(pageId))
-        .orderBy('createdOn')
-        .limit(newLimit);
-    });
+    console.log(this.get('--comments'));
 
     return this.get('--comments').update();
   },

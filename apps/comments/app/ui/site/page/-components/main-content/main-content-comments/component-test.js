@@ -12,11 +12,7 @@ module('Integration | Component | site/page/-components/main-content/main-conten
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    const comments = await this.store.query('comment', {
-      filter(reference) {
-        return reference.limit(2);
-      },
-    });
+    const comments = await this.store.query('comment', { limit: 2 });
 
     this.set('comments', comments);
     this.set('prioritizedComments', []);

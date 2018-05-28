@@ -27,12 +27,13 @@ export default Component.extend({
 
     if (query) {
       users = await this.get('store').query('user', {
+        limit: 4,
+
         filter(reference) {
           return reference
             .orderBy('username')
             .startAt(query)
-            .endAt(`${query}\uf8ff`)
-            .limit(4);
+            .endAt(`${query}\uf8ff`);
         },
       });
     }

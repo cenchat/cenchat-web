@@ -11,11 +11,7 @@ module('Integration | Component | user-collection', (hooks) => {
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    const users = await this.store.query('user', {
-      filter(reference) {
-        return reference.limit(2);
-      },
-    });
+    const users = await this.store.query('user', { limit: 2 });
 
     this.set('users', users);
   });

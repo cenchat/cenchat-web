@@ -38,10 +38,7 @@ export default Model.extend({
    */
   admins: hasMany('user', {
     inverse: 'sitesAsAdmin',
-
-    filter(reference) {
-      return reference.limit(8);
-    },
+    limit: 8,
   }),
 
   /**
@@ -49,6 +46,7 @@ export default Model.extend({
    */
   approvedComments: hasMany('comment', {
     inverse: null,
+    limit: 8,
 
     buildReference(db) {
       return db.collection('comments');
@@ -62,8 +60,7 @@ export default Model.extend({
         .where('status', '==', 'approved')
         .where('text', '>', '')
         .orderBy('text')
-        .orderBy('createdOn', 'desc')
-        .limit(8);
+        .orderBy('createdOn', 'desc');
     },
   }),
 
@@ -71,8 +68,10 @@ export default Model.extend({
    * @type {Array.<Model.Comment>}
    */
   comments: hasMany('comment', {
+    limit: 8,
+
     filter(reference) {
-      return reference.orderBy('createdOn').limit(8);
+      return reference.orderBy('createdOn');
     },
   }),
 
@@ -80,8 +79,10 @@ export default Model.extend({
    * @type {Array.<Model.Page>}
    */
   pages: hasMany('page', {
+    limit: 8,
+
     filter(reference) {
-      return reference.orderBy('createdOn', 'desc').limit(8);
+      return reference.orderBy('createdOn', 'desc');
     },
   }),
 
@@ -90,6 +91,7 @@ export default Model.extend({
    */
   rejectedComments: hasMany('comment', {
     inverse: null,
+    limit: 8,
 
     buildReference(db) {
       return db.collection('comments');
@@ -101,8 +103,7 @@ export default Model.extend({
       return reference
         .where('site', '==', db.collection('sites').doc(record.get('id')))
         .where('status', '==', 'rejected')
-        .orderBy('createdOn', 'desc')
-        .limit(8);
+        .orderBy('createdOn', 'desc');
     },
   }),
 });

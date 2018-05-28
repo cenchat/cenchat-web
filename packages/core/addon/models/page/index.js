@@ -85,6 +85,7 @@ export default Model.extend({
     if (filterBy === 'all') {
       return this.get('store').query('comment', {
         queryId: `${this.get('id')}_all_comments`,
+        limit: 2,
 
         filter(reference) {
           const db = reference.firestore;
@@ -92,8 +93,7 @@ export default Model.extend({
           return reference
             .where('page', '==', db.collection('pages').doc(pageId))
             .where('status', '==', 'approved')
-            .orderBy('createdOn')
-            .limit(2);
+            .orderBy('createdOn');
         },
       });
     }
@@ -102,6 +102,7 @@ export default Model.extend({
 
     return this.get('store').query('comment', {
       queryId: `${this.get('id')}_${sessionId}_relevant_comments`,
+      limit: 2,
 
       buildReference(db) {
         return db
@@ -115,8 +116,7 @@ export default Model.extend({
         return reference
           .where('page', '==', db.collection('pages').doc(pageId))
           .where('status', '==', 'approved')
-          .orderBy('createdOn')
-          .limit(2);
+          .orderBy('createdOn');
       },
     });
   },

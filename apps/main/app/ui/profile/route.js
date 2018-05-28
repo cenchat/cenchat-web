@@ -19,8 +19,10 @@ export default AuthenticatedRoute.extend({
   async model({ user_id: userId }) {
     const hash = {};
     const query = await this.get('store').query('user', {
+      limit: 1,
+
       filter(reference) {
-        return reference.where('username', '==', userId).limit(1);
+        return reference.where('username', '==', userId);
       },
     });
 

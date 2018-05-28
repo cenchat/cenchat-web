@@ -68,12 +68,13 @@ export default Controller.extend({
     if (query && query.trim()) {
       const lowerCasedQuery = query.toLowerCase();
       const users = await this.get('store').query('user', {
+        limit: 8,
+
         filter(reference) {
           return reference
             .orderBy('username')
             .startAt(lowerCasedQuery)
-            .endAt(`${lowerCasedQuery}\uf8ff`)
-            .limit(8);
+            .endAt(`${lowerCasedQuery}\uf8ff`);
         },
       });
       const isAdminChecks = [];
