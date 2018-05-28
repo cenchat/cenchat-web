@@ -43,25 +43,7 @@ export default Component.extend({
    * @function
    */
   handleLoadMoreCommentsClick(replies, newLimit) {
-    const commentId = this.get('--comment.id');
-
-    if (this.get('--comment').belongsTo('root').id()) {
-      replies.set(
-        'query.filter',
-        reference => reference
-          .where('replyTo', '==', reference.doc(commentId))
-          .orderBy('createdOn')
-          .limit(newLimit),
-      );
-    } else {
-      replies.set(
-        'query.filter',
-        reference => reference
-          .where('root', '==', reference.doc(commentId))
-          .orderBy('createdOn')
-          .limit(newLimit),
-      );
-    }
+    replies.set('query.limit', newLimit);
 
     return replies.update();
   },

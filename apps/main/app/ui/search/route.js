@@ -23,12 +23,13 @@ export default Route.extend({
       query = query.toLowerCase();
 
       return this.get('store').query('user', {
+        limit: 8,
+
         filter(reference) {
           return reference
             .orderBy('username')
             .startAt(query)
-            .endAt(`${query}\uf8ff`)
-            .limit(8);
+            .endAt(`${query}\uf8ff`);
         },
       });
     }

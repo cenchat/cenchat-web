@@ -266,6 +266,7 @@ export default Model.extend({
     if (!this.belongsTo('root').id()) {
       return this.get('store').query('comment', {
         queryId: `${commentId}_replies`,
+        limit: 2,
 
         buildReference(db) {
           return db.collection('comments');
@@ -274,14 +275,14 @@ export default Model.extend({
         filter(reference) {
           return reference
             .where('root', '==', reference.doc(commentId))
-            .orderBy('createdOn')
-            .limit(2);
+            .orderBy('createdOn');
         },
       });
     }
 
     return this.get('store').query('comment', {
       queryId: `${commentId}_replies`,
+      limit: 2,
 
       buildReference(db) {
         return db.collection('comments');
@@ -290,8 +291,7 @@ export default Model.extend({
       filter(reference) {
         return reference
           .where('replyTo', '==', reference.doc(commentId))
-          .orderBy('createdOn')
-          .limit(2);
+          .orderBy('createdOn');
       },
     });
   },

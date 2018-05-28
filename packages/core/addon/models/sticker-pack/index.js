@@ -32,8 +32,6 @@ export default Model.extend({
    * @type {Array.<Model.Sticker>}
    */
   stickers: hasMany('sticker', {
-    filter(reference) {
-      return reference.limit(20);
-    },
+    limit: 20,
   }),
 });

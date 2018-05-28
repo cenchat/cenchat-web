@@ -12,8 +12,9 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     await setupTestState(this);
 
     const users = await this.store.query('user', {
+      limit: 2,
       filter(reference) {
-        return reference.orderBy('username').startAt('user_').endAt('user_\uf8ff').limit(2);
+        return reference.orderBy('username').startAt('user_').endAt('user_\uf8ff');
       },
     });
 
