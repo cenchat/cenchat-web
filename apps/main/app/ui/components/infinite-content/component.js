@@ -1,4 +1,4 @@
-import { bind, debounce } from '@ember/runloop';
+import { debounce, run } from '@ember/runloop';
 import Component from '@ember/component';
 
 /**
@@ -28,6 +28,12 @@ export default Component.extend({
   didInsertElement(...args) {
     this._super(...args);
 
+    this.loadMoreRecordsWhenNotEnough();
+
+    this.set('handleResize', () => debounce(this, 'loadMoreRecordsWhenNotEnough', 100));
+
+    window.addEventListener('resize', this.get('handleResize'));
+
     const selector = this.get('--selector');
     const element = selector ? document.querySelector(selector) : window;
 
@@ -43,30 +49,46 @@ export default Component.extend({
   willDestroyElement(...args) {
     this._super(...args);
 
+    window.removeEventListener('resize', this.get('handleResize'));
     this.get('scrollerElement').removeEventListener('scroll', this.get('handleScroll'));
   },
 
   /**
    * @function
    */
+  loadMoreRecordsWhenNotEnough() {
+    requestAnimationFrame(() => {
+      run(() => {
+        if (document.body.scrollWidth >= 960 && this.get('numOfRecordsLimit') <= 8) {
+          this.loadMoreRecords();
+        }
+      });
+    });
+  },
+
+  /**
+   * @function
+   */
   loadMoreRecordsWhenAtBottom() {
-    requestAnimationFrame(bind(this, () => {
-      let element = this.get('scrollerElement');
+    requestAnimationFrame(() => {
+      run(() => {
+        let element = this.get('scrollerElement');
 
-      if (this.get('scrollerElement') === window) {
-        element = document.documentElement;
-      }
+        if (this.get('scrollerElement') === window) {
+          element = document.documentElement;
+        }
 
-      const { scrollHeight, scrollTop, clientHeight } = element;
-      const threshold = scrollHeight / 4;
+        const { scrollHeight, scrollTop, clientHeight } = element;
+        const threshold = scrollHeight / 4;
 
-      if (
-        scrollHeight - scrollTop - clientHeight <= threshold
-        && !this.get('isDestroyed')
-      ) {
-        this.loadMoreRecords();
-      }
-    }));
+        if (
+          scrollHeight - scrollTop - clientHeight <= threshold
+          && !this.get('isDestroyed')
+        ) {
+          this.loadMoreRecords();
+        }
+      });
+    });
   },
 
   /**

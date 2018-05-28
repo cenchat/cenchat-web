@@ -9,9 +9,12 @@ module('Integration | Component | infinite-content', (hooks) => {
   test('should show yield', async function (assert) {
     assert.expect(1);
 
+    // Arrange
+    this.set('query', []);
+
     // Act
     await render(hbs`
-      {{#infinite-content}}
+      {{#infinite-content --query=query}}
         <div data-test-infinite-content="yield"></div>
       {{/infinite-content}}
     `);
