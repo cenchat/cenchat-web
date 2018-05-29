@@ -2,9 +2,21 @@
   <div class="layout__section layout__section--headerless">
     <article class="card card--centerized" data-test-main-content-verify-site="empty-state">
       <h3 class="card__heading">Verify your site</h3>
+      <h4 class="main-content-verify-site__subheader">WordPress</h4>
 
       <p class="card__message">
-        Place the additional <code class="snippet__inline-code">&lt;meta&gt;</code> tag below in the <code class="snippet__inline-code">&lt;head&gt;</code> of {{--site.hostname}} and all of its pages then tap Verify.
+        For WordPress users, you can use the Cenchat Comments plugins to verify your site. Check it out <a href="https://wordpress.org/plugins/cenchat-comments/" target="_blank" rel="noopener noreferrer">here</a>.
+      </p>
+
+      <p class="card__message">
+        After installing the plugin, configure it by setting <strong>{{--site.id}}</strong> as the <strong>Cenchat ID</strong>. Once you've configured it, tap <strong>Verify</strong>.
+      </p>
+
+      <h4 class="main-content-verify-site__subheader">Others</h4>
+      <p class="card__message">For non-WordPress users you'd have to do things manually.</p>
+
+      <p class="card__message">
+        Place the additional <code class="snippet__inline-code">&lt;meta&gt;</code> tag below in the <code class="snippet__inline-code">&lt;head&gt;</code> of <strong>{{--site.hostname}}</strong> and all of its pages then tap <strong>Verify</strong>.
       </p>
 
       <p class="card__message snippet">

@@ -17,6 +17,7 @@ export default Route.extend({
    * @override
    */
   afterModel(model) {
+    document.body.classList.remove('light-theme');
     document.body.classList.add(`${model.get('theme')}-theme`);
   },
 });
