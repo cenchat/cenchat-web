@@ -30,7 +30,7 @@ export default Route.extend({
    */
   async afterModel() {
     this.set('headData.title', 'Cenchat');
-    this.set('headData.description', 'Conversations in a unique but familiar way');
+    this.set('headData.description', 'Conversations at your site in a unique but familiar way');
     this.set('headData.image', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat_white_1200.png?alt=media&token=c1aef38d-82d5-4bcf-a4e5-980e02b73bc1');
     this.set('headData.url', 'https://cenchat.com');
     this.set('headData.type', 'website');
