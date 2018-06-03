@@ -45,7 +45,7 @@
     "ember-composable-helpers": "^2.1.0",
     "ember-data": "~3.1.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "^3.4.5",
+    "ember-fetch": "^4.0.2",
     "ember-firebaseui": "^0.2.0",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -61,7 +61,7 @@
     "eslint-config-rmmmp": "^0.2.2",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-import": "^2.11.0",
-    "firebase": "^5.0.2",
+    "firebase": "^5.0.4",
     "liquid-fire": "^0.29.2",
     "loader.js": "^4.2.3",
     "normalize.css": "^8.0.0",
@@ -78,7 +78,8 @@
   "ember-addon": {
     "paths": [
       "../../packages/core",
-      "../../packages/elements"
+      "../../packages/elements",
+      "../../packages/esw-fcm"
     ]
   }
 }

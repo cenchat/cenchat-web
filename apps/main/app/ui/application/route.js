@@ -47,6 +47,8 @@ export default Route.extend({
           promises.push(this.updateCurrentUserProfile(model));
         }
 
+        this.setupPushNotification(model);
+
         return Promise.all(promises);
       } catch (error) {
         session.close();
@@ -76,6 +78,43 @@ export default Route.extend({
       meta.set('facebookAccessToken', authData.credential.accessToken);
 
       await meta.save();
+    }
+  },
+
+  /**
+   * @param {Model.User} profile
+   * @function
+   * @private
+   */
+  async setupPushNotification(profile) {
+    if (!this.get('fastboot.isFastBoot') && 'serviceWorker' in navigator) {
+      const messaging = this.get('firebase').messaging();
+
+      try {
+        await messaging.requestPermission();
+
+        messaging.onTokenRefresh(async () => {
+          const token = await messaging.getToken();
+          const meta = await profile.get('metaInfo');
+
+          if (!meta.get('notificationTokens').includes(token)) {
+            meta.set('notificationTokens', [...meta.get('notificationTokens'), token]);
+          }
+
+          await meta.save();
+        });
+
+        const token = await messaging.getToken();
+        const meta = await profile.get('metaInfo');
+
+        if (!meta.get('notificationTokens').includes(token)) {
+          meta.set('notificationTokens', [...meta.get('notificationTokens'), token]);
+        }
+
+        await meta.save();
+      } catch (error) {
+        // Do nothing
+      }
     }
   },
 

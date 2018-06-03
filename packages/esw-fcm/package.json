@@ -1,0 +1,15 @@
+{
+  "name": "@cenchat/esw-fcm",
+  "keywords": [
+    "ember-addon",
+    "ember-service-worker-plugin"
+  ],
+  "dependencies": {
+    "ember-cli-babel": "^6.6.0",
+    "fastboot-transform": "^0.1.3",
+    "firebase": "^5.0.4"
+  },
+  "devDependencies": {
+    "ember-cli": "~3.0.1"
+  }
+}

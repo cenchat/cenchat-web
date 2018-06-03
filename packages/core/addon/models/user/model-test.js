@@ -149,22 +149,22 @@ module('Unit | Model | user', (hooks) => {
 
   module('function: getUnfollowedFacebookFriends', () => {
     hooks.beforeEach(function () {
-      this.originalFetch = window.fetch;
-      window.fetch = sinon.stub().returns(stubPromise(
-        true,
-        {
-          json: sinon.stub().returns(stubPromise(
-            true,
-            {
-              data: [{ id: 123 }, { id: 456 }, { id: 789 }],
-            },
-          )),
-        },
-      ));
-    });
+      const server = sinon.fakeServer.create();
 
-    hooks.afterEach(function () {
-      window.fetch = this.originalFetch;
+      server.autoRespond = true;
+      server.autoRespondAfter = 0;
+
+      server.respondWith(
+        'GET',
+        'https://graph.facebook.com/v2.12/fb_user_100/friends?access_token=123qweasd&limit=5000',
+        [
+          200,
+          { 'Content-Type': 'application/json' },
+          JSON.stringify({
+            data: [{ id: 123 }, { id: 456 }, { id: 789 }],
+          }),
+        ],
+      );
     });
 
     test('should return unfollowed facebook friends', async function (assert) {
@@ -186,7 +186,10 @@ module('Unit | Model | user', (hooks) => {
       isFollowingStub.withArgs('user_456').returns(stubPromise(true, false));
       isFollowingStub.withArgs('user_789').returns(stubPromise(true, true));
 
-      const model = this.store.createRecord('user', { id: 'user_100' });
+      const model = this.store.createRecord('user', {
+        id: 'user_100',
+        facebookId: 'fb_user_100',
+      });
 
       model.set('store', {
         findRecord: sinon.stub().returns(stubPromise(

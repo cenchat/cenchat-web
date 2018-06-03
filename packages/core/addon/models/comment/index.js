@@ -6,9 +6,9 @@ import { inject } from '@ember/service';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
-import { promiseArray } from '@cenchat/core/utils/computed-promise';
-
 import fetch from 'fetch';
+
+import { promiseArray } from '@cenchat/core/utils/computed-promise';
 
 /**
  * @class Comment
