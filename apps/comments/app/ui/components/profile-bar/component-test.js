@@ -84,26 +84,6 @@ module('Integration | Component | profile-bar', (hooks) => {
     assert.dom('[data-test-profile-bar="title"]').hasText('Foo');
   });
 
-  test('should show <NotificationList />', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    const spy = spyComponent(this, 'notification-list');
-
-    // Act
-    await render(hbs`
-      {{profile-bar
-          --page=page
-          --isCommentComposerVisible=isCommentComposerVisible
-          --headerText=headerText
-          --onSignOutClick=(action onSignOutClick)
-          --onSendCommentSuccess=(action onSendCommentSuccess)}}
-    `);
-
-    // Assert
-    assert.deepEqual(spy.componentArgsType, { notifications: 'instance' });
-  });
-
   test('should show notification badge when there are unread notifications', async function (assert) {
     assert.expect(1);
 
@@ -118,7 +98,7 @@ module('Integration | Component | profile-bar', (hooks) => {
     `);
 
     // Assert
-    assert.dom('[data-test-profile-bar="notification-button"] > button').hasAttribute('badged');
+    assert.dom('[data-test-profile-bar="notification-link"]').hasAttribute('badged');
   });
 
   test('should hide notification badge when there are no unread notifications', async function (assert) {
@@ -140,7 +120,7 @@ module('Integration | Component | profile-bar', (hooks) => {
     `);
 
     // Assert
-    assert.dom('[data-test-profile-bar="notification-button"]').doesNotHaveAttribute('badged');
+    assert.dom('[data-test-profile-bar="notification-link"]').doesNotHaveAttribute('badged');
   });
 });
 

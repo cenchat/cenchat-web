@@ -11,22 +11,15 @@
         title="Profile"
         aria-label="Profile"
         image=session.model.photoUrl}}
-
-    {{#ce-dropdown-button
-        class="profile-bar__notifications-button"
-        data-test-profile-bar="notification-button"
-        icon="notifications"
-        position="ll"
+    {{ce-icon-link-button
+        class="profile-bar__notification-link"
+        data-test-profile-bar="notification-link"
+        href="https://cenchat.com/notifications/"
+        target="_blank"
+        title="Notifications"
+        aria-label="Notifications"
         badged=session.model.metaInfo.hasNewNotification
-        --onClick=(action handleNotificationDropdownClick)}}
-      {{#async-let
-          on=(async-property session.model.notifications)
-          placeholder=(component 'ce-spinner' aria-valuetext="Loading notifications")
-          as |notifications|}}
-        {{notification-list --notifications=notifications}}
-      {{/async-let}}
-    {{/ce-dropdown-button}}
-    
+        icon="notifications"}}
     {{ce-icon-button
         title="Sign out"
         aria-label="Sign out"
