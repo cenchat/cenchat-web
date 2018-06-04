@@ -35,7 +35,7 @@
 .side-nav__toolbar {
   display: flex;
   background-color: #fff;
-  box-shadow: var(--elevation);
+  border-top: 1px solid var(--divider-color);
 }
 
 .side-nav__toolbar-action--right-aligned {

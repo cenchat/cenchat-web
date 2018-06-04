@@ -80,7 +80,7 @@ module('Unit | Route | home', (hooks) => {
       // Assert
       assert.equal(route.get('headData.title'), 'Cenchat');
       assert.equal(route.get('headData.description'), 'Conversations at your site in a unique but familiar way');
-      assert.equal(route.get('headData.image'), 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat_white_1200.png?alt=media&token=c1aef38d-82d5-4bcf-a4e5-980e02b73bc1');
+      assert.equal(route.get('headData.image'), 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat-wordmark-bow-1200.png?alt=media&token=bf1daeb8-3f41-4cfc-8e00-19f6e11aad9e');
       assert.equal(route.get('headData.url'), 'https://cenchat.com');
       assert.equal(route.get('headData.type'), 'website');
     });

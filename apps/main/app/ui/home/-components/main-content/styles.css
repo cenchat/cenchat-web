@@ -145,7 +145,7 @@
 @media (min-width: 480px) {
   .home_main-content__demo iframe {
     border-radius: var(--border-radius-square);
-    box-shadow: var(--elevation);
+    box-shadow: var(--elevation-1);
   }
 }
 

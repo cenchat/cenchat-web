@@ -3,7 +3,7 @@
   align-items: center;
   width: 100%;
   background-color: var(--navbar-background-color);
-  box-shadow: var(--elevation);
+  box-shadow: var(--elevation-8);
 }
 
 @media (min-width: 960px) {
