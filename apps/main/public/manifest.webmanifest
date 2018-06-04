@@ -5,7 +5,7 @@
   "display":"standalone",
   "background_color":"#fafafa",
   "theme_color":"#e0e0e0",
-  "description":"Conversations in a unique but familiar way",
+  "description":"Discussion platform that prevents toxic comments",
   "icons":[
     {
       "src":"assets/images/icons/192.png",

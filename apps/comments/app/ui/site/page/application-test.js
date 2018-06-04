@@ -245,17 +245,4 @@ module('Acceptance | site/page', (hooks) => {
       .dom(`${replyItem} [data-test-content-message="deleted-message"]`)
       .exists();
   });
-
-  test('should show notifications', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    await visit('/sites/site_a/pages/page_a?slug=foobar');
-
-    // Act
-    await click('[data-test-profile-bar="notification-button"] > button');
-
-    // Assert
-    assert.dom('.notification-list-item').exists();
-  });
 });
