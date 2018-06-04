@@ -3,7 +3,6 @@ import { inject } from '@ember/service';
 import Controller from '@ember/controller';
 
 import fetch from 'fetch';
-
 import toast from '@cenchat/elements/utils/toast';
 
 /**

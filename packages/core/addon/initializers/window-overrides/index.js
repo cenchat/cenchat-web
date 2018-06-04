@@ -1,7 +1,5 @@
 import RSVP from 'rsvp';
 
-import fetch from 'fetch';
-
 /**
  * Overrides some window APIs
  *
@@ -9,7 +7,6 @@ import fetch from 'fetch';
  */
 export function initialize() {
   window.Promise = RSVP.Promise;
-  window.fetch = fetch;
 }
 
 export default {

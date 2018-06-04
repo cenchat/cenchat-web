@@ -40,6 +40,7 @@ module.exports = function(environment) {
       projectId: 'cenchat-stg',
       storageBucket: 'cenchat-stg.appspot.com',
       messagingSenderId: '72355646509',
+      publicVapidKey: 'BAxXl4TsJMXVhLdRVUCHq3oh_2nQQayI6cyYLqvoZmV5HJRr8D4GXkl5GrD05NORFMg-u9R6ire5ysYfkSg30p4',
     },
     metricsAdapters: [
       {
@@ -86,6 +87,7 @@ module.exports = function(environment) {
       projectId: 'cenchat-prod',
       storageBucket: 'cenchat-prod.appspot.com',
       messagingSenderId: '43732370545',
+      publicVapidKey: 'BC8fUR3LTWltL-Bbk0Q6HtxqYDhioK-W6__WCh0TdNQjiAIxnEg2bZr27JyNOrIba3JsmpcX-BQ5amXNeSwq3Kw',
     };
   }
 

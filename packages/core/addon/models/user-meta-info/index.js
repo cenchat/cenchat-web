@@ -16,4 +16,9 @@ export default Model.extend({
    * @type {boolean}
    */
   hasNewNotification: attr('boolean'),
+
+  /**
+   * @type {Array.<string>}
+   */
+  notificationTokens: attr(),
 });

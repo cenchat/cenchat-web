@@ -113,6 +113,7 @@ export default Component.extend({
           batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
             facebookAccessToken: null,
             hasNewNotification: false,
+            notificationTokens: [],
           });
 
           if (record.get('facebookId')) {

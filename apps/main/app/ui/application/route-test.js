@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import { waitUntil } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 import ObjectProxy from '@ember/object/proxy';
 
@@ -39,11 +40,32 @@ module('Unit | Route | application', (hooks) => {
       this.user = EmberObject.create({
         displayName: 'User A',
         facebookId: '12345',
-        metaInfo: EmberObject.create(),
+        metaInfo: EmberObject.create({
+          notificationTokens: [],
+
+          save() {},
+        }),
         photoUrl: 'user_a.jpg',
 
         save() {
           return stubPromise(true);
+        },
+      });
+      this.firebase = EmberObject.create({
+        messaging() {
+          return {
+            onTokenRefresh(callback) {
+              return callback();
+            },
+
+            getToken() {
+              return stubPromise(true, 'token_a');
+            },
+
+            requestPermission() {
+              return stubPromise(true);
+            },
+          };
         },
       });
       this.session = ObjectProxy.create({
@@ -80,6 +102,7 @@ module('Unit | Route | application', (hooks) => {
       const stub = sinon.stub().returns(stubPromise(true, this.user));
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', { findRecord: stub });
 
@@ -123,6 +146,7 @@ module('Unit | Route | application', (hooks) => {
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
@@ -155,6 +179,7 @@ module('Unit | Route | application', (hooks) => {
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
@@ -187,6 +212,7 @@ module('Unit | Route | application', (hooks) => {
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
@@ -217,6 +243,7 @@ module('Unit | Route | application', (hooks) => {
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
@@ -241,6 +268,7 @@ module('Unit | Route | application', (hooks) => {
       const saveSpy = sinon.spy(this.user, 'save');
       const route = this.owner.lookup('route:application');
 
+      route.set('firebase', this.firebase);
       route.set('session', this.session);
       route.set('store', {
         findRecord: sinon.stub().returns(stubPromise(true, this.user)),
@@ -261,6 +289,7 @@ module('Unit | Route | application', (hooks) => {
       const saveStub = sinon.stub().returns(stubPromise(true));
       const userMetaInfo = EmberObject.create({
         facebookAccessToken: '12345',
+        notificationTokens: [],
         save: saveStub,
       });
 
@@ -272,14 +301,18 @@ module('Unit | Route | application', (hooks) => {
       const signInStub = sinon.stub().returns(stubPromise(true, authData));
       const route = this.owner.lookup('route:application');
 
-      route.set('session', this.session);
-      route.set('store', {
-        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
-      });
       route.set('firebase', {
         auth: sinon.stub().returns({
           signInAndRetrieveDataWithCredential: signInStub,
         }),
+        messaging: sinon.stub().returns({
+          getToken: sinon.stub().returns(stubPromise(true, 'token_a')),
+          requestPermission: sinon.stub().returns(stubPromise(true)),
+        }),
+      });
+      route.set('session', this.session);
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
       });
 
       // Act
@@ -289,6 +322,35 @@ module('Unit | Route | application', (hooks) => {
       assert.ok(signInStub.calledOnce);
       assert.equal(userMetaInfo.get('facebookAccessToken'), '67890');
       assert.ok(saveStub.calledOnce);
+    });
+
+    test('should update notification tokens', async function (assert) {
+      assert.expect(2);
+
+      // Arrange
+      const saveStub = sinon.stub().returns(stubPromise(true));
+      const userMetaInfo = EmberObject.create({
+        notificationTokens: [],
+        save: saveStub,
+      });
+
+      this.user.set('metaInfo', userMetaInfo);
+
+      const route = this.owner.lookup('route:application');
+
+      route.set('firebase', this.firebase);
+      route.set('session', this.session);
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      await waitUntil(() => userMetaInfo.get('notificationTokens').length > 0);
+      assert.deepEqual(userMetaInfo.get('notificationTokens'), ['token_a']);
+      assert.ok(saveStub.calledTwice);
     });
   });
 });

@@ -345,21 +345,25 @@ export default function getFixtureData() {
           user_a: {
             facebookAccessToken: null,
             hasNewNotification: true,
+            notificationTokens: [],
           },
 
           user_b: {
             facebookAccessToken: null,
             hasNewNotification: true,
+            notificationTokens: [],
           },
 
           user_c: {
             facebookAccessToken: null,
             hasNewNotification: false,
+            notificationTokens: [],
           },
 
           user_d: {
             facebookAccessToken: null,
             hasNewNotification: false,
+            notificationTokens: [],
           },
         },
       },

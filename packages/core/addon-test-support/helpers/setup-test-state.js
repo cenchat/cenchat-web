@@ -54,6 +54,19 @@ export async function setupApplicationTestState(context) {
   stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
 
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
+  context.set('firebase.messaging', () => ({
+    onTokenRefresh(callback) {
+      return callback();
+    },
+
+    getToken() {
+      return stubPromise(true, 'token_a');
+    },
+
+    requestPermission() {
+      return stubPromise(true);
+    },
+  }));
   context.set('firebase.auth', () => ({
     signOut() {
       return stubPromise(true);
