@@ -238,7 +238,7 @@ module('Unit | Component | comment-composer', (hooks) => {
     this.comment = EmberObject.create({
       author: { id: 'user_a' },
       parsedAttachments: [],
-      taggedUsers: [],
+      taggedEntities: null,
       text: null,
 
       save() {
@@ -457,7 +457,70 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleTagEntityClick(user);
 
       // Assert
-      assert.deepEqual(this.comment.get('taggedEntities'), undefined);
+      assert.deepEqual(this.comment.get('taggedEntities'), null);
+    });
+
+    test('should not allow tagging more than 20 users', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const user = EmberObject.create({
+        id: 'user_b',
+        constructor: { modelName: 'user' },
+      });
+      const factory = this.owner.factoryFor('component:comment-composer');
+
+      this.comment.set('taggedEntities', {
+        user_1: 'user',
+        user_2: 'user',
+        user_3: 'user',
+        user_4: 'user',
+        user_5: 'user',
+        user_6: 'user',
+        user_7: 'user',
+        user_8: 'user',
+        user_9: 'user',
+        user_10: 'user',
+        user_11: 'user',
+        user_12: 'user',
+        user_13: 'user',
+        user_14: 'user',
+        user_15: 'user',
+        user_16: 'user',
+        user_17: 'user',
+        user_18: 'user',
+        user_19: 'user',
+        user_20: 'user',
+      });
+
+      const component = await factory.create({ '--comment': this.comment });
+
+      // Act
+      component.handleTagEntityClick(user);
+
+      // Assert
+      assert.deepEqual(this.comment.get('taggedEntities'), {
+        user_1: 'user',
+        user_2: 'user',
+        user_3: 'user',
+        user_4: 'user',
+        user_5: 'user',
+        user_6: 'user',
+        user_7: 'user',
+        user_8: 'user',
+        user_9: 'user',
+        user_10: 'user',
+        user_11: 'user',
+        user_12: 'user',
+        user_13: 'user',
+        user_14: 'user',
+        user_15: 'user',
+        user_16: 'user',
+        user_17: 'user',
+        user_18: 'user',
+        user_19: 'user',
+        user_20: 'user',
+      });
     });
   });
 

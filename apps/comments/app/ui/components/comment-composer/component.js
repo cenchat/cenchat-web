@@ -110,7 +110,12 @@ export default Component.extend({
    * @function
    */
   handleTagEntityClick(entity) {
-    if (entity.get('id') !== this.get('comment.author.id')) {
+    const taggedEntities = this.get('comment.taggedEntities');
+
+    if (
+      entity.get('id') !== this.get('comment.author.id')
+      && (!taggedEntities || Object.keys(taggedEntities).length < 20)
+    ) {
       this.set('comment.taggedEntities', {
         ...this.get('comment.taggedEntities'),
         [entity.get('id')]: entity.get('constructor.modelName'),
