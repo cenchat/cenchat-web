@@ -28,7 +28,11 @@
   border: 4px solid var(--hover-background-color);
 }
 
-.card--centerized {
+.card--centered-content {
+  text-align: center;
+}
+
+.card--centered-position {
   margin-right: auto;
   margin-left: auto;
 }
