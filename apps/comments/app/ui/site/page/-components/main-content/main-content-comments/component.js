@@ -30,8 +30,6 @@ export default Component.extend({
   async handleLoadMoreCommentsClick(newLimit) {
     this.set('--comments.query.limit', newLimit);
 
-    console.log(this.get('--comments'));
-
     return this.get('--comments').update();
   },
 });

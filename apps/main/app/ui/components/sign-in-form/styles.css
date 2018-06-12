@@ -2,19 +2,32 @@
   position: relative;
 }
 
-.sign-in-form__info-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 50;
-}
-
-.sign-in-form__footer {
-  padding-top: 8px;
+.sign-in-form__policy-message {
   margin: 0 16px 16px;
   font-size: var(--font-size-12);
   line-height: 1.25rem;
   color: var(--font-secondary-color);
-  text-align: center;
-  border-top: 1px solid var(--divider-color);
+}
+
+.sign-in-form__additional-message-container {
+  position: relative;
+}
+
+.sign-in-form__additional-message-container::before {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  left: 16px;
+  height: 1px;
+  content: '';
+  background-color: var(--divider-color);
+}
+
+.sign-in-form__additional-message {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin: 0 16px;
+  font-size: var(--font-size-12);
+  line-height: 1.25rem;
+  color: var(--font-secondary-color);
 }

@@ -1,24 +1,41 @@
+import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-// import { render } from '@ember/test-helpers';
 import { setupRenderingTest, setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import ObjectProxy from '@ember/object/proxy';
-// import hbs from 'htmlbars-inline-precompile';
+import hbs from 'htmlbars-inline-precompile';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Integration | Component | sign-in-form', (hooks) => {
   setupRenderingTest(hooks);
 
-  test('nothing to test', (assert) => {
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
+
+  test('should show additional sign in info when clicking show additional info', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await render(hbs`{{sign-in-form}}`);
+
+    // Act
+    await click('[data-test-sign-in-form="show-additional-info-button"]');
+
+    // Assert
+    assert.dom('[data-test-sign-in-form="additional-info"]').exists();
+  });
+
+  test('should hide additional sign in info by default', async function (assert) {
     assert.expect(1);
 
     // Act
-    // this.render(hbs`{{sign-in-form}}`);
+    await render(hbs`{{sign-in-form}}`);
 
     // Assert
-    assert.ok(true);
+    assert.dom('[data-test-sign-in-form="additional-info"]').doesNotExist();
   });
 });
 
