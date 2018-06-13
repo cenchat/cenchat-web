@@ -5,6 +5,7 @@
 }
 
 .comment-item__edit-form-container {
+  width: 100%;
   overflow: hidden;
 }
 

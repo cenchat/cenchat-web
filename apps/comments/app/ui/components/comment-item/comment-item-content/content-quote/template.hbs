@@ -8,7 +8,7 @@
   {{/if}}
 
   {{#if --comment.replyTo.text}}
-    <div data-test-content-quote="text">{{--comment.replyTo.text}}</div>
+    <div class="comment-item-content-quote__text" data-test-content-quote="text">{{linkify --comment.replyTo.text rel="noopener noreferrer"}}</div>
   {{/if}}
 
   {{#each --comment.replyTo.parsedAttachments as |attachment|}}
