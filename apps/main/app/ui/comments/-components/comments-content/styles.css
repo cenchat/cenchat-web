@@ -33,7 +33,8 @@
 
 .comments-content__message {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 32px;
+  white-space: pre-wrap;
 }
 
 .comments-content__attachment-container {

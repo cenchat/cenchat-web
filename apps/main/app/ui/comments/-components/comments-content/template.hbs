@@ -1,7 +1,7 @@
 <main class="comments-content layout__main">
   <figure class="comments-content__figure">
     <blockquote class="comments-content__blockquote">
-      <p class="comments-content__message" data-test-comments-content="message">{{--comment.text}}</p>
+      <p class="comments-content__message" data-test-comments-content="message">{{linkify --comment.text rel="noopener noreferrer"}}</p>
 
       <div class="comments-content__attachment-container">
         {{#each --comment.parsedAttachments as |attachment|}}
