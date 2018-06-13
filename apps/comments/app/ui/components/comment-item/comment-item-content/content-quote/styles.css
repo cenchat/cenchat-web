@@ -19,3 +19,7 @@
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+.comment-item-content-quote__text {
+  white-space: pre-wrap;
+}
