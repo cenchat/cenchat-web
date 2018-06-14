@@ -32,4 +32,34 @@ module('Integration | Component | comments/-components/comments-content', (hooks
       'http://site-a.com/foo/bar?cenchat_comment=comment_b',
     );
   });
+
+  test('should have medium text comment when text is within 140 - 280 chars', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('comment.text', 'Fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo');
+
+    // Act
+    await render(hbs`{{comments/-components/comments-content --comment=comment}}`);
+
+    // Assert
+    assert
+      .dom('[data-test-comments-content="blockquote"]')
+      .hasClass('comments-content__blockquote--medium');
+  });
+
+  test('should have small text comment when text is within > 280 chars', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('comment.text', 'Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo');
+
+    // Act
+    await render(hbs`{{comments/-components/comments-content --comment=comment}}`);
+
+    // Assert
+    assert
+      .dom('[data-test-comments-content="blockquote"]')
+      .hasClass('comments-content__blockquote--small');
+  });
 });

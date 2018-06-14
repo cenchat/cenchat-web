@@ -27,8 +27,19 @@
 .comments-content__blockquote {
   margin: 0;
   font-size: var(--font-size-45);
-  line-height: 48px;
+  line-height: var(--line-height-45);
   color: var(--font-primary-color);
+  text-align: center;
+}
+
+.comments-content__blockquote--medium {
+  font-size: var(--font-size-24);
+  line-height: var(--line-height-24);
+}
+
+.comments-content__blockquote--small {
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-16);
 }
 
 .comments-content__message {
@@ -52,7 +63,7 @@
 .comments-content__figcaption {
   font-size: var(--font-size-16);
   font-style: italic;
-  line-height: 24px;
+  line-height: var(--line-height-16);
   color: var(--font-secondary-color);
   text-align: right;
 }
