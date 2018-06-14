@@ -1,6 +1,8 @@
 <main class="comments-content layout__main">
   <figure class="comments-content__figure">
-    <blockquote class="comments-content__blockquote">
+    <blockquote
+        class="comments-content__blockquote {{blockQuoteClass}}"
+        data-test-comments-content="blockquote">
       <p class="comments-content__message" data-test-comments-content="message">{{linkify --comment.text rel="noopener noreferrer"}}</p>
 
       <div class="comments-content__attachment-container">
@@ -16,7 +18,7 @@
 
     <figcaption class="comments-content__figcaption">
       {{#if --comment.author}}
-        <a href={{href-to 'profile' --comment.author.urlKey}} data-test-comments-content="author-name">
+        <a href="{{href-to 'profile' --comment.author.urlKey}}" data-test-comments-content="author-name">
           {{--comment.author.displayName}}
         </a>, a comment on
       {{else}}
