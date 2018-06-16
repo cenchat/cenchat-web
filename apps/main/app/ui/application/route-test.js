@@ -324,6 +324,45 @@ module('Unit | Route | application', (hooks) => {
       assert.ok(saveStub.calledOnce);
     });
 
+    test('should clear Facebook access token when it is invalid', async function (assert) {
+      assert.expect(3);
+
+      // Arrange
+      const saveStub = sinon.stub().returns(stubPromise(true));
+      const userMetaInfo = EmberObject.create({
+        facebookAccessToken: '12345',
+        notificationTokens: [],
+        save: saveStub,
+      });
+
+      this.user.set('metaInfo', userMetaInfo);
+
+      const signInStub = sinon.stub().returns(stubPromise(false));
+      const route = this.owner.lookup('route:application');
+
+      route.set('firebase', {
+        auth: sinon.stub().returns({
+          signInAndRetrieveDataWithCredential: signInStub,
+        }),
+        messaging: sinon.stub().returns({
+          getToken: sinon.stub().returns(stubPromise(true, 'token_a')),
+          requestPermission: sinon.stub().returns(stubPromise(true)),
+        }),
+      });
+      route.set('session', this.session);
+      route.set('store', {
+        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
+      });
+
+      // Act
+      await route.afterModel();
+
+      // Assert
+      assert.ok(signInStub.calledOnce);
+      assert.equal(userMetaInfo.get('facebookAccessToken'), null);
+      assert.ok(saveStub.calledOnce);
+    });
+
     test('should update notification tokens', async function (assert) {
       assert.expect(2);
 
