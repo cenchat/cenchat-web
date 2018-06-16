@@ -65,17 +65,19 @@ export default Route.extend({
    */
   async updateFacebookAccessToken(profile) {
     const meta = await profile.get('metaInfo');
+    const facebookAccessToken = meta.get('facebookAccessToken');
 
-    if (meta.get('facebookAccessToken')) {
-      const credential = firebase
-        .auth
-        .FacebookAuthProvider
-        .credential(meta.get('facebookAccessToken'));
-      const authData = await this.get('firebase')
-        .auth()
-        .signInAndRetrieveDataWithCredential(credential);
+    if (facebookAccessToken) {
+      try {
+        const credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
+        const authData = await this.get('firebase')
+          .auth()
+          .signInAndRetrieveDataWithCredential(credential);
 
-      meta.set('facebookAccessToken', authData.credential.accessToken);
+        meta.set('facebookAccessToken', authData.credential.accessToken);
+      } catch (error) {
+        meta.set('facebookAccessToken', null);
+      }
 
       await meta.save();
     }
