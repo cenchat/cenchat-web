@@ -21,6 +21,7 @@ export default Controller.extend({
     try {
       model.set('displayName', profile.displayName);
       model.set('displayUsername', profile.username);
+      model.set('name', profile.displayName.toLowerCase());
       model.set('shortBio', profile.shortBio);
       model.set('username', profile.username.toLowerCase());
 

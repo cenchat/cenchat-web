@@ -76,7 +76,10 @@ export default Component.extend({
         user = store.createRecord('user', {
           id: currentUser.uid,
           displayName: currentUser.displayName,
+          displayUsername: null,
+          name: currentUser.displayName.toLowerCase(),
           photoUrl: currentUser.photoURL,
+          username: null,
         });
 
         for (const provider of currentUser.providerData) {

@@ -15,8 +15,8 @@ export default Component.extend({
    * @type {Object}
    */
   site: {
+    displayName: null,
     hostname: null,
-    name: null,
     theme: 'light',
   },
 

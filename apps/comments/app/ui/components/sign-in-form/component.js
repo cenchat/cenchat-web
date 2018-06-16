@@ -95,6 +95,7 @@ export default Component.extend({
       displayName: currentUser.displayName,
       displayUsername: null,
       facebookId: null,
+      name: currentUser.displayName.toLowerCase(),
       photoUrl: currentUser.photoURL,
       username: null,
     });

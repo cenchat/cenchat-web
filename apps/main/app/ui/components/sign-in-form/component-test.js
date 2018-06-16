@@ -112,7 +112,10 @@ module('Unit | Component | sign-in-form', (hooks) => {
         {
           id: 'user_a',
           displayName: 'User A',
+          displayUsername: null,
+          name: 'user a',
           photoUrl: 'user_a.jpg',
+          username: null,
         },
       ));
       assert.equal(this.session.get('content.model.facebookId'), '12345');

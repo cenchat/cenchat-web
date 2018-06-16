@@ -12,7 +12,7 @@
 
   {{ce-field
       class="card__field"
-      name="name"
+      name="displayName"
       data-test-site-form="name-field" 
       type="text"
       required=true
@@ -34,7 +34,7 @@
       class="card__action"
       data-test-site-form="submit-button"
       type="submit"
-      disabled=(not (and site.hostname site.name))}}
+      disabled=(not (and site.hostname site.displayName))}}
     Save
   {{/ce-button}}
 {{/ce-form}}

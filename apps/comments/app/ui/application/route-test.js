@@ -85,7 +85,7 @@ module('Unit | Route | application', (hooks) => {
     });
 
     test('should update profile when Facebook UID is outdated with Facebook info', async function (assert) {
-      assert.expect(5);
+      assert.expect(6);
 
       // Arrange
       this.session.get('currentUser.providerData')[0].uid = '67890';
@@ -108,6 +108,7 @@ module('Unit | Route | application', (hooks) => {
       // Assert
       assert.equal(this.user.get('facebookId'), '67890');
       assert.equal(this.user.get('displayName'), 'User A');
+      assert.equal(this.user.get('name'), 'user a');
       assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
       assert.ok(saveSpy.calledOnce);
       assert.ok(updateProfileSpy.calledWithExactly({
@@ -117,7 +118,7 @@ module('Unit | Route | application', (hooks) => {
     });
 
     test('should update profile when display name is outdated with Facebook info', async function (assert) {
-      assert.expect(5);
+      assert.expect(6);
 
       // Arrange
       this.session.get('currentUser.providerData')[0].displayName = 'New name';
@@ -140,6 +141,7 @@ module('Unit | Route | application', (hooks) => {
       // Assert
       assert.equal(this.user.get('facebookId'), '12345');
       assert.equal(this.user.get('displayName'), 'New name');
+      assert.equal(this.user.get('name'), 'new name');
       assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
       assert.ok(saveSpy.calledOnce);
       assert.ok(updateProfileSpy.calledWithExactly({
@@ -149,7 +151,7 @@ module('Unit | Route | application', (hooks) => {
     });
 
     test('should update profile when photo url is outdated with Facebook info', async function (assert) {
-      assert.expect(5);
+      assert.expect(6);
 
       // Arrange
       this.session.get('currentUser.providerData')[0].photoURL = 'new.jpg';
@@ -172,6 +174,7 @@ module('Unit | Route | application', (hooks) => {
       // Assert
       assert.equal(this.user.get('facebookId'), '12345');
       assert.equal(this.user.get('displayName'), 'User A');
+      assert.equal(this.user.get('name'), 'user a');
       assert.equal(this.user.get('photoUrl'), 'new.jpg');
       assert.ok(saveSpy.calledOnce);
       assert.ok(updateProfileSpy.calledWithExactly({

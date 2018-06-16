@@ -11,6 +11,11 @@ export default Model.extend({
   /**
    * @type {string}
    */
+  displayName: attr('string'),
+
+  /**
+   * @type {string}
+   */
   hostname: attr('string'),
 
   /**
