@@ -41,22 +41,25 @@ export default Component.extend({
     const batch = db.batch();
     const currentUserId = this.get('session.model.id');
     const currentUserDocRef = db.collection('users').doc(currentUserId);
-    const {
-      id: userToFollowId,
-      displayName: userToFollowDisplayName,
-    } = this.get('--userToFollow').getProperties('id', 'displayName');
-    const userToFollowDocRef = db.collection('users').doc(userToFollowId);
+    const { id, displayName, name } = this.get('--userToFollow').getProperties(
+      'id',
+      'displayName',
+      'name',
+    );
+    const userToFollowDocRef = db.collection('users').doc(id);
 
-    batch.set(currentUserDocRef.collection('followings').doc(userToFollowId), {
+    batch.set(currentUserDocRef.collection('followings').doc(id), {
+      name,
       cloudFirestoreReference: userToFollowDocRef,
     });
     batch.set(userToFollowDocRef.collection('followers').doc(currentUserId), {
       cloudFirestoreReference: currentUserDocRef,
+      name: this.get('session.model.name'),
     });
 
     await batch.commit();
 
-    toast(`Followed ${userToFollowDisplayName}`);
+    toast(`Followed ${displayName}`);
 
     if (this.get('--onFollowUser')) {
       this.get('--onFollowUser')();
