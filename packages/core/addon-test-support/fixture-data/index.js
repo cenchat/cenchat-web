@@ -226,10 +226,11 @@ export default function getFixtureData() {
       sites: {
         __doc__: {
           site_a: {
+            displayName: 'Site A',
             hostname: 'site-a.com',
             imageUrl: 'site_a.jpg',
             isVerified: true,
-            name: 'Site A',
+            name: 'site a',
             theme: 'light',
 
             __collection__: {
@@ -248,10 +249,11 @@ export default function getFixtureData() {
           },
 
           site_b: {
+            displayName: 'Site B',
             hostname: 'site-b.com',
             imageUrl: 'site_b.jpg',
             isVerified: false,
-            name: 'Site B',
+            name: 'site b',
             theme: 'light',
 
             __collection__: {
@@ -266,10 +268,11 @@ export default function getFixtureData() {
           },
 
           site_c: {
+            displayName: 'Site C',
             hostname: 'site-c.com',
             imageUrl: 'site_c.jpg',
             isVerified: false,
-            name: 'Site C',
+            name: 'site c',
             theme: 'light',
 
             __collection__: {
@@ -374,6 +377,7 @@ export default function getFixtureData() {
             displayName: 'User A',
             displayUsername: null,
             facebookId: null,
+            name: 'user a',
             photoUrl: 'user_a.jpg',
             shortBio: null,
             username: null,
@@ -383,6 +387,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_b: {
                     cloudFirestoreReference: '__ref__:users/user_b',
+                    name: 'user b',
                   },
                 },
               },
@@ -475,10 +480,12 @@ export default function getFixtureData() {
                 __doc__: {
                   user_b: {
                     cloudFirestoreReference: '__ref__:users/user_b',
+                    name: 'user b',
                   },
 
                   user_d: {
                     cloudFirestoreReference: '__ref__:users/user_d',
+                    name: 'user d',
                   },
                 },
               },
@@ -487,10 +494,12 @@ export default function getFixtureData() {
                 __doc__: {
                   site_a: {
                     cloudFirestoreReference: '__ref__:sites/site_a',
+                    name: 'site a',
                   },
 
                   site_b: {
                     cloudFirestoreReference: '__ref__:sites/site_b',
+                    name: 'site b',
                   },
                 },
               },
@@ -513,6 +522,7 @@ export default function getFixtureData() {
             displayName: 'User B',
             displayUsername: 'user_b',
             facebookId: null,
+            name: 'user b',
             photoUrl: 'user_b.jpg',
             shortBio: null,
             username: 'user_b',
@@ -522,6 +532,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
+                    name: 'user a',
                   },
                 },
               },
@@ -574,6 +585,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
+                    name: 'user a',
                   },
                 },
               },
@@ -596,6 +608,7 @@ export default function getFixtureData() {
             displayName: 'User C',
             displayUsername: 'user_c',
             facebookId: null,
+            name: 'user c',
             photoUrl: 'user_c.jpg',
             shortBio: null,
             username: 'user_c',
@@ -605,10 +618,12 @@ export default function getFixtureData() {
                 __doc__: {
                   site_a: {
                     cloudFirestoreReference: '__ref__:sites/site_a',
+                    name: 'site a',
                   },
 
                   site_c: {
                     cloudFirestoreReference: '__ref__:sites/site_c',
+                    name: 'site c',
                   },
                 },
               },
@@ -640,6 +655,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
+                    name: 'user a',
                   },
                 },
               },

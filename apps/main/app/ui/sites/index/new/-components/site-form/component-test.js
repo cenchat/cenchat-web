@@ -81,8 +81,8 @@ module('Integration | Component | sites/index/new/-components/site-form', (hooks
 
     // Assert
     assert.ok(spy.calledWith({
+      displayName: 'Foo',
       hostname: 'foo.com',
-      name: 'Foo',
       theme: 'dark',
     }));
   });

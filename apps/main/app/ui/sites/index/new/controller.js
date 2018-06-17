@@ -16,7 +16,10 @@ export default Controller.extend({
   async handleSiteFormSubmit(siteData, event) {
     event.preventDefault();
 
-    const site = this.get('store').createRecord('site', { ...siteData });
+    const site = this.get('store').createRecord('site', {
+      ...siteData,
+      name: siteData.displayName.toLowerCase(),
+    });
     const currentUserId = this.get('session.model.id');
 
     await site.save({

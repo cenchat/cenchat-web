@@ -85,6 +85,7 @@ export async function setupApplicationTestState(context) {
         email: 'user_a@gmail.com',
         photoURL: 'user_a.jpg',
         providerData: [{
+          displayName: 'User A',
           photoURL: 'user_a.jpg',
           providerId: 'facebook.com',
         }],

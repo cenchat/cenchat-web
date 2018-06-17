@@ -29,8 +29,8 @@ module('Unit | Controller | sites/index/new', (hooks) => {
 
       // Act
       await controller.handleSiteFormSubmit({
+        displayName: 'Foo',
         hostname: 'foo.com',
-        name: 'Foo',
         theme: 'light',
       }, {
         preventDefault: sinon.stub(),
@@ -40,8 +40,9 @@ module('Unit | Controller | sites/index/new', (hooks) => {
       assert.ok(createRecordStub.calledWithExactly(
         'site',
         {
+          displayName: 'Foo',
           hostname: 'foo.com',
-          name: 'Foo',
+          name: 'foo',
           theme: 'light',
         },
       ));
@@ -65,8 +66,8 @@ module('Unit | Controller | sites/index/new', (hooks) => {
 
       // Act
       await controller.handleSiteFormSubmit({
+        displayName: 'Foo',
         hostname: 'foo.com',
-        name: 'Foo',
         theme: 'light',
       }, {
         preventDefault: sinon.stub(),

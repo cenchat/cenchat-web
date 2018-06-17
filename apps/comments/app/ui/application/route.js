@@ -94,6 +94,7 @@ export default Route.extend({
 
     profile.set('facebookId', facebookProviderData.uid);
     profile.set('displayName', facebookProviderData.displayName);
+    profile.set('name', facebookProviderData.displayName.toLowerCase());
     profile.set('photoUrl', facebookProviderData.photoURL);
 
     return Promise.all([

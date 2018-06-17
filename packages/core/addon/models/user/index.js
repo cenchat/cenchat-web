@@ -34,6 +34,11 @@ export default Model.extend({
   /**
    * @type {string}
    */
+  name: attr('string'),
+
+  /**
+   * @type {string}
+   */
   photoUrl: attr('string'),
 
   /**

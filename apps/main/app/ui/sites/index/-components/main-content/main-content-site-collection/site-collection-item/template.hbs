@@ -5,13 +5,17 @@
     onclick={{action handleSiteClick}}
     onkeydown={{action handleSiteKeydown}}>
   {{#if --site.imageUrl}}
-    <img class="card__image" data-test-site-collection-item="image" src="{{--site.imageUrl}}" alt="{{--site.name}}">
+    <img
+        class="card__image"
+        data-test-site-collection-item="image"
+        src="{{--site.imageUrl}}"
+        alt="{{--site.displayName}}">
   {{/if}}
 
   <header class="sites-index_site-collection-item__header card__header card__header--small">
     <div class="sites-index_site-collection-item__header-primary-info">
       <h3 class="card__heading card__heading--small card__short-text" data-test-site-collection-item="name">
-        {{--site.name}}
+        {{--site.displayName}}
       </h3>
 
       <p class="card__subheading card__short-text" data-test-site-collection-item="hostname">{{--site.hostname}}</p>
