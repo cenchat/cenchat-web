@@ -646,6 +646,7 @@ export default function getFixtureData() {
             displayName: 'User D',
             displayUsername: 'user_d',
             facebookId: null,
+            name: 'user d',
             photoUrl: 'user_d.jpg',
             shortBio: null,
             username: 'user_d',
