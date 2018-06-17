@@ -34,7 +34,7 @@ export default Component.extend({
 
     window.addEventListener('resize', this.get('handleResize'));
 
-    const selector = this.get('--selector');
+    const { selector } = this.args;
     const element = selector ? document.querySelector(selector) : window;
 
     this.set('scrollerElement', element);
@@ -96,15 +96,17 @@ export default Component.extend({
    * @private
    */
   async loadMoreRecords() {
-    const query = this.get('--query');
+    const { query } = this.args;
 
     if (query.length >= this.get('numOfRecordsLimit')) {
       const newLimit = this.get('numOfRecordsLimit') + 8;
 
       this.set('numOfRecordsLimit', newLimit);
 
-      if (this.get('--onLoadMoreRecords')) {
-        this.get('--onLoadMoreRecords')(newLimit);
+      const { onLoadMoreRecords } = this.args;
+
+      if (onLoadMoreRecords) {
+        onLoadMoreRecords(newLimit);
       } else if (query.reload) {
         query.relationship.relationshipMeta.options.limit = newLimit;
 

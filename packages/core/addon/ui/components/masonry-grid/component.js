@@ -40,7 +40,7 @@ export default Component.extend({
       let direction = 'right';
       let currentColumn = 0;
 
-      this.get('--items').forEach((item) => {
+      this.args.items.forEach((item) => {
         if (columnGroupedItems.length < numOfColumns) {
           columnGroupedItems.push([]);
         }

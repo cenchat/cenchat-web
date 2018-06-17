@@ -17,12 +17,12 @@ export default Component.extend({
    */
   gif: computed('--gif', {
     get() {
-      const gif = this.get('--gif');
+      const { id, media, title: description } = this.args.gif;
 
       return {
-        id: gif.id,
-        description: gif.title,
-        imageUrl: gif.media[0].tinygif.url,
+        id,
+        description,
+        imageUrl: media[0].tinygif.url,
         type: 'tenor_gif',
       };
     },

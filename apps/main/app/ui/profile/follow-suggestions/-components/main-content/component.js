@@ -23,7 +23,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    this.set('followSuggestions', this.get('--followSuggestions'));
+    this.set('followSuggestions', this.args.followSuggestions);
   },
 
   /**

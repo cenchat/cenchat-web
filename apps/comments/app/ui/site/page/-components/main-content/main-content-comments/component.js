@@ -17,8 +17,8 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    if (this.get('--comments.length') === 0 && this.get('--filterCommentsBy') === 'relevance') {
-      this.get('--onFilterCommentsClick')('all');
+    if (this.args.comments.length === 0 && this.args.filterCommentsBy === 'relevance') {
+      this.args.onFilterCommentsClick('all');
     }
   },
 
@@ -30,6 +30,6 @@ export default Component.extend({
   async handleLoadMoreCommentsClick(newLimit) {
     this.set('--comments.query.limit', newLimit);
 
-    return this.get('--comments').update();
+    return this.args.comments.update();
   },
 });

@@ -75,7 +75,7 @@ export default Component.extend({
    * @function
    */
   handleSelectFieldChange(target) {
-    const onChange = this.get('--onChange');
+    const { onChange } = this.args;
 
     if (onChange) {
       onChange(target);
@@ -128,7 +128,7 @@ export default Component.extend({
       this.set('isInvalid', !!feedback);
       this.set('feedback', feedback);
 
-      const onInput = this.get('--onInput');
+      const { onInput } = this.args;
 
       if (onInput) {
         if (feedback) {

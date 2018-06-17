@@ -20,11 +20,11 @@ export default Component.extend({
    * @function
    */
   async loadMoreComments() {
-    const comments = this.get('--comments');
+    const { comments } = this.args;
     const newLimit = this.get('limit') + 4;
 
     if (comments.get('length') <= this.get('limit')) {
-      await this.get('--onLoadMoreCommentsClick')(newLimit);
+      await this.args.onLoadMoreCommentsClick(newLimit);
     }
 
     this.set('limit', newLimit);

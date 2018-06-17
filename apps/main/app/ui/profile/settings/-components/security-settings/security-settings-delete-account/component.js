@@ -55,7 +55,7 @@ export default Component.extend({
       action: () => {},
 
       scheduledAction: () => {
-        this.get('--onDeleteAccountToastCompletion')();
+        this.args.onDeleteAccountToastCompletion();
       },
     });
   },

@@ -26,7 +26,7 @@ export default Component.extend({
    */
   handleFieldInput(event) {
     this.resizeField();
-    this.get('--onTextBoxInput')(event.target.value);
+    this.args.onTextBoxInput(event.target.value);
   },
 
   /**

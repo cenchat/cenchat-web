@@ -22,7 +22,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    this.set('threadLevel', this.get('--threadLevel') + 1);
+    this.set('threadLevel', this.args.threadLevel + 1);
   },
 
   /**

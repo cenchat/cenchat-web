@@ -37,7 +37,7 @@ export default Component.extend({
   submit(event) {
     event.preventDefault();
 
-    if (this.get('--onSubmit')) {
+    if (this.args.onSubmit) {
       this.get('triggerOnSubmit').perform(event);
     }
   },
@@ -54,7 +54,7 @@ export default Component.extend({
     submitButton.setAttribute('performing', '');
 
     try {
-      yield this.get('--onSubmit')(event);
+      yield this.args.onSubmit(event);
     } finally {
       submitButton.disabled = false;
       submitButton.removeAttribute('performing');

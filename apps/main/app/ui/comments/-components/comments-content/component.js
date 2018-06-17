@@ -17,13 +17,13 @@ export default Component.extend({
    */
   blockQuoteClass: computed('--comment.text', {
     get() {
-      const commentText = this.get('--comment.text');
+      const { text } = this.args.comment;
       let blockquoteClass = '';
 
-      if (commentText) {
-        if (commentText.length > 280) {
+      if (text) {
+        if (text.length > 280) {
           blockquoteClass = 'comments-content__blockquote--small';
-        } else if (commentText.length > 140) {
+        } else if (text.length > 140) {
           blockquoteClass = 'comments-content__blockquote--medium';
         }
       }

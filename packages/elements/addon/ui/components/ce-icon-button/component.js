@@ -55,7 +55,7 @@ export default Component.extend({
     // See: https://medium.com/square-corner-blog/deep-dive-on-ember-events-cf684fd3b808
     this.get('element').addEventListener('click', (event) => {
       run(() => {
-        if (this.get('--onClick')) {
+        if (this.args.onClick) {
           this.get('triggerOnClick').perform(event);
         }
       });
@@ -71,7 +71,7 @@ export default Component.extend({
     this.set('disabled', true);
 
     try {
-      yield this.get('--onClick')(event);
+      yield this.args.onClick(event);
     } finally {
       this.set('disabled', false);
     }

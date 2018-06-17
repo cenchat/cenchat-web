@@ -38,7 +38,7 @@ export default Component.extend({
    * @function
    */
   async handleDeleteCommentClick() {
-    const comment = this.get('--comment');
+    const { comment } = this.args;
 
     comment.set('attachments', null);
     comment.set('isAskMeAnything', false);
@@ -64,7 +64,7 @@ export default Component.extend({
    */
   async handleShareCommentClick() {
     if (navigator.share) {
-      const comment = this.get('--comment');
+      const { comment } = this.args;
       const author = await comment.get('author');
 
       navigator.share({
@@ -92,7 +92,7 @@ export default Component.extend({
    * @function
    */
   handleCancelEditClick() {
-    this.get('--comment').rollbackAttributes();
+    this.args.comment.rollbackAttributes();
     this.set('isEditingComment', false);
   },
 
