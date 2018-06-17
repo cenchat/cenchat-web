@@ -18,7 +18,11 @@ module('Unit | Component | follow-user-button', (hooks) => {
       assert.expect(2);
 
       // Arrange
-      const userToFollow = EmberObject.create({ id: 'user_c', displayName: 'User C' });
+      const userToFollow = EmberObject.create({
+        id: 'user_c',
+        displayName: 'User C',
+        name: 'user c',
+      });
       const factory = this.owner.factoryFor('component:follow-user-button');
       const component = await factory.create({
         firebase: this.firebase,
@@ -37,14 +41,20 @@ module('Unit | Component | follow-user-button', (hooks) => {
         .doc('user_c')
         .get();
 
-      assert.deepEqual(followingDocSnapshot.get('cloudFirestoreReference'), followedUserDocRef);
+      assert.deepEqual(followingDocSnapshot.data(), {
+        cloudFirestoreReference: followedUserDocRef,
+        name: 'user c',
+      });
 
       const followerDocSnapshot = await followedUserDocRef
         .collection('followers')
         .doc('user_a')
         .get();
 
-      assert.deepEqual(followerDocSnapshot.get('cloudFirestoreReference'), currentUserDocRef);
+      assert.deepEqual(followerDocSnapshot.data(), {
+        cloudFirestoreReference: currentUserDocRef,
+        name: 'user a',
+      });
     });
   });
 });
