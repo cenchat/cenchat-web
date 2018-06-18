@@ -88,8 +88,8 @@ export default Component.extend({
     event.stopPropagation();
     this.openMenu();
 
-    if (this.get('--onClick')) {
-      this.get('--onClick')();
+    if (this.args.onClick) {
+      this.args.onClick();
     }
   },
 

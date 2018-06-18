@@ -38,10 +38,11 @@ export default Component.extend({
    * @function
    */
   async checkIfUserIsBeingFollowed() {
-    const currentUser = this.get('--session.model');
+    const { id } = this.args.user;
+    const currentUser = this.args.session.get('model');
 
-    if (currentUser && currentUser.get('id') !== this.get('--user.id')) {
-      const isUserBeingFollowed = await currentUser.isFollowing(this.get('--user.id'));
+    if (currentUser && currentUser.get('id') !== id) {
+      const isUserBeingFollowed = await currentUser.isFollowing(id);
 
       if (!this.get('isDestroyed')) {
         this.set('isUserBeingFollowed', isUserBeingFollowed);

@@ -43,14 +43,14 @@ export default Component.extend({
     await comment.save();
     toast('Comment sent');
 
-    if (!this.get('--comment')) {
+    if (!this.args.comment) {
       const newComment = await this.createComment();
 
       this.set('comment', newComment);
     }
 
-    if (this.get('--onSendCommentSuccess')) {
-      this.get('--onSendCommentSuccess')(comment);
+    if (this.args.onSendCommentSuccess) {
+      this.args.onSendCommentSuccess(comment);
     }
   },
 
@@ -152,12 +152,12 @@ export default Component.extend({
    * @private
    */
   async setupComment() {
-    if (this.get('--comment')) {
-      this.set('comment', this.get('--comment'));
-    } else {
-      const comment = await this.createComment();
+    const { comment } = this.args;
 
+    if (comment) {
       this.set('comment', comment);
+    } else {
+      this.set('comment', await this.createComment());
     }
   },
 
@@ -167,7 +167,7 @@ export default Component.extend({
    * @private
    */
   async createComment() {
-    const replyTo = this.get('--replyTo');
+    const { page, replyTo } = this.args;
     let root = replyTo;
 
     if (replyTo && replyTo.belongsTo('root').id()) {
@@ -175,14 +175,14 @@ export default Component.extend({
     }
 
     return this.get('store').createRecord('comment', {
+      page,
       replyTo,
       root,
       attachments: null,
       author: this.get('session.model'),
       isAskMeAnything: false,
       isDeleted: false,
-      page: this.get('--page'),
-      site: this.get('--page.site'),
+      site: page.get('site'),
       status: 'approved',
       taggedEntities: null,
       text: null,

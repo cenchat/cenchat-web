@@ -36,6 +36,6 @@ export default Component.extend({
    * @private
    */
   transitionToSite() {
-    this.get('--router').transitionTo('sites.site', this.get('--site.id'));
+    this.args.router.transitionTo('sites.site', this.args.site.id);
   },
 });

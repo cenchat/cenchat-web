@@ -24,7 +24,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    const notification = this.get('--notification');
+    const { notification } = this.args;
 
     notification.get('to').then((toUser) => {
       const fromId = notification.get('from.id');

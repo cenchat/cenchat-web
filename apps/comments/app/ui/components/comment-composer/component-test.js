@@ -253,7 +253,7 @@ module('Unit | Component | comment-composer', (hooks) => {
 
       // Arrange
       const site = { id: 'site_a' };
-      const page = { site, id: 'page_a' };
+      const page = EmberObject.create({ site, id: 'page_a' });
       const createRecordStub = sinon.stub().returns(this.comment);
       const factory = this.owner.factoryFor('component:comment-composer');
 
@@ -314,7 +314,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({
         store: { createRecord: sinon.stub().returns(this.comment) },
         session: { model: 'sessionModel' },
-        '--page': 'page',
+        '--page': EmberObject.create({ id: 'page_a' }),
       });
 
       // Act
@@ -333,7 +333,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({
         store: { createRecord: sinon.stub().returns(this.comment) },
         session: { model: 'sessionModel' },
-        '--page': 'page',
+        '--page': EmberObject.create({ id: 'page_a' }),
         '--onSendCommentSuccess': onSendCommentSuccessStub,
       });
 

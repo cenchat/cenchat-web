@@ -15,6 +15,6 @@ export default Component.extend({
    * @param {Element} target
    */
   triggerSearchUserInput(target) {
-    this.get('--onSearchUserInput')(target.value);
+    this.args.onSearchUserInput(target.value);
   },
 });

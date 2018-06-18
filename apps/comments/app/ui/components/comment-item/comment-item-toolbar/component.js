@@ -17,11 +17,11 @@ export default Component.extend({
    */
   isReplyButtonVisible: computed('--session.model', {
     get() {
-      const threadLevel = this.get('--threadLevel');
+      const { threadLevel } = this.args;
 
       if (threadLevel >= 3) {
         return false;
-      } else if (threadLevel === 2 && !this.get('--session.model')) {
+      } else if (threadLevel === 2 && !this.args.session.get('model')) {
         return false;
       }
 

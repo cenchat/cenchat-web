@@ -16,6 +16,6 @@ export default Component.extend({
    * @function
    */
   handleSearchInput(target) {
-    this.get('--onSearchInput')(target.value);
+    this.args.onSearchInput(target.value);
   },
 });

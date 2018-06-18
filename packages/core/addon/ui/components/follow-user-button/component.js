@@ -41,11 +41,7 @@ export default Component.extend({
     const batch = db.batch();
     const currentUserId = this.get('session.model.id');
     const currentUserDocRef = db.collection('users').doc(currentUserId);
-    const { id, displayName, name } = this.get('--userToFollow').getProperties(
-      'id',
-      'displayName',
-      'name',
-    );
+    const { id, displayName, name } = this.args.userToFollow;
     const userToFollowDocRef = db.collection('users').doc(id);
 
     batch.set(currentUserDocRef.collection('followings').doc(id), {
@@ -61,8 +57,8 @@ export default Component.extend({
 
     toast(`Followed ${displayName}`);
 
-    if (this.get('--onFollowUser')) {
-      this.get('--onFollowUser')();
+    if (this.args.onFollowUser) {
+      this.args.onFollowUser();
     }
   },
 });

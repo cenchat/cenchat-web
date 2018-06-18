@@ -22,8 +22,10 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    if (this.get('--comment')) {
-      this.set('prioritizedComments', [this.get('--comment')]);
+    const { comment } = this.args;
+
+    if (comment) {
+      this.set('prioritizedComments', [comment]);
     }
   },
 
