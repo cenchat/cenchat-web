@@ -110,7 +110,7 @@ export default Model.extend({
    */
   isMessageValid: computed('attachments', 'text', {
     get() {
-      if (this.get('text') || (this.get('attachments') && this.get('attachments').length > 0)) {
+      if (this.text || (this.attachments && this.attachments.length > 0)) {
         return true;
       }
 
@@ -137,7 +137,7 @@ export default Model.extend({
         this.set('_isFromFollowing', false);
       }
 
-      return this.get('_isFromFollowing');
+      return this._isFromFollowing;
     },
 
     set(key, value) {
@@ -156,7 +156,7 @@ export default Model.extend({
         this.set('isAskMeAnythingAllowed', isSiteAdmin)
       ));
 
-      return this.get('_isAskMeAnythingAllowed');
+      return this._isAskMeAnythingAllowed;
     },
 
     set(key, value) {
@@ -171,11 +171,11 @@ export default Model.extend({
    */
   isTextAllowed: computed({
     get() {
-      if (this.get('text')) {
+      if (this.text) {
         this.set('_isTextAllowed', true);
       }
 
-      if (!this.get('_isTextAllowed')) {
+      if (!this._isTextAllowed) {
         if (this.get('replyTo.isAskMeAnything')) {
           this.set('_isTextAllowed', true);
         } else {
@@ -191,7 +191,7 @@ export default Model.extend({
         }
       }
 
-      return this.get('_isTextAllowed');
+      return this._isTextAllowed;
     },
 
     set(key, value) {
@@ -205,18 +205,15 @@ export default Model.extend({
    * @type {Array}
    */
   parsedAttachments: promiseArray((context) => {
-    if (Array.isArray(context.get('attachments'))) {
-      const requests = [];
+    const { attachments } = context;
 
-      context.get('attachments').forEach((attachment) => {
-        if (attachment.type === 'sticker') {
-          requests.push(context.get('store').findRecord(
-            'sticker',
-            attachment.id,
-          ));
-        } else if (attachment.type === 'tenor_gif') {
-          requests.push(context.findTenorGif(attachment.id));
+    if (Array.isArray(attachments)) {
+      const requests = attachments.map(({ id, type }) => {
+        if (type === 'sticker') {
+          return context.store.findRecord('sticker', id);
         }
+
+        return context.findTenorGif(id);
       });
 
       return Promise.all(requests);
@@ -229,20 +226,21 @@ export default Model.extend({
    * @type {Array}
    */
   parsedTaggedEntities: promiseArray((context) => {
-    const requests = [];
-    const taggedEntities = context.get('taggedEntities');
+    const { taggedEntities } = context;
 
     if (taggedEntities) {
-      for (const entity of Object.keys(taggedEntities)) {
-        if (taggedEntities[entity] === 'user') {
-          const findRecord = context.get('store').findRecord('user', entity);
+      const requests = [];
 
-          requests.push(findRecord);
+      Object.keys(taggedEntities).forEach((entity) => {
+        if (taggedEntities[entity] === 'user') {
+          requests.push(context.store.findRecord('user', entity));
         }
-      }
+      });
+
+      return Promise.all(requests);
     }
 
-    return Promise.all(requests);
+    return Promise.all([]);
   }, 'taggedEntities'),
 
   /**
@@ -261,10 +259,10 @@ export default Model.extend({
    * @function
    */
   loadReplies() {
-    const commentId = this.get('id');
+    const commentId = this.id;
 
     if (!this.belongsTo('root').id()) {
-      return this.get('store').query('comment', {
+      return this.store.query('comment', {
         queryId: `${commentId}_replies`,
         limit: 2,
 
@@ -280,7 +278,7 @@ export default Model.extend({
       });
     }
 
-    return this.get('store').query('comment', {
+    return this.store.query('comment', {
       queryId: `${commentId}_replies`,
       limit: 2,
 

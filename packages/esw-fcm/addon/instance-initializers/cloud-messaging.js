@@ -8,7 +8,7 @@ export function initialize(appInstance) {
 
   if (
     fastboot
-    && !fastboot.get('isFastBoot')
+    && !fastboot.isFastBoot
     && 'serviceWorker' in navigator
     && config.environment !== 'test'
   ) {

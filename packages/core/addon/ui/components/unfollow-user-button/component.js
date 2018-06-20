@@ -41,10 +41,11 @@ export default Component.extend({
 
     toast(`Unfollowed ${displayName}`, 10000, {
       text: 'Undo',
+
       scheduledAction: async () => {
-        const db = this.get('firebase').firestore();
+        const db = this.firebase.firestore();
         const batch = db.batch();
-        const currentUserId = this.get('session.model.id');
+        const currentUserId = this.session.get('model').id;
         const currentUserDocRef = db.collection('users').doc(currentUserId);
         const userToUnfollowDocRef = db.collection('users').doc(id);
 

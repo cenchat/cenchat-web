@@ -50,7 +50,7 @@ export default Model.extend({
    */
   decodedSlug: computed('slug', {
     get() {
-      return decodeURIComponent(this.get('slug'));
+      return decodeURIComponent(this.slug);
     },
   }),
 
@@ -59,7 +59,7 @@ export default Model.extend({
    */
   shortId: computed('id', {
     get() {
-      return this.get('id').split('__')[1];
+      return this.id.split('__')[1];
     },
   }),
 
@@ -70,7 +70,7 @@ export default Model.extend({
     get() {
       const hostname = this.get('site.hostname');
 
-      return hostname ? `http://${hostname}${this.get('decodedSlug')}` : null;
+      return hostname ? `http://${hostname}${this.decodedSlug}` : null;
     },
   }),
 
@@ -80,11 +80,11 @@ export default Model.extend({
    * @function
    */
   loadFilteredComments(filterBy) {
-    const pageId = this.get('id');
+    const { id: pageId } = this;
 
     if (filterBy === 'all') {
-      return this.get('store').query('comment', {
-        queryId: `${this.get('id')}_all_comments`,
+      return this.store.query('comment', {
+        queryId: `${pageId}_all_comments`,
         limit: 2,
 
         filter(reference) {
@@ -98,16 +98,16 @@ export default Model.extend({
       });
     }
 
-    const sessionId = this.get('session.model.id');
+    const { id: currentUserId } = this.session.get('model');
 
-    return this.get('store').query('comment', {
-      queryId: `${this.get('id')}_${sessionId}_relevant_comments`,
+    return this.store.query('comment', {
+      queryId: `${pageId}_${currentUserId}_relevant_comments`,
       limit: 2,
 
       buildReference(db) {
         return db
           .collection('users')
-          .doc(sessionId)
+          .doc(currentUserId)
           .collection('followingComments');
       },
 

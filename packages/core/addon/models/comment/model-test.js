@@ -22,7 +22,7 @@ module('Unit | Model | comment', (hooks) => {
       const model = this.store.createRecord('comment', { author });
 
       // Act
-      const result = model.get('authorOrAnonymous');
+      const result = model.authorOrAnonymous;
 
       // Assert
       assert.equal(result.get('displayName'), 'Foo');
@@ -36,7 +36,7 @@ module('Unit | Model | comment', (hooks) => {
       const model = this.store.createRecord('comment', {});
 
       // Act
-      const result = model.get('authorOrAnonymous');
+      const result = model.authorOrAnonymous;
 
       // Assert
       assert.equal(result.displayName, 'Anonymous');
@@ -52,7 +52,7 @@ module('Unit | Model | comment', (hooks) => {
       const model = this.store.createRecord('comment', { text: 'Foo' });
 
       // Act
-      const result = model.get('isMessageValid');
+      const result = model.isMessageValid;
 
       // Assert
       assert.equal(result, true);
@@ -65,7 +65,7 @@ module('Unit | Model | comment', (hooks) => {
       const model = this.store.createRecord('comment', { attachments: ['Foo'] });
 
       // Act
-      const result = model.get('isMessageValid');
+      const result = model.isMessageValid;
 
       // Assert
       assert.equal(result, true);
@@ -78,7 +78,7 @@ module('Unit | Model | comment', (hooks) => {
       const model = this.store.createRecord('comment', {});
 
       // Act
-      const result = model.get('isMessageValid');
+      const result = model.isMessageValid;
 
       // Assert
       assert.equal(result, false);

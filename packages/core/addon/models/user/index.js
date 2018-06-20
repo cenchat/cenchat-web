@@ -99,26 +99,21 @@ export default Model.extend({
   /**
    * @type {Model.BetaTester}
    */
-  betaTester: promiseObject(context => (
-    context.get('store').findRecord(
-      'betaTester',
-      context.get('id'),
-    ).catch(() => ({ status: 'unapplied' }))
+  betaTester: promiseObject(({ id, store }) => (
+    store.findRecord('betaTester', id).catch(() => ({ status: 'unapplied' }))
   )),
 
   /**
    * @type {Model.UserMetaInfo}
    */
-  metaInfo: promiseObject(context => (
-    context.get('store').findRecord('userMetaInfo', context.get('id'))
-  )),
+  metaInfo: promiseObject(({ id, store }) => store.findRecord('userMetaInfo', id)),
 
   /**
    * @type {string}
    */
   largePhotoUrl: computed('facebookId', {
     get() {
-      return `https://graph.facebook.com/${this.get('facebookId')}/picture?type=large`;
+      return `https://graph.facebook.com/${this.facebookId}/picture?type=large`;
     },
   }),
 
@@ -127,7 +122,7 @@ export default Model.extend({
    */
   urlKey: computed('username', {
     get() {
-      return this.get('username') || this.get('id');
+      return this.username || this.id;
     },
   }),
 
@@ -137,10 +132,10 @@ export default Model.extend({
    * @function
    */
   async isFollowing(userId) {
-    const db = this.get('firebase').firestore();
+    const db = this.firebase.firestore();
     const following = await db
       .collection('users')
-      .doc(this.get('id'))
+      .doc(this.id)
       .collection('followings')
       .doc(userId)
       .get();
@@ -154,10 +149,10 @@ export default Model.extend({
    * @function
    */
   async hasFollower(userId) {
-    const db = this.get('firebase').firestore();
+    const db = this.firebase.firestore();
     const follower = await db
       .collection('users')
-      .doc(this.get('id'))
+      .doc(this.id)
       .collection('followers')
       .doc(userId)
       .get();
@@ -171,14 +166,14 @@ export default Model.extend({
    * @function
    */
   async isSiteAdmin(siteId) {
-    const db = this.get('firebase').firestore();
+    const db = this.firebase.firestore();
 
     try {
       const admin = await db
         .collection('sites')
         .doc(siteId)
         .collection('admins')
-        .doc(this.get('id'))
+        .doc(this.id)
         .get();
 
       return admin.exists;
@@ -193,24 +188,23 @@ export default Model.extend({
    * @function
    */
   async getUnfollowedFacebookFriends(limit) {
-    const facebookId = this.get('facebookId');
     const userMetaInfo = await this.get('metaInfo');
-    const url = `https://graph.facebook.com/v2.12/${facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
+    const url = `https://graph.facebook.com/v2.12/${this.facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
     const response = await fetch(url);
     const { data } = await response.json();
     const unfollowings = [];
 
     for (const { id } of data) {
-      const friends = await this.get('store').query('user', {
+      const friends = await this.store.query('user', {
         limit: 1,
 
         filter(reference) {
           return reference.where('facebookId', '==', id);
         },
       });
-      const friend = friends.get('firstObject');
+      const friend = friends.firstObject;
 
-      if (!await this.isFollowing(friend.get('id'))) {
+      if (!await this.isFollowing(friend.id)) {
         unfollowings.push(friend);
       }
 

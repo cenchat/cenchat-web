@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import { setupTest } from 'ember-qunit';
+import EmberObject from '@ember/object';
 
 import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
 
@@ -24,7 +25,7 @@ module('Unit | Model | page', (hooks) => {
       }));
 
       // Act
-      const result = model.get('decodedSlug');
+      const result = model.decodedSlug;
 
       // Arrange
       assert.equal(result, '/foo/bar');
@@ -41,7 +42,7 @@ module('Unit | Model | page', (hooks) => {
       }));
 
       // Act
-      const result = model.get('shortId');
+      const result = model.shortId;
 
       // Arrange
       assert.equal(result, 'page');
@@ -60,7 +61,7 @@ module('Unit | Model | page', (hooks) => {
       ));
 
       // Act
-      const result = model.get('url');
+      const result = model.url;
 
       // Arrange
       assert.equal(result, 'http://site-a.com/foo/bar');
@@ -81,8 +82,8 @@ module('Unit | Model | page', (hooks) => {
       const result = await model.loadFilteredComments('all');
 
       // Arrange
-      assert.equal(result.get('firstObject.id'), 'comment_a');
-      assert.equal(result.get('lastObject.id'), 'comment_b');
+      assert.equal(result.firstObject.id, 'comment_a');
+      assert.equal(result.lastObject.id, 'comment_b');
     });
 
     test('should return relevant comments', async function (assert) {
@@ -94,16 +95,16 @@ module('Unit | Model | page', (hooks) => {
         'site_a__page_a',
       ));
 
-      model.set('session', {
+      model.set('session', EmberObject.create({
         model: { id: 'user_a' },
-      });
+      }));
 
       // Act
       const result = await model.loadFilteredComments('relevant');
 
       // Arrange
-      assert.equal(result.get('firstObject.id'), 'comment_b');
-      assert.equal(result.get('lastObject.id'), 'comment_d');
+      assert.equal(result.firstObject.id, 'comment_b');
+      assert.equal(result.lastObject.id, 'comment_d');
     });
   });
 });

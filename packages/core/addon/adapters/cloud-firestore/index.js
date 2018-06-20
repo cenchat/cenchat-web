@@ -102,10 +102,10 @@ export default CloudFirestoreAdapter.extend({
    * @private
    */
   setHeaderAuthorization() {
-    if (this.get('session.isAuthenticated')) {
-      return this.get('session.currentUser').getIdToken().then((token) => {
-        this.set('headers.Authorization', `Bearer ${token}`);
-      });
+    if (this.session.get('isAuthenticated')) {
+      return this.session.get('currentUser').getIdToken().then(token => (
+        this.set('headers.Authorization', `Bearer ${token}`)
+      ));
     }
 
     return Promise.resolve();

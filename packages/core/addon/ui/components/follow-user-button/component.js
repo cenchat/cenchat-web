@@ -37,9 +37,9 @@ export default Component.extend({
   async followUser(event) {
     event.stopPropagation();
 
-    const db = this.get('firebase').firestore();
+    const db = this.firebase.firestore();
     const batch = db.batch();
-    const currentUserId = this.get('session.model.id');
+    const currentUserId = this.session.get('model').id;
     const currentUserDocRef = db.collection('users').doc(currentUserId);
     const { id, displayName, name } = this.args.userToFollow;
     const userToFollowDocRef = db.collection('users').doc(id);
@@ -50,7 +50,7 @@ export default Component.extend({
     });
     batch.set(userToFollowDocRef.collection('followers').doc(currentUserId), {
       cloudFirestoreReference: currentUserDocRef,
-      name: this.get('session.model.name'),
+      name: this.session.get('model').name,
     });
 
     await batch.commit();

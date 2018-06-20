@@ -16,7 +16,7 @@ export async function setupTestState(context) {
   stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
 
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
-  context.set('db', context.get('firebase').firestore());
+  context.set('db', context.firebase.firestore());
   context.set('router', stubService(context, 'router', { urlFor: sinon.stub() }));
   context.set('session', stubSession(context));
 
@@ -72,14 +72,14 @@ export async function setupApplicationTestState(context) {
       return stubPromise(true);
     },
   }));
-  context.set('db', context.get('firebase').firestore());
+  context.set('db', context.firebase.firestore());
 
   const session = context.owner.lookup('service:session');
-  const sm = session.get('stateMachine');
+  const { stateMachine } = session;
 
   run(() => {
-    sm.send('startOpen');
-    sm.send('finishOpen', {
+    stateMachine.send('startOpen');
+    stateMachine.send('finishOpen', {
       currentUser: {
         displayName: 'User A',
         email: 'user_a@gmail.com',

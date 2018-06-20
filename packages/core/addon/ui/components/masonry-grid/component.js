@@ -35,8 +35,8 @@ export default Component.extend({
    */
   columnGroupedItems: computed('--items.[]', 'numOfColumns', {
     get() {
+      const { numOfColumns } = this;
       const columnGroupedItems = [];
-      const numOfColumns = this.get('numOfColumns');
       let direction = 'right';
       let currentColumn = 0;
 
