@@ -17,7 +17,7 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    if (this.args.comments.length === 0 && this.args.filterCommentsBy === 'relevance') {
+    if (this.args.comments.get('length') === 0 && this.args.filterCommentsBy === 'relevance') {
       this.args.onFilterCommentsClick('all');
     }
   },

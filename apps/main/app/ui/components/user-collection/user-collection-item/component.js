@@ -71,7 +71,7 @@ export default Component.extend({
   async checkIfUserIsBeingFollowed() {
     const currentUser = this.get('session.model');
 
-    const { id } = this.args.user;
+    const id = this.args.user.get('id');
 
     if (currentUser && currentUser.get('id') !== id) {
       const isUserBeingFollowed = await currentUser.isFollowing(id);

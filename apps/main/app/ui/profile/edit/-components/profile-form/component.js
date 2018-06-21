@@ -17,9 +17,13 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    const { displayName, shortBio, displayUsername: username } = this.args.user;
+    const { user } = this.args;
 
-    this.set('profile', { displayName, shortBio, username });
+    this.set('profile', {
+      displayName: user.get('displayName'),
+      shortBio: user.get('shortBio'),
+      username: user.get('username'),
+    });
   },
 
   /**

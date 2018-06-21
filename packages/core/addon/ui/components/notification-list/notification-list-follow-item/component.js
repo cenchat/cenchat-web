@@ -24,10 +24,8 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    const { notification } = this.args;
-
-    notification.get('to').then((toUser) => {
-      const fromId = notification.get('from.id');
+    this.args.notification.get('to').then((toUser) => {
+      const fromId = this.args.notification.get('from.id');
 
       toUser.isFollowing(fromId).then((result) => {
         this.set('isFollowingNotificationSender', result);
