@@ -17,6 +17,6 @@ export default Component.extend({
   init(...args) {
     this._super(...args);
 
-    this.set('selectedStickerPack', this.args.stickerPacks.firstObject);
+    this.set('selectedStickerPack', this.args.stickerPacks.get('firstObject'));
   },
 });

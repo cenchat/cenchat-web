@@ -17,7 +17,7 @@ export default Component.extend({
    */
   blockQuoteClass: computed('--comment.text', {
     get() {
-      const { text } = this.args.comment;
+      const text = this.args.comment.get('text');
       let blockquoteClass = '';
 
       if (text) {

@@ -37,18 +37,18 @@ export default Component.extend({
   unfollowUser(event) {
     event.stopPropagation();
 
-    const { id, displayName } = this.args.userToUnfollow;
+    const { userToUnfollow } = this.args;
 
-    toast(`Unfollowed ${displayName}`, 10000, {
+    toast(`Unfollowed ${userToUnfollow.get('displayName')}`, 10000, {
       text: 'Undo',
       scheduledAction: async () => {
         const db = this.get('firebase').firestore();
         const batch = db.batch();
         const currentUserId = this.get('session.model.id');
         const currentUserDocRef = db.collection('users').doc(currentUserId);
-        const userToUnfollowDocRef = db.collection('users').doc(id);
+        const userToUnfollowDocRef = db.collection('users').doc(userToUnfollow.get('id'));
 
-        batch.delete(currentUserDocRef.collection('followings').doc(id));
+        batch.delete(currentUserDocRef.collection('followings').doc(userToUnfollow.get('id')));
         batch.delete(userToUnfollowDocRef.collection('followers').doc(currentUserId));
 
         await batch.commit();
