@@ -22,7 +22,7 @@ export default Route.extend({
     if (query) {
       query = query.toLowerCase();
 
-      return this.get('store').query('user', {
+      return this.store.query('user', {
         limit: 8,
 
         filter(reference) {

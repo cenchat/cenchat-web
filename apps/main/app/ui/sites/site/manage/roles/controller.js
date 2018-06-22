@@ -67,7 +67,7 @@ export default Controller.extend({
 
     if (query && query.trim()) {
       const lowerCasedQuery = query.toLowerCase();
-      const users = await this.get('store').query('user', {
+      const users = await this.store.query('user', {
         limit: 8,
 
         filter(reference) {

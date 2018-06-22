@@ -31,6 +31,8 @@ module('Unit | Controller | sites/site/index', (hooks) => {
       // Arrange
       const controller = this.owner.lookup('controller:sites/site/index');
 
+      controller.set('model', { id: 'foobar' });
+
       // Act
       await controller.handleVerifySiteClick();
 

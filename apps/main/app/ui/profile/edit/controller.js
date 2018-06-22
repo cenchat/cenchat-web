@@ -16,7 +16,7 @@ export default Controller.extend({
   async handleProfileFormSubmit(profile, event) {
     event.preventDefault();
 
-    const model = this.get('model');
+    const { model } = this;
 
     try {
       model.set('displayName', profile.displayName);

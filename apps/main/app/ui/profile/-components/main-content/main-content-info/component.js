@@ -44,7 +44,7 @@ export default Component.extend({
     if (currentUser && currentUser.get('id') !== id) {
       const isUserBeingFollowed = await currentUser.isFollowing(id);
 
-      if (!this.get('isDestroyed')) {
+      if (!this.isDestroyed) {
         this.set('isUserBeingFollowed', isUserBeingFollowed);
       }
     }

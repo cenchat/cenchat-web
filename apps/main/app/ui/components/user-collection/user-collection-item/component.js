@@ -76,7 +76,7 @@ export default Component.extend({
     if (currentUser && currentUser.get('id') !== id) {
       const isUserBeingFollowed = await currentUser.isFollowing(id);
 
-      if (!this.get('isDestroyed')) {
+      if (!this.isDestroyed) {
         this.set('isUserBeingFollowed', isUserBeingFollowed);
       }
     }
@@ -88,6 +88,6 @@ export default Component.extend({
   transitionToProfile() {
     const { user } = this.args;
 
-    this.get('router').transitionTo('profile', user.get('username') || user.get('id'));
+    this.router.transitionTo('profile', user.get('username') || user.get('id'));
   },
 });

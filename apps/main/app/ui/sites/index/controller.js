@@ -25,7 +25,7 @@ export default Controller.extend({
   async handleInviteRequestFormSubmit(inviteRequest, event) {
     event.preventDefault();
 
-    await this.get('store').createRecord('beta-tester', {
+    await this.store.createRecord('beta-tester', {
       ...inviteRequest,
       id: this.get('session.model.id'),
       status: 'pending',

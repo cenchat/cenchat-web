@@ -33,7 +33,7 @@ export default Route.extend({
   /**
    * @override
    */
-  model({ platform_id: platformId }) {
-    return this.get('platforms').findBy('id', platformId);
+  model(param) {
+    return this.platforms.findBy('id', param.platform_id);
   },
 });

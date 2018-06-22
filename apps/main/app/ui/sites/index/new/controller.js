@@ -22,7 +22,7 @@ export default Controller.extend({
   async handleSiteFormSubmit(siteData, event) {
     event.preventDefault();
 
-    const site = this.get('store').createRecord('site', {
+    const site = this.store.createRecord('site', {
       ...siteData,
       name: siteData.displayName.toLowerCase(),
     });

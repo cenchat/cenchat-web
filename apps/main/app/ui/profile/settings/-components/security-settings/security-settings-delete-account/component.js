@@ -47,7 +47,7 @@ export default Component.extend({
    * @function
    */
   deleteAccount() {
-    this.get('router').transitionTo('profile');
+    this.router.transitionTo('profile');
 
     toast('Account deleted', 10000, {
       text: 'Undo',

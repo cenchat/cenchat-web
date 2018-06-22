@@ -37,7 +37,7 @@ export default Route.extend({
 
     if (session.get('isAuthenticated')) {
       try {
-        const model = await this.get('store').findRecord('user', session.get('currentUser.uid'));
+        const model = await this.store.findRecord('user', session.get('currentUser.uid'));
 
         session.set('content.model', model);
 
@@ -70,9 +70,7 @@ export default Route.extend({
     if (facebookAccessToken) {
       try {
         const credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
-        const authData = await this.get('firebase')
-          .auth()
-          .signInAndRetrieveDataWithCredential(credential);
+        const authData = await this.firebase.auth().signInAndRetrieveDataWithCredential(credential);
 
         meta.set('facebookAccessToken', authData.credential.accessToken);
       } catch (error) {
@@ -89,8 +87,8 @@ export default Route.extend({
    * @private
    */
   async setupPushNotification(profile) {
-    if (!this.get('fastboot.isFastBoot') && 'serviceWorker' in navigator) {
-      const messaging = this.get('firebase').messaging();
+    if (!this.fastboot.isFastBoot && 'serviceWorker' in navigator) {
+      const messaging = this.firebase.messaging();
 
       try {
         await messaging.requestPermission();
@@ -206,7 +204,7 @@ export default Route.extend({
     didTransition(...args) {
       this._super(...args);
 
-      if (!this.get('fastboot.isFastBoot') && !this.get('isSplashScreenRemoved')) {
+      if (!this.fastboot.isFastBoot && !this.isSplashScreenRemoved) {
         scheduleOnce('afterRender', () => {
           const splashScreenElement = document.querySelector('.splash-screen');
 

@@ -25,6 +25,6 @@ export default Component.extend({
    * @function
    */
   handleSiteFormDataChange(target) {
-    this.set('site', { ...this.get('site'), [target.name]: target.value });
+    this.set('site', { ...this.site, [target.name]: target.value });
   },
 });
