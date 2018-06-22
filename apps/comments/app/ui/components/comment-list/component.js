@@ -21,9 +21,9 @@ export default Component.extend({
    */
   async loadMoreComments() {
     const { comments } = this.args;
-    const newLimit = this.get('limit') + 4;
+    const newLimit = this.limit + 4;
 
-    if (comments.get('length') <= this.get('limit')) {
+    if (comments.get('length') <= this.limit) {
       await this.args.onLoadMoreCommentsClick(newLimit);
     }
 

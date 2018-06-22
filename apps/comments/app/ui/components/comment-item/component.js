@@ -81,7 +81,7 @@ export default Component.extend({
    * @function
    */
   handleToggleQuoteClick() {
-    if (this.get('isQuoteVisible')) {
+    if (this.isQuoteVisible) {
       this.set('isQuoteVisible', false);
     } else {
       this.set('isQuoteVisible', true);

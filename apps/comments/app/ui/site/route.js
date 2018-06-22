@@ -10,7 +10,7 @@ export default Route.extend({
    * @override
    */
   model(params) {
-    return this.get('store').findRecord('site', params.site_id);
+    return this.store.findRecord('site', params.site_id);
   },
 
   /**

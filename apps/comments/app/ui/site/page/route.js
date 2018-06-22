@@ -24,7 +24,7 @@ export default Route.extend({
     const hash = { page: this.findOrCreatePage(params.page_id) };
 
     if (params.comment) {
-      hash.comment = this.get('store').findRecord('comment', params.comment).catch(() => null);
+      hash.comment = this.store.findRecord('comment', params.comment).catch(() => null);
     }
 
     return RSVP.hash(hash);
@@ -39,17 +39,16 @@ export default Route.extend({
   async findOrCreatePage(pageIdPostfix) {
     const site = this.modelFor('site');
     const pageId = `${site.get('id')}__${pageIdPostfix}`;
-    const store = this.get('store');
 
     try {
-      const page = await store.findRecord('page', pageId);
+      const page = await this.store.findRecord('page', pageId);
 
       return page;
     } catch (e) {
-      const { slug } = this.paramsFor(this.get('routeName'));
+      const { slug } = this.paramsFor(this.routeName);
 
       if (slug) {
-        const page = store.createRecord('page', {
+        const page = this.store.createRecord('page', {
           site,
           id: pageId,
           slug: fixedEncodeURIComponent(slug),

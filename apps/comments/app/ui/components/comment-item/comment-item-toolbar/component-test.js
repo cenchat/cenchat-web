@@ -106,7 +106,7 @@ module('Integration | Component | comment-item/comment-item-toolbar', (hooks) =>
     await click('[data-test-item-toolbar="delete-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('comment')));
+    assert.ok(spy.calledWith(this.comment));
   });
 
   test('should show edit button when signed in user is the author and comment isn\'t flagged as deleted', async function (assert) {

@@ -50,6 +50,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     await click('[data-test-tag-entity-panel-item="user_b"] button');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('entity')));
+    assert.ok(spy.calledWith(this.entity));
   });
 });

@@ -38,7 +38,7 @@ export default Component.extend({
    * @function
    */
   async handleSendCommentClick() {
-    const comment = this.get('comment');
+    const { comment } = this;
 
     await comment.save();
     toast('Comment sent');
@@ -59,7 +59,7 @@ export default Component.extend({
    * @function
    */
   handleAddAttachmentClick(item) {
-    const comment = this.get('comment');
+    const { comment } = this;
     let attachments = comment.get('attachments');
 
     if (!Array.isArray(attachments)) {
@@ -85,7 +85,7 @@ export default Component.extend({
    * @function
    */
   handleAskMeAnythingClick() {
-    if (this.get('comment.isAskMeAnything')) {
+    if (this.comment.isAskMeAnything) {
       this.set('comment.isAskMeAnything', false);
     } else {
       this.set('comment.isAskMeAnything', true);
@@ -97,7 +97,7 @@ export default Component.extend({
    * @function
    */
   handleRemoveAttachmentClick(indexToRemove) {
-    const comment = this.get('comment');
+    const { comment } = this;
 
     comment.set(
       'attachments',
@@ -110,14 +110,14 @@ export default Component.extend({
    * @function
    */
   handleTagEntityClick(entity) {
-    const taggedEntities = this.get('comment.taggedEntities');
+    const { taggedEntities } = this.comment;
 
     if (
-      entity.get('id') !== this.get('comment.author.id')
+      entity.get('id') !== this.comment.get('author.id')
       && (!taggedEntities || Object.keys(taggedEntities).length < 20)
     ) {
       this.set('comment.taggedEntities', {
-        ...this.get('comment.taggedEntities'),
+        ...taggedEntities,
         [entity.get('id')]: entity.get('constructor.modelName'),
       });
     }
@@ -128,7 +128,7 @@ export default Component.extend({
    * @function
    */
   handleUntagEntityClick(entity) {
-    const taggedEntities = { ...this.get('comment.taggedEntities') };
+    const taggedEntities = { ...this.comment.taggedEntities };
 
     delete taggedEntities[entity.get('id')];
 
@@ -174,7 +174,7 @@ export default Component.extend({
       root = await replyTo.get('root');
     }
 
-    return this.get('store').createRecord('comment', {
+    return this.store.createRecord('comment', {
       page,
       replyTo,
       root,
