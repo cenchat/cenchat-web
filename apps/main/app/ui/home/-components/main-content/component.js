@@ -35,7 +35,7 @@ export default Component.extend({
 
     const embedElement = document.createElement('script');
 
-    embedElement.src = `${this.get('config.commentsHost')}/embeds/1.0.0/universal.js`;
+    embedElement.src = `${this.config.commentsHost}/embeds/1.0.0/universal.js`;
 
     document.body.appendChild(embedElement);
   },

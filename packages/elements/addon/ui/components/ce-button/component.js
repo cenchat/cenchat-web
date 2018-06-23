@@ -48,10 +48,10 @@ export default Component.extend({
 
     // Use this rather than Ember name to consistently follow the order of events.
     // See: https://medium.com/square-corner-blog/deep-dive-on-ember-events-cf684fd3b808
-    this.get('element').addEventListener('click', (event) => {
+    this.element.addEventListener('click', (event) => {
       run(() => {
         if (this.args.onClick) {
-          this.get('triggerOnClick').perform(event);
+          this.triggerOnClick.perform(event);
         }
       });
     });

@@ -26,7 +26,7 @@ export default Component.extend({
     let users = [];
 
     if (query) {
-      users = await this.get('store').query('user', {
+      users = await this.store.query('user', {
         limit: 4,
 
         filter(reference) {

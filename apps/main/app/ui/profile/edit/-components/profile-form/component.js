@@ -31,9 +31,6 @@ export default Component.extend({
    * @function
    */
   handleProfileFormDataChange(target) {
-    this.set('profile', {
-      ...this.get('profile'),
-      [target.name]: target.value,
-    });
+    this.set('profile', { ...this.profile, [target.name]: target.value });
   },
 });

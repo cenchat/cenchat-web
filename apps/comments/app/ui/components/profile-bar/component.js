@@ -29,7 +29,7 @@ export default Component.extend({
    * @function
    */
   async handleNotificationDropdownClick() {
-    const userMetaInfo = await this.get('store').findRecord(
+    const userMetaInfo = await this.store.findRecord(
       'userMetaInfo',
       this.get('session.model.id'),
     );

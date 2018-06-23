@@ -43,7 +43,7 @@ module('Unit | Model | user', (hooks) => {
       const model = this.store.createRecord('user', { id: 'user_100', username: 'foo' });
 
       // Act
-      const result = model.get('urlKey');
+      const result = model.urlKey;
 
       // Assert
       assert.deepEqual(result, 'foo');
@@ -56,7 +56,7 @@ module('Unit | Model | user', (hooks) => {
       const model = this.store.createRecord('user', { id: 'user_100' });
 
       // Act
-      const result = model.get('urlKey');
+      const result = model.urlKey;
 
       // Assert
       assert.deepEqual(result, 'user_100');

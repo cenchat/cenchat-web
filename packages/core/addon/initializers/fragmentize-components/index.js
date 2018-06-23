@@ -14,9 +14,9 @@ export function initialize() {
       this._super(...args);
 
       if (
-        this.get('tagName') === null
-        && this.get('classNames').length === 0
-        && this.get('elementId').startsWith('ember')
+        this.tagName === null
+        && this.classNames.length === 0
+        && this.elementId.startsWith('ember')
       ) {
         this.set('tagName', '');
         this.set('elementId', null);

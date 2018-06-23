@@ -89,7 +89,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     await click('[data-test-user-list-item="remove-role-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('user')));
+    assert.ok(spy.calledWith(this.user));
   });
 
   test('should show add role button when user does not have a role', async function (assert) {
@@ -147,6 +147,6 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     await click('[data-test-user-list-item="add-role-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('user')));
+    assert.ok(spy.calledWith(this.user));
   });
 });

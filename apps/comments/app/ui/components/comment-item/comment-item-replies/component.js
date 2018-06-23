@@ -30,10 +30,7 @@ export default Component.extend({
    * @function
    */
   handleSendCommentSuccess(newReply) {
-    this.set('prioritizedReplies', [
-      ...this.get('prioritizedReplies'),
-      newReply,
-    ]);
+    this.set('prioritizedReplies', [...this.prioritizedReplies, newReply]);
   },
 
   /**

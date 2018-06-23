@@ -38,7 +38,7 @@ export default Component.extend({
     event.preventDefault();
 
     if (this.args.onSubmit) {
-      this.get('triggerOnSubmit').perform(event);
+      this.triggerOnSubmit.perform(event);
     }
   },
 
@@ -48,7 +48,7 @@ export default Component.extend({
    * @private
    */
   triggerOnSubmit: task(function* (event) {
-    const submitButton = this.get('element').querySelector('[type="submit"]');
+    const submitButton = this.element.querySelector('[type="submit"]');
 
     submitButton.disabled = true;
     submitButton.setAttribute('performing', '');

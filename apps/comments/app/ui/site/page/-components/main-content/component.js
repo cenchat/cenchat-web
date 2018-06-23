@@ -34,7 +34,7 @@ export default Component.extend({
    * @function
    */
   handleSendCommentSuccess(newComment) {
-    this.set('prioritizedComments', [...this.get('prioritizedComments'), newComment]);
+    this.set('prioritizedComments', [...this.prioritizedComments, newComment]);
   },
 
   /**

@@ -21,9 +21,6 @@ export default Component.extend({
    * @function
    */
   handleInviteRequestFormDataChange(target) {
-    this.set('inviteRequest', {
-      ...this.get('inviteRequest'),
-      [target.name]: target.value,
-    });
+    this.set('inviteRequest', { ...this.inviteRequest, [target.name]: target.value });
   },
 });

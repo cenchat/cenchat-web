@@ -57,6 +57,6 @@ module('Integration | Component | docs/-components/installation-item', (hooks) =
     await click('[data-test-installation-item="host"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('item')));
+    assert.ok(spy.calledWith(this.item));
   });
 });

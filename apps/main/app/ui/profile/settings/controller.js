@@ -17,7 +17,7 @@ export default Controller.extend({
    * @function
    */
   async handleDeleteAccountToastCompletion() {
-    await this.get('model').destroyRecord({
+    await this.model.destroyRecord({
       adapterOptions: { onServer: true },
     });
     await this.get('session').close();

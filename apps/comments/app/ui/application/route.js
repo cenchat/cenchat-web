@@ -30,7 +30,7 @@ export default Route.extend({
 
     if (session.get('isAuthenticated')) {
       try {
-        const model = await this.get('store').findRecord('user', session.get('currentUser.uid'));
+        const model = await this.store.findRecord('user', session.get('currentUser.uid'));
 
         session.set('content.model', model);
 

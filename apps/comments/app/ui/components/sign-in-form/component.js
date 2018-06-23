@@ -63,7 +63,7 @@ export default Component.extend({
       let user;
 
       try {
-        user = await this.get('store').findRecord('user', session.get('currentUser.uid'));
+        user = await this.store.findRecord('user', session.get('currentUser.uid'));
       } catch (error) {
         if (error.message === 'Document doesn\'t exist') {
           user = await this.createCurrentUserRecord();
@@ -88,9 +88,8 @@ export default Component.extend({
    */
   async createCurrentUserRecord() {
     const session = this.get('session');
-    const store = this.get('store');
     const currentUser = session.get('currentUser');
-    const record = store.createRecord('user', {
+    const record = this.store.createRecord('user', {
       id: currentUser.uid,
       displayName: currentUser.displayName,
       displayUsername: null,

@@ -16,7 +16,7 @@ export default Route.extend({
    * @override
    */
   model(params) {
-    return this.get('store').findRecord('comment', params.comment_id);
+    return this.store.findRecord('comment', params.comment_id);
   },
 
   /**

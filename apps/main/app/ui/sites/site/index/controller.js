@@ -33,7 +33,7 @@ export default Controller.extend({
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ siteId: this.get('model.id') }),
+      body: JSON.stringify({ siteId: this.model.id }),
     });
 
     if (response.ok) {

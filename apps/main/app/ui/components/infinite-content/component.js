@@ -32,7 +32,7 @@ export default Component.extend({
 
     this.set('handleResize', () => debounce(this, 'loadMoreRecordsWhenNotEnough', 100));
 
-    window.addEventListener('resize', this.get('handleResize'));
+    window.addEventListener('resize', this.handleResize);
 
     const { selector } = this.args;
     const element = selector ? document.querySelector(selector) : window;
@@ -40,7 +40,7 @@ export default Component.extend({
     this.set('scrollerElement', element);
     this.set('handleScroll', () => debounce(this, 'loadMoreRecordsWhenAtBottom', 150));
 
-    this.get('scrollerElement').addEventListener('scroll', this.get('handleScroll'));
+    this.scrollerElement.addEventListener('scroll', this.handleScroll);
   },
 
   /**
@@ -49,8 +49,8 @@ export default Component.extend({
   willDestroyElement(...args) {
     this._super(...args);
 
-    window.removeEventListener('resize', this.get('handleResize'));
-    this.get('scrollerElement').removeEventListener('scroll', this.get('handleScroll'));
+    window.removeEventListener('resize', this.handleResize);
+    this.scrollerElement.removeEventListener('scroll', this.handleScroll);
   },
 
   /**
@@ -59,7 +59,7 @@ export default Component.extend({
   loadMoreRecordsWhenNotEnough() {
     requestAnimationFrame(() => {
       run(() => {
-        if (document.body.scrollWidth >= 960 && this.get('numOfRecordsLimit') <= 8) {
+        if (document.body.scrollWidth >= 960 && this.numOfRecordsLimit <= 8) {
           this.loadMoreRecords();
         }
       });
@@ -72,19 +72,16 @@ export default Component.extend({
   loadMoreRecordsWhenAtBottom() {
     requestAnimationFrame(() => {
       run(() => {
-        let element = this.get('scrollerElement');
+        let element = this.scrollerElement;
 
-        if (this.get('scrollerElement') === window) {
+        if (this.scrollerElement === window) {
           element = document.documentElement;
         }
 
         const { scrollHeight, scrollTop, clientHeight } = element;
         const threshold = scrollHeight / 4;
 
-        if (
-          scrollHeight - scrollTop - clientHeight <= threshold
-          && !this.get('isDestroyed')
-        ) {
+        if (scrollHeight - scrollTop - clientHeight <= threshold && !this.isDestroyed) {
           this.loadMoreRecords();
         }
       });
@@ -98,8 +95,8 @@ export default Component.extend({
   async loadMoreRecords() {
     const { query } = this.args;
 
-    if (query.length >= this.get('numOfRecordsLimit')) {
-      const newLimit = this.get('numOfRecordsLimit') + 8;
+    if (query.length >= this.numOfRecordsLimit) {
+      const newLimit = this.numOfRecordsLimit + 8;
 
       this.set('numOfRecordsLimit', newLimit);
 

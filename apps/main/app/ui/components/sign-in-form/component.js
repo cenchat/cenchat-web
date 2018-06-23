@@ -68,12 +68,10 @@ export default Component.extend({
     try {
       await session.fetch();
 
-      const store = this.get('store');
-
       try {
-        user = await store.findRecord('user', currentUser.uid);
+        user = await this.store.findRecord('user', currentUser.uid);
       } catch (e) {
-        user = store.createRecord('user', {
+        user = this.store.createRecord('user', {
           id: currentUser.uid,
           displayName: currentUser.displayName,
           displayUsername: null,
@@ -114,7 +112,7 @@ export default Component.extend({
       }
 
       session.set('content.model', user);
-      this.get('router').transitionTo('profile', user.get('id'));
+      this.router.transitionTo('profile', user.get('id'));
       toast(`Signed in as ${user.get('displayName')}`);
     } catch (e) {
       toast('Couldn\'t sign in. Please try again.');

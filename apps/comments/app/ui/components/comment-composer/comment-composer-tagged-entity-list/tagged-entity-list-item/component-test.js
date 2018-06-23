@@ -59,6 +59,6 @@ module('Integration | Component | comment-composer/comment-composer-tagged-entit
     await click('[data-test-tagged-entity-list-item="untag-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('entity')));
+    assert.ok(spy.calledWith(this.entity));
   });
 });

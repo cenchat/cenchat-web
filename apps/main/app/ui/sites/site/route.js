@@ -16,7 +16,7 @@ export default Route.extend({
    * @override
    */
   async beforeModel() {
-    const { site_id: siteId } = this.paramsFor(this.get('routeName'));
+    const { site_id: siteId } = this.paramsFor(this.routeName);
 
     if (!await this.get('session.model').isSiteAdmin(siteId)) {
       this.transitionTo('home');
@@ -27,6 +27,6 @@ export default Route.extend({
    * @override
    */
   model({ site_id: siteId }) {
-    return this.get('store').findRecord('site', siteId);
+    return this.store.findRecord('site', siteId);
   },
 });

@@ -52,6 +52,6 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     await click('[data-test-change-list-item="remove-role-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('user')));
+    assert.ok(spy.calledWith(this.user));
   });
 });

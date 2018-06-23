@@ -27,7 +27,7 @@ module('Integration | Component | sites/site/index/approved-comments/-components
     assert.expect(3);
 
     // Arrange
-    const author = this.get('comment.author');
+    const author = this.comment.get('author');
 
     // Act
     await render(hbs`
@@ -39,7 +39,7 @@ module('Integration | Component | sites/site/index/approved-comments/-components
     // Assert
     assert.dom('[data-test-comment-collection-item="author-name"]').hasText(author.get('displayName'));
     assert.dom('[data-test-comment-collection-item="created-on"]').exists();
-    assert.dom('[data-test-comment-collection-item="text"]').hasText(this.get('comment.text'));
+    assert.dom('[data-test-comment-collection-item="text"]').hasText(this.comment.text);
   });
 
   test('should fire an external action when clicking reject', async function (assert) {
@@ -58,6 +58,6 @@ module('Integration | Component | sites/site/index/approved-comments/-components
     await click('[data-test-comment-collection-item="reject-button"]');
 
     // Assert
-    assert.ok(spy.calledWith(this.get('comment')));
+    assert.ok(spy.calledWith(this.comment));
   });
 });

@@ -13,7 +13,7 @@ const Router = EmberRouter.extend({
   didTransition(...args) {
     this._super(...args);
 
-    if (!this.get('fastboot.isFastBoot')) {
+    if (!this.fastboot.isFastBoot) {
       this.trackPageForAnalytics();
     }
 
@@ -33,9 +33,9 @@ const Router = EmberRouter.extend({
   trackPageForAnalytics() {
     scheduleOnce('afterRender', this, () => {
       const page = document.location.pathname;
-      const title = this.getSimpleRouteName(this.get('currentRouteName') || '');
+      const title = this.getSimpleRouteName(this.currentRouteName || '');
 
-      this.get('metrics').trackPage({ page, title });
+      this.metrics.trackPage({ page, title });
     });
   },
 });

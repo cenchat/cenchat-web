@@ -87,7 +87,7 @@ export default Component.extend({
    * @private
    */
   checkAndSetFieldType() {
-    const type = this.get('type');
+    const { type } = this;
 
     if (type === 'multi-text') {
       this.set('isMultiTextField', true);
@@ -102,9 +102,9 @@ export default Component.extend({
    * @private
    */
   getFieldTagName() {
-    if (this.get('isMultiTextField')) {
+    if (this.isMultiTextField) {
       return 'textarea';
-    } else if (this.get('isSelectField')) {
+    } else if (this.isSelectField) {
       return 'select';
     }
 
@@ -153,7 +153,7 @@ export default Component.extend({
     if (!fieldElement.checkValidity()) {
       if (fieldTagName === 'input') {
         feedback = fieldElement.validity.patternMismatch ?
-          this.get('title') : fieldElement.validationMessage;
+          this.title : fieldElement.validationMessage;
       } else {
         feedback = fieldElement.validationMessage;
       }

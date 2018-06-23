@@ -43,12 +43,11 @@ export default Model.extend({
    * @function
    */
   async getCommentVisitLink() {
-    const store = this.get('store');
-    const commentId = this.get('dataMessage.commentId');
-    const comment = await store.findRecord('comment', commentId);
+    const { commentId } = this.dataMessage;
+    const comment = await this.store.findRecord('comment', commentId);
     const page = await comment.get('page');
     const site = await page.get('site');
 
-    return `http://${site.get('hostname')}${page.get('decodedSlug')}?cenchat_comment=${commentId}`;
+    return `http://${site.hostname}${page.decodedSlug}?cenchat_comment=${commentId}`;
   },
 });
