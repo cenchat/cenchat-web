@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('site', { path: '/sites/:site_id' }, function() {
     this.route('page', { path: '/pages/:page_id' }, function() {});
   });
+  this.route('sign-in');
 });
 
 export default Router;

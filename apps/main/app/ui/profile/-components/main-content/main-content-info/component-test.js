@@ -27,7 +27,7 @@ module('Integration | Component | profile/-components/main-content/main-content-
     // Assert
     assert.dom('[data-test-main-content-info="photo"]').hasAttribute(
       'src',
-      'https://graph.facebook.com/null/picture?type=large',
+      'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114',
     );
   });
 

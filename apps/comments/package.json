@@ -41,7 +41,6 @@
     "ember-component-css": "^0.6.3",
     "ember-data": "~3.1.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-firebaseui": "^0.2.0",
     "ember-linkify": "^3.0.0",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",

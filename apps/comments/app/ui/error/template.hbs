@@ -2,7 +2,7 @@
   {{#if session.model}}
     {{profile-bar --headerText=session.model.displayName}}
   {{else}}
-    {{sign-in-form}}
+    {{email-link-auth}}
   {{/if}}
 
   <p class="empty-state">Woops. Looks like we couldn't load the comments for this page.</p>

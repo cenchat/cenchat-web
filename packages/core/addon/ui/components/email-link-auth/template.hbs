@@ -1,0 +1,13 @@
+<article class="card {{class}}">
+  {{#if isSignInWithEmailLink}}
+    {{email-link-auth/email-link-auth-sign-in --firebase=firebase --onSignInClick=(action handleSignInClick)}}
+  {{else}}
+    {{email-link-auth/email-link-auth-send-link --firebase=firebase --redirectUrl=--redirectUrl}}
+  {{/if}}
+
+  <footer>
+    <p class="sign-in-form__policy-message">
+      By continuing, you're indicating that you've read the <a href="https://cenchat.com/about/privacy">Privacy Policy</a> and agree to the <a href="https://cenchat.com/about/terms">Terms of Service</a>
+    </p>
+  </footer>
+</article>

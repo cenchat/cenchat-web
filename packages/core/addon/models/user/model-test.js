@@ -15,6 +15,37 @@ module('Unit | Model | user', (hooks) => {
     await setupTestState(this);
   });
 
+  module('getter/setter: avatarUrl', () => {
+    test('should return facebook photo when account is linked to facebook', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = this.store.createRecord('user', {
+        id: 'user_100',
+        provider: { facebook: 'fb_100' },
+      });
+
+      // Act
+      const result = await model.get('avatarUrl');
+
+      // Assert
+      assert.equal(result, `https://graph.facebook.com/${model.provider.facebook}/picture?type=large`);
+    });
+
+    test('should return anonymous photo when facebook account is not linked', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const model = this.store.createRecord('user', { id: 'user_100', provider: {} });
+
+      // Act
+      const result = await model.get('avatarUrl');
+
+      // Assert
+      assert.equal(result, 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
+    });
+  });
+
   module('getter/setter: metaInfo', () => {
     test('should return meta info', async function (assert) {
       assert.expect(1);

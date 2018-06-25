@@ -1,0 +1,35 @@
+<div class="email-link-auth-sign-in {{if isEmailNotExisting 'email-link-auth-sign-in--show-more-info'}}">
+  <section class="email-link-auth-sign-in__section">
+    <header class="card__header">
+      <h2 class="card__heading">Sign in</h2>
+      <p class="card__subheading" data-test-email-link-sign-in-form="subheading">
+        Re-enter your email for verification
+      </p>
+    </header>
+
+    {{#ce-form class="card__wrapper" --onSubmit=(action continueSignIn)}}
+      {{ce-field
+          class="card__field"
+          data-test-email-link-auth-sign-in="email-field"
+          type="email"
+          value=email
+          required=true
+          label="Email"
+          --onInput=(action setEmail)}}
+
+        {{#ce-button
+            class="card__action"
+            data-test-email-link-auth-sign-in="continue-button"
+            type="submit"
+            disabled=(not email)}}
+          Continue
+        {{/ce-button}}
+    {{/ce-form}}
+  </section>
+
+  {{#if isEmailNotExisting}}
+    {{email-link-auth/email-link-auth-sign-in/sign-in-more-info
+        class="email-link-auth-sign-in__section"
+        --onSignInClick=(action --onSignInClick email)}}
+  {{/if}}
+</div>

@@ -27,7 +27,7 @@ export default Route.extend({
 
     this.set('headData.title', `${author.displayName} on Cenchat`);
     this.set('headData.description', model.text || '&nbsp;');
-    this.set('headData.image', author.largePhotoUrl);
+    this.set('headData.image', author.avatarUrl);
     this.set('headData.url', `https://cenchat.com/comments/${model.id}`);
     this.set('headData.type', 'article');
     this.set('headData.author', author.displayName);

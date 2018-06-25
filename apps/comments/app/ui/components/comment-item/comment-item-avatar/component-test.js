@@ -30,7 +30,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     `);
 
     // Assert
-    assert.dom('[data-test-item-avatar="author-image"]').hasAttribute('src', 'user_b.jpg');
+    assert.dom('[data-test-item-avatar="author-image"]').hasAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
   });
 
   test('should show anonymous author image when author is not available', async function (assert) {
@@ -94,7 +94,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     // Assert
     assert
       .dom('[data-test-item-avatar="toggle-quote-button"] img')
-      .hasAttribute('src', 'user_a.jpg');
+      .hasAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
   });
 
   test('should hide show quote button when unavailable', async function (assert) {

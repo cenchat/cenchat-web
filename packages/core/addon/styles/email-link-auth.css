@@ -1,0 +1,31 @@
+.email-link-auth__policy-message {
+  margin: 0 16px 16px;
+  font-size: var(--font-size-12);
+  line-height: 1.25rem;
+  color: var(--font-secondary-color);
+}
+
+.email-link-auth-sign-in {
+  display: flex;
+}
+
+.email-link-auth-sign-in--show-more-info {
+  animation-duration: 375ms;
+  animation-name: email-link-auth-sign-in-slide-center-to-left;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes email-link-auth-sign-in-slide-center-to-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.email-link-auth-sign-in__section {
+  min-width: 100%;
+}

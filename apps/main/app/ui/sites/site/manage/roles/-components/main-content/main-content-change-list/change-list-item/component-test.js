@@ -29,7 +29,7 @@ module('Integration | Component | sites/site/manage/roles/-components/main-conte
     `);
 
     // Assert
-    assert.dom('[data-test-change-list-item="photo"]').hasAttribute('src', 'user_b.jpg');
+    assert.dom('[data-test-change-list-item="photo"]').hasAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
     assert.dom('[data-test-change-list-item="name"]').hasText('User B');
     assert.dom('[data-test-change-list-item="username"]').hasText('@user_b');
     assert.dom('[data-test-change-list-item="description"]').hasText('To be added as an admin');
