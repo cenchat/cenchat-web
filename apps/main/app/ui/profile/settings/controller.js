@@ -11,6 +11,11 @@ export default Controller.extend({
   /**
    * @type {Ember.Service}
    */
+  firebase: service(),
+
+  /**
+   * @type {Ember.Service}
+   */
   session: service(),
 
   /**

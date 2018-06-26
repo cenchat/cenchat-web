@@ -143,6 +143,14 @@ export default function getFixtureData() {
         },
       },
 
+      facebookIds: {
+        __doc__: {
+          fb_user_a: {
+            cloudFirestoreReference: '__ref__:users/user_a',
+          },
+        },
+      },
+
       notifications: {
         __doc__: {
           notification_a: {
@@ -346,27 +354,27 @@ export default function getFixtureData() {
       userMetaInfos: {
         __doc__: {
           user_a: {
-            accessToken: {},
+            accessToken: { facebook: 'token_user_a' },
             hasNewNotification: true,
-            notificationTokens: [],
+            notificationTokens: null,
           },
 
           user_b: {
-            accessToken: {},
+            accessToken: null,
             hasNewNotification: true,
-            notificationTokens: [],
+            notificationTokens: null,
           },
 
           user_c: {
-            accessToken: {},
+            accessToken: null,
             hasNewNotification: false,
-            notificationTokens: [],
+            notificationTokens: null,
           },
 
           user_d: {
-            accessToken: {},
+            accessToken: null,
             hasNewNotification: false,
-            notificationTokens: [],
+            notificationTokens: null,
           },
         },
       },
@@ -378,7 +386,7 @@ export default function getFixtureData() {
             displayUsername: null,
             name: 'user a',
             photoUrl: null,
-            provider: {},
+            provider: { facebook: 'fb_user_a' },
             shortBio: null,
             username: null,
 
@@ -523,7 +531,7 @@ export default function getFixtureData() {
             displayUsername: 'user_b',
             name: 'user b',
             photoUrl: null,
-            provider: {},
+            provider: null,
             shortBio: null,
             username: 'user_b',
 
@@ -609,7 +617,7 @@ export default function getFixtureData() {
             displayUsername: 'user_c',
             name: 'user c',
             photoUrl: null,
-            provider: {},
+            provider: null,
             shortBio: null,
             username: 'user_c',
 
@@ -647,7 +655,7 @@ export default function getFixtureData() {
             displayUsername: 'user_d',
             name: 'user d',
             photoUrl: null,
-            provider: {},
+            provider: null,
             shortBio: null,
             username: 'user_d',
 
