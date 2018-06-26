@@ -31,7 +31,7 @@ module('Integration | Component | comment-composer/comment-composer-tagged-entit
     // Assert
     assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute(
       'src',
-      'user_a.jpg',
+      'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114',
     );
     assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute(
       'title',

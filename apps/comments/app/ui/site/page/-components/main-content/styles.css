@@ -2,3 +2,7 @@
   max-width: 100vw;
   overflow: hidden;
 }
+
+.site-page_main-content__email-link-auth {
+  border-bottom: 1px solid var(--divider-color);
+}

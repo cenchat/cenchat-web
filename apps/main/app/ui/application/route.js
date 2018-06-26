@@ -41,43 +41,11 @@ export default Route.extend({
 
         session.set('content.model', model);
 
-        const promises = [this.updateFacebookAccessToken(model)];
-
-        if (this.isCurrentUserProfileOutdated(model)) {
-          promises.push(this.updateCurrentUserProfile(model));
-        }
-
         this.setupPushNotification(model);
-
-        return Promise.all(promises);
+        await this.updateFacebookInfo(model);
       } catch (error) {
         session.close();
       }
-    }
-
-    return null;
-  },
-
-  /**
-   * @param {Model.User} profile
-   * @function
-   * @private
-   */
-  async updateFacebookAccessToken(profile) {
-    const meta = await profile.get('metaInfo');
-    const facebookAccessToken = meta.get('facebookAccessToken');
-
-    if (facebookAccessToken) {
-      try {
-        const credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
-        const authData = await this.firebase.auth().signInAndRetrieveDataWithCredential(credential);
-
-        meta.set('facebookAccessToken', authData.credential.accessToken);
-      } catch (error) {
-        meta.set('facebookAccessToken', null);
-      }
-
-      await meta.save();
     }
   },
 
@@ -141,12 +109,11 @@ export default Route.extend({
    * @function
    * @private
    */
-  isCurrentUserProfileOutdated(profile) {
+  isFacebookInfoOutdated(profile) {
     const facebookProviderData = this.getFacebookProviderData();
 
     if (
-      profile.get('facebookId') !== facebookProviderData.uid
-      || profile.get('displayName') !== facebookProviderData.displayName
+      profile.get('provider.facebook') !== facebookProviderData.uid
       || profile.get('photoUrl') !== facebookProviderData.photoURL
     ) {
       return true;
@@ -165,10 +132,8 @@ export default Route.extend({
     const currentUser = this.get('session.currentUser');
     const facebookProviderData = this.getFacebookProviderData();
 
-    profile.set('facebookId', facebookProviderData.uid);
-    profile.set('displayName', facebookProviderData.displayName);
-    profile.set('name', facebookProviderData.displayName.toLowerCase());
     profile.set('photoUrl', facebookProviderData.photoURL);
+    profile.set('provider.facebook', facebookProviderData.uid);
 
     return Promise.all([
       profile.save({
@@ -190,11 +155,46 @@ export default Route.extend({
           },
         },
       }),
-      currentUser.updateProfile({
-        displayName: profile.get('displayName'),
-        photoURL: profile.get('photoUrl'),
-      }),
+      currentUser.updateProfile({ photoURL: profile.get('photoUrl') }),
     ]);
+  },
+
+  /**
+   * @param {Model.User} profile
+   * @function
+   * @private
+   */
+  async updateFacebookAccessToken(profile) {
+    const meta = await profile.get('metaInfo');
+    const facebookAccessToken = meta.get('accessToken.facebook');
+
+    if (facebookAccessToken) {
+      try {
+        const credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
+        const authData = await this.firebase.auth().signInAndRetrieveDataWithCredential(credential);
+
+        meta.set('accessToken.facebook', authData.credential.accessToken);
+      } catch (error) {
+        meta.set('accessToken.facebook', null);
+      }
+
+      await meta.save();
+    }
+  },
+
+  /**
+   * @param {Model.User} profile
+   * @function
+   * @private
+   */
+  async updateFacebookInfo(profile) {
+    if (profile.get('provider.facebook')) {
+      if (this.isFacebookInfoOutdated(profile)) {
+        await this.updateCurrentUserProfile(profile);
+      }
+
+      await this.updateFacebookAccessToken(profile);
+    }
   },
 
   actions: {

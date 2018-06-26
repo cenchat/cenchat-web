@@ -14,7 +14,7 @@ module('Integration | Component | home/-components/main-content', (hooks) => {
     this.set('onHandleSignInSuccess', () => {});
   });
 
-  test('should show <SignInForm /> when not in fastboot', async function (assert) {
+  test('should show <EmailLinkAuth /> when not in fastboot', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -22,7 +22,7 @@ module('Integration | Component | home/-components/main-content', (hooks) => {
 
     fastboot.set('isFastBoot', false);
 
-    const spy = spyComponent(this, 'sign-in-form');
+    const spy = spyComponent(this, 'email-link-auth');
 
     // Act
     await render(hbs`
@@ -34,7 +34,7 @@ module('Integration | Component | home/-components/main-content', (hooks) => {
     assert.ok(spy.calledOnce);
   });
 
-  test('should hide <SignInForm /> when in fastboot', async function (assert) {
+  test('should hide <EmailLinkAuth /> when in fastboot', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -42,7 +42,7 @@ module('Integration | Component | home/-components/main-content', (hooks) => {
 
     fastboot.set('isFastBoot', true);
 
-    const spy = spyComponent(this, 'sign-in-form');
+    const spy = spyComponent(this, 'email-link-auth');
 
     // Act
     await render(hbs`

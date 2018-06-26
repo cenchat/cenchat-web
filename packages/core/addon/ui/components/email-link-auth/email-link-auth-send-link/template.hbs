@@ -1,0 +1,25 @@
+<div>
+  <header class="card__header">
+    <h2 class="card__heading">Sign in</h2>
+    <p class="card__subheading">We'll send a link to your inbox which you can use to sign in</p>
+  </header>
+
+  {{#ce-form class="card__wrapper" --onSubmit=(action sendSignInLinkToEmail)}}
+    {{ce-field
+        class="card__field"
+        data-test-email-link-auth-send-link="email-field"
+        type="email"
+        value=email
+        required=true
+        label="Email"
+        --onInput=(action setEmail)}}
+
+      {{#ce-button
+          class="card__action"
+          data-test-email-link-auth-send-link="send-link-button"
+          type="submit"
+          disabled=(not email)}}
+        Send link
+      {{/ce-button}}
+  {{/ce-form}}
+</div>

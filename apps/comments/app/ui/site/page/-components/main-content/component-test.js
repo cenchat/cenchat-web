@@ -87,13 +87,13 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     });
   });
 
-  test('should show <SignInForm /> when clicking sign in', async function (assert) {
+  test('should show <EmailLinkAuth /> when clicking sign in', async function (assert) {
     assert.expect(1);
 
     // Arrange
     this.set('session.model', null);
 
-    const spy = spyComponent(this, 'sign-in-form');
+    const spy = spyComponent(this, 'email-link-auth');
 
     await render(hbs`
       {{site/page/-components/main-content
@@ -107,6 +107,6 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     await click('[data-test-comments-header="sign-in-button"]');
 
     // Assert
-    assert.ok(spy.calledOnce);
+    assert.deepEqual(spy.componentArgsType, { redirectUrl: 'string' });
   });
 });

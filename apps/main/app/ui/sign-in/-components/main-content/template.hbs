@@ -3,7 +3,7 @@
 <main class="layout__main">
   {{#if (not fastboot.isFastBoot)}}
     <section class="layout__section layout__section--headerless">
-      {{sign-in-form}}
+      {{email-link-auth class="card--centered-position"}}
     </section>
   {{/if}}
 </main>

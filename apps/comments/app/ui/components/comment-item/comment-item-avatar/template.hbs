@@ -9,14 +9,14 @@
         <img
             class="comment-item-avatar__author-image"
             data-test-item-avatar="author-image"
-            src="{{--comment.author.photoUrl}}"
+            src="{{--comment.author.avatarUrl}}"
             alt="">
       </a>
     {{else}}
       <img
           class="comment-item-avatar__author-image"
           data-test-item-avatar="anonymous-author-image"
-          src="{{--comment.authorOrAnonymous.photoUrl}}"
+          src="{{--comment.authorOrAnonymous.avatarUrl}}"
           alt="">
     {{/if}}
     
@@ -41,7 +41,7 @@
         onclick={{action --onToggleQuoteClick}}>
       {{#ce-icon size="small"}}reply{{/ce-icon}}
 
-      <img src="{{--comment.replyTo.authorOrAnonymous.photoUrl}}" alt="">
+      <img src="{{--comment.replyTo.authorOrAnonymous.avatarUrl}}" alt="">
     </button>
   {{/if}}
 </div>

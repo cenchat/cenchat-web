@@ -346,25 +346,25 @@ export default function getFixtureData() {
       userMetaInfos: {
         __doc__: {
           user_a: {
-            facebookAccessToken: null,
+            accessToken: {},
             hasNewNotification: true,
             notificationTokens: [],
           },
 
           user_b: {
-            facebookAccessToken: null,
+            accessToken: {},
             hasNewNotification: true,
             notificationTokens: [],
           },
 
           user_c: {
-            facebookAccessToken: null,
+            accessToken: {},
             hasNewNotification: false,
             notificationTokens: [],
           },
 
           user_d: {
-            facebookAccessToken: null,
+            accessToken: {},
             hasNewNotification: false,
             notificationTokens: [],
           },
@@ -376,9 +376,9 @@ export default function getFixtureData() {
           user_a: {
             displayName: 'User A',
             displayUsername: null,
-            facebookId: null,
             name: 'user a',
-            photoUrl: 'user_a.jpg',
+            photoUrl: null,
+            provider: {},
             shortBio: null,
             username: null,
 
@@ -521,9 +521,9 @@ export default function getFixtureData() {
           user_b: {
             displayName: 'User B',
             displayUsername: 'user_b',
-            facebookId: null,
             name: 'user b',
-            photoUrl: 'user_b.jpg',
+            photoUrl: null,
+            provider: {},
             shortBio: null,
             username: 'user_b',
 
@@ -607,9 +607,9 @@ export default function getFixtureData() {
           user_c: {
             displayName: 'User C',
             displayUsername: 'user_c',
-            facebookId: null,
             name: 'user c',
-            photoUrl: 'user_c.jpg',
+            photoUrl: null,
+            provider: {},
             shortBio: null,
             username: 'user_c',
 
@@ -645,9 +645,9 @@ export default function getFixtureData() {
           user_d: {
             displayName: 'User D',
             displayUsername: 'user_d',
-            facebookId: null,
             name: 'user d',
-            photoUrl: 'user_d.jpg',
+            photoUrl: null,
+            provider: {},
             shortBio: null,
             username: 'user_d',
 

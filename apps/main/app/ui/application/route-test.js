@@ -38,14 +38,14 @@ module('Unit | Route | application', (hooks) => {
   module('hook: afterModel', () => {
     hooks.beforeEach(function () {
       this.user = EmberObject.create({
-        displayName: 'User A',
-        facebookId: '12345',
         metaInfo: EmberObject.create({
+          accessToken: {},
           notificationTokens: [],
 
           save() {},
         }),
         photoUrl: 'user_a.jpg',
+        provider: { facebook: '12345' },
 
         save() {
           return stubPromise(true);
@@ -134,7 +134,7 @@ module('Unit | Route | application', (hooks) => {
     });
 
     test('should update profile when Facebook UID is outdated with Facebook info', async function (assert) {
-      assert.expect(6);
+      assert.expect(4);
 
       // Arrange
       this.session.get('currentUser.providerData')[0].uid = '67890';
@@ -156,53 +156,14 @@ module('Unit | Route | application', (hooks) => {
       await route.afterModel();
 
       // Assert
-      assert.equal(this.user.get('facebookId'), '67890');
-      assert.equal(this.user.get('displayName'), 'User A');
-      assert.equal(this.user.get('name'), 'user a');
+      assert.equal(this.user.get('provider.facebook'), '67890');
       assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
       assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileSpy.calledWithExactly({
-        displayName: 'User A',
-        photoURL: 'user_a.jpg',
-      }));
-    });
-
-    test('should update profile when display name is outdated with Facebook info', async function (assert) {
-      assert.expect(6);
-
-      // Arrange
-      this.session.get('currentUser.providerData')[0].displayName = 'New name';
-
-      const updateProfileSpy = sinon.spy(
-        this.session.content.currentUser,
-        'updateProfile',
-      );
-      const saveSpy = sinon.spy(this.user, 'save');
-      const route = this.owner.lookup('route:application');
-
-      route.set('firebase', this.firebase);
-      route.set('session', this.session);
-      route.set('store', {
-        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
-      });
-
-      // Act
-      await route.afterModel();
-
-      // Assert
-      assert.equal(this.user.get('facebookId'), '12345');
-      assert.equal(this.user.get('displayName'), 'New name');
-      assert.equal(this.user.get('name'), 'new name');
-      assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
-      assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileSpy.calledWithExactly({
-        displayName: 'New name',
-        photoURL: 'user_a.jpg',
-      }));
+      assert.ok(updateProfileSpy.calledWithExactly({ photoURL: 'user_a.jpg' }));
     });
 
     test('should update profile when photo url is outdated with Facebook info', async function (assert) {
-      assert.expect(6);
+      assert.expect(4);
 
       // Arrange
       this.session.get('currentUser.providerData')[0].photoURL = 'new.png';
@@ -224,15 +185,10 @@ module('Unit | Route | application', (hooks) => {
       await route.afterModel();
 
       // Assert
-      assert.equal(this.user.get('facebookId'), '12345');
-      assert.equal(this.user.get('displayName'), 'User A');
-      assert.equal(this.user.get('name'), 'user a');
+      assert.equal(this.user.get('provider.facebook'), '12345');
       assert.equal(this.user.get('photoUrl'), 'new.png');
       assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileSpy.calledWithExactly({
-        displayName: 'User A',
-        photoURL: 'new.png',
-      }));
+      assert.ok(updateProfileSpy.calledWithExactly({ photoURL: 'new.png' }));
     });
 
     test('should not update profile when up-to-date with Facebook info', async function (assert) {
@@ -291,7 +247,7 @@ module('Unit | Route | application', (hooks) => {
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
       const userMetaInfo = EmberObject.create({
-        facebookAccessToken: '12345',
+        accessToken: { facebook: '12345' },
         notificationTokens: [],
         save: saveStub,
       });
@@ -323,7 +279,7 @@ module('Unit | Route | application', (hooks) => {
 
       // Assert
       assert.ok(signInStub.calledOnce);
-      assert.equal(userMetaInfo.get('facebookAccessToken'), '67890');
+      assert.equal(userMetaInfo.get('accessToken.facebook'), '67890');
       assert.ok(saveStub.calledOnce);
     });
 
@@ -333,7 +289,7 @@ module('Unit | Route | application', (hooks) => {
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
       const userMetaInfo = EmberObject.create({
-        facebookAccessToken: '12345',
+        accessToken: { facebook: '12345' },
         notificationTokens: [],
         save: saveStub,
       });

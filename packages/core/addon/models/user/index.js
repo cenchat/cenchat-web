@@ -29,17 +29,17 @@ export default Model.extend({
   /**
    * @type {string}
    */
-  facebookId: attr('string'),
-
-  /**
-   * @type {string}
-   */
   name: attr('string'),
 
   /**
    * @type {string}
    */
   photoUrl: attr('string'),
+
+  /**
+   * @type {Object}
+   */
+  provider: attr(),
 
   /**
    * @type {string}
@@ -97,6 +97,21 @@ export default Model.extend({
   firebase: inject(),
 
   /**
+   * @type {string}
+   */
+  avatarUrl: computed('provider.facebook', {
+    get() {
+      let avatarUrl = 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114';
+
+      if (this.provider && this.provider.facebook) {
+        avatarUrl = `https://graph.facebook.com/${this.provider.facebook}/picture?type=large`;
+      }
+
+      return avatarUrl;
+    },
+  }),
+
+  /**
    * @type {Model.BetaTester}
    */
   betaTester: promiseObject(({ id, store }) => (
@@ -107,15 +122,6 @@ export default Model.extend({
    * @type {Model.UserMetaInfo}
    */
   metaInfo: promiseObject(({ id, store }) => store.findRecord('userMetaInfo', id)),
-
-  /**
-   * @type {string}
-   */
-  largePhotoUrl: computed('facebookId', {
-    get() {
-      return `https://graph.facebook.com/${this.facebookId}/picture?type=large`;
-    },
-  }),
 
   /**
    * @type {string}

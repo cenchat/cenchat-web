@@ -38,7 +38,7 @@ module('Unit | Route | comment', (hooks) => {
       const model = await this.store.findRecord('comment', 'comment_b');
       const author = await model.get('author');
 
-      author.set('facebookId', 'foobar');
+      author.set('provider.facebook', 'foobar');
 
       const route = this.owner.lookup('route:comments');
 

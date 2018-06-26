@@ -16,6 +16,7 @@ export async function setupTestState(context) {
   stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
 
   context.set('firebase', mockFirebase(context.owner, getFixtureData()));
+  context.set('firebase.auth', () => ({ isSignInWithEmailLink: sinon.stub().returns(false) }));
   context.set('db', context.firebase.firestore());
   context.set('router', stubService(context, 'router', { urlFor: sinon.stub() }));
   context.set('session', stubSession(context));

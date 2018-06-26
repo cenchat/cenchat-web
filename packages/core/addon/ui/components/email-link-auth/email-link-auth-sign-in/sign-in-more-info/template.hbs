@@ -1,0 +1,25 @@
+<section class="{{class}}">
+  <header class="card__header">
+    <h2 class="card__heading">Complete your profile</h2>
+    <p class="card__subheading">This'll help other users identify you</p>
+  </header>
+
+  {{#ce-form class="card__wrapper" --onSubmit=(action --onSignInClick displayName)}}
+    {{ce-field
+        class="card__field"
+        data-test-sign-in-more-info="display-name-field"
+        type="text"
+        value=displayName
+        required=true
+        label="Full name"
+        --onInput=(action setDisplayName)}}
+
+      {{#ce-button
+          class="card__action"
+          data-test-sign-in-more-info="sign-in-button"
+          type="submit"
+          disabled=(not displayName)}}
+        Sign in
+      {{/ce-button}}
+  {{/ce-form}}
+</section>

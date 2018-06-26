@@ -8,9 +8,9 @@ import attr from 'ember-data/attr';
  */
 export default Model.extend({
   /**
-   * @type {string}
+   * @type {Object}
    */
-  facebookAccessToken: attr('string'),
+  accessToken: attr(),
 
   /**
    * @type {boolean}

@@ -18,7 +18,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.expect(2);
 
       // Arrange
-      const author = this.store.createRecord('user', { displayName: 'Foo', photoUrl: 'foo.jpg' });
+      const author = this.store.createRecord('user', { displayName: 'Foo', provider: {} });
       const model = this.store.createRecord('comment', { author });
 
       // Act
@@ -26,7 +26,7 @@ module('Unit | Model | comment', (hooks) => {
 
       // Assert
       assert.equal(result.get('displayName'), 'Foo');
-      assert.equal(result.get('photoUrl'), 'foo.jpg');
+      assert.equal(result.get('avatarUrl'), 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
     });
 
     test('should return anonymous author when author is not available', function (assert) {
@@ -40,7 +40,7 @@ module('Unit | Model | comment', (hooks) => {
 
       // Assert
       assert.equal(result.displayName, 'Anonymous');
-      assert.equal(result.photoUrl, 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
+      assert.equal(result.avatarUrl, 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
     });
   });
 

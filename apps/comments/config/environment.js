@@ -25,6 +25,7 @@ module.exports = function(environment) {
     },
 
     apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app',
+    emailLinkSignInUrl: 'http://localhost:4200/sign-in',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
     // Addon configs
@@ -62,6 +63,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.apiHost = 'https://cenchat.com',
+    ENV.emailLinkSignInUrl = 'https://cenchat.com/sign-in',
     ENV.firebase = {
       apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',
       authDomain: 'cenchat-prod.firebaseapp.com',
