@@ -1,0 +1,35 @@
+<section class="side-nav__section">
+  {{#ce-subheader class="side-nav__section-header"}}
+    <h3>Linked Accounts</h3>
+  {{/ce-subheader}}
+
+  <article class="card">
+    <ul class="list">
+      <li class="list__item">
+        <div class="list__multi-line-content">
+          <h4 class="list__primary-text">Link your Facebook account</h4>
+
+          <p class="list__secondary-text">
+            We'll never post to Facebook or message your friends without your permission
+          </p>
+        </div>
+
+        {{#if isFacebookAccountLinked}}
+          {{ce-icon-button
+              data-test-linked-account-settings="unlink-fb-button"
+              title="Unlink Facebook account"
+              aria-label="Unlink Facebook account"
+              icon="check_box"
+              --onClick=(action unlinkFacebookAccount)}}
+        {{else}}
+          {{ce-icon-button
+              data-test-linked-account-settings="link-fb-button"
+              title="Link Facebook account"
+              aria-label="Link Facebook account"
+              icon="check_box_outline_blank"
+              --onClick=(action linkFacebookAccount)}}
+        {{/if}}
+      </li>
+    </ul>
+  </article>
+</section>

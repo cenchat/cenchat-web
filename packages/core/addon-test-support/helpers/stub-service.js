@@ -36,9 +36,7 @@ export function stubSession(context, model) {
       providerData: [{
         photoURL: 'user_a.jpg',
         providerId: 'facebook.com',
-      }, {
-        photoURL: 'user_a.jpg',
-        providerId: 'google.com',
+        uid: 'fb_user_a',
       }],
       uid: 'user_a',
 

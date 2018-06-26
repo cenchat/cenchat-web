@@ -27,7 +27,7 @@ module('Integration | Component | notification-list/notification-list-comment-ta
     // Assert
     assert
       .dom('[data-test-notification-list-comment-tag-item="from-photo"]')
-      .hasAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fothers%2Fno_photo_1.png?alt=media&token=550d7675-a2fc-4148-8a02-dd77ac3ea114');
+      .hasAttribute('src', 'https://graph.facebook.com/fb_user_a/picture?type=large');
     assert
       .dom('[data-test-notification-list-comment-tag-item="from-photo"]')
       .hasAttribute('alt', 'User A');
