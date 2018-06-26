@@ -29,20 +29,11 @@
       </li>
     {{/ce-dropdown-button}}
   {{else}}
-    {{#if isInIosUiWebView}}
-      {{ce-icon-button
-          class="site-page_main-content-comments-header__open-safari-button"
-          title="Open in Safari to sign in"
-          aria-label="Open in Safari to sign in"
-          icon="account_circle"
-          --onClick=(action showOpenInSafariToast)}}
-    {{else}}
-      {{ce-icon-button
-          data-test-comments-header="sign-in-button"
-          title="Sign in"
-          aria-label="Sign in"
-          icon="account_circle"
-          --onClick=(action --onSignInClick)}}
-    {{/if}}
+    {{ce-icon-button
+        data-test-comments-header="sign-in-button"
+        title="Sign in"
+        aria-label="Sign in"
+        icon="account_circle"
+        --onClick=(action --onSignInClick)}}
   {{/if}}
 {{/ce-subheader}}

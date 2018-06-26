@@ -6,9 +6,7 @@
         --headerText="Send a comment"
         --onSendCommentSuccess=(action handleSendCommentSuccess)}}
   {{else if isSignInVisible}}
-    {{email-link-auth
-        class="site-page_main-content__email-link-auth"
-        --redirectUrl=--page.url}}
+    {{email-link-auth class="site-page_main-content__email-link-auth" --redirectUrl=--page.url}}
   {{/if}}
 
   {{#async-let
