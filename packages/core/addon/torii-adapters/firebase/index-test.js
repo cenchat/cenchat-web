@@ -67,7 +67,7 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
         displayUsername: null,
         name: 'user a',
         photoUrl: null,
-        provider: {},
+        provider: null,
         shortBio: null,
         username: null,
       }));

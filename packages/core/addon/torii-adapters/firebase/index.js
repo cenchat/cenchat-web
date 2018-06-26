@@ -35,7 +35,7 @@ export default EmberObject.extend({
         displayUsername: null,
         name: currentUser.displayName.toLowerCase(),
         photoUrl: null,
-        provider: {},
+        provider: null,
         shortBio: null,
         username: null,
       });
@@ -43,14 +43,10 @@ export default EmberObject.extend({
       await record.save({
         adapterOptions: {
           include(batch, db) {
-            // Workaround since an empty object with batch.set() with merge: true is bugged
-            batch.update(db.collection('users').doc(currentUser.uid), {
-              provider: {},
-            });
             batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
-              accessToken: {},
+              accessToken: null,
               hasNewNotification: false,
-              notificationTokens: [],
+              notificationTokens: null,
             });
           },
         },

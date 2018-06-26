@@ -64,8 +64,11 @@ export default Route.extend({
         messaging.onTokenRefresh(async () => {
           const token = await messaging.getToken();
           const meta = await profile.get('metaInfo');
+          const notificationTokens = meta.get('notificationTokens');
 
-          if (!meta.get('notificationTokens').includes(token)) {
+          if (!Array.isArray(notificationTokens)) {
+            meta.set('notificationTokens', [token]);
+          } else if (!notificationTokens.includes(token)) {
             meta.set('notificationTokens', [...meta.get('notificationTokens'), token]);
           }
 
@@ -74,8 +77,11 @@ export default Route.extend({
 
         const token = await messaging.getToken();
         const meta = await profile.get('metaInfo');
+        const notificationTokens = meta.get('notificationTokens');
 
-        if (!meta.get('notificationTokens').includes(token)) {
+        if (!Array.isArray(notificationTokens)) {
+          meta.set('notificationTokens', [token]);
+        } else if (!notificationTokens.includes(token)) {
           meta.set('notificationTokens', [...meta.get('notificationTokens'), token]);
         }
 
@@ -166,9 +172,10 @@ export default Route.extend({
    */
   async updateFacebookAccessToken(profile) {
     const meta = await profile.get('metaInfo');
-    const facebookAccessToken = meta.get('accessToken.facebook');
 
-    if (facebookAccessToken) {
+    if (meta.get('accessToken') && meta.get('accessToken.facebook')) {
+      const facebookAccessToken = meta.get('accessToken.facebook');
+
       try {
         const credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
         const authData = await this.firebase.auth().signInAndRetrieveDataWithCredential(credential);
@@ -188,7 +195,7 @@ export default Route.extend({
    * @private
    */
   async updateFacebookInfo(profile) {
-    if (profile.get('provider.facebook')) {
+    if (profile.get('provider') && profile.get('provider.facebook')) {
       if (this.isFacebookInfoOutdated(profile)) {
         await this.updateCurrentUserProfile(profile);
       }
