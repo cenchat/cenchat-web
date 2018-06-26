@@ -4,7 +4,7 @@
 }
 
 .comment-item-content-message__attachment-image {
-  height: 120px;
+  max-height: 120px;
   margin-top: 8px;
   margin-bottom: 8px;
   border-radius: var(--border-radius-square);
