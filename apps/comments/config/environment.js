@@ -63,7 +63,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.apiHost = 'https://cenchat.com',
-    ENV.emailLinkSignInUrl = 'https://cenchat.com/sign-in',
+    ENV.emailLinkSignInUrl = 'https://comments.cenchat.com/sign-in',
     ENV.firebase = {
       apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',
       authDomain: 'cenchat-prod.firebaseapp.com',
