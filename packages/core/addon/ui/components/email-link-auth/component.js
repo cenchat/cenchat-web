@@ -1,6 +1,8 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 
+import toast from '@cenchat/elements/utils/toast';
+
 import layout from './template';
 
 /**
@@ -57,12 +59,22 @@ export default Component.extend({
    * @function
    */
   async handleSignInClick(email, displayName) {
-    await this.get('session').open('firebase', { displayName, email });
+    try {
+      await this.get('session').open('firebase', { displayName, email });
 
-    if (this.args.redirectUrl) {
-      window.location.replace(this.args.redirectUrl);
-    } else {
-      this.router.transitionTo('profile', this.get('session.model.urlKey'));
+      if (this.args.redirectUrl) {
+        window.location.replace(this.args.redirectUrl);
+      } else {
+        this.router.transitionTo('profile', this.get('session.model.urlKey'));
+      }
+    } catch (error) {
+      if (error.code === 'auth/invalid-email') {
+        toast('Invalid email');
+      } else if (error.code === 'auth/invalid-action-code') {
+        toast('Invalid sign in link');
+      } else {
+        toast('Couldn\'t sign in. Try again later.');
+      }
     }
   },
 });
