@@ -3,7 +3,6 @@
   align-items: center;
   width: 100%;
   background-color: var(--navbar-background-color);
-  box-shadow: var(--elevation-8);
 }
 
 @media (min-width: 960px) {
@@ -11,14 +10,16 @@
     display: block;
     width: auto;
   }
+
+  .ce-navbar::before {
+    display: block;
+    height: 64px;
+    content: '';
+  }
 }
 
 .ce-navbar .ce-icon-link-button {
-  --button-hover-background-color: var(--navbar-button-hover-background-color);
-  --button-active-background-color: var(--navbar-button-active-background-color);
-
   display: flex;
   flex: 1;
   justify-content: center;
-  color: var(--navbar-text-color);
 }

@@ -1,0 +1,21 @@
+.sign-in_main-content__email-link-auth {
+  --surface-background-color: #fff;
+  --text-field-background-color: #f5f5f5;
+}
+
+@media (min-width: 960px) {
+  .sign-in_main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 128px);
+  }
+
+  .sign-in_main-content__email-link-auth {
+    --surface-background-color: #f5f5f5;
+    --text-field-background-color: #fff;
+
+    max-width: 456px;
+    border: 40px solid transparent;
+  }
+}

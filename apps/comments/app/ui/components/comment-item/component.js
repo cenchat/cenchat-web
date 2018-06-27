@@ -1,4 +1,5 @@
 import { inject } from '@ember/service';
+import { typeOf } from '@ember/utils';
 import Component from '@ember/component';
 
 import toast from '@cenchat/elements/utils/toast';
@@ -65,13 +66,21 @@ export default Component.extend({
   async handleShareCommentClick() {
     if (navigator.share) {
       const { comment } = this.args;
-      const author = await comment.get('author');
+      const author = await comment.get('authorOrAnonymous');
 
-      navigator.share({
-        title: `${author.get('displayName')} on Cenchat`,
-        text: comment.get('message'),
-        url: `https://cenchat.com/comments/${comment.get('id')}`,
-      });
+      if (typeOf(author) === 'instance') {
+        navigator.share({
+          title: `${author.get('displayName')} on Cenchat`,
+          text: comment.get('message'),
+          url: `https://cenchat.com/comments/${comment.get('id')}`,
+        });
+      } else {
+        navigator.share({
+          title: `${author.displayName} on Cenchat`,
+          text: comment.get('message'),
+          url: `https://cenchat.com/comments/${comment.get('id')}`,
+        });
+      }
     }
 
     this.set('isShareCommentLinkVisible', true);

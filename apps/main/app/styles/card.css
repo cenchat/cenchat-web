@@ -7,7 +7,6 @@
   font-family: var(--font-family);
   background-color: var(--surface-background-color);
   border-radius: var(--border-radius-square);
-  box-shadow: var(--elevation-1);
 }
 
 @media (min-width: 960px) {

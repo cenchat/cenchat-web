@@ -13,7 +13,7 @@
   margin-top: 0;
   margin-bottom: 0;
   list-style-type: none;
-  background-color: var(--fixed-surface-background-color);
+  background-color: var(--elevated-surface-background-color);
   border-radius: var(--border-radius-square);
   box-shadow: var(--elevation-8);
   box-sizing: border-box;

@@ -7,12 +7,13 @@
 
   /* Scaffolding */
   --body-background-color: #fff;
-  --fixed-surface-background-color: #fff;
+  --elevated-surface-background-color: #fff;
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
   --disabled-text-color: var(--dark-38);
   --error-color: #ff5252;
   --chat-bubble-background-color: rgba(0, 0, 0, 0.06);
+  --border-radius-square: 4px;
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);
@@ -36,7 +37,7 @@
 
   /* Toast */
   --toast-text-color: #fff;
-  --toast-background-color: rgba(48, 48, 48, 0.98);
+  --toast-background-color: #303030;
   --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
   --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
 
@@ -58,12 +59,13 @@
 
   /* Scaffolding */
   --body-background-color: #303030;
-  --fixed-surface-background-color: #424242;
+  --elevated-surface-background-color: #424242;
   --active-background-color: rgba(204, 204, 204, 0.25);
   --hover-background-color: rgba(204, 204, 204, 0.1);
   --disabled-text-color: var(--light-50);
   --error-color: #ff5252;
   --chat-bubble-background-color: rgba(255, 255, 255, 0.06);
+  --border-radius-square: 4px;
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);
