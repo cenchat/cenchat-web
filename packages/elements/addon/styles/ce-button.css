@@ -55,7 +55,7 @@
   left: 0;
   width: 50%;
   height: 2px;
-  background-color: var(--progress-bar-moving-color);
+  background-color: var(--indicator-color);
   content: '';
   animation-duration: 1000ms;
   animation-iteration-count: infinite;

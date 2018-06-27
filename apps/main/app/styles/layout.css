@@ -39,7 +39,7 @@
 .layout__nav {
   position: sticky;
   bottom: 0;
-  z-index: 800;
+  z-index: 600;
   grid-area: nav;
 }
 

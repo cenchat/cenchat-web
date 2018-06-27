@@ -23,3 +23,25 @@
   flex: 1;
   justify-content: center;
 }
+
+.ce-navbar .ce-icon-link-button[active]::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: '';
+  background-color: var(--indicator-color);
+  border-radius: var(--border-radius-square);
+}
+
+@media (min-width: 960px) {
+  .ce-navbar .ce-icon-link-button[active]::after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: initial;
+    width: 2px;
+    height: initial;
+  }
+}

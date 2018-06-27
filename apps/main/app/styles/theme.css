@@ -14,6 +14,7 @@
   --hover-background-color: #e0e0e0;
   --disabled-text-color: var(--dark-38);
   --error-color: #ff5252;
+  --indicator-color: #448aff;
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);
@@ -37,7 +38,6 @@
 
   /* Progress bar */
   --progress-bar-background-color: var(--dark-12);
-  --progress-bar-moving-color: var(--dark-87);
 
   /* Text fields */
   --text-field-background-color: #fff;

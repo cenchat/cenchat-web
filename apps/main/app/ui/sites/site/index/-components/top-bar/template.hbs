@@ -28,11 +28,17 @@
 
   {{#if --site.isVerified}}
     {{#ce-top-bar-row data-test-top-bar="tabs"}}
-      {{#ce-link-button data-test-top-bar="approved-comments-link" href=(href-to 'sites.site.index.approved-comments')}}
+      {{#ce-link-button
+          class="sites-site-index_top-bar__tab"
+          data-test-top-bar="approved-comments-link"
+          href=(href-to 'sites.site.index.approved-comments')}}
         Approved
       {{/ce-link-button}}
 
-      {{#ce-link-button data-test-top-bar="rejected-comments-link" href=(href-to 'sites.site.index.rejected-comments')}}
+      {{#ce-link-button
+          class="sites-site-index_top-bar__tab"
+          data-test-top-bar="rejected-comments-link"
+          href=(href-to 'sites.site.index.rejected-comments')}}
         Rejected
       {{/ce-link-button}}
     {{/ce-top-bar-row}}

@@ -3,7 +3,7 @@
   "short_name":"Cenchat",
   "start_url":"/",
   "display":"standalone",
-  "background_color":"#fafafa",
+  "background_color":"#fff",
   "theme_color":"#e0e0e0",
   "description":"Discussion platform that prevents toxic comments",
   "icons":[

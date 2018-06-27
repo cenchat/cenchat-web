@@ -55,6 +55,7 @@
   line-height: var(--line-height-56);
   color: var(--heading-color);
   background-color: var(--heading-background-color);
+  border-radius: var(--border-radius-square);
 }
 
 .home_main-content__intro-subheading {
