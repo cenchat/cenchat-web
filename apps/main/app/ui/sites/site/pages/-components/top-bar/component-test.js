@@ -25,6 +25,6 @@ module('Integration | Component | sites/site/pages/-components/top-bar', (hooks)
     `);
 
     // Assert
-    assert.dom('[data-test-top-bar="site-name"]').hasText('Site A');
+    assert.dom('[data-test-top-bar="site-name"]').hasText('Pages (Site A)');
   });
 });

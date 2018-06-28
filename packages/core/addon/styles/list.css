@@ -57,7 +57,7 @@ button.list__action > div {
 
 .list__icon {
   margin: 0 16px;
-  color: var(--icon-default-color);
+  color: var(--font-primary-color);
 }
 
 .list__avatar {

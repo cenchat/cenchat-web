@@ -14,7 +14,7 @@
   --hover-background-color: #e0e0e0;
   --disabled-text-color: var(--dark-38);
   --error-color: #ff5252;
-  --indicator-color: #448aff;
+  --indicator-color: var(--brand-primary-color);
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);

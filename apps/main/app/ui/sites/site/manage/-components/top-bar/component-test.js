@@ -23,6 +23,6 @@ module('Integration | Component | sites/site/manage/-components/top-bar', (hooks
     `);
 
     // Assert
-    assert.dom('[data-test-top-bar="site-name"]').hasText('Site A');
+    assert.dom('[data-test-top-bar="site-name"]').hasText('Manage (Site A)');
   });
 });
