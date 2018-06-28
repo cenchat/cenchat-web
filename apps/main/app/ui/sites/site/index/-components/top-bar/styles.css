@@ -1,0 +1,10 @@
+.sites-site-index_top-bar__tab[active]::after {
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+  left: 8px;
+  height: 2px;
+  content: '';
+  background-color: var(--indicator-color);
+  border-radius: var(--border-radius-square);
+}

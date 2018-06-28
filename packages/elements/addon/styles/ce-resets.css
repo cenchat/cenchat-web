@@ -29,12 +29,3 @@ html {
   font-weight: 400;
   src: local("Segoe UI Italic");
 }
-
-/**
- * Reset Roboto font to include font-weight 300 for Firefox
- */
-@font-face {
-  font-family: "Roboto";
-  font-weight: 300;
-  src: local("Roboto Light");
-}

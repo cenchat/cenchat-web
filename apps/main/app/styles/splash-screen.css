@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
+  background-color: #fff;
 }
 
 .splash-screen__logo {
@@ -37,7 +37,7 @@
   left: 0;
   width: 50%;
   content: '';
-  background-color: var(--progress-bar-moving-color);
+  background-color: var(--indicator-color);
   animation-name: progress-bar;
   animation-duration: 2000ms;
   animation-timing-function: linear;

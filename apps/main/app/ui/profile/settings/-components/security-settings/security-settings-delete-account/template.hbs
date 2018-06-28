@@ -10,7 +10,7 @@
       <em>It make take up to 24 hours for your account to be completely deleted.</em>
     </p>
 
-    {{#ce-form --onSubmit=(action deleteAccount)}}
+    {{#ce-form class="card__wrapper" --onSubmit=(action deleteAccount)}}
       {{ce-field
           class="card__field"
           data-test-security-settings-delete-account="confirm-field"

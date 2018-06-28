@@ -17,7 +17,7 @@
 
 html {
   font-family: var(--font-family);
-  background-color: #e0e0e0;
+  background-color: #fff;
 }
 
 .app {
@@ -28,11 +28,11 @@ html {
 }
 
 a {
-  color: var(--brand-primary-color);
+  color: #448aff;
 }
 
 a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
-  color: var(--brand-primary-color);
+  color: #448aff;
 }
 
 .clickable {

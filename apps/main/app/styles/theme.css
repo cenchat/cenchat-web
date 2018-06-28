@@ -5,16 +5,16 @@
   --dark-38: rgba(0, 0, 0, 0.38);
   --dark-12: rgba(0, 0, 0, 0.12);
   --brand-primary-color: #212121;
-  --brand-transparent-primary-color: rgba(33, 33, 33, 0.98);
 
   /* Scaffolding */
-  --body-background-color: #fafafa;
-  --surface-background-color: #fff;
-  --fixed-surface-background-color: rgba(255, 255, 255, 0.98);
+  --body-background-color: #fff;
+  --surface-background-color: #f5f5f5;
+  --elevated-surface-background-color: #fff;
   --active-background-color: #bdbdbd;
-  --hover-background-color: #eee;
+  --hover-background-color: #e0e0e0;
   --disabled-text-color: var(--dark-38);
   --error-color: #ff5252;
+  --indicator-color: #448aff;
 
   /* Buttons */
   --button-hover-background-color: var(--hover-background-color);
@@ -24,32 +24,32 @@
   /* Divider */
   --divider-color: var(--dark-12);
 
+  /* Heading */
+  --heading-background-color: var(--brand-primary-color);
+  --heading-color: #fff;
+
   /* List */
   --list-item-disabled-text-color: var(--disabled-text-color);
   --list-item-hover-background-color: var(--hover-background-color);
   --list-item-active-background-color: var(--active-background-color);
 
-  /* Nav bar */
-  --navbar-text-color: #fff;
-  --navbar-background-color: var(--brand-transparent-primary-color);
-  --navbar-button-hover-background-color: rgba(204, 204, 204, 0.1);
-  --navbar-button-active-background-color: rgba(204, 204, 204, 0.25);
+  /* Navbar */
+  --navbar-background-color: #fff;
 
   /* Progress bar */
   --progress-bar-background-color: var(--dark-12);
-  --progress-bar-moving-color: var(--dark-87);
 
   /* Text fields */
-  --text-field-background-color: #f5f5f5;
+  --text-field-background-color: #fff;
 
   /* Toast */
   --toast-text-color: #fff;
-  --toast-background-color: rgba(48, 48, 48, 0.98);
+  --toast-background-color: #303030;
   --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
   --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
 
   /* Top bar */
-  --top-bar-background-color: var(--fixed-surface-background-color);
+  --top-bar-background-color: #fff;
 
   /* Typography */
   --font-primary-color: var(--dark-87);

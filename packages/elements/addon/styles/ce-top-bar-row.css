@@ -11,11 +11,9 @@
 .ce-top-bar-row > h4,
 .ce-top-bar-row > h5,
 .ce-top-bar-row > h6 {
-  flex: 1;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-top: 0;
-  margin-bottom: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin: 0 auto 0 12px;
   overflow: hidden;
 
   /* Title typography */
@@ -25,5 +23,8 @@
   line-height: 2rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--heading-color);
+  background-color: var(--heading-background-color);
+  border-radius: var(--border-radius-square);
   box-sizing: border-box;
 }

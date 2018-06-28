@@ -18,8 +18,8 @@
   width: 20px;
   height: 20px;
   margin: auto;
-  border-top: 2px solid var(--progress-bar-moving-color);
-  border-right: 2px solid var(--progress-bar-moving-color);
+  border-top: 2px solid var(--indicator-color);
+  border-right: 2px solid var(--indicator-color);
   border-bottom: 2px solid transparent;
   border-left: 2px solid transparent;
   border-radius: var(--border-radius-circle);
