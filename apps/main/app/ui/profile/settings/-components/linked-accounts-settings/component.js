@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 
 import firebase from 'firebase';
+import toast from '@cenchat/elements/utils/toast';
 
 /**
  * @class ProfileSettingsLinkedAccountsSettings
@@ -52,28 +53,36 @@ export default Component.extend({
 
     provider.addScope('user_friends');
 
-    const currentUser = this.args.session.get('currentUser');
-    const result = await currentUser.linkWithPopup(provider);
-    const currentUserModel = this.args.session.get('model');
-    const { photoURL, uid: facebookId } = this.getFacebookProvider(result.user);
+    try {
+      const currentUser = this.args.session.get('currentUser');
+      const result = await currentUser.linkWithPopup(provider);
+      const currentUserModel = this.args.session.get('model');
+      const { photoURL, uid: facebookId } = this.getFacebookProvider(result.user);
 
-    currentUserModel.set('photoUrl', photoURL);
-    currentUserModel.set('provider', { facebook: facebookId });
+      currentUserModel.set('photoUrl', photoURL);
+      currentUserModel.set('provider', { facebook: facebookId });
 
-    currentUserModel.save({
-      adapterOptions: {
-        include(batch, db) {
-          batch.set(db.collection('facebookIds').doc(facebookId), {
-            cloudFirestoreReference: db.collection('users').doc(currentUserModel.get('id')),
-          });
-          batch.update(db.collection('userMetaInfos').doc(currentUserModel.get('id')), {
-            accessToken: { facebook: result.credential.accessToken },
-          });
+      currentUserModel.save({
+        adapterOptions: {
+          include(batch, db) {
+            batch.set(db.collection('facebookIds').doc(facebookId), {
+              cloudFirestoreReference: db.collection('users').doc(currentUserModel.get('id')),
+            });
+            batch.update(db.collection('userMetaInfos').doc(currentUserModel.get('id')), {
+              accessToken: { facebook: result.credential.accessToken },
+            });
+          },
         },
-      },
-    });
+      });
 
-    this.set('isFacebookAccountLinked', true);
+      this.set('isFacebookAccountLinked', true);
+    } catch (error) {
+      if (error.code === 'auth/credential-already-in-use') {
+        toast('Account is already linked to someone else');
+      } else if (error.code === 'auth/email-already-in-use') {
+        toast('Email used by your Facebook account already exists');
+      }
+    }
   },
 
   /**
