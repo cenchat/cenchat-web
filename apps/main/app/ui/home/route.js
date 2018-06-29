@@ -29,8 +29,8 @@ export default Route.extend({
    * @override
    */
   async afterModel() {
-    this.set('headData.title', 'Cenchat');
-    this.set('headData.description', 'Discussion platform that prevents toxic comments');
+    this.set('headData.title', 'Cenchat – civilized commenting service');
+    this.set('headData.description', 'Cenchat is a commenting service with a unique way to prevent trolls, harassment, negativity, and spam to happen around your work');
     this.set('headData.image', 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat-wordmark-bow-1200.png?alt=media&token=bf1daeb8-3f41-4cfc-8e00-19f6e11aad9e');
     this.set('headData.url', 'https://cenchat.com');
     this.set('headData.type', 'website');

@@ -1,9 +1,15 @@
 {{#if model.title}}
   <title>{{model.title}}</title>
-  <meta property="og:title" content="{{model.title}}">
-  <meta name="twitter:title" content="{{model.title}}">
+
+  {{#if model.socialTitle}}
+    <meta property="og:title" content="{{model.socialTitle}}">
+    <meta name="twitter:title" content="{{model.socialTitle}}">
+  {{else}}
+    <meta property="og:title" content="{{model.title}}">
+    <meta name="twitter:title" content="{{model.title}}">
+  {{/if}}
 {{else}}
-  <title>Cenchat</title>
+  <title>Cenchat – civilized commenting service</title>
 {{/if}}
 
 {{#if (eq model.description '&nbsp;')}}

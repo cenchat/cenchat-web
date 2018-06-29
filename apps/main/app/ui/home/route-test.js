@@ -78,8 +78,8 @@ module('Unit | Route | home', (hooks) => {
       await route.afterModel();
 
       // Assert
-      assert.equal(route.get('headData.title'), 'Cenchat');
-      assert.equal(route.get('headData.description'), 'Discussion platform that prevents toxic comments');
+      assert.equal(route.get('headData.title'), 'Cenchat – civilized commenting service');
+      assert.equal(route.get('headData.description'), 'Cenchat is a commenting service with a unique way to prevent trolls, harassment, negativity, and spam to happen around your work');
       assert.equal(route.get('headData.image'), 'https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat-wordmark-bow-1200.png?alt=media&token=bf1daeb8-3f41-4cfc-8e00-19f6e11aad9e');
       assert.equal(route.get('headData.url'), 'https://cenchat.com');
       assert.equal(route.get('headData.type'), 'website');

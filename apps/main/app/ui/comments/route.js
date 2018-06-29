@@ -25,7 +25,8 @@ export default Route.extend({
   async afterModel(model) {
     const author = await model.authorOrAnonymous;
 
-    this.set('headData.title', `${author.displayName} on Cenchat`);
+    this.set('headData.title', model.text || `${author.displayName} on Cenchat`);
+    this.set('headData.socialTitle', `${author.displayName} on Cenchat`);
     this.set('headData.description', model.text || '&nbsp;');
     this.set('headData.image', author.avatarUrl);
     this.set('headData.url', `https://cenchat.com/comments/${model.id}`);
