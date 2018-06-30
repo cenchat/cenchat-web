@@ -4,12 +4,12 @@
   {{/if}}
 
   <div class="comment-item-content__chat-bubble" data-test-item-content="chat-bubble">
-    {{#if --comment.isAskMeAnything}}
+    {{#if --comment.isLetMeKnow}}
       <img
-          class="comment-item-content__ask-me-anything-image"
-          data-test-content-item-content="ask-me-anything-image"
+          class="comment-item-content__let-me-know-image"
+          data-test-content-item-content="let-me-know-image"
           src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Fama%2Fama_2.png?alt=media&token=ebbaeddc-804e-4921-9e05-48cfea2fbf13"
-          alt="Ask me anything">
+          alt="Let me know">
     {{/if}}
 
     {{comment-item/comment-item-content/content-header --comment=--comment}}

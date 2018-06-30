@@ -167,7 +167,7 @@ module('Unit | Model | comment', (hooks) => {
     });
   });
 
-  module('getter/setter: isAskMeAnythingAllowed', () => {
+  module('getter/setter: isLetMeKnowAllowed', () => {
     test('should return true the author is a site admin', function (assert) {
       assert.expect(1);
 
@@ -178,11 +178,11 @@ module('Unit | Model | comment', (hooks) => {
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, true)));
 
       // Act
-      model.get('isAskMeAnythingAllowed');
+      model.get('isLetMeKnowAllowed');
 
       return settled().then(() => {
         // Arrange
-        assert.equal(model.get('isAskMeAnythingAllowed'), true);
+        assert.equal(model.get('isLetMeKnowAllowed'), true);
       });
     });
 
@@ -196,11 +196,11 @@ module('Unit | Model | comment', (hooks) => {
       author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, false)));
 
       // Act
-      model.get('isAskMeAnythingAllowed');
+      model.get('isLetMeKnowAllowed');
 
       return settled().then(() => {
         // Arrange
-        assert.equal(model.get('isAskMeAnythingAllowed'), false);
+        assert.equal(model.get('isLetMeKnowAllowed'), false);
       });
     });
   });
@@ -219,13 +219,13 @@ module('Unit | Model | comment', (hooks) => {
       assert.equal(result, true);
     });
 
-    test('should return true when replying to an is ask me anything type comment', function (assert) {
+    test('should return true when replying to an is let me know type comment', function (assert) {
       assert.expect(1);
 
       // Arrange
       const replyTo = this.store.createRecord('comment', {
         id: 'comment_100',
-        isAskMeAnything: true,
+        isLetMeKnow: true,
       });
       const model = this.store.createRecord('comment', { replyTo });
 

@@ -125,7 +125,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.deepEqual(spy.componentArgsType, {
       comment: 'instance',
       onAddAttachmentClick: 'function',
-      onAskMeAnythingClick: 'function',
+      onLetMeKnowClick: 'function',
       onSendCommentClick: 'function',
       onTagEntityClick: 'function',
     });
@@ -272,7 +272,7 @@ module('Unit | Component | comment-composer', (hooks) => {
             page,
             site,
             attachments: null,
-            isAskMeAnything: false,
+            isLetMeKnow: false,
             isDeleted: false,
             author: 'sessionModel',
             replyTo: undefined,
@@ -375,8 +375,8 @@ module('Unit | Component | comment-composer', (hooks) => {
     });
   });
 
-  module('function: handleAskMeAnythingClick', () => {
-    test('should toggle ask me anything in the comment to true', async function (assert) {
+  module('function: handleLetMeKnowClick', () => {
+    test('should toggle let me know in the comment to true', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -384,13 +384,13 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({ '--comment': this.comment });
 
       // Act
-      component.handleAskMeAnythingClick();
+      component.handleLetMeKnowClick();
 
       // Assert
-      assert.equal(component.get('comment.isAskMeAnything'), true);
+      assert.equal(component.get('comment.isLetMeKnow'), true);
     });
 
-    test('should toggle ask me anything in the comment to false', async function (assert) {
+    test('should toggle let me know in the comment to false', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -398,11 +398,11 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({ '--comment': this.comment });
 
       // Act
-      component.handleAskMeAnythingClick();
-      component.handleAskMeAnythingClick();
+      component.handleLetMeKnowClick();
+      component.handleLetMeKnowClick();
 
       // Assert
-      assert.equal(component.get('comment.isAskMeAnything'), false);
+      assert.equal(component.get('comment.isLetMeKnow'), false);
     });
   });
 

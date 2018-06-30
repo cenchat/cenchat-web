@@ -42,7 +42,7 @@ export default Component.extend({
     const { comment } = this.args;
 
     comment.set('attachments', null);
-    comment.set('isAskMeAnything', false);
+    comment.set('isLetMeKnow', false);
     comment.set('taggedEntities', null);
     comment.set('text', null);
     comment.set('isDeleted', true);

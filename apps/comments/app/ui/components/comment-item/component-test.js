@@ -277,7 +277,7 @@ module('Unit | Component | comment-item', (hooks) => {
 
       // Assert
       assert.equal(this.comment.get('attachments'), null);
-      assert.equal(this.comment.get('isAskMeAnything'), false);
+      assert.equal(this.comment.get('isLetMeKnow'), false);
       assert.equal(this.comment.get('isDeleted'), true);
       assert.equal(this.comment.get('taggedEntities'), null);
       assert.equal(this.comment.get('text', null));

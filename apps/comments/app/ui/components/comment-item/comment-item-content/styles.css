@@ -8,7 +8,7 @@
   border-radius: var(--border-radius-square);
 }
 
-.comment-item-content__ask-me-anything-image {
+.comment-item-content__let-me-know-image {
   position: absolute;
   top: -20px;
   right: 8px;

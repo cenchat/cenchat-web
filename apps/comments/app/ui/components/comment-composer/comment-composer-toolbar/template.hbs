@@ -30,14 +30,14 @@
           square=true
           --onClick=(action (mut selectedPanel) 'tag')}}
 
-      {{#if --comment.isAskMeAnythingAllowed}}
+      {{#if --comment.isLetMeKnowAllowed}}
         {{ce-icon-button
-            data-test-comment-composer-toolbar="ask-me-anything-button"
-            title="Set as ask my anything"
-            aria-label="Set as ask my anything"
-            icon="question_answer"
+            data-test-comment-composer-toolbar="let-me-know-button"
+            title="Allow text replies"
+            aria-label="Allow text replies"
+            icon="feedback"
             square=true
-            --onClick=(action --onAskMeAnythingClick)}}
+            --onClick=(action --onLetMeKnowClick)}}
       {{/if}}
     </div>
 
