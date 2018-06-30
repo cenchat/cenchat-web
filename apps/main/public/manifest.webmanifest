@@ -1,21 +1,21 @@
 {
-  "name":"Cenchat",
-  "short_name":"Cenchat",
-  "start_url":"/",
-  "display":"standalone",
-  "background_color":"#fff",
-  "theme_color":"#e0e0e0",
-  "description":"Discussion platform that prevents toxic comments",
+  "name": "Cenchat",
+  "short_name": "Cenchat",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#e0e0e0",
+  "description": "Cenchat is a commenting service with a unique way to prevent trolls, harassment, negativity, and spam to happen around your work",
   "icons":[
     {
-      "src":"assets/images/icons/192.png",
-      "sizes":"192x192",
-      "type":"image/png"
+      "src": "assets/images/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src":"assets/images/icons/512.png",
-      "sizes":"512x512",
-      "type":"image/png"
+      "src": "assets/images/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "gcm_sender_id": "103953800507"
