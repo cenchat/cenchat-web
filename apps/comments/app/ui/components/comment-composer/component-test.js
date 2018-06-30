@@ -272,7 +272,7 @@ module('Unit | Component | comment-composer', (hooks) => {
             page,
             site,
             attachments: null,
-            isAskMeAnything: false,
+            isLetMeKnow: false,
             isDeleted: false,
             author: 'sessionModel',
             replyTo: undefined,
@@ -376,7 +376,7 @@ module('Unit | Component | comment-composer', (hooks) => {
   });
 
   module('function: handleAskMeAnythingClick', () => {
-    test('should toggle ask me anything in the comment to true', async function (assert) {
+    test('should toggle let me know in the comment to true', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -387,10 +387,10 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleAskMeAnythingClick();
 
       // Assert
-      assert.equal(component.get('comment.isAskMeAnything'), true);
+      assert.equal(component.get('comment.isLetMeKnow'), true);
     });
 
-    test('should toggle ask me anything in the comment to false', async function (assert) {
+    test('should toggle let me know in the comment to false', async function (assert) {
       assert.expect(1);
 
       // Arrange
@@ -402,7 +402,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleAskMeAnythingClick();
 
       // Assert
-      assert.equal(component.get('comment.isAskMeAnything'), false);
+      assert.equal(component.get('comment.isLetMeKnow'), false);
     });
   });
 

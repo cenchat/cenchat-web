@@ -96,11 +96,11 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
     assert.deepEqual(spy.componentArgsType, { onTagEntityClick: 'function' });
   });
 
-  test('should show ask me anything button when allowed for the comment', async function (assert) {
+  test('should show let me know button when allowed for the comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.isAskMeAnythingAllowed', true);
+    this.set('comment.isLetMeKnowAllowed', true);
 
     // Act
     await render(hbs`
@@ -118,11 +118,11 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       .exists();
   });
 
-  test('should hide ask me anything button when not allowed for the comment', async function (assert) {
+  test('should hide let me know button when not allowed for the comment', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.isAskMeAnythingAllowed', false);
+    this.set('comment.isLetMeKnowAllowed', false);
 
     // Act
     await render(hbs`
@@ -140,13 +140,13 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       .doesNotExist();
   });
 
-  test('should fire an external action when clicking ask me anything', async function (assert) {
+  test('should fire an external action when clicking let me know', async function (assert) {
     assert.expect(1);
 
     // Arrange
     const spy = sinon.spy(this, 'onAskMeAnythingClick');
 
-    this.set('comment.isAskMeAnythingAllowed', true);
+    this.set('comment.isLetMeKnowAllowed', true);
 
     await render(hbs`
       {{comment-composer/comment-composer-toolbar

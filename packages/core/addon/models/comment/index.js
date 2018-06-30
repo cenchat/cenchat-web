@@ -29,12 +29,12 @@ export default Model.extend({
   /**
    * @type {boolean}
    */
-  isAskMeAnything: attr('boolean'),
+  isDeleted: attr('boolean'),
 
   /**
    * @type {boolean}
    */
-  isDeleted: attr('boolean'),
+  isLetMeKnow: attr('boolean'),
 
   /**
    * @type {string}
@@ -149,17 +149,17 @@ export default Model.extend({
   /**
    * @type {boolean}
    */
-  isAskMeAnythingAllowed: computed({
+  isLetMeKnowAllowed: computed({
     get() {
       this.checkIfAuthorIsSiteAdmin().then(isSiteAdmin => (
-        this.set('isAskMeAnythingAllowed', isSiteAdmin)
+        this.set('isLetMeKnowAllowed', isSiteAdmin)
       ));
 
-      return this._isAskMeAnythingAllowed;
+      return this._isLetMeKnowAllowed;
     },
 
     set(key, value) {
-      this.set('_isAskMeAnythingAllowed', value);
+      this.set('_isLetMeKnowAllowed', value);
 
       return value;
     },
@@ -175,7 +175,7 @@ export default Model.extend({
       }
 
       if (!this._isTextAllowed) {
-        if (this.get('replyTo.isAskMeAnything')) {
+        if (this.get('replyTo.isLetMeKnow')) {
           this.set('_isTextAllowed', true);
         } else {
           this.checkIfIsReplyingToFollower().then((isReplyingToFollower) => {
@@ -249,7 +249,7 @@ export default Model.extend({
     this._super(...args);
 
     this.set('_isFromFollowing', false);
-    this.set('_isAskMeAnythingAllowed', false);
+    this.set('_isLetMeKnowAllowed', false);
     this.set('_isTextAllowed', false);
   },
 

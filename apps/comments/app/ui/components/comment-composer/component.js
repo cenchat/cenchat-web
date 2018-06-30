@@ -85,10 +85,10 @@ export default Component.extend({
    * @function
    */
   handleAskMeAnythingClick() {
-    if (this.comment.isAskMeAnything) {
-      this.set('comment.isAskMeAnything', false);
+    if (this.comment.isLetMeKnow) {
+      this.set('comment.isLetMeKnow', false);
     } else {
-      this.set('comment.isAskMeAnything', true);
+      this.set('comment.isLetMeKnow', true);
     }
   },
 
@@ -180,7 +180,7 @@ export default Component.extend({
       root,
       attachments: null,
       author: this.get('session.model'),
-      isAskMeAnything: false,
+      isLetMeKnow: false,
       isDeleted: false,
       site: page.get('site'),
       status: 'approved',

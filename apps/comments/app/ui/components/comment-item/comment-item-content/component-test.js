@@ -123,11 +123,11 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     assert.ok(spy.notCalled);
   });
 
-  test('should show ask me anything sticker when comment has ask me anything flagged to true', async function (assert) {
+  test('should show let me know sticker when comment has let me know flagged to true', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.isAskMeAnything', true);
+    this.set('comment.isLetMeKnow', true);
 
     // Act
     await render(hbs`
@@ -140,11 +140,11 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     assert.dom('[data-test-content-item-content="ask-me-anything-image"]').exists();
   });
 
-  test('should hide ask me anything sticker when comment has ask me anything flagged to false', async function (assert) {
+  test('should hide let me know sticker when comment has let me know flagged to false', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.isAskMeAnything', false);
+    this.set('comment.isLetMeKnow', false);
 
     // Act
     await render(hbs`
