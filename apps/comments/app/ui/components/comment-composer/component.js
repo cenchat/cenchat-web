@@ -84,7 +84,7 @@ export default Component.extend({
   /**
    * @function
    */
-  handleAskMeAnythingClick() {
+  handleLetMeKnowClick() {
     if (this.comment.isLetMeKnow) {
       this.set('comment.isLetMeKnow', false);
     } else {

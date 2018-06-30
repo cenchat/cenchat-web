@@ -16,7 +16,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
 
     this.set('comment', comment);
     this.set('onAddAttachmentClick', () => {});
-    this.set('onAskMeAnythingClick', () => {});
+    this.set('onLetMeKnowClick', () => {});
     this.set('onSendCommentClick', () => {});
     this.set('onTagEntityClick', () => {});
   });
@@ -32,7 +32,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -59,7 +59,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -83,7 +83,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -107,14 +107,14 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
 
     // Assert
     assert
-      .dom('[data-test-comment-composer-toolbar="ask-me-anything-button"]')
+      .dom('[data-test-comment-composer-toolbar="let-me-know-button"]')
       .exists();
   });
 
@@ -129,14 +129,14 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
 
     // Assert
     assert
-      .dom('[data-test-comment-composer-toolbar="ask-me-anything-button"]')
+      .dom('[data-test-comment-composer-toolbar="let-me-know-button"]')
       .doesNotExist();
   });
 
@@ -144,7 +144,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
     assert.expect(1);
 
     // Arrange
-    const spy = sinon.spy(this, 'onAskMeAnythingClick');
+    const spy = sinon.spy(this, 'onLetMeKnowClick');
 
     this.set('comment.isLetMeKnowAllowed', true);
 
@@ -152,13 +152,13 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
 
     // Act
-    await click('[data-test-comment-composer-toolbar="ask-me-anything-button"]');
+    await click('[data-test-comment-composer-toolbar="let-me-know-button"]');
 
     // Assert
     assert.ok(spy.calledOnce);
@@ -175,7 +175,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -197,7 +197,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -218,7 +218,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onAskMeAnythingClick=(action onAskMeAnythingClick)
+          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);

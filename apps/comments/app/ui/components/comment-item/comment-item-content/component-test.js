@@ -137,7 +137,7 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     `);
 
     // Assert
-    assert.dom('[data-test-content-item-content="ask-me-anything-image"]').exists();
+    assert.dom('[data-test-content-item-content="let-me-know-image"]').exists();
   });
 
   test('should hide let me know sticker when comment has let me know flagged to false', async function (assert) {
@@ -154,6 +154,6 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     `);
 
     // Assert
-    assert.dom('[data-test-content-item-content="ask-me-anything-image"]').doesNotExist();
+    assert.dom('[data-test-content-item-content="let-me-know-image"]').doesNotExist();
   });
 });

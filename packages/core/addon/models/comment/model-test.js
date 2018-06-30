@@ -219,7 +219,7 @@ module('Unit | Model | comment', (hooks) => {
       assert.equal(result, true);
     });
 
-    test('should return true when replying to an is ask me anything type comment', function (assert) {
+    test('should return true when replying to an is let me know type comment', function (assert) {
       assert.expect(1);
 
       // Arrange

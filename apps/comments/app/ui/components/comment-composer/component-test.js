@@ -125,7 +125,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.deepEqual(spy.componentArgsType, {
       comment: 'instance',
       onAddAttachmentClick: 'function',
-      onAskMeAnythingClick: 'function',
+      onLetMeKnowClick: 'function',
       onSendCommentClick: 'function',
       onTagEntityClick: 'function',
     });
@@ -375,7 +375,7 @@ module('Unit | Component | comment-composer', (hooks) => {
     });
   });
 
-  module('function: handleAskMeAnythingClick', () => {
+  module('function: handleLetMeKnowClick', () => {
     test('should toggle let me know in the comment to true', async function (assert) {
       assert.expect(1);
 
@@ -384,7 +384,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({ '--comment': this.comment });
 
       // Act
-      component.handleAskMeAnythingClick();
+      component.handleLetMeKnowClick();
 
       // Assert
       assert.equal(component.get('comment.isLetMeKnow'), true);
@@ -398,8 +398,8 @@ module('Unit | Component | comment-composer', (hooks) => {
       const component = await factory.create({ '--comment': this.comment });
 
       // Act
-      component.handleAskMeAnythingClick();
-      component.handleAskMeAnythingClick();
+      component.handleLetMeKnowClick();
+      component.handleLetMeKnowClick();
 
       // Assert
       assert.equal(component.get('comment.isLetMeKnow'), false);
