@@ -43,6 +43,18 @@ export function stubSession(context, model) {
       getIdToken() {
         return stubPromise(12345);
       },
+
+      linkWithPopup() {
+        return stubPromise(true);
+      },
+
+      unlink() {
+        return stubPromise();
+      },
+
+      updateEmail() {
+        return stubPromise(true);
+      },
     },
     isAuthenticated: true,
     uid: 'user_a',

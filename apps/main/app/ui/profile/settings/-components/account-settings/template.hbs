@@ -1,0 +1,26 @@
+<section class="side-nav__section">
+  {{#ce-subheader class="side-nav__section-header"}}
+    <h3>Account</h3>
+  {{/ce-subheader}}
+
+  <article class="card">
+    {{#ce-form class="card__wrapper" --onSubmit=(action handleFormSubmit)}}
+      {{ce-field
+          class="card__field"
+          data-test-account-settings="email-field"
+          type="email"
+          required=true
+          label="Email"
+          value=newEmail
+          --onInput=(action handleEmailInput)}}
+
+      {{#ce-button
+          class="card__action"
+          data-test-account-settings="update-button"
+          type="submit"
+          disabled=(eq --session.currentUser.email newEmail)}}
+        Update
+      {{/ce-button}}
+    {{/ce-form}}
+  </article>
+</section>

@@ -19,6 +19,11 @@ export default Controller.extend({
   session: service(),
 
   /**
+   * @type {Ember.Service}
+   */
+  router: service(),
+
+  /**
    * @function
    */
   async handleDeleteAccountToastCompletion() {
