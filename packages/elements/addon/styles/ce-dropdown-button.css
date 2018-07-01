@@ -6,7 +6,8 @@
   position: absolute;
   z-index: 800;
   display: none;
-  min-width: 100%;
+  min-width: 112px;
+  max-width: 280px;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 0;
