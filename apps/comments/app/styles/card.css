@@ -17,7 +17,7 @@
   margin-bottom: 0;
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-regular);
-  line-height: 2rem;
+  line-height: var(--line-height-24);
   color: var(--font-primary-color);
 }
 
@@ -25,7 +25,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-14);
-  line-height: 1.25rem;
+  line-height: var(--line-height-14);
   color: var(--font-secondary-color);
 }
 
@@ -44,5 +44,10 @@
 }
 
 .card__action {
+  margin-left: auto;
+}
+
+.card__action .ce-icon-button,
+.card__action .ce-icon-link-button {
   margin-left: auto;
 }

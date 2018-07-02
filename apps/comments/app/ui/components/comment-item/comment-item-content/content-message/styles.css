@@ -12,7 +12,7 @@
 
 .comment-item-content-message__text {
   font-size: var(--font-size-14);
-  line-height: 1.25rem;
+  line-height: var(--line-height-14);
   color: var(--font-primary-color);
   white-space: pre-wrap;
 }

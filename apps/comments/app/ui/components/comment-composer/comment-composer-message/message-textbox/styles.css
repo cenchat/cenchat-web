@@ -8,6 +8,8 @@
   margin-right: 4px;
   margin-left: 4px;
   font-family: var(--font-family);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-16);
   color: var(--font-primary-color);
   resize: none;
   background-color: transparent;

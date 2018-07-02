@@ -3,15 +3,14 @@
   display: inline-block;
   max-width: 100%;
   padding: 16px;
-  line-height: 1.25rem;
   background-color: var(--chat-bubble-background-color);
   border-radius: var(--border-radius-square);
 }
 
 .comment-item-content__let-me-know-image {
   position: absolute;
-  top: -20px;
+  top: -36px;
   right: 8px;
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
 }

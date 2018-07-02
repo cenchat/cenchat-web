@@ -41,7 +41,7 @@
   margin-top: 8px;
   font-family: var(--font-family);
   font-size: var(--font-size-16);
-  line-height: 1.75rem;
+  line-height: var(--line-height-16);
   color: var(--font-primary-color);
   background-color: var(--text-field-background-color);
   border: none;

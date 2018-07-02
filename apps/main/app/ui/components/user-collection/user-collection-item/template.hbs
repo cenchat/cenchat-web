@@ -24,9 +24,11 @@
         alt="{{--user.displayName}}">
   </header>
 
-  {{#if (eq isUserBeingFollowed true)}}
-    {{unfollow-user-button class="card__action" --userToUnfollow=--user --onUnfollowUser=(action handleUnfollowUser)}}
-  {{else if (eq isUserBeingFollowed false)}}
-    {{follow-user-button class="card__action" --userToFollow=--user --onFollowUser=(action handleFollowUser)}}
-  {{/if}}
+  <div class="card__action">
+    {{#if (eq isUserBeingFollowed true)}}
+      {{unfollow-user-button --userToUnfollow=--user --onUnfollowUser=(action handleUnfollowUser)}}
+    {{else if (eq isUserBeingFollowed false)}}
+      {{follow-user-button --userToFollow=--user --onFollowUser=(action handleFollowUser)}}
+    {{/if}}
+  </div>
 </article>

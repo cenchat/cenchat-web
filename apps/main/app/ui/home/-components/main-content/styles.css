@@ -65,7 +65,7 @@
   margin-bottom: 16px;
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-light);
-  line-height: 2rem;
+  line-height: var(--line-height-24);
   color: var(--font-secondary-color);
 }
 

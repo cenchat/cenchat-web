@@ -33,11 +33,12 @@
       label="Username"
       --onInput=(action handleProfileFormDataChange)}}
 
-  {{#ce-button
-      class="card__action"
-      data-test-profile-form="submit-button"
-      type="submit"
-      disabled=(not (and profile.displayName profile.username))}}
-    Save
-  {{/ce-button}}
+  <div class="card__action">
+    {{#ce-button
+        data-test-profile-form="submit-button"
+        type="submit"
+        disabled=(not (and profile.displayName profile.username))}}
+      Save
+    {{/ce-button}}
+  </div>
 {{/ce-form}}

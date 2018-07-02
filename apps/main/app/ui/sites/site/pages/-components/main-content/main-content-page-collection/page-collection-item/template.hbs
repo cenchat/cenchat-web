@@ -3,12 +3,12 @@
     <img class="card__image" data-test-page-collection-item="image" src="{{--page.imageUrl}}" alt="Page cover">
   {{/if}}
 
-  <header class="card__header">
-    <h3 class="card__heading" data-test-page-collection-item="title">{{--page.title}}</h3>
+  <header class="card__header card__header--small">
+    <h3 class="card__heading card__heading--small" data-test-page-collection-item="title">{{--page.title}}</h3>
     <p class="card__subheading" data-test-page-collection-item="id">ID: {{--page.shortId}}</p>
   </header>
 
-  {{#ce-link-button class="card__action" href=--page.url target="_blank" rel="noopener noreferrer"}}
-    Visit
-  {{/ce-link-button}}
+  <div class="card__action">
+    {{#ce-link-button href=--page.url target="_blank" rel="noopener noreferrer"}}Visit{{/ce-link-button}}
+  </div>
 </article>

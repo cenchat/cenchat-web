@@ -30,11 +30,12 @@
     <option value="dark">Dark</option>
   {{/ce-field}}
 
-  {{#ce-button
-      class="card__action"
-      data-test-site-form="submit-button"
-      type="submit"
-      disabled=(not (and site.hostname site.displayName))}}
-    Save
-  {{/ce-button}}
+  <div class="card__action">
+    {{#ce-button
+        data-test-site-form="submit-button"
+        type="submit"
+        disabled=(not (and site.hostname site.displayName))}}
+      Save
+    {{/ce-button}}
+  </div>
 {{/ce-form}}

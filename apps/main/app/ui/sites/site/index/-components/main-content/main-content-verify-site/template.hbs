@@ -23,12 +23,11 @@
         <code class="snippet__block-code" data-test-main-content-verify-site="code-snippet">&lt;meta property="cenchat:id" content="{{--site.id}}"&gt;</code>
       </p>
 
-      {{#ce-button
-          class="card__action"
-          data-test-main-content-verify-site="verify-button"
-          --onClick=(action --onVerifySiteClick)}}
-        Verify
-      {{/ce-button}}
+      <div class="card__action">
+        {{#ce-button data-test-main-content-verify-site="verify-button" --onClick=(action --onVerifySiteClick)}}
+          Verify
+        {{/ce-button}}
+      </div>
     </article>
   </div>
 </main>

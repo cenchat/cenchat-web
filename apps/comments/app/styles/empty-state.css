@@ -3,7 +3,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-24);
-  line-height: 2rem;
+  line-height: var(--line-height-24);
   color: var(--font-hint-color);
   text-align: center;
 }

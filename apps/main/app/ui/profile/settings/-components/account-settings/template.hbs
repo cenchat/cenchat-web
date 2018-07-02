@@ -14,13 +14,14 @@
           value=newEmail
           --onInput=(action handleEmailInput)}}
 
-      {{#ce-button
-          class="card__action"
-          data-test-account-settings="update-button"
-          type="submit"
-          disabled=(eq --session.currentUser.email newEmail)}}
-        Update
-      {{/ce-button}}
+      <div class="card__action">
+        {{#ce-button
+            data-test-account-settings="update-button"
+            type="submit"
+            disabled=(eq --session.currentUser.email newEmail)}}
+          Update
+        {{/ce-button}}
+      </div>
     {{/ce-form}}
   </article>
 </section>

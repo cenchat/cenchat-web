@@ -68,7 +68,7 @@
   margin-bottom: 0;
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-regular);
-  line-height: 2rem;
+  line-height: var(--line-height-24);
   color: var(--font-primary-color);
 }
 
@@ -82,16 +82,16 @@
 
 .card__heading--small {
   padding-top: 16px;
-  font-size: var(--font-size-14);
+  font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
-  line-height: 1.25rem;
+  line-height: var(--line-height-20);
 }
 
 .card__subheading {
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-14);
-  line-height: 1.25rem;
+  line-height: var(--line-height-14);
   color: var(--font-secondary-color);
 }
 
@@ -102,7 +102,7 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: var(--font-size-14);
-  line-height: 1.25rem;
+  line-height: var(--line-height-14);
   color: var(--font-primary-color);
 }
 
@@ -126,5 +126,10 @@
 }
 
 .card__action {
+  display: flex;
+}
+
+.card__action .ce-icon-button,
+.card__action .ce-icon-link-button {
   margin-left: auto;
 }

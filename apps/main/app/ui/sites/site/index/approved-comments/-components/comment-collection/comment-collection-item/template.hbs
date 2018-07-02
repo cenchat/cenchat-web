@@ -11,10 +11,9 @@
 
   <p class="card__message card__message--pre-wrap" data-test-comment-collection-item="text">{{--comment.text}}</p>
 
-  {{#ce-button
-      class="card__action"
-      data-test-comment-collection-item="reject-button"
-      --onClick=(action --onRejectCommentClick --comment)}}
-    Reject
-  {{/ce-button}}
+  <div class="card__action">
+    {{#ce-button data-test-comment-collection-item="reject-button" --onClick=(action --onRejectCommentClick --comment)}}
+      Reject
+    {{/ce-button}}
+  </div>
 </article>

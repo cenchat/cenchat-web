@@ -19,22 +19,24 @@
           label=(concat 'To confirm deletion, type ' confirmationKey ' below')
           --onInput=(action setRepeatConfirmationKey)}}
 
-      {{#ce-button
-          class="card__action"
-          data-test-security-settings-delete-account="confirm-delete-button"
-          type="submit"
-          disabled=(not-eq confirmationKey repeatConfirmationKey)}}
-        Confirm delete
-      {{/ce-button}}
+      <div class="card__action">
+        {{#ce-button
+            data-test-security-settings-delete-account="confirm-delete-button"
+            type="submit"
+            disabled=(not-eq confirmationKey repeatConfirmationKey)}}
+          Confirm delete
+        {{/ce-button}}
+      </div>
     {{/ce-form}}
   {{else}}
     <p class="card__message">Permanently delete your account and all of your content</p>
 
-    {{#ce-button
-        class="card__action"
-        data-test-security-settings-delete-account="delete-button"
-        --onClick=(action showConfirmDeleteAccount)}}
-      Delete
-    {{/ce-button}}
+    <div class="card__action">
+      {{#ce-button
+          data-test-security-settings-delete-account="delete-button"
+          --onClick=(action showConfirmDeleteAccount)}}
+        Delete
+      {{/ce-button}}
+    </div>
   {{/if}}
 </article>

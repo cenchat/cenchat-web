@@ -10,7 +10,9 @@
         <p class="card__subheading">Provide a commenting system on your website that's free of online harassments</p>
       </header>
 
-      {{#ce-link-button class="card__action" href=(href-to 'sites.index.new')}}Add site{{/ce-link-button}}
+      <div class="card__action">
+        {{#ce-link-button href=(href-to 'sites.index.new')}}Add site{{/ce-link-button}}
+      </div>
     </article>
   {{/masonry-grid}}
 {{/infinite-content}}
