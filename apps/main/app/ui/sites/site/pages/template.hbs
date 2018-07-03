@@ -1,7 +1,9 @@
 <main class="layout__main">
   {{sites/site/pages/-components/top-bar --site=model.site}}
 
-  {{#sites/site/pages/-components/main-content --pages=model.pages}}
+  {{#sites/site/pages/-components/main-content
+      --pages=model.pages
+      --onRescrapePageClick=(action handleRescrapePageClick)}}
     {{outlet}}
   {{/sites/site/pages/-components/main-content}}
 </main>

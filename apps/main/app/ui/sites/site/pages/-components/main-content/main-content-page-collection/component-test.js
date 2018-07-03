@@ -14,6 +14,7 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
     const site = await this.store.findRecord('site', 'site_a');
 
     this.set('pages', await site.get('pages'));
+    this.set('onRescrapePageClick', () => {});
   });
 
   test('should show <InfiniteContent />', async function (assert) {
@@ -24,7 +25,9 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
 
     // Act
     await render(hbs`
-      {{sites/site/pages/-components/main-content/main-content-page-collection --pages=pages}}
+      {{sites/site/pages/-components/main-content/main-content-page-collection
+          --pages=pages
+          --onRescrapePageClick=(action onRescrapePageClick)}}
     `);
 
     // Assert
@@ -39,12 +42,14 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
 
     // Act
     await render(hbs`
-      {{sites/site/pages/-components/main-content/main-content-page-collection --pages=pages}}
+      {{sites/site/pages/-components/main-content/main-content-page-collection
+          --pages=pages
+          --onRescrapePageClick=(action onRescrapePageClick)}}
     `);
 
     // Assert
     assert.equal(spy.callCount, 4);
-    assert.deepEqual(spy.componentArgsType, { page: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { page: 'instance', onRescrapePageClick: 'function' });
   });
 
   test('should show empty state when there are no pages', async function (assert) {
@@ -55,7 +60,9 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
 
     // Act
     await render(hbs`
-      {{sites/site/pages/-components/main-content/main-content-page-collection --pages=pages}}
+      {{sites/site/pages/-components/main-content/main-content-page-collection
+          --pages=pages
+          --onRescrapePageClick=(action onRescrapePageClick)}}
     `);
 
     // Assert
