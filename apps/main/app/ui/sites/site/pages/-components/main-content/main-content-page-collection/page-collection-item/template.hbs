@@ -10,5 +10,11 @@
 
   <div class="card__action">
     {{#ce-link-button href=--page.url target="_blank" rel="noopener noreferrer"}}Visit{{/ce-link-button}}
+    {{ce-icon-button
+        data-test-page-collection-item="rescrape-page-button"
+        title="Rescrape page"
+        aria-label="Rescrape page"
+        icon="refresh"
+        --onClick=(action --onRescrapePageClick --page.id)}}
   </div>
 </article>

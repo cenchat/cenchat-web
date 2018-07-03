@@ -14,6 +14,7 @@ module('Integration | Component | sites/site/pages/-components/main-content', (h
     const site = await this.store.findRecord('site', 'site_a');
 
     this.set('pages', await site.get('pages'));
+    this.set('onRescrapePageClick', () => {});
   });
 
   test('should show <MainContentPageCollection />', async function (assert) {
@@ -24,10 +25,12 @@ module('Integration | Component | sites/site/pages/-components/main-content', (h
 
     // Act
     await render(hbs`
-      {{sites/site/pages/-components/main-content/main-content-page-collection --pages=pages}}
+      {{sites/site/pages/-components/main-content/main-content-page-collection
+          --pages=pages
+          --onRescrapePageClick=(action onRescrapePageClick)}}
     `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { pages: 'instance' });
+    assert.deepEqual(spy.componentArgsType, { pages: 'instance', onRescrapePageClick: 'function' });
   });
 });
