@@ -43,6 +43,10 @@
   padding-bottom: 8px;
 }
 
+.card__action {
+  display: flex;
+}
+
 .card__action .ce-icon-button,
 .card__action .ce-icon-link-button {
   margin-left: auto;

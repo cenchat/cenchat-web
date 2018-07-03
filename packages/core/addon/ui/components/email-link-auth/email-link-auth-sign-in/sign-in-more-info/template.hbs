@@ -14,12 +14,13 @@
         label="Full name"
         --onInput=(action setDisplayName)}}
 
+    <div class="card__action">
       {{#ce-button
-          class="card__action"
           data-test-sign-in-more-info="sign-in-button"
           type="submit"
           disabled=(not displayName)}}
         Sign in
       {{/ce-button}}
+    </div>
   {{/ce-form}}
 </section>

@@ -17,13 +17,14 @@
           label="Email"
           --onInput=(action setEmail)}}
 
+      <div class="card__action">
         {{#ce-button
-            class="card__action"
             data-test-email-link-auth-sign-in="continue-button"
             type="submit"
             disabled=(not email)}}
           Continue
         {{/ce-button}}
+      </div>
     {{/ce-form}}
   </section>
 
