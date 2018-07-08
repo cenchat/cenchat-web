@@ -1,3 +1,7 @@
+.home_top-bar {
+  position: static;
+}
+
 @media (min-width: 960px) {
   .home_top-bar {
     width: calc(100% + 52px);
