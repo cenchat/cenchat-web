@@ -12,28 +12,19 @@ module('Unit | Controller | sites/site/pages', (hooks) => {
   });
 
   module('function: handleRescrapePageClick', () => {
-    test('should reset role change when successfully saves', async function (assert) {
+    test('should save page', async function (assert) {
       assert.expect(1);
 
       // Arrange
-      const server = sinon.fakeServer.create();
-
-      server.autoRespond = true;
-      server.autoRespondAfter = 0;
-
-      server.respondWith(
-        'PATCH',
-        'https://us-central1-cenchat-stg.cloudfunctions.net/app/api/utils/rescrape-page/site_a__page_a',
-        [204, {}, ''],
-      );
-
+      const page = await this.store.findRecord('page', 'site_a__page_a');
+      const saveSpy = sinon.spy(page, 'save');
       const controller = this.owner.lookup('controller:sites/site/pages');
 
       // Act
-      await controller.handleRescrapePageClick('site_a__page_a');
+      await controller.handleRescrapePageClick(page);
 
       // Assert
-      assert.ok(true);
+      assert.ok(saveSpy.calledOnce);
     });
   });
 });

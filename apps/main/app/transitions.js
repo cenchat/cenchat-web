@@ -57,4 +57,11 @@ export default function() {
     this.use('toLeft'),
     this.reverse('toRight'),
   );
+
+  this.transition(
+    this.fromRoute('sites.site.pages.index'),
+    this.toRoute('sites.site.pages.page'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
 }

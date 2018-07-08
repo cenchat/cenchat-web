@@ -69,15 +69,13 @@ Router.map(function() {
         this.route('approved-comments');
         this.route('rejected-comments');
       });
-      this.route('pages');
+      this.route('pages', function() {
+        this.route('page', { path: '/:page_id' });
+      });
       this.route('manage', function() {
         this.route('roles');
       });
     });
-  });
-
-  this.route('site', function() {
-    this.route('site', function() {});
   });
 });
 

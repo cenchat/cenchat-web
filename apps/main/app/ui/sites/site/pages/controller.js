@@ -1,8 +1,5 @@
-import { getOwner } from '@ember/application';
-import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
-import fetch from 'fetch';
 import toast from '@cenchat/elements/utils/toast';
 
 /**
@@ -12,31 +9,17 @@ import toast from '@cenchat/elements/utils/toast';
  */
 export default Controller.extend({
   /**
-   * @type {Ember.Service}
-   */
-  session: service(),
-
-  /**
-   * @param {string} pageId
+   * @param {Model.<Page>} page
    * @function
    */
-  async handleRescrapePageClick(pageId) {
-    const config = getOwner(this).resolveRegistration('config:environment');
-    const token = await this.get('session.currentUser').getIdToken();
-    const response = await fetch(`${config.apiHost}/api/utils/rescrape-page/${pageId}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
+  async handleRescrapePageClick(page) {
+    try {
+      await page.save({
+        adapterOptions: { onServer: true },
+      });
       toast('Page rescraped');
-    } else {
-      const data = await response.text();
-
-      toast(data);
+    } catch (error) {
+      toast('Error rescraping page. Try again later.');
     }
   },
 });

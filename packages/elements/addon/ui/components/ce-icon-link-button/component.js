@@ -43,6 +43,7 @@ export default Component.extend({
     'rel',
     'disabled',
     'badged',
+    'icon',
     'square',
     'size',
     'mdi-ext',

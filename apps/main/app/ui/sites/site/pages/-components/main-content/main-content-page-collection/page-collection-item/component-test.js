@@ -65,6 +65,6 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
     await click('[data-test-page-collection-item="rescrape-page-button"]');
 
     // Assert
-    assert.ok(spy.calledWith('site_a__page_a'));
+    assert.ok(spy.calledWith(this.page));
   });
 });

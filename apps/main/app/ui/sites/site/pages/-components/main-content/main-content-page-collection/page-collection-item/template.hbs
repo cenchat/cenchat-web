@@ -10,11 +10,17 @@
 
   <div class="card__action">
     {{#ce-link-button href=--page.url target="_blank" rel="noopener noreferrer"}}Visit{{/ce-link-button}}
+    {{ce-icon-link-button
+        data-test-page-collection-item="edit-page-button"
+        href=(href-to 'sites.site.pages.page' --page.id)
+        title="Edit page"
+        aria-label="Edit page"
+        icon="edit"}}
     {{ce-icon-button
         data-test-page-collection-item="rescrape-page-button"
         title="Rescrape page"
         aria-label="Rescrape page"
         icon="refresh"
-        --onClick=(action --onRescrapePageClick --page.id)}}
+        --onClick=(action --onRescrapePageClick --page)}}
   </div>
 </article>

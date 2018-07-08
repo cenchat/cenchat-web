@@ -1,0 +1,15 @@
+{{#ce-form class="card" --onSubmit=(action --onSavePageClick slug)}}
+  {{ce-field
+      class="card__field"
+      data-test-main-content="url-field"
+      type="url"
+      title="URL must match your website's hostname"
+      pattern=(concat '^.*' --page.site.hostname '.*$')
+      required=true
+      label="New URL"
+      --onInput=(action handleUrlInput)}}
+
+  <div class="card__action">
+    {{#ce-button data-test-main-content="save-button" type="submit" disabled=(not slug)}}Save{{/ce-button}}
+  </div>
+{{/ce-form}}
