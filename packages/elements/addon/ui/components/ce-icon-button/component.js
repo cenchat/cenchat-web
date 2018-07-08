@@ -39,6 +39,7 @@ export default Component.extend({
     'aria-pressed',
     'disabled',
     'badged',
+    'icon',
     'square',
     'size',
     'mdi-ext',
