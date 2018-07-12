@@ -1,3 +1,4 @@
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 
@@ -9,6 +10,11 @@ import fixedEncodeURIComponent from 'comments/utils/fixed-encode-uri-component';
  * @extends Ember.Route
  */
 export default Route.extend({
+  /**
+   * @type {Ember.Service}
+   */
+  session: service(),
+
   /**
    * @override
    */
@@ -32,8 +38,10 @@ export default Route.extend({
 
   redirect(model, transition) {
     if (transition.targetName === 'site.page.index') {
+      const filter = this.session.get('isAuthenticated') ? 'relevance' : null;
+
       this.transitionTo('site.page.comments', {
-        queryParams: { filter: 'relevance' },
+        queryParams: { filter },
       });
     }
   },

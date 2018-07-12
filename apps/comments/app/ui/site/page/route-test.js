@@ -2,13 +2,17 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-module('Unit | Route | site/page', (hooks) => {
+module('Unit | Route | site/page', function (hooks) {
   setupTest(hooks);
 
-  module('hook: model', () => {
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
+
+  module('hook: model', function () {
     test('should fetch page', async function (assert) {
       assert.expect(2);
 
@@ -107,6 +111,46 @@ module('Unit | Route | site/page', (hooks) => {
       // Assert
       assert.ok(createRecordStub.notCalled);
       assert.deepEqual(result, { page: null });
+    });
+  });
+
+  module('hook: redirect', function () {
+    test('should redirect to site.page.comments with relevance filter when in index route and is authenticated', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const transitionToStub = sinon.stub();
+      const route = this.owner.lookup('route:site/page');
+
+      route.set('session.isAuthenticated', true);
+      route.set('transitionTo', transitionToStub);
+
+      // Act
+      await route.redirect(null, { targetName: 'site.page.index' });
+
+      // Assert
+      assert.ok(transitionToStub.calledWithExactly('site.page.comments', {
+        queryParams: { filter: 'relevance' },
+      }));
+    });
+
+    test('should redirect to site.page.comments with no filter when in index route and is unauthenticated', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const transitionToStub = sinon.stub();
+      const route = this.owner.lookup('route:site/page');
+
+      route.set('session.isAuthenticated', false);
+      route.set('transitionTo', transitionToStub);
+
+      // Act
+      await route.redirect(null, { targetName: 'site.page.index' });
+
+      // Assert
+      assert.ok(transitionToStub.calledWithExactly('site.page.comments', {
+        queryParams: { filter: null },
+      }));
     });
   });
 });
