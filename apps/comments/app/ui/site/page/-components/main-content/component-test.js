@@ -12,8 +12,6 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     await setupTestState(this);
 
     this.set('page', await this.store.findRecord('page', 'site_a__page_a'));
-    this.set('filterCommentsBy', 'all');
-    this.set('onFilterCommentsClick', () => {});
   });
 
   test('should show <ProfileBar /> when signed in', async function (assert) {
@@ -23,13 +21,7 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     const spy = spyComponent(this, 'profile-bar');
 
     // Act
-    await render(hbs`
-      {{site/page/-components/main-content
-          --session=session
-          --page=page
-          --filterCommentsBy=filterCommentsBy
-          --onFilterCommentsClick=(action onFilterCommentsClick)}}
-    `);
+    await render(hbs`{{site/page/-components/main-content --session=session --page=page}}`);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
@@ -49,13 +41,7 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     this.set('session.model', null);
 
     // Act
-    await render(hbs`
-      {{site/page/-components/main-content
-          --session=session
-          --page=page
-          --filterCommentsBy=filterCommentsBy
-          --onFilterCommentsClick=(action onFilterCommentsClick)}}
-    `);
+    await render(hbs`{{site/page/-components/main-content --session=session --page=page}}`);
 
     // Assert
     assert.ok(spy.notCalled);
@@ -68,21 +54,12 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
     const spy = spyComponent(this, 'site/page/-components/main-content/main-content-comments');
 
     // Act
-    await render(hbs`
-      {{site/page/-components/main-content
-          --session=session
-          --page=page
-          --filterCommentsBy=filterCommentsBy
-          --onFilterCommentsClick=(action onFilterCommentsClick)}}
-    `);
+    await render(hbs`{{site/page/-components/main-content --session=session --page=page}}`);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
       session: 'instance',
-      comments: 'instance',
       prioritizedComments: 'array',
-      filterCommentsBy: 'string',
-      onFilterCommentsClick: 'function',
       onSignInClick: 'function',
     });
   });
@@ -95,13 +72,7 @@ module('Integration | Component | site/page/-components/main-content', (hooks) =
 
     const spy = spyComponent(this, 'email-link-auth');
 
-    await render(hbs`
-      {{site/page/-components/main-content
-          --session=session
-          --page=page
-          --filterCommentsBy=filterCommentsBy
-          --onFilterCommentsClick=(action onFilterCommentsClick)}}
-    `);
+    await render(hbs`{{site/page/-components/main-content --session=session --page=page}}`);
 
     // Act
     await click('[data-test-comments-header="sign-in-button"]');

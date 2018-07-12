@@ -30,6 +30,14 @@ export default Route.extend({
     return RSVP.hash(hash);
   },
 
+  redirect(model, transition) {
+    if (transition.targetName === 'site.page.index') {
+      this.transitionTo('site.page.comments', {
+        queryParams: { filter: 'relevance' },
+      });
+    }
+  },
+
   /**
    * @param {string} pageIdPostfix
    * @return {Promise} Page

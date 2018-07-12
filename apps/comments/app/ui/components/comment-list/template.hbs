@@ -9,7 +9,7 @@
     {{comment-item --comment=comment --threadLevel=--threadLevel}}
   {{/each}}
 
-  {{#if (and (eq --prioritizedComments.length 0) (eq --comments.length 0))}}
+  {{#if (and (not --prioritizedComments) (not --comments))}}
     {{#if --emptyStateMessage}}
       <p class="empty-state" data-test-comment-list="empty-state">{{--emptyStateMessage}}</p>
     {{/if}}
