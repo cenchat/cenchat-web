@@ -9,18 +9,10 @@
     {{email-link-auth class="site-page_main-content__email-link-auth" --redirectUrl=--page.url}}
   {{/if}}
 
-  {{#async-let
-      on=(async-function --page 'loadFilteredComments' --filterCommentsBy)
-      placeholder=(component 'ce-spinner' aria-valuetext='Loading comments')
-      as |comments|}}
-    {{site/page/-components/main-content/main-content-comments
-        --session=--session
-        --comments=comments
-        --prioritizedComments=prioritizedComments
-        --filterCommentsBy=--filterCommentsBy
-        --onFilterCommentsClick=(action --onFilterCommentsClick)
-        --onSignInClick=(action handleSignInClick)}}
-  {{/async-let}}
-
-  {{yield}}
+  {{#site/page/-components/main-content/main-content-comments
+      --session=--session
+      --prioritizedComments=prioritizedComments
+      --onSignInClick=(action handleSignInClick)}}
+    {{yield}}
+  {{/site/page/-components/main-content/main-content-comments}}
 </main>

@@ -1,8 +1,13 @@
-{{#site/page/-components/main-content
-    --session=session
-    --comment=model.comment
-    --page=model.page
-    --filterCommentsBy=filterCommentsBy
-    --onFilterCommentsClick=(action (mut filterCommentsBy))}}
+{{#site/page/-components/main-content --session=session --comment=model.comment --page=model.page}}
   {{outlet}}
 {{/site/page/-components/main-content}}
+
+<footer class="footer">
+  <a class="footer__link" href="https://cenchat.com/about/terms" target="_blank" rel="noopener noreferrer">Terms</a>
+
+  <a class="footer__link" href="https://cenchat.com/about/privacy" target="_blank" rel="noopener noreferrer">
+    Privacy
+  </a>
+
+  <a class="footer__link" href="https://cenchat.com" target="_blank" rel="noopener noreferrer">Cenchat</a>
+</footer>

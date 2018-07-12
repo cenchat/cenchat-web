@@ -1,39 +1,7 @@
 <section data-test-main-content-comments="host">
   {{site/page/-components/main-content/main-content-comments/comments-header
       --session=--session
-      --filterCommentsBy=--filterCommentsBy
-      --onFilterCommentsClick=(action --onFilterCommentsClick)
       --onSignInClick=(action --onSignInClick)}}
-  {{comment-list
-      --comments=--comments
-      --prioritizedComments=--prioritizedComments
-      --emptyStateMessage="No comments so far. Want to be the first?"
-      --threadLevel=1
-      --onLoadMoreCommentsClick=(action handleLoadMoreCommentsClick)}}
-
-  <footer class="site-page_main-content-comments__footer">
-    <a
-        class="site-page_main-content-comments__footer-link"
-        href="https://cenchat.com/about/terms"
-        target="_blank"
-        rel="noopener noreferrer">
-      Terms
-    </a>
-
-    <a
-        class="site-page_main-content-comments__footer-link"
-        href="https://cenchat.com/about/privacy"
-        target="_blank"
-        rel="noopener noreferrer">
-      Privacy
-    </a>
-
-    <a
-        class="site-page_main-content-comments__footer-link site-page_main-content-comments__footer-cenchat-link"
-        href="https://cenchat.com"
-        target="_blank"
-        rel="noopener noreferrer">
-      Cenchat
-    </a>
-  </footer>
+  {{comment-list --prioritizedComments=--prioritizedComments --threadLevel=1}}
+  {{yield}}
 </section>

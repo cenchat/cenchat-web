@@ -22,7 +22,8 @@
 }
 
 .list__action:active,
-.list__action--active {
+.list__action--active,
+.list__action.active {
   background-color: var(--list-item-active-background-color) !important;
 }
 
