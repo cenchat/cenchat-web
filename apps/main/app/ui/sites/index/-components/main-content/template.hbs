@@ -1,22 +1,4 @@
 <main class="layout__main">
-  {{#if (or (eq --session.model.betaTester.status 'approved') --sitesAsAdmin)}}
-    {{sites/index/-components/main-content/main-content-site-collection  --router=--router --sites=--sitesAsAdmin}}
-  {{else if (eq --session.model.betaTester.status 'pending')}}
-    <div class="layout__section layout__section--headerless">
-      <article class="card card--centered-position">
-        <h2 class="card__heading">You've already applied for an invite</h2>
-
-        <p class="card__message">
-          Our approval process is based on our current needs. We may hold your request until then.
-        </p>
-      </article>
-    </div>
-  {{else if (eq --session.model.betaTester.status 'unapplied')}}
-    <div class="layout__section layout__section--headerless">
-      {{sites/index/-components/main-content/main-content-invite-form
-          --onInviteRequestFormSubmit=(action --onInviteRequestFormSubmit)}}
-    </div>
-  {{/if}}
-
+  {{sites/index/-components/main-content/main-content-site-collection  --router=--router --sites=--sitesAsAdmin}}
   {{yield}}
 </main>

@@ -112,13 +112,6 @@ export default Model.extend({
   }),
 
   /**
-   * @type {Model.BetaTester}
-   */
-  betaTester: promiseObject(({ id, store }) => (
-    store.findRecord('betaTester', id).catch(() => ({ status: 'unapplied' }))
-  )),
-
-  /**
    * @type {Model.UserMetaInfo}
    */
   metaInfo: promiseObject(({ id, store }) => store.findRecord('userMetaInfo', id)),
