@@ -14,7 +14,7 @@ module('Integration | Component | sites/index/-components/main-content', (hooks)
     this.set('sitesAsAdmin', this.get('session.model.sitesAsAdmin'));
   });
 
-  test('should show <MainContentSiteCollection /> for sites as admin', async function (assert) {
+  test('should show <MainContentSiteCollection />', async function (assert) {
     assert.expect(1);
 
     // Arrange

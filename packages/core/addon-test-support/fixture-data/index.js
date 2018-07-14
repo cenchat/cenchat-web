@@ -6,17 +6,6 @@
 export default function getFixtureData() {
   return {
     __collection__: {
-      betaTesters: {
-        __doc__: {
-          user_a: {
-            monthlyViews: 'lt-1m',
-            status: 'approved',
-            website: 'https://cenchat.com',
-            cloudFirestoreReference: 'user_a',
-          },
-        },
-      },
-
       comments: {
         __doc__: {
           comment_a: {
