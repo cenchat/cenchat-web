@@ -10,6 +10,11 @@ export default Component.extend({
   /**
    * @type {Ember.Service}
    */
+  session: inject(),
+
+  /**
+   * @type {Ember.Service}
+   */
   store: inject(),
 
   /**
@@ -26,14 +31,27 @@ export default Component.extend({
     let users = [];
 
     if (query) {
+      const currentUserId = this.session.get('model.id');
+
       users = await this.store.query('user', {
         limit: 4,
 
+        buildReference(db) {
+          if (query.startsWith('@')) {
+            return db.collection('users');
+          }
+
+          return db.collection(`users/${currentUserId}/followings`);
+        },
+
         filter(reference) {
-          return reference
-            .orderBy('username')
-            .startAt(query)
-            .endAt(`${query}\uf8ff`);
+          if (query.startsWith('@')) {
+            const username = query.substr(1);
+
+            return reference.orderBy('username').startAt(username).endAt(`${username}\uf8ff`);
+          }
+
+          return reference.orderBy('name').startAt(query).endAt(`${query}\uf8ff`);
         },
       });
     }

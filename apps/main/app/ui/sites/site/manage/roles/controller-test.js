@@ -43,7 +43,7 @@ module('Unit | Controller | sites/site/manage/roles', (hooks) => {
   });
 
   module('function: handleSearchUserInput', () => {
-    test('should categorize users with and without roles when query is provided', async function (assert) {
+    test('should categorize users with and without roles when username query is provided', async function (assert) {
       assert.expect(2);
 
       // Arrange
@@ -52,11 +52,27 @@ module('Unit | Controller | sites/site/manage/roles', (hooks) => {
       controller.set('model', { site: await this.store.findRecord('site', 'site_a') });
 
       // Act
-      await controller.handleSearchUserInput('user_');
+      await controller.handleSearchUserInput('@user_');
 
       // Assert
       assert.equal(controller.get('usersWithRole.length'), 1);
       assert.equal(controller.get('usersWithoutRole.length'), 2);
+    });
+
+    test('should categorize users with and without roles when name query is provided', async function (assert) {
+      assert.expect(2);
+
+      // Arrange
+      const controller = this.owner.lookup('controller:sites/site/manage/roles');
+
+      controller.set('model', { site: await this.store.findRecord('site', 'site_a') });
+
+      // Act
+      await controller.handleSearchUserInput('user');
+
+      // Assert
+      assert.equal(controller.get('usersWithRole.length'), 2);
+      assert.equal(controller.get('usersWithoutRole.length'), 0);
     });
 
     test('should empty users with and without roles when query is not provided', async function (assert) {
@@ -65,7 +81,9 @@ module('Unit | Controller | sites/site/manage/roles', (hooks) => {
       // Arrange
       const controller = this.owner.lookup('controller:sites/site/manage/roles');
 
-      controller.set('model', { admins: ['foo'] });
+      controller.set('model', EmberObject.create({
+        admins: ['foo'],
+      }));
 
       // Act
       await controller.handleSearchUserInput();

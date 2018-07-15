@@ -49,7 +49,7 @@ module('Acceptance | site/page/comments', (hooks) => {
     assert.dom('[data-test-comment-item]').exists({ count: 3 });
   });
 
-  test('should create comment with tagged entities', async function (assert) {
+  test('should create comment with tagged entities queried using username', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -57,7 +57,7 @@ module('Acceptance | site/page/comments', (hooks) => {
     await click('[data-test-composer-toolbar="sticker-button"]');
     await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
     await click('[data-test-comment-composer-toolbar="tag-entity-button"]');
-    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user_c');
+    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', '@user_c');
     await click('[data-test-tag-entity-panel-item="user_c"] button');
 
     // Act
@@ -65,6 +65,24 @@ module('Acceptance | site/page/comments', (hooks) => {
 
     // Assert
     assert.dom('[data-test-tagged-entity-list-item="user_c"]').exists();
+  });
+
+  test('should create comment with tagged entities queried using name', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    await visit('/sites/site_a/pages/page_a/comments?filter=relevance&slug=foobar');
+    await click('[data-test-composer-toolbar="sticker-button"]');
+    await click('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"]');
+    await click('[data-test-comment-composer-toolbar="tag-entity-button"]');
+    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user b');
+    await click('[data-test-tag-entity-panel-item="user_b"] button');
+
+    // Act
+    await click('[data-test-composer-toolbar="send-button"]');
+
+    // Assert
+    assert.dom('[data-test-tagged-entity-list-item="user_b"]').exists();
   });
 
   test('should edit comment', async function (assert) {
@@ -98,7 +116,7 @@ module('Acceptance | site/page/comments', (hooks) => {
     await visit('/sites/site_a/pages/page_a/comments?slug=foobar');
     await click(`${commentItem} [data-test-item-toolbar="edit-button"]`);
     await click(`${editFormContainer} [data-test-comment-composer-toolbar="tag-entity-button"]`);
-    await fillIn(`${editFormContainer} [data-test-toolbar-tag-entity-panel="search-field"] input`, 'user_c');
+    await fillIn(`${editFormContainer} [data-test-toolbar-tag-entity-panel="search-field"] input`, '@user_c');
     await click(`${editFormContainer} [data-test-tag-entity-panel-item="user_c"] button`);
 
     // Act
