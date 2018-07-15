@@ -18,7 +18,7 @@ module('Acceptance | search', (hooks) => {
     await visit('/search');
 
     // Act
-    await fillIn('[data-test-search-top-bar="field"] input', 'user');
+    await fillIn('[data-test-search-top-bar="field"] input', '@user');
 
     // Assert
     assert.dom('[data-test-user-collection-item="user_b"]').exists();

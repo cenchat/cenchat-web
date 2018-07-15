@@ -41,7 +41,7 @@ module('Acceptance | sites/site/manage/roles', (hooks) => {
     await visit('/sites/site_a/manage/roles');
 
     // Act
-    await fillIn('[data-test-roles] [data-test-main-content-form="search-field"] input', 'user_b');
+    await fillIn('[data-test-roles] [data-test-main-content-form="search-field"] input', '@user_b');
     await click('[data-test-roles] [data-test-user-list-item="add-role-button"]');
     await click('[data-test-roles] [data-test-top-bar="save-button"]');
 
@@ -56,7 +56,7 @@ module('Acceptance | sites/site/manage/roles', (hooks) => {
     await visit('/sites/site_a/manage/roles');
 
     // Act
-    await fillIn('[data-test-roles] [data-test-main-content-form="search-field"] input', 'user_c');
+    await fillIn('[data-test-roles] [data-test-main-content-form="search-field"] input', '@user_c');
     await click('[data-test-roles] [data-test-user-list-item="remove-role-button"]');
     await click('[data-test-roles] [data-test-top-bar="save-button"]');
 

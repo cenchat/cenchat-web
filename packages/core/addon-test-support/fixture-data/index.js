@@ -241,10 +241,12 @@ export default function getFixtureData() {
                 __doc__: {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
+                    name: 'user a',
                   },
 
                   user_c: {
                     cloudFirestoreReference: '__ref__:users/user_c',
+                    name: 'user c',
                   },
                 },
               },
@@ -264,6 +266,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_a: {
                     cloudFirestoreReference: '__ref__:users/user_a',
+                    name: 'user a',
                   },
                 },
               },
@@ -283,6 +286,7 @@ export default function getFixtureData() {
                 __doc__: {
                   user_c: {
                     cloudFirestoreReference: '__ref__:users/user_c',
+                    name: 'user c',
                   },
                 },
               },

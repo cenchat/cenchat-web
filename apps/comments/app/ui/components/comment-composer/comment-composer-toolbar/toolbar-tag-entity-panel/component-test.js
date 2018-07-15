@@ -24,7 +24,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     `);
 
     // Act
-    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user_');
+    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', '@user_');
 
     // Assert
     assert.dom('[data-test-toolbar-tag-entity-panel="search-result"]').exists();
@@ -58,7 +58,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     `);
 
     // Act
-    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', 'user_');
+    await fillIn('[data-test-toolbar-tag-entity-panel="search-field"] input', '@user_');
 
     // Assert
     assert.ok(spy.called);

@@ -67,19 +67,34 @@ export default Controller.extend({
 
     if (query && query.trim()) {
       const lowerCasedQuery = query.toLowerCase();
+      const siteId = this.get('model.site.id');
       const users = await this.store.query('user', {
         limit: 8,
 
+        buildReference(db) {
+          if (lowerCasedQuery.startsWith('@')) {
+            return db.collection('users');
+          }
+
+          return db.collection(`sites/${siteId}/admins`);
+        },
+
         filter(reference) {
+          if (lowerCasedQuery.startsWith('@')) {
+            const username = lowerCasedQuery.substr(1);
+
+            return reference.orderBy('username').startAt(username).endAt(`${username}\uf8ff`);
+          }
+
           return reference
-            .orderBy('username')
+            .orderBy('name')
             .startAt(lowerCasedQuery)
             .endAt(`${lowerCasedQuery}\uf8ff`);
         },
       });
       const isAdminChecks = [];
 
-      users.forEach(user => isAdminChecks.push(user.isSiteAdmin(this.get('model.site.id'))));
+      users.forEach(user => isAdminChecks.push(user.isSiteAdmin(siteId)));
 
       const isAdminCheckResult = await Promise.all(isAdminChecks);
 

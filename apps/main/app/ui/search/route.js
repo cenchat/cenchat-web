@@ -26,10 +26,13 @@ export default Route.extend({
         limit: 8,
 
         filter(reference) {
-          return reference
-            .orderBy('username')
-            .startAt(query)
-            .endAt(`${query}\uf8ff`);
+          if (query.startsWith('@')) {
+            const username = query.substr(1);
+
+            return reference.orderBy('username').startAt(username).endAt(`${username}\uf8ff`);
+          }
+
+          return reference.orderBy('name').startAt(query).endAt(`${query}\uf8ff`);
         },
       });
     }
