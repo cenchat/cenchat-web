@@ -34,6 +34,23 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     assert.dom('[data-test-tag-entity-panel-item="username"]').hasText('@user_b');
   });
 
+  test('should hide entity username when not available', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('entity.displayUsername', null);
+
+    // Act
+    await render(hbs`
+      {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag-entity-panel-item
+          --entity=entity
+          --onTagEntityClick=(action onTagEntityClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-tag-entity-panel-item="username"]').doesNotExist();
+  });
+
   test('should fire an external action when clicking user', async function (assert) {
     assert.expect(1);
 

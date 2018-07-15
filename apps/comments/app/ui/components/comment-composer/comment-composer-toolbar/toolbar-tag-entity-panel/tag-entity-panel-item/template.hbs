@@ -12,9 +12,11 @@
           {{--entity.displayName}}
         </h2>
 
-        <p class="list__secondary-text" data-test-tag-entity-panel-item="username">
-          @{{--entity.displayUsername}}
-        </p>
+        {{#if --entity.displayUsername}}
+          <p class="list__secondary-text" data-test-tag-entity-panel-item="username">
+            @{{--entity.displayUsername}}
+          </p>
+        {{/if}}
       </div>
     </div>
   </button>
