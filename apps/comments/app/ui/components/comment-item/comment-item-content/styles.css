@@ -9,9 +9,9 @@
 
 .comment-item-content__let-me-know-image {
   position: absolute;
-  top: -36px;
-  right: 8px;
-  width: 72px;
-  height: 72px;
+  top: -32px;
+  right: 0;
+  width: 64px;
+  height: 64px;
   pointer-events: none;
 }
