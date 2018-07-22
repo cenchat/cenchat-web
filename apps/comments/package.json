@@ -69,7 +69,8 @@
   "ember-addon": {
     "paths": [
       "../../packages/core",
-      "../../packages/elements"
+      "../../packages/elements",
+      "../../packages/utils"
     ]
   }
 }

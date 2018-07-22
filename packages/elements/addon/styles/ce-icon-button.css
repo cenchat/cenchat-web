@@ -5,7 +5,7 @@
   border-style: none;
 }
 
-.ce-icon-button div {
+.ce-icon-button .ce-icon-button__wrapper {
   position: relative;
   width: 36px;
   height: 36px;
@@ -13,39 +13,39 @@
   border-radius: var(--border-radius-circle);
 }
 
-.ce-icon-button:hover div {
+.ce-icon-button:hover .ce-icon-button__wrapper {
   background-color: var(--button-hover-background-color);
 }
 
-.ce-icon-button:active div,
-.ce-icon-button[aria-pressed="true"] div {
+.ce-icon-button:active .ce-icon-button__wrapper,
+.ce-icon-button[aria-pressed="true"] .ce-icon-button__wrapper {
   background-color: var(--button-active-background-color);
 }
 
-.ce-icon-button:disabled div {
+.ce-icon-button:disabled .ce-icon-button__wrapper {
   background-color: transparent;
 }
 
-.ce-icon-button[size="small"] div {
+.ce-icon-button[size="small"] .ce-icon-button__wrapper {
   width: 30px;
   height: 30px;
 }
 
-.ce-icon-button[size="medium"] div {
+.ce-icon-button[size="medium"] .ce-icon-button__wrapper {
   width: 48px;
   height: 48px;
 }
 
-.ce-icon-button[size="large"] div {
+.ce-icon-button[size="large"] .ce-icon-button__wrapper {
   width: 60px;
   height: 60px;
 }
 
-.ce-icon-button[square] div {
+.ce-icon-button[square] .ce-icon-button__wrapper {
   border-radius: var(--border-radius-square);
 }
 
-.ce-icon-button[badged] div::after {
+.ce-icon-button[badged] .ce-icon-button__wrapper::after {
   position: absolute;
   top: 1px;
   right: 1px;
@@ -56,7 +56,7 @@
   content: '';
 }
 
-.ce-icon-button[performing] div::after {
+.ce-icon-button[performing] .ce-icon-button__wrapper::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -81,7 +81,7 @@
   }
 }
 
-.ce-icon-button img {
+.ce-icon-button .ce-image {
   width: 24px;
   height: 24px;
   padding: 6px;
@@ -90,22 +90,22 @@
   user-select: none;
 }
 
-.ce-icon-button[size="small"] img {
+.ce-icon-button[size="small"] .ce-image {
   width: 18px;
   height: 18px;
 }
 
-.ce-icon-button[size="medium"] img {
+.ce-icon-button[size="medium"] .ce-image {
   width: 36px;
   height: 36px;
 }
 
-.ce-icon-button[size="large"] img {
+.ce-icon-button[size="large"] .ce-image {
   width: 48px;
   height: 48px;
 }
 
-.ce-icon-button[square] img {
+.ce-icon-button[square] .ce-image {
   border-radius: 0;
 }
 

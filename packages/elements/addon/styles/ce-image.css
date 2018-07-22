@@ -1,0 +1,16 @@
+.ce-image {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background-color: var(--placeholder-color);
+  border-radius: var(--border-radius-square);
+}
+
+.ce-image__actual-image {
+  max-width: inherit;
+  width: inherit;
+  max-height: inherit;
+  height: inherit;
+  border-radius: var(--border-radius-square);
+  animation-duration: var(--motion-medium-expand-duration);
+}

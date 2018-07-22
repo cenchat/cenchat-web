@@ -8,6 +8,22 @@
   --elevation-16: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
   --elevation-24: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
 
+  /* Motion duration */
+  --motion-tiny-expand-duration: 100ms;
+  --motion-small-expand-duration: 150ms;
+  --motion-medium-expand-duration: 250ms;
+  --motion-large-expand-duration: 300ms;
+  --motion-tiny-collapse-duration: 100ms;
+  --motion-small-collapse-duration: 75ms;
+  --motion-medium-collapse-duration: 200ms;
+  --motion-large-collapse-duration: 250ms;
+
+  /* Motion easing */
+  --motion-standard-curve: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-deceleration-curve: cubic-bezier(0, 0, 0.2, 1);
+  --motion-acceleration-curve: cubic-bezier(0.4, 0, 1, 1);
+  --motion-sharp-curve: cubic-bezier(0.4, 0, 0.6, 1);
+
   /* Styles */
   --border-radius-circle: 50%;
   --border-radius-square: 2px;

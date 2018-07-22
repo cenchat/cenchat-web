@@ -1,11 +1,11 @@
 <li class="list__item" data-test-tag-entity-panel-item="{{--entity.id}}">
   <button class="list__action" onclick={{action --onTagEntityClick --entity}}>
     <div>
-      <img
+      {{ce-image
           class="list__avatar list__avatar--circle"
           data-test-tag-entity-panel-item="photo"
-          src="{{--entity.avatarUrl}}"
-          alt="{{--entity.displayName}}">
+          src=--entity.avatarUrl
+          alt=--entity.displayName}}
 
       <div class="list__multi-line-content">
         <h2 class="list__primary-text" data-test-tag-entity-panel-item="name">

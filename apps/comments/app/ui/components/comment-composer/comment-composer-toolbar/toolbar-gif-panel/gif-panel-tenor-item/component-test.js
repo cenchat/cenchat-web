@@ -23,7 +23,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
   });
 
   test('should show gif', async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     // Act
     await render(hbs`
@@ -33,11 +33,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     `);
 
     // Assert
-    assert.dom('[data-test-gif-panel-tenor-item="image"]').hasAttribute(
-      'src',
-      'http://example.com/image.gif',
-    );
-    assert.dom('[data-test-gif-panel-tenor-item="image"]').hasAttribute('alt', 'wow');
+    assert.dom('[data-test-gif-panel-tenor-item="image"]').exists();
   });
 
   test('should fire an external action when clicking gif', async function (assert) {

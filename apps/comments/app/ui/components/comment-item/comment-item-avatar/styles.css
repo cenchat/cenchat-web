@@ -36,7 +36,7 @@
   outline: none;
 }
 
-.comment-item-avatar__toggle-quote-button img {
+.comment-item-avatar__toggle-quote-button .ce-image {
   align-self: center;
   width: 20px;
   height: 20px;

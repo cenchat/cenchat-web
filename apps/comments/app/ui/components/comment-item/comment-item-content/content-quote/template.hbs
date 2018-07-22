@@ -12,10 +12,10 @@
   {{/if}}
 
   {{#each --comment.replyTo.parsedAttachments as |attachment|}}
-    <img
+    {{ce-image
         class="comment-item-content-quote__sticker-attachment-image"
         data-test-content-quote="attachment-image"
-        src="{{attachment.imageUrl}}"
-        alt="{{attachment.description}}">
+        src=attachment.imageUrl
+        alt=attachment.description}}
   {{/each}}
 </blockquote>

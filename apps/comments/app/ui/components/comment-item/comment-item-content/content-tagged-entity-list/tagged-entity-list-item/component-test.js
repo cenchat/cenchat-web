@@ -17,7 +17,7 @@ module('Integration | Component | comment-item/comment-item-content/content-tagg
   });
 
   test('should show user photo', async function (assert) {
-    assert.expect(3);
+    assert.expect(1);
 
     // Act
     await render(hbs`
@@ -26,8 +26,6 @@ module('Integration | Component | comment-item/comment-item-content/content-tagg
     `);
 
     // Assert
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('src', 'https://graph.facebook.com/fb_user_a/picture?type=large');
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('title', 'User A');
-    assert.dom('[data-test-tagged-entity-list-item="photo"]').hasAttribute('alt', 'User A');
+    assert.dom('[data-test-tagged-entity-list-item="photo"]').exists();
   });
 });

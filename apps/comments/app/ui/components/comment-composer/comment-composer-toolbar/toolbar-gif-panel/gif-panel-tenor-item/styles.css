@@ -2,7 +2,8 @@
   margin-right: 8px;
 }
 
-.gif-panel-tenor-item img {
+.gif-panel-tenor-item .ce-image {
   display: block;
+  min-width: 120px;
   height: 200px;
 }

@@ -359,7 +359,10 @@ module('Unit | Model | comment', (hooks) => {
               {
                 media: [
                   {
-                    tinygif: { url: 'http://example.com/image.gif' },
+                    tinygif: {
+                      dims: [120, 100],
+                      url: 'http://example.com/image.gif',
+                    },
                   },
                 ],
                 title: 'wow',
@@ -382,8 +385,10 @@ module('Unit | Model | comment', (hooks) => {
         {
           id: 12345,
           description: 'wow',
+          height: 100,
           imageUrl: 'http://example.com/image.gif',
           type: 'tenor_gif',
+          width: 120,
         },
       ]);
     });

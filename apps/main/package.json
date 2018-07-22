@@ -79,7 +79,8 @@
     "paths": [
       "../../packages/core",
       "../../packages/elements",
-      "../../packages/esw-fcm"
+      "../../packages/esw-fcm",
+      "../../packages/utils"
     ]
   }
 }
