@@ -44,7 +44,7 @@
   line-height: var(--line-height-16);
   color: var(--font-primary-color);
   background-color: var(--text-field-background-color);
-  border: none;
+  border: 1px solid var(--divider-color);
 }
 
 .ce-field input:invalid,

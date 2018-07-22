@@ -162,7 +162,7 @@
 }
 
 @media (min-width: 960px) {
-  .home_main-content__--marketing {
+  .home_main-content__marketing {
     display: flex;
   }
 }
@@ -259,12 +259,20 @@
 
 @media (min-width: 960px) {
   .home_main-content__demo {
-    padding-right: 0;
-    padding-left: 0;
+    padding: 56px 0;
   }
 }
 
 #cenchat-comments {
   width: 100%;
   max-width: 400px;
+}
+
+@media (min-width: 960px) {
+  #cenchat-comments {
+    padding-right: 8px;
+    padding-left: 8px;
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius-square);
+  }
 }
