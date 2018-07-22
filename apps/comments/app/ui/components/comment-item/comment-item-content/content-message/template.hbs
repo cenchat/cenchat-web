@@ -8,7 +8,7 @@
   {{/if}}
 
   <div>
-    {{#each --comment.parsedAttachments as |attachment|}}
+    {{#each --comment.parsedAttachments key="id" as |attachment|}}
       {{ce-image
           class="comment-item-content-message__attachment-image"
           data-test-content-message="attachment-image"

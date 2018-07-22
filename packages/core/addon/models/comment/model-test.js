@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { settled } from '@ember/test-helpers';
+import { settled, waitUntil } from '@ember/test-helpers';
 import { setupTest } from 'ember-qunit';
 
 import sinon from 'sinon';
@@ -333,10 +333,11 @@ module('Unit | Model | comment', (hooks) => {
       });
 
       // Act
-      const result = await model.get('parsedAttachments');
+      model.get('parsedAttachments');
 
       // Assert
-      assert.deepEqual(result, [sticker]);
+      await settled();
+      assert.deepEqual(model.get('parsedAttachments'), [sticker]);
     });
 
     test('should return the model equivalent for tenor gifs', async function (assert) {
@@ -378,10 +379,11 @@ module('Unit | Model | comment', (hooks) => {
       });
 
       // Act
-      const result = await model.get('parsedAttachments');
+      model.get('parsedAttachments');
 
       // Assert
-      assert.deepEqual(result, [
+      await waitUntil(() => model.get('parsedAttachments').length > 0);
+      assert.deepEqual(model.get('parsedAttachments'), [
         {
           id: 12345,
           description: 'wow',

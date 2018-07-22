@@ -6,4 +6,5 @@
   display: block;
   min-width: 120px;
   height: 200px;
+  border-radius: 0;
 }
