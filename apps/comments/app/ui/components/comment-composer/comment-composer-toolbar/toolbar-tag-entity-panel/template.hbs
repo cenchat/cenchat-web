@@ -8,12 +8,15 @@
       --onInput=(action searchEntities)}}
 
   {{#if searchResults}}
-    <ul class="list" data-test-toolbar-tag-entity-panel="search-result">
-      {{#each searchResults as |entity|}}
-        {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag-entity-panel-item
-            --entity=entity
-            --onTagEntityClick=(action --onTagEntityClick)}}
-      {{/each}}
-    </ul>
+    {{#ani-each
+        searchResults
+        class="list"
+        data-test-toolbar-tag-entity-panel="search-result"
+        tagName="ul"
+        as |entity|}}
+      {{comment-composer/comment-composer-toolbar/toolbar-tag-entity-panel/tag-entity-panel-item
+          --entity=entity
+          --onTagEntityClick=(action --onTagEntityClick)}}
+    {{/ani-each}}
   {{/if}}
 </div>

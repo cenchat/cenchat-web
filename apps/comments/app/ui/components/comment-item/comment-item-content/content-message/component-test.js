@@ -75,7 +75,7 @@ module('Integration | Component | comment-item/comment-item-content/content-mess
   });
 
   test('should list stickers attachment', async function (assert) {
-    assert.expect(3);
+    assert.expect(1);
 
     // Arrange
     const attachmentImage = '[data-test-content-message="attachment-image"]';
@@ -87,7 +87,5 @@ module('Integration | Component | comment-item/comment-item-content/content-mess
 
     // Assert
     assert.dom(attachmentImage).exists({ count: 2 });
-    assert.dom(attachmentImage).hasAttribute('src', 'sticker_a1.jpg');
-    assert.dom(attachmentImage).hasAttribute('alt', 'Laughing sticker');
   });
 });

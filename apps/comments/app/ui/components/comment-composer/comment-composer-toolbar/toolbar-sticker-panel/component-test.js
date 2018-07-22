@@ -20,7 +20,7 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
   });
 
   test('should list sticker packs', async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     // Act
     await render(hbs`
@@ -30,16 +30,13 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     `);
 
     // Assert
-    assert
-      .dom('[data-test-toolbar-sticker-panel="pack-button__sticker_pack_a"] img')
-      .hasAttribute('src', 'sticker_pack_a.jpg');
     assert.dom('[data-test-toolbar-sticker-panel^="pack-button"]').exists({
       count: 2,
     });
   });
 
   test('should list stickers of selected sticker pack', async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     // Act
     await render(hbs`
@@ -49,16 +46,13 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
     `);
 
     // Assert
-    assert
-      .dom('[data-test-toolbar-sticker-panel="sticker-button__sticker_a1"] img')
-      .hasAttribute('src', 'sticker_a1.jpg');
     assert.dom('[data-test-toolbar-sticker-panel^="sticker-button"]').exists({
       count: 2,
     });
   });
 
   test('should change selected sticker pack when clicking another one', async function (assert) {
-    assert.expect(3);
+    assert.expect(2);
 
     // Arrange
     const pack =
@@ -75,9 +69,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar/tool
 
     // Assert
     assert.dom(pack).hasAttribute('aria-pressed', 'true');
-    assert
-      .dom('[data-test-toolbar-sticker-panel="sticker-button__sticker_b1"] img')
-      .hasAttribute('src', 'sticker_b1.jpg');
     assert.dom('[data-test-toolbar-sticker-panel^="sticker-button"]').exists({
       count: 2,
     });

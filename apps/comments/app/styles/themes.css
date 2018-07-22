@@ -29,6 +29,9 @@
   --list-item-hover-background-color: var(--hover-background-color);
   --list-item-active-background-color: var(--active-background-color);
 
+  /* Placeholder */
+  --placeholder-color: var(--dark-12);
+
   /* Progress bar */
   --progress-bar-background-color: var(--dark-12);
 
@@ -80,6 +83,9 @@
   --list-item-disabled-text-color: var(--disabled-text-color);
   --list-item-hover-background-color: var(--hover-background-color);
   --list-item-active-background-color: var(--active-background-color);
+
+  /* Placeholder */
+  --placeholder-color: var(--light-12);
 
   /* Progress bar */
   --progress-bar-background-color: var(--light-12);

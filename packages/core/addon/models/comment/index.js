@@ -333,8 +333,10 @@ export default Model.extend({
     return {
       id: gif.id,
       description: gif.title,
+      height: gif.media[0].tinygif.dims[1],
       imageUrl: gif.media[0].tinygif.url,
       type: 'tenor_gif',
+      width: gif.media[0].tinygif.dims[0],
     };
   },
 });

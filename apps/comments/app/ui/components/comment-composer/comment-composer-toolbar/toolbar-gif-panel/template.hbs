@@ -8,12 +8,15 @@
       --onInput=(action searchGifs)}}
 
   {{#if searchResults}}
-    <ul class="comment-composer-toolbar-gif-panel__search-result" data-test-toolbar-gif-panel="search-result">
-      {{#each searchResults as |gif|}}
-        {{comment-composer/comment-composer-toolbar/toolbar-gif-panel/gif-panel-tenor-item
-            --gif=gif
-            --onAddAttachmentClick=(action --onAddAttachmentClick)}}
-      {{/each}}
-    </ul>
+    {{#ani-each
+        searchResults
+        class="comment-composer-toolbar-gif-panel__search-result"
+        data-test-toolbar-gif-panel="search-result"
+        tagName="ul"
+        as |gif|}}
+      {{comment-composer/comment-composer-toolbar/toolbar-gif-panel/gif-panel-tenor-item
+          --gif=gif
+          --onAddAttachmentClick=(action --onAddAttachmentClick)}}
+    {{/ani-each}}
   {{/if}}
 </div>

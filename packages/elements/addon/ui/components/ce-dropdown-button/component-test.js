@@ -1,4 +1,4 @@
-import { click, waitUntil } from '@ember/test-helpers';
+import { click, waitFor, waitUntil } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -63,9 +63,14 @@ module('Integration | Component | ce-dropdown-button', (hooks) => {
   test('should show image', async function (assert) {
     assert.expect(1);
 
+    // Arrange
+    const cacheBusterRandomString = Math.random().toString(32).slice(2).substr(0, 5);
+
+    this.set('image', `https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flogos%2Fcenchat%2Fcenchat-wordmark-bow-1200.png?alt=media&token=bf1daeb8-3f41-4cfc-8e00-19f6e11aad9e?buster=${cacheBusterRandomString}`);
+
     // Act
     await this.render(hbs`
-      {{#ce-dropdown-button data-test="host" image="favorite"}}
+      {{#ce-dropdown-button data-test="host" image=image}}
         <li>
           <a>Foo</a>
         </li>
@@ -76,7 +81,8 @@ module('Integration | Component | ce-dropdown-button', (hooks) => {
     `);
 
     // Assert
-    assert.dom('[data-test="host"] img').hasAttribute('src', 'favorite');
+    await waitFor('[data-test="host"] img');
+    assert.dom('[data-test="host"] img').hasAttribute('src', this.image);
   });
 
   test('should generate ID for button', async function (assert) {

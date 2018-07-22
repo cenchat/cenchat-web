@@ -1,13 +1,13 @@
 <div>
   <div class="{{if --prioritizedComments 'comment-list__prioritized-comments'}}">
-    {{#each --prioritizedComments as |comment|}}
+    {{#ani-each --prioritizedComments as |comment|}}
       {{comment-item --comment=comment --threadLevel=--threadLevel}}
-    {{/each}}
+    {{/ani-each}}
   </div>
 
-  {{#each --comments as |comment|}}
+  {{#ani-each --comments as |comment|}}
     {{comment-item --comment=comment --threadLevel=--threadLevel}}
-  {{/each}}
+  {{/ani-each}}
 
   {{#if (and (not --prioritizedComments) (not --comments))}}
     {{#if --emptyStateMessage}}
@@ -16,9 +16,7 @@
   {{/if}}
 
   {{#if (gte --comments.length limit)}}
-    {{#ce-button
-        data-test-comment-list="load-more-comments-button"
-        --onClick=(action loadMoreComments)}}
+    {{#ce-button data-test-comment-list="load-more-comments-button" --onClick=(action loadMoreComments)}}
       Load more comments
     {{/ce-button}}
   {{/if}}

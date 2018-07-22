@@ -6,18 +6,18 @@
           href="https://cenchat.com/profile/{{--comment.author.urlKey}}"
           target="_blank"
           rel="noopener noreferrer">
-        <img
+        {{ce-image
             class="comment-item-avatar__author-image"
             data-test-item-avatar="author-image"
-            src="{{--comment.author.avatarUrl}}"
-            alt="">
+            src=--comment.author.avatarUrl
+            alt=""}}
       </a>
     {{else}}
-      <img
+      {{ce-image
           class="comment-item-avatar__author-image"
           data-test-item-avatar="anonymous-author-image"
-          src="{{--comment.authorOrAnonymous.avatarUrl}}"
-          alt="">
+          src=--comment.authorOrAnonymous.avatarUrl
+          alt=""}}
     {{/if}}
     
     {{#if --comment.isFromFollowing}}
@@ -41,7 +41,7 @@
         onclick={{action --onToggleQuoteClick}}>
       {{#ce-icon size="small"}}reply{{/ce-icon}}
 
-      <img src="{{--comment.replyTo.authorOrAnonymous.avatarUrl}}" alt="">
+      {{ce-image src=--comment.replyTo.authorOrAnonymous.avatarUrl alt=""}}
     </button>
   {{/if}}
 </div>

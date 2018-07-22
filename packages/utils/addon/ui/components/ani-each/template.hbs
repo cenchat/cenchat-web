@@ -1,0 +1,5 @@
+{{#each items as |item index|}}
+  {{yield item index}}
+{{else}}
+  {{yield to="inverse"}}
+{{/each}}

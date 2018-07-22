@@ -1,0 +1,12 @@
+.masonry-grid {
+  display: flex;
+  width: 100%;
+}
+
+.masonry-grid__column {
+  width: 100%;
+}
+
+.masonry-grid__column:not(:last-child):not(:only-child) {
+  margin-right: 8px;
+}

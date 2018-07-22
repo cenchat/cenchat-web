@@ -4,6 +4,8 @@
 }
 
 .comment-item-content-message__attachment-image {
+  width: 120px;
+  height: 120px;
   max-height: 120px;
   margin-top: 8px;
   margin-bottom: 8px;

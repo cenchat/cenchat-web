@@ -9,11 +9,13 @@
 
   <div>
     {{#each --comment.parsedAttachments as |attachment|}}
-      <img
+      {{ce-image
           class="comment-item-content-message__attachment-image"
           data-test-content-message="attachment-image"
-          src="{{attachment.imageUrl}}"
-          alt="{{attachment.description}}">
+          src=attachment.imageUrl
+          alt=attachment.description
+          width=attachment.width
+          height=attachment.height}}
     {{/each}}
   </div>
 </p>
