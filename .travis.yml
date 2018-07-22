@@ -26,6 +26,8 @@ before_install:
   - npm install
   - cd ../esw-fcm
   - npm install
+  - cd ../utils
+  - npm install
   - cd ../../
 
 install:
