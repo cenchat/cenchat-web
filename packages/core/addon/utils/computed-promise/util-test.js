@@ -3,11 +3,31 @@ import { settled } from '@ember/test-helpers';
 import { setupTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 
-import { promiseArray, promiseObject } from '@cenchat/core/utils/computed-promise';
+import { computedPromise, promiseArray, promiseObject } from '@cenchat/core/utils/computed-promise';
 import { stubPromise } from '@cenchat/core/test-support';
 
 module('Unit | Util | computed-promise', (hooks) => {
   setupTest(hooks);
+
+  module('function: computedPromise', () => {
+    test('should return a computed promise array', async (assert) => {
+      assert.expect(1);
+
+      // Arrange
+      const objClass = EmberObject.extend({
+        foo: computedPromise('array', 'foo', () => stubPromise(true, ['foobar'])),
+      });
+      const obj = objClass.create();
+
+      // Act
+      obj.get('foo');
+
+      // Assert
+      await settled();
+
+      assert.deepEqual(obj.get('foo'), ['foobar']);
+    });
+  });
 
   module('function: promiseArray', () => {
     test('should return a computed promise array', async (assert) => {

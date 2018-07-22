@@ -8,7 +8,7 @@ import attr from 'ember-data/attr';
 
 import fetch from 'fetch';
 
-import { promiseArray } from '@cenchat/core/utils/computed-promise';
+import { computedPromise, promiseArray } from '@cenchat/core/utils/computed-promise';
 
 /**
  * @class Comment
@@ -203,11 +203,9 @@ export default Model.extend({
   /**
    * @type {Array}
    */
-  parsedAttachments: promiseArray((context) => {
-    const { attachments } = context;
-
-    if (Array.isArray(attachments)) {
-      const requests = attachments.map(({ id, type }) => {
+  parsedAttachments: computedPromise('array', 'parsedAttachments', (context) => {
+    if (Array.isArray(context.attachments)) {
+      const requests = context.attachments.map(({ id, type }) => {
         if (type === 'sticker') {
           return context.store.findRecord('sticker', id);
         }
