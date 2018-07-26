@@ -42,8 +42,7 @@ export default Component.extend({
     const { comment } = this.args;
 
     comment.set('attachments', null);
-    comment.set('isLetMeKnow', false);
-    comment.set('taggedEntities', null);
+    comment.set('taggedEntity', null);
     comment.set('text', null);
     comment.set('isDeleted', true);
 
@@ -55,7 +54,11 @@ export default Component.extend({
       },
 
       scheduledAction: async () => {
-        comment.save();
+        comment.save({
+          adapterOptions: {
+            onServer: true,
+          },
+        });
       },
     });
   },

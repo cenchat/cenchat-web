@@ -15,8 +15,8 @@
     {{comment-item/comment-item-content/content-header --comment=--comment}}
     {{comment-item/comment-item-content/content-message --comment=--comment}}
 
-    {{#if --comment.taggedEntities}}
-      {{comment-item/comment-item-content/content-tagged-entity-list --entities=--comment.parsedTaggedEntities}}
+    {{#if --comment.taggedEntity}}
+      {{comment-item/comment-item-content/content-tagged-entity-list --entities=--comment.parsedTaggedEntity}}
     {{/if}}
   </div>
 </div>

@@ -7,9 +7,9 @@
           --onRemoveAttachmentClick=(action handleRemoveAttachmentClick)}}
     {{/if}}
 
-    {{#if comment.taggedEntities}}
+    {{#if comment.taggedEntity}}
       {{comment-composer/comment-composer-tagged-entity-list
-          --entities=comment.parsedTaggedEntities
+          --entities=comment.parsedTaggedEntity
           --onUntagEntityClick=(action handleUntagEntityClick)}}
     {{/if}}
 

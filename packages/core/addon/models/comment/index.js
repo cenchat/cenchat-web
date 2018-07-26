@@ -32,11 +32,6 @@ export default Model.extend({
   isDeleted: attr('boolean'),
 
   /**
-   * @type {boolean}
-   */
-  isLetMeKnow: attr('boolean'),
-
-  /**
    * @type {string}
    */
   status: attr('string'),
@@ -44,7 +39,7 @@ export default Model.extend({
   /**
    * @type {Object}
    */
-  taggedEntities: attr(),
+  taggedEntity: attr(),
 
   /**
    * @type {string}
@@ -149,25 +144,6 @@ export default Model.extend({
   /**
    * @type {boolean}
    */
-  isLetMeKnowAllowed: computed({
-    get() {
-      this.checkIfAuthorIsSiteAdmin().then(isSiteAdmin => (
-        this.set('isLetMeKnowAllowed', isSiteAdmin)
-      ));
-
-      return this._isLetMeKnowAllowed;
-    },
-
-    set(key, value) {
-      this.set('_isLetMeKnowAllowed', value);
-
-      return value;
-    },
-  }),
-
-  /**
-   * @type {boolean}
-   */
   isTextAllowed: computed({
     get() {
       if (this.text) {
@@ -175,19 +151,21 @@ export default Model.extend({
       }
 
       if (!this._isTextAllowed) {
-        if (this.get('replyTo.isLetMeKnow')) {
-          this.set('_isTextAllowed', true);
-        } else {
-          this.checkIfIsReplyingToFollower().then((isReplyingToFollower) => {
-            if (isReplyingToFollower) {
-              this.set('isTextAllowed', true);
-            } else {
-              this.checkIfAuthorIsSiteAdmin().then((isSiteAdmin) => {
-                this.set('isTextAllowed', isSiteAdmin);
-              });
-            }
-          });
-        }
+        this.checkIfIsReplyingToFollower().then((isReplyingToFollower) => {
+          if (isReplyingToFollower) {
+            this.set('isTextAllowed', true);
+          } else {
+            this.checkIfIsReplyingToSiteAdmin().then((isReplyingToSiteAdmin) => {
+              if (isReplyingToSiteAdmin) {
+                this.set('isTextAllowed', true);
+              } else {
+                this.checkIfAuthorIsSiteAdmin().then((isSiteAdmin) => {
+                  this.set('isTextAllowed', isSiteAdmin);
+                });
+              }
+            });
+          }
+        });
       }
 
       return this._isTextAllowed;
@@ -222,14 +200,14 @@ export default Model.extend({
   /**
    * @type {Array}
    */
-  parsedTaggedEntities: promiseArray((context) => {
-    const { taggedEntities } = context;
+  parsedTaggedEntity: promiseArray((context) => {
+    const { taggedEntity } = context;
 
-    if (taggedEntities) {
+    if (taggedEntity) {
       const requests = [];
 
-      Object.keys(taggedEntities).forEach((entity) => {
-        if (taggedEntities[entity] === 'user') {
+      Object.keys(taggedEntity).forEach((entity) => {
+        if (taggedEntity[entity] === 'user') {
           requests.push(context.store.findRecord('user', entity));
         }
       });
@@ -238,7 +216,7 @@ export default Model.extend({
     }
 
     return Promise.all([]);
-  }, 'taggedEntities'),
+  }, 'taggedEntity'),
 
   /**
    * @override
@@ -247,7 +225,6 @@ export default Model.extend({
     this._super(...args);
 
     this.set('_isFromFollowing', false);
-    this.set('_isLetMeKnowAllowed', false);
     this.set('_isTextAllowed', false);
   },
 
@@ -301,6 +278,23 @@ export default Model.extend({
 
     if (replyTo.get('id') && replyTo.get('author.id')) {
       return this.get('author').then(author => author.hasFollower(replyTo.get('author.id')));
+    }
+
+    return Promise.resolve(false);
+  },
+
+  /**
+   * @return {Promise.<boolean>} Resolves to true if a follower. Otherwise, false.
+   * @function
+   * @private
+   */
+  checkIfIsReplyingToSiteAdmin() {
+    const replyTo = this.get('replyTo');
+
+    if (replyTo.get('id') && replyTo.get('author.id')) {
+      const siteId = this.get('page.site.id');
+
+      return replyTo.get('author').then(author => author.isSiteAdmin(siteId));
     }
 
     return Promise.resolve(false);

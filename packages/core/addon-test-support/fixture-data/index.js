@@ -25,7 +25,7 @@ export default function getFixtureData() {
             root: null,
             site: '__ref__:sites/site_a',
             status: 'approved',
-            taggedEntities: {
+            taggedEntity: {
               user_b: 'user',
             },
             text: null,
@@ -48,7 +48,7 @@ export default function getFixtureData() {
             root: '__ref__:comments/comment_a',
             site: '__ref__:sites/site_a',
             status: 'approved',
-            taggedEntities: null,
+            taggedEntity: null,
             text: 'Foobar',
           },
 
@@ -69,7 +69,7 @@ export default function getFixtureData() {
             root: '__ref__:comments/comment_a',
             site: '__ref__:sites/site_a',
             status: 'approved',
-            taggedEntities: null,
+            taggedEntity: null,
             text: 'Foobar',
           },
 
@@ -90,7 +90,7 @@ export default function getFixtureData() {
             root: '__ref__:comments/comment_a',
             site: '__ref__:sites/site_a',
             status: 'approved',
-            taggedEntities: null,
+            taggedEntity: null,
             text: 'Foobar',
           },
 
@@ -111,7 +111,7 @@ export default function getFixtureData() {
             root: '__ref__:comments/comment_a',
             site: '__ref__:sites/site_a',
             status: 'approved',
-            taggedEntities: null,
+            taggedEntity: null,
             text: 'Foobar',
           },
 
@@ -132,7 +132,7 @@ export default function getFixtureData() {
             root: '__ref__:comments/comment_a',
             site: '__ref__:sites/site_a',
             status: 'rejected',
-            taggedEntities: null,
+            taggedEntity: null,
             text: 'Foobar',
           },
         },
@@ -418,7 +418,7 @@ export default function getFixtureData() {
                     root: '__ref__:comments/comment_a',
                     site: '__ref__:sites/site_a',
                     status: 'approved',
-                    taggedEntities: null,
+                    taggedEntity: null,
                     text: 'Foobar',
                   },
 
@@ -439,7 +439,7 @@ export default function getFixtureData() {
                     root: '__ref__:comments/comment_a',
                     site: '__ref__:sites/site_a',
                     status: 'approved',
-                    taggedEntities: null,
+                    taggedEntity: null,
                     text: 'Foobar',
                   },
 
@@ -460,7 +460,7 @@ export default function getFixtureData() {
                     root: '__ref__:comments/comment_a',
                     site: '__ref__:sites/site_a',
                     status: 'approved',
-                    taggedEntities: null,
+                    taggedEntity: null,
                     text: 'Foobar',
                   },
 
@@ -481,7 +481,7 @@ export default function getFixtureData() {
                     root: '__ref__:comments/comment_a',
                     site: '__ref__:sites/site_a',
                     status: 'rejected',
-                    taggedEntities: null,
+                    taggedEntity: null,
                     text: 'Foobar',
                   },
                 },
@@ -566,7 +566,7 @@ export default function getFixtureData() {
                   root: null,
                   site: '__ref__:sites/site_a',
                   status: 'approved',
-                  taggedEntities: {
+                  taggedEntity: {
                     user_b: 'user',
                   },
                   text: null,
@@ -589,7 +589,7 @@ export default function getFixtureData() {
                   root: '__ref__:comments/comment_a',
                   site: '__ref__:sites/site_a',
                   status: 'approved',
-                  taggedEntities: null,
+                  taggedEntity: null,
                   text: 'Foobar',
                 },
               },

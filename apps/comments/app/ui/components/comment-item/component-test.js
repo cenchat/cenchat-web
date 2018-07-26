@@ -262,7 +262,7 @@ module('Unit | Component | comment-item', (hooks) => {
 
   module('function: handleDeleteCommentClick', () => {
     test('should update comment into delete state', async function (assert) {
-      assert.expect(5);
+      assert.expect(4);
 
       // Arrange
       const saveStub = sinon.stub().returns(stubPromise(true));
@@ -277,9 +277,8 @@ module('Unit | Component | comment-item', (hooks) => {
 
       // Assert
       assert.equal(this.comment.get('attachments'), null);
-      assert.equal(this.comment.get('isLetMeKnow'), false);
       assert.equal(this.comment.get('isDeleted'), true);
-      assert.equal(this.comment.get('taggedEntities'), null);
+      assert.equal(this.comment.get('taggedEntity'), null);
       assert.equal(this.comment.get('text', null));
 
       // Can't test this because of toast

@@ -91,7 +91,7 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     assert.expect(1);
 
     // Arrange
-    this.set('comment.taggedEntities', { user_b: 'user' });
+    this.set('comment.taggedEntity', { user_b: 'user' });
 
     const spy = spyComponent(this, 'comment-item/comment-item-content/content-tagged-entity-list');
 
