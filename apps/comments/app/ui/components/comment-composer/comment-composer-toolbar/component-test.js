@@ -16,7 +16,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
 
     this.set('comment', comment);
     this.set('onAddAttachmentClick', () => {});
-    this.set('onLetMeKnowClick', () => {});
     this.set('onSendCommentClick', () => {});
     this.set('onTagEntityClick', () => {});
   });
@@ -32,7 +31,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -59,7 +57,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -83,7 +80,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -94,74 +90,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
     // Assert
     assert.dom(tagEntityButton).hasAttribute('aria-pressed', 'true');
     assert.deepEqual(spy.componentArgsType, { onTagEntityClick: 'function' });
-  });
-
-  test('should show let me know button when allowed for the comment', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    this.set('comment.isLetMeKnowAllowed', true);
-
-    // Act
-    await render(hbs`
-      {{comment-composer/comment-composer-toolbar
-          --comment=comment
-          --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
-          --onSendCommentClick=(action onSendCommentClick)
-          --onTagEntityClick=(action onTagEntityClick)}}
-    `);
-
-    // Assert
-    assert
-      .dom('[data-test-comment-composer-toolbar="let-me-know-button"]')
-      .exists();
-  });
-
-  test('should hide let me know button when not allowed for the comment', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    this.set('comment.isLetMeKnowAllowed', false);
-
-    // Act
-    await render(hbs`
-      {{comment-composer/comment-composer-toolbar
-          --comment=comment
-          --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
-          --onSendCommentClick=(action onSendCommentClick)
-          --onTagEntityClick=(action onTagEntityClick)}}
-    `);
-
-    // Assert
-    assert
-      .dom('[data-test-comment-composer-toolbar="let-me-know-button"]')
-      .doesNotExist();
-  });
-
-  test('should fire an external action when clicking let me know', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    const spy = sinon.spy(this, 'onLetMeKnowClick');
-
-    this.set('comment.isLetMeKnowAllowed', true);
-
-    await render(hbs`
-      {{comment-composer/comment-composer-toolbar
-          --comment=comment
-          --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
-          --onSendCommentClick=(action onSendCommentClick)
-          --onTagEntityClick=(action onTagEntityClick)}}
-    `);
-
-    // Act
-    await click('[data-test-comment-composer-toolbar="let-me-know-button"]');
-
-    // Assert
-    assert.ok(spy.calledOnce);
   });
 
   test('should enable send button when comment is valid', async function (assert) {
@@ -175,7 +103,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -197,7 +124,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);
@@ -218,7 +144,6 @@ module('Integration | Component | comment-composer/comment-composer-toolbar', (h
       {{comment-composer/comment-composer-toolbar
           --comment=comment
           --onAddAttachmentClick=(action onAddAttachmentClick)
-          --onLetMeKnowClick=(action onLetMeKnowClick)
           --onSendCommentClick=(action onSendCommentClick)
           --onTagEntityClick=(action onTagEntityClick)}}
     `);

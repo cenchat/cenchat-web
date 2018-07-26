@@ -22,12 +22,19 @@
     
     {{#if --comment.isFromFollowing}}
       {{#ce-icon
-          class="comment-item-avatar__following-badge"
+          class="comment-item-avatar__badge comment-item-avatar__badge--following"
           data-test-item-avatar="following-badge"
           title="Following badge"
-          aria-label="Following badge"
-          size="small"}}
+          aria-label="Following badge"}}
         favorite
+      {{/ce-icon}}
+    {{else if --comment.isFromSiteAdmin}}
+      {{#ce-icon
+          class="comment-item-avatar__badge"
+          data-test-item-avatar="admin-badge"
+          title="Admin badge"
+          aria-label="Admin badge"}}
+        stars
       {{/ce-icon}}
     {{/if}}
   </div>

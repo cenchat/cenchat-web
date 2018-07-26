@@ -122,38 +122,4 @@ module('Integration | Component | comment-item/comment-item-content', (hooks) =>
     // Assert
     assert.ok(spy.notCalled);
   });
-
-  test('should show let me know sticker when comment has let me know flagged to true', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    this.set('comment.isLetMeKnow', true);
-
-    // Act
-    await render(hbs`
-      {{comment-item/comment-item-content
-          --comment=comment
-          --isQuoteVisible=isQuoteVisible}}
-    `);
-
-    // Assert
-    assert.dom('[data-test-content-item-content="let-me-know-image"]').exists();
-  });
-
-  test('should hide let me know sticker when comment has let me know flagged to false', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    this.set('comment.isLetMeKnow', false);
-
-    // Act
-    await render(hbs`
-      {{comment-item/comment-item-content
-          --comment=comment
-          --isQuoteVisible=isQuoteVisible}}
-    `);
-
-    // Assert
-    assert.dom('[data-test-content-item-content="let-me-know-image"]').doesNotExist();
-  });
 });

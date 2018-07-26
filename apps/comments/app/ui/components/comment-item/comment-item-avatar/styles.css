@@ -19,10 +19,15 @@
   border-radius: var(--border-radius-circle);
 }
 
-.comment-item-avatar__following-badge {
+.comment-item-avatar__badge {
   position: absolute;
-  top: -4px;
-  right: 12px;
+  top: -8px;
+  right: 4px;
+  background-color: var(--body-background-color);
+  border-radius: var(--border-radius-circle);
+}
+
+.comment-item-avatar__badge--following {
   color: var(--error-color);
 }
 

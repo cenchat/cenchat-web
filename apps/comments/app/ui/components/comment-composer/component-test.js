@@ -125,7 +125,6 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.deepEqual(spy.componentArgsType, {
       comment: 'instance',
       onAddAttachmentClick: 'function',
-      onLetMeKnowClick: 'function',
       onSendCommentClick: 'function',
       onTagEntityClick: 'function',
     });
@@ -272,7 +271,6 @@ module('Unit | Component | comment-composer', (hooks) => {
             page,
             site,
             attachments: null,
-            isLetMeKnow: false,
             isDeleted: false,
             author: 'sessionModel',
             replyTo: undefined,
@@ -372,37 +370,6 @@ module('Unit | Component | comment-composer', (hooks) => {
         gif,
         gif,
       ]);
-    });
-  });
-
-  module('function: handleLetMeKnowClick', () => {
-    test('should toggle let me know in the comment to true', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const factory = this.owner.factoryFor('component:comment-composer');
-      const component = await factory.create({ '--comment': this.comment });
-
-      // Act
-      component.handleLetMeKnowClick();
-
-      // Assert
-      assert.equal(component.get('comment.isLetMeKnow'), true);
-    });
-
-    test('should toggle let me know in the comment to false', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const factory = this.owner.factoryFor('component:comment-composer');
-      const component = await factory.create({ '--comment': this.comment });
-
-      // Act
-      component.handleLetMeKnowClick();
-      component.handleLetMeKnowClick();
-
-      // Assert
-      assert.equal(component.get('comment.isLetMeKnow'), false);
     });
   });
 

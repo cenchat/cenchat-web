@@ -50,7 +50,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     assert.dom('[data-test-item-avatar="anonymous-author-image"]').exists();
   });
 
-  test('should show following badge when author is a following', async function (assert) {
+  test('should show following badge when author is being followed', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -67,7 +67,7 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
     assert.dom('[data-test-item-avatar="following-badge"]').exists();
   });
 
-  test('should hide following badge when author isn\'t a following', async function (assert) {
+  test('should hide following badge when author is not being followed', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -79,6 +79,37 @@ module('Integration | Component | comment-item/comment-item-avatar', (hooks) => 
 
     // Assert
     assert.dom('[data-test-item-avatar="following-badge"]').doesNotExist();
+  });
+
+  test('should show admin badge when author is an admin', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('comment.isFromSiteAdmin', true);
+
+    // Act
+    await render(hbs`
+      {{comment-item/comment-item-avatar
+          --comment=comment
+          --onToggleQuoteClick=(action onToggleQuoteClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-item-avatar="admin-badge"]').exists();
+  });
+
+  test('should hide admin badge when author is not an admin', async function (assert) {
+    assert.expect(1);
+
+    // Act
+    await render(hbs`
+      {{comment-item/comment-item-avatar
+          --comment=comment
+          --onToggleQuoteClick=(action onToggleQuoteClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-item-avatar="admin-badge"]').doesNotExist();
   });
 
   test('should show show quote button when available', async function (assert) {

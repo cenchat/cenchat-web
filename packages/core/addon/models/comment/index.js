@@ -142,6 +142,17 @@ export default Model.extend({
   }),
 
   /**
+   * @type {Array}
+   */
+  isFromSiteAdmin: computedPromise('boolean', 'isFromSiteAdmin', (context) => {
+    if (context.belongsTo('author').id()) {
+      return context.checkIfAuthorIsSiteAdmin();
+    }
+
+    return Promise.resolve(false);
+  }, 'author'),
+
+  /**
    * @type {boolean}
    */
   isTextAllowed: computed({

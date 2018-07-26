@@ -85,6 +85,52 @@ module('Unit | Model | comment', (hooks) => {
     });
   });
 
+  module('getter/setter: isFromSiteAdmin', () => {
+    test('should return true when comment is from an admin', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const author = this.store.createRecord('user', {
+        id: 'user_100',
+
+        isSiteAdmin() {
+          return Promise.resolve(true);
+        },
+      });
+      const model = this.store.createRecord('comment', { author });
+
+      // Act
+      await model.get('isFromSiteAdmin');
+
+      return settled().then(() => {
+        // Assert
+        assert.equal(model.get('isFromSiteAdmin'), true);
+      });
+    });
+
+    test('should return true when comment is not from an admin', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const author = this.store.createRecord('user', {
+        id: 'user_100',
+
+        isSiteAdmin() {
+          return Promise.resolve(false);
+        },
+      });
+      const model = this.store.createRecord('comment', { author });
+
+      // Act
+      await model.get('isFromSiteAdmin');
+
+      return settled().then(() => {
+        // Assert
+        assert.equal(model.get('isFromSiteAdmin'), false);
+      });
+    });
+  });
+
   module('getter/setter: isFromFollowing', () => {
     test('should return true when comment is from a following', async function (assert) {
       assert.expect(2);

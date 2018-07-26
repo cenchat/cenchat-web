@@ -86,17 +86,6 @@ export default Component.extend({
   },
 
   /**
-   * @function
-   */
-  handleLetMeKnowClick() {
-    if (this.comment.isLetMeKnow) {
-      this.set('comment.isLetMeKnow', false);
-    } else {
-      this.set('comment.isLetMeKnow', true);
-    }
-  },
-
-  /**
    * @param {number} indexToRemove
    * @function
    */
@@ -184,7 +173,6 @@ export default Component.extend({
       root,
       attachments: null,
       author: this.get('session.model'),
-      isLetMeKnow: false,
       isDeleted: false,
       site: page.get('site'),
       status: 'approved',

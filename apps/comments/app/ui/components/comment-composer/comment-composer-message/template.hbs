@@ -5,14 +5,6 @@
         --onTextBoxInput=(action --onTextBoxInput)}}
   {{/if}}
 
-  {{#if --comment.isLetMeKnow}}
-    <img
-        class="comment-composer-message__let-me-know-image"
-        data-test-comment-composer-message="let-me-know-image"
-        src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flmk%2Flmk_1.png?alt=media&token=7e31aca5-7af7-425e-af4c-8844a171b717"
-        alt="Let me know">
-  {{/if}}
-
   {{#each --comment.parsedAttachments as |attachment index|}}
     {{comment-composer/comment-composer-message/message-image
         --attachment=attachment
