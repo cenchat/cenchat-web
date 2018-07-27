@@ -4,19 +4,11 @@
   {{/if}}
 
   <div class="comment-item-content__chat-bubble" data-test-item-content="chat-bubble">
-    {{#if --comment.isLetMeKnow}}
-      <img
-          class="comment-item-content__let-me-know-image"
-          data-test-content-item-content="let-me-know-image"
-          src="https://firebasestorage.googleapis.com/v0/b/cenchat-prod.appspot.com/o/assets%2Fimages%2Flmk%2Flmk_1.png?alt=media&token=7e31aca5-7af7-425e-af4c-8844a171b717"
-          alt="Let me know">
-    {{/if}}
-
     {{comment-item/comment-item-content/content-header --comment=--comment}}
     {{comment-item/comment-item-content/content-message --comment=--comment}}
 
-    {{#if --comment.taggedEntities}}
-      {{comment-item/comment-item-content/content-tagged-entity-list --entities=--comment.parsedTaggedEntities}}
+    {{#if --comment.taggedEntity}}
+      {{comment-item/comment-item-content/content-tagged-entity-list --entities=--comment.parsedTaggedEntity}}
     {{/if}}
   </div>
 </div>

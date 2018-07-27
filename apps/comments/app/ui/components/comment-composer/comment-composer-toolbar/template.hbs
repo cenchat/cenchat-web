@@ -29,16 +29,6 @@
           mdi-ext=true
           square=true
           --onClick=(action (mut selectedPanel) 'tag')}}
-
-      {{#if --comment.isLetMeKnowAllowed}}
-        {{ce-icon-button
-            data-test-comment-composer-toolbar="let-me-know-button"
-            title="Allow text replies"
-            aria-label="Allow text replies"
-            icon="feedback"
-            square=true
-            --onClick=(action --onLetMeKnowClick)}}
-      {{/if}}
     </div>
 
     {{ce-icon-button

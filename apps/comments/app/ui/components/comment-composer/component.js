@@ -40,7 +40,11 @@ export default Component.extend({
   async handleSendCommentClick() {
     const { comment } = this;
 
-    await comment.save();
+    await comment.save({
+      adapterOptions: {
+        onServer: true,
+      },
+    });
     toast('Comment sent');
 
     if (!this.args.comment) {
@@ -82,17 +86,6 @@ export default Component.extend({
   },
 
   /**
-   * @function
-   */
-  handleLetMeKnowClick() {
-    if (this.comment.isLetMeKnow) {
-      this.set('comment.isLetMeKnow', false);
-    } else {
-      this.set('comment.isLetMeKnow', true);
-    }
-  },
-
-  /**
    * @param {number} indexToRemove
    * @function
    */
@@ -110,14 +103,14 @@ export default Component.extend({
    * @function
    */
   handleTagEntityClick(entity) {
-    const { taggedEntities } = this.comment;
+    const { taggedEntity } = this.comment;
 
     if (
       entity.get('id') !== this.comment.get('author.id')
-      && (!taggedEntities || Object.keys(taggedEntities).length < 20)
+      && (!taggedEntity || Object.keys(taggedEntity).length < 20)
     ) {
-      this.set('comment.taggedEntities', {
-        ...taggedEntities,
+      this.set('comment.taggedEntity', {
+        ...taggedEntity,
         [entity.get('id')]: entity.get('constructor.modelName'),
       });
     }
@@ -128,14 +121,14 @@ export default Component.extend({
    * @function
    */
   handleUntagEntityClick(entity) {
-    const taggedEntities = { ...this.comment.taggedEntities };
+    const taggedEntity = { ...this.comment.taggedEntity };
 
-    delete taggedEntities[entity.get('id')];
+    delete taggedEntity[entity.get('id')];
 
-    if (Object.keys(taggedEntities).length > 0) {
-      this.set('comment.taggedEntities', taggedEntities);
+    if (Object.keys(taggedEntity).length > 0) {
+      this.set('comment.taggedEntity', taggedEntity);
     } else {
-      this.set('comment.taggedEntities', null);
+      this.set('comment.taggedEntity', null);
     }
   },
 
@@ -180,11 +173,10 @@ export default Component.extend({
       root,
       attachments: null,
       author: this.get('session.model'),
-      isLetMeKnow: false,
       isDeleted: false,
       site: page.get('site'),
       status: 'approved',
-      taggedEntities: null,
+      taggedEntity: null,
       text: null,
     });
   },

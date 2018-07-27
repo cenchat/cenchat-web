@@ -83,7 +83,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.taggedEntities', { user_b: 'user' });
+    this.set('comment.taggedEntity', { user_b: 'user' });
 
     const spy = spyComponent(this, 'comment-composer/comment-composer-tagged-entity-list');
 
@@ -101,7 +101,7 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.expect(1);
 
     // Arrange
-    this.set('comment.taggedEntities', null);
+    this.set('comment.taggedEntity', null);
 
     const spy = spyComponent(this, 'comment-composer/comment-composer-tagged-entity-list');
 
@@ -125,7 +125,6 @@ module('Integration | Component | comment-composer', (hooks) => {
     assert.deepEqual(spy.componentArgsType, {
       comment: 'instance',
       onAddAttachmentClick: 'function',
-      onLetMeKnowClick: 'function',
       onSendCommentClick: 'function',
       onTagEntityClick: 'function',
     });
@@ -238,7 +237,7 @@ module('Unit | Component | comment-composer', (hooks) => {
     this.comment = EmberObject.create({
       author: { id: 'user_a' },
       parsedAttachments: [],
-      taggedEntities: null,
+      taggedEntity: null,
       text: null,
 
       save() {
@@ -272,13 +271,12 @@ module('Unit | Component | comment-composer', (hooks) => {
             page,
             site,
             attachments: null,
-            isLetMeKnow: false,
             isDeleted: false,
             author: 'sessionModel',
             replyTo: undefined,
             root: undefined,
             status: 'approved',
-            taggedEntities: null,
+            taggedEntity: null,
             text: null,
           },
         ));
@@ -375,37 +373,6 @@ module('Unit | Component | comment-composer', (hooks) => {
     });
   });
 
-  module('function: handleLetMeKnowClick', () => {
-    test('should toggle let me know in the comment to true', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const factory = this.owner.factoryFor('component:comment-composer');
-      const component = await factory.create({ '--comment': this.comment });
-
-      // Act
-      component.handleLetMeKnowClick();
-
-      // Assert
-      assert.equal(component.get('comment.isLetMeKnow'), true);
-    });
-
-    test('should toggle let me know in the comment to false', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const factory = this.owner.factoryFor('component:comment-composer');
-      const component = await factory.create({ '--comment': this.comment });
-
-      // Act
-      component.handleLetMeKnowClick();
-      component.handleLetMeKnowClick();
-
-      // Assert
-      assert.equal(component.get('comment.isLetMeKnow'), false);
-    });
-  });
-
   module('function: handleRemoveAttachmentClick', () => {
     test('should remove specified comment attachment', async function (assert) {
       assert.expect(1);
@@ -440,7 +407,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleTagEntityClick(user);
 
       // Assert
-      assert.deepEqual(this.comment.get('taggedEntities'), {
+      assert.deepEqual(this.comment.get('taggedEntity'), {
         user_b: 'user',
       });
     });
@@ -457,7 +424,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleTagEntityClick(user);
 
       // Assert
-      assert.deepEqual(this.comment.get('taggedEntities'), null);
+      assert.deepEqual(this.comment.get('taggedEntity'), null);
     });
 
     test('should not allow tagging more than 20 users', async function (assert) {
@@ -470,7 +437,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       });
       const factory = this.owner.factoryFor('component:comment-composer');
 
-      this.comment.set('taggedEntities', {
+      this.comment.set('taggedEntity', {
         user_1: 'user',
         user_2: 'user',
         user_3: 'user',
@@ -499,7 +466,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleTagEntityClick(user);
 
       // Assert
-      assert.deepEqual(this.comment.get('taggedEntities'), {
+      assert.deepEqual(this.comment.get('taggedEntity'), {
         user_1: 'user',
         user_2: 'user',
         user_3: 'user',
@@ -531,7 +498,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       // Arrange
       const user = EmberObject.create({ id: 'user_a' });
 
-      this.comment.set('taggedEntities', { user_a: 'user' });
+      this.comment.set('taggedEntity', { user_a: 'user' });
 
       const factory = this.owner.factoryFor('component:comment-composer');
       const component = await factory.create({ '--comment': this.comment });
@@ -540,7 +507,7 @@ module('Unit | Component | comment-composer', (hooks) => {
       component.handleUntagEntityClick(user);
 
       // Assert
-      assert.deepEqual(this.comment.get('taggedEntities'), null);
+      assert.deepEqual(this.comment.get('taggedEntity'), null);
     });
   });
 

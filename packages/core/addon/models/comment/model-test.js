@@ -85,6 +85,52 @@ module('Unit | Model | comment', (hooks) => {
     });
   });
 
+  module('getter/setter: isFromSiteAdmin', () => {
+    test('should return true when comment is from an admin', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const author = this.store.createRecord('user', {
+        id: 'user_100',
+
+        isSiteAdmin() {
+          return Promise.resolve(true);
+        },
+      });
+      const model = this.store.createRecord('comment', { author });
+
+      // Act
+      await model.get('isFromSiteAdmin');
+
+      return settled().then(() => {
+        // Assert
+        assert.equal(model.get('isFromSiteAdmin'), true);
+      });
+    });
+
+    test('should return true when comment is not from an admin', async function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const author = this.store.createRecord('user', {
+        id: 'user_100',
+
+        isSiteAdmin() {
+          return Promise.resolve(false);
+        },
+      });
+      const model = this.store.createRecord('comment', { author });
+
+      // Act
+      await model.get('isFromSiteAdmin');
+
+      return settled().then(() => {
+        // Assert
+        assert.equal(model.get('isFromSiteAdmin'), false);
+      });
+    });
+  });
+
   module('getter/setter: isFromFollowing', () => {
     test('should return true when comment is from a following', async function (assert) {
       assert.expect(2);
@@ -167,44 +213,6 @@ module('Unit | Model | comment', (hooks) => {
     });
   });
 
-  module('getter/setter: isLetMeKnowAllowed', () => {
-    test('should return true the author is a site admin', function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const author = this.store.createRecord('user', { id: 'user_100' });
-      const model = this.store.createRecord('comment', { author });
-
-      author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, true)));
-
-      // Act
-      model.get('isLetMeKnowAllowed');
-
-      return settled().then(() => {
-        // Arrange
-        assert.equal(model.get('isLetMeKnowAllowed'), true);
-      });
-    });
-
-    test('should return false the author isn\'t a site admin', function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const author = this.store.createRecord('user', { id: 'user_100' });
-      const model = this.store.createRecord('comment', { author });
-
-      author.set('isSiteAdmin', sinon.stub().returns(stubPromise(true, false)));
-
-      // Act
-      model.get('isLetMeKnowAllowed');
-
-      return settled().then(() => {
-        // Arrange
-        assert.equal(model.get('isLetMeKnowAllowed'), false);
-      });
-    });
-  });
-
   module('getter/setter: isTextAllowed', () => {
     test('should return true when comment already has a text', function (assert) {
       assert.expect(1);
@@ -217,25 +225,6 @@ module('Unit | Model | comment', (hooks) => {
 
       // Arrange
       assert.equal(result, true);
-    });
-
-    test('should return true when replying to an is let me know type comment', function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const replyTo = this.store.createRecord('comment', {
-        id: 'comment_100',
-        isLetMeKnow: true,
-      });
-      const model = this.store.createRecord('comment', { replyTo });
-
-      // Act
-      model.get('isTextAllowed');
-
-      return settled().then(() => {
-        // Arrange
-        assert.equal(model.get('isTextAllowed'), true);
-      });
     });
 
     test('should return true when replying to a follower', function (assert) {
@@ -258,17 +247,60 @@ module('Unit | Model | comment', (hooks) => {
       });
     });
 
-    test('should return true when not replying to a follower and is a site admin', function (assert) {
+    test('should return true when replying to a site admin', function (assert) {
       assert.expect(1);
 
       // Arrange
-      const author = this.store.createRecord('user', { id: 'user_100' });
+      const replyToAuthor = this.store.createRecord('user', { id: 'user_100' });
 
-      author.set('hasFollower', () => stubPromise(true, false));
-      author.set('isSiteAdmin', () => stubPromise(true, true));
+      replyToAuthor.set('hasFollower', () => stubPromise(true, false));
+      replyToAuthor.set('isSiteAdmin', () => stubPromise(true, true));
 
-      const replyTo = this.store.createRecord('comment', { author });
-      const model = this.store.createRecord('comment', { author, replyTo });
+      const replyTo = this.store.createRecord('comment', {
+        id: 'comment_100',
+        author: replyToAuthor,
+      });
+
+      const modelAuthor = this.store.createRecord('user', { id: 'user_101' });
+
+      modelAuthor.set('isSiteAdmin', () => stubPromise(true, false));
+
+      const model = this.store.createRecord('comment', {
+        replyTo,
+        author: modelAuthor,
+      });
+
+      // Act
+      model.get('isTextAllowed');
+
+      return settled().then(() => {
+        // Arrange
+        assert.equal(model.get('isTextAllowed'), true);
+      });
+    });
+
+    test('should return true when is a site admin', function (assert) {
+      assert.expect(1);
+
+      // Arrange
+      const replyToAuthor = this.store.createRecord('user', { id: 'user_100' });
+
+      replyToAuthor.set('hasFollower', () => stubPromise(true, false));
+      replyToAuthor.set('isSiteAdmin', () => stubPromise(true, false));
+
+      const replyTo = this.store.createRecord('comment', {
+        id: 'comment_100',
+        author: replyToAuthor,
+      });
+
+      const modelAuthor = this.store.createRecord('user', { id: 'user_101' });
+
+      modelAuthor.set('isSiteAdmin', () => stubPromise(true, true));
+
+      const model = this.store.createRecord('comment', {
+        replyTo,
+        author: modelAuthor,
+      });
 
       // Act
       model.get('isTextAllowed');
@@ -396,7 +428,7 @@ module('Unit | Model | comment', (hooks) => {
     });
   });
 
-  module('getter/setter: parsedTaggedEntities', () => {
+  module('getter/setter: parsedTaggedEntity', () => {
     test('should return the model equivalent for tagged user entities', async function (assert) {
       assert.expect(1);
 
@@ -407,11 +439,11 @@ module('Unit | Model | comment', (hooks) => {
           findRecord: sinon.stub().returns(stubPromise(true, user)),
         },
 
-        taggedEntities: { user_a: 'user' },
+        taggedEntity: { user_a: 'user' },
       });
 
       // Act
-      const result = await model.get('parsedTaggedEntities');
+      const result = await model.get('parsedTaggedEntity');
 
       // Assert
       assert.deepEqual(result, [user]);
