@@ -1,3 +1,9 @@
+.sign-in_main-content__email-link-auth {
+  --border-radius-square: 2px;
+  --surface-background-color: #fff;
+  --text-field-background-color: #f5f5f5;
+}
+
 @media (min-width: 960px) {
   .sign-in_main-content {
     display: flex;
@@ -7,8 +13,10 @@
   }
 
   .sign-in_main-content__email-link-auth {
+    --surface-background-color: #f5f5f5;
+    --text-field-background-color: #fff;
+
     max-width: 456px;
-    background-color: #f5f5f5;
     border: 40px solid transparent;
   }
 }

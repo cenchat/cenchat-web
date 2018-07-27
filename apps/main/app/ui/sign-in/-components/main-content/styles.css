@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100% - 128px);
+    height: calc(100% - 64px);
   }
 
   .sign-in_main-content__email-link-auth {
