@@ -219,13 +219,15 @@ module('Unit | Model | user', (hooks) => {
 
       const model = this.store.createRecord('user', {
         id: 'user_100',
-        facebookId: 'fb_user_100',
+        provider: { facebook: 'fb_user_100' },
       });
 
       model.set('store', {
         findRecord: sinon.stub().returns(stubPromise(
           true,
-          EmberObject.create({ facebookAccessToken: '123qweasd' }),
+          EmberObject.create({
+            accessToken: { facebook: '123qweasd' },
+          }),
         )),
         query: queryStub,
       });

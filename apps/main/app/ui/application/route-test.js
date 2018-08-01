@@ -133,35 +133,6 @@ module('Unit | Route | application', (hooks) => {
       assert.ok(closeSpy.calledOnce);
     });
 
-    test('should update profile when Facebook UID is outdated with Facebook info', async function (assert) {
-      assert.expect(4);
-
-      // Arrange
-      this.session.get('currentUser.providerData')[0].uid = '67890';
-
-      const updateProfileSpy = sinon.spy(
-        this.session.content.currentUser,
-        'updateProfile',
-      );
-      const saveSpy = sinon.spy(this.user, 'save');
-      const route = this.owner.lookup('route:application');
-
-      route.set('firebase', this.firebase);
-      route.set('session', this.session);
-      route.set('store', {
-        findRecord: sinon.stub().returns(stubPromise(true, this.user)),
-      });
-
-      // Act
-      await route.afterModel();
-
-      // Assert
-      assert.equal(this.user.get('provider.facebook'), '67890');
-      assert.equal(this.user.get('photoUrl'), 'user_a.jpg');
-      assert.ok(saveSpy.calledOnce);
-      assert.ok(updateProfileSpy.calledWithExactly({ photoURL: 'user_a.jpg' }));
-    });
-
     test('should update profile when photo url is outdated with Facebook info', async function (assert) {
       assert.expect(4);
 
@@ -318,7 +289,7 @@ module('Unit | Route | application', (hooks) => {
 
       // Assert
       assert.ok(signInStub.calledOnce);
-      assert.equal(userMetaInfo.get('facebookAccessToken'), null);
+      assert.equal(userMetaInfo.get('accessToken.facebook'), null);
       assert.ok(saveStub.calledOnce);
     });
 

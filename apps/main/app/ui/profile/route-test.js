@@ -16,7 +16,9 @@ module('Unit | Route | profile', (hooks) => {
       // Arrange
       const user = EmberObject.create({
         id: 'user_b',
-        metaInfo: EmberObject.create({ facebookAccessToken: 'foobar' }),
+        metaInfo: EmberObject.create({
+          accessToken: { facebook: 'foobar' },
+        }),
         followings: 'followings_foo',
 
         getUnfollowedFacebookFriends() {
@@ -46,7 +48,9 @@ module('Unit | Route | profile', (hooks) => {
       // Arrange
       const user = EmberObject.create({
         id: 'user_b',
-        metaInfo: EmberObject.create({ facebookAccessToken: 'foobar' }),
+        metaInfo: EmberObject.create({
+          accessToken: { facebook: 'foobar' },
+        }),
         followings: 'followings_foo',
 
         getUnfollowedFacebookFriends() {
@@ -76,7 +80,9 @@ module('Unit | Route | profile', (hooks) => {
       // Arrange
       const user = EmberObject.create({
         id: 'user_b',
-        metaInfo: EmberObject.create({ facebookAccessToken: null }),
+        metaInfo: EmberObject.create({
+          accessToken: { facebook: null },
+        }),
         followings: 'followings_foo',
       });
       const route = this.owner.lookup('route:profile');
@@ -102,7 +108,9 @@ module('Unit | Route | profile', (hooks) => {
       // Arrange
       const user = EmberObject.create({
         id: 'user_b',
-        metaInfo: EmberObject.create({ facebookAccessToken: '12345' }),
+        metaInfo: EmberObject.create({
+          accessToken: { facebook: '12345' },
+        }),
         followings: 'followings_foo',
 
         getUnfollowedFacebookFriends() {

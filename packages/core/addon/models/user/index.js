@@ -188,7 +188,7 @@ export default Model.extend({
    */
   async getUnfollowedFacebookFriends(limit) {
     const userMetaInfo = await this.get('metaInfo');
-    const url = `https://graph.facebook.com/v2.12/${this.facebookId}/friends?access_token=${userMetaInfo.get('facebookAccessToken')}&limit=5000`;
+    const url = `https://graph.facebook.com/v2.12/${this.provider.facebook}/friends?access_token=${userMetaInfo.get('accessToken.facebook')}&limit=5000`;
     const response = await fetch(url);
     const { data } = await response.json();
     const unfollowings = [];
@@ -198,7 +198,7 @@ export default Model.extend({
         limit: 1,
 
         filter(reference) {
-          return reference.where('facebookId', '==', id);
+          return reference.where('provider.facebook', '==', id);
         },
       });
       const friend = friends.firstObject;

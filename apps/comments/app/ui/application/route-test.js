@@ -31,7 +31,6 @@ module('Unit | Route | application', (hooks) => {
     hooks.beforeEach(function () {
       this.user = EmberObject.create({
         displayName: 'User A',
-        facebookId: '12345',
         photoUrl: null,
       });
       this.session = ObjectProxy.create({

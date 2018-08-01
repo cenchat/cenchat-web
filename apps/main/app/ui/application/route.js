@@ -118,14 +118,7 @@ export default Route.extend({
   isFacebookInfoOutdated(profile) {
     const facebookProviderData = this.getFacebookProviderData();
 
-    if (
-      profile.get('provider.facebook') !== facebookProviderData.uid
-      || profile.get('photoUrl') !== facebookProviderData.photoURL
-    ) {
-      return true;
-    }
-
-    return false;
+    return profile.get('photoUrl') !== facebookProviderData.photoURL;
   },
 
   /**
@@ -139,28 +132,9 @@ export default Route.extend({
     const facebookProviderData = this.getFacebookProviderData();
 
     profile.set('photoUrl', facebookProviderData.photoURL);
-    profile.set('provider.facebook', facebookProviderData.uid);
 
     return Promise.all([
-      profile.save({
-        adapterOptions: {
-          include(batch, db) {
-            const changedAttributes = profile.changedAttributes();
-
-            if (changedAttributes.facebookId) {
-              const [previousFacebookId, currentFacebookId] = changedAttributes.facebookId;
-
-              batch.set(db.collection('facebookIds').doc(currentFacebookId), {
-                cloudFirestoreReference: db.collection('users').doc(profile.get('id')),
-              });
-
-              if (previousFacebookId) {
-                batch.delete(db.collection('facebookIds').doc(previousFacebookId));
-              }
-            }
-          },
-        },
-      }),
+      profile.save(),
       currentUser.updateProfile({ photoURL: profile.get('photoUrl') }),
     ]);
   },
