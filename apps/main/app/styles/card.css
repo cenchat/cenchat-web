@@ -9,12 +9,6 @@
   border-radius: var(--border-radius-square);
 }
 
-@media (min-width: 960px) {
-  .card {
-    max-width: 420px;
-  }
-}
-
 .card:not(:last-of-type) {
   margin-bottom: 8px;
 }
@@ -46,11 +40,10 @@
 .card__image {
   display: block;
   width: 100%;
-  max-height: 224px;
+  height: 224px;
   padding-top: 16px;
   padding-right: 16px;
   padding-left: 16px;
-  object-fit: cover;
 }
 
 .card__header {

@@ -48,7 +48,7 @@ module('Integration | Component | sites/site/pages/-components/main-content/main
     `);
 
     // Assert
-    assert.equal(spy.callCount, 4);
+    assert.equal(spy.callCount, 2);
     assert.deepEqual(spy.componentArgsType, { page: 'instance', onRescrapePageClick: 'function' });
   });
 

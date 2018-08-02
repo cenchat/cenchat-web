@@ -5,11 +5,11 @@
     onclick={{action handleSiteClick}}
     onkeydown={{action handleSiteKeydown}}>
   {{#if --site.imageUrl}}
-    <img
+    {{ce-image
         class="card__image"
         data-test-site-collection-item="image"
-        src="{{--site.imageUrl}}"
-        alt="{{--site.displayName}}">
+        src=--site.imageUrl
+        alt=--site.displayName}}
   {{/if}}
 
   <header class="sites-index_site-collection-item__header card__header card__header--small">

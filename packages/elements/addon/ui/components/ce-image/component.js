@@ -26,6 +26,11 @@ export default Component.extend({
   /**
    * @override
    */
+  attributeBindings: ['src', 'alt'],
+
+  /**
+   * @override
+   */
   init(...args) {
     this._super(...args);
 
@@ -57,8 +62,7 @@ export default Component.extend({
 
     imageElement.onload = () => {
       if (!this.isDestroyed) {
-        this.element.style.backgroundColor = 'transparent';
-
+        this.element.querySelector('.ce-image__placeholder').remove();
         this.element.appendChild(imageElement);
       }
     };

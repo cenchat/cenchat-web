@@ -19,7 +19,7 @@ module('Integration | Component | ce-image', function (hooks) {
     await this.render(hbs`{{ce-image src=src}}`);
 
     // Assert
-    await waitFor('img');
+    await waitFor('img', { timeout: 5000 });
     assert.dom('img').hasClass('ce-image__actual-image');
     assert.dom('img').hasAttribute('src', this.src);
   });
