@@ -9,6 +9,10 @@
   width: 100%;
   height: 100%;
   background-color: var(--placeholder-color);
+  animation-duration: 1600ms;
+  animation-name: ce-image-placeholder-fade;
+  animation-timing-function: var(--motion-standard-curve);
+  animation-iteration-count: infinite;
 }
 
 .ce-image__actual-image {
@@ -16,4 +20,18 @@
   height: 100%;
   object-fit: cover;
   animation-duration: var(--motion-medium-expand-duration);
+}
+
+@keyframes ce-image-placeholder-fade {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
