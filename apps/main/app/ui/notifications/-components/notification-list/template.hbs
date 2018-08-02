@@ -1,0 +1,28 @@
+<main class="layout__main">
+  <section class="layout__section layout__section--headerless">
+    {{#infinite-content --query=--notifications}}
+      <ul class="card card--centered-position list">
+        {{#each --notifications as |notification|}}
+          {{#if (eq notification.type 'comment_at_site')}}
+            {{notifications/-components/notification-list/notification-list-comment-at-site-item --notification=notification}}
+          {{else if (eq notification.type 'comment_reply')}}
+            {{notifications/-components/notification-list/notification-list-comment-reply-item --notification=notification}}
+          {{else if (eq notification.type 'comment_tag')}}
+            {{notifications/-components/notification-list/notification-list-comment-tag-item --notification=notification}}
+          {{else if (eq notification.type 'follow')}}
+            {{notifications/-components/notification-list/notification-list-follow-item --notification=notification}}
+          {{/if}}
+        {{else}}
+          <li class="list__item" data-test-notification-list="empty-state">
+            <div class="list__multi-line-content">
+              <h2 class="list__primary-text">Nothing here right now</h2>
+              <p class="list__secondary-text">Don't worry. We don't judge. ;)</p>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    {{/infinite-content}}
+  </section>
+
+  {{yield}}
+</main>

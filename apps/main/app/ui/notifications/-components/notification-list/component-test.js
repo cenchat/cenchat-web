@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 import { spyComponent, setupTestState } from '@cenchat/core/test-support';
 
-module('Integration | Component | notifications-list', (hooks) => {
+module('Integration | Component | notifications/-components/notification-list', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -18,10 +18,10 @@ module('Integration | Component | notifications-list', (hooks) => {
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'notification-list/notification-list-comment-tag-item');
+    const spy = spyComponent(this, 'notifications/-components/notification-list/notification-list-comment-tag-item');
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.ok(spy.calledOnce);
@@ -32,10 +32,10 @@ module('Integration | Component | notifications-list', (hooks) => {
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'notification-list/notification-list-comment-tag-item');
+    const spy = spyComponent(this, 'notifications/-components/notification-list/notification-list-comment-tag-item');
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.ok(spy.calledOnce);
@@ -46,10 +46,10 @@ module('Integration | Component | notifications-list', (hooks) => {
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'notification-list/notification-list-comment-reply-item');
+    const spy = spyComponent(this, 'notifications/-components/notification-list/notification-list-comment-reply-item');
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.ok(spy.calledOnce);
@@ -60,10 +60,10 @@ module('Integration | Component | notifications-list', (hooks) => {
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'notification-list/notification-list-follow-item');
+    const spy = spyComponent(this, 'notifications/-components/notification-list/notification-list-follow-item');
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.ok(spy.calledOnce);
@@ -77,7 +77,7 @@ module('Integration | Component | notifications-list', (hooks) => {
     this.set('notifications', []);
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.dom('[data-test-notification-list="empty-state"]').exists();
@@ -87,7 +87,7 @@ module('Integration | Component | notifications-list', (hooks) => {
     assert.expect(1);
 
     // Act
-    await render(hbs`{{notification-list --notifications=notifications}}`);
+    await render(hbs`{{notifications/-components/notification-list --notifications=notifications}}`);
 
     // Assert
     assert.dom('[data-test-notification-list="empty-state"]').doesNotExist();

@@ -6,7 +6,7 @@
   border-style: none;
 }
 
-.ce-icon-link-button div {
+.ce-icon-link-button .ce-icon-button__wrapper {
   position: relative;
   width: 36px;
   height: 36px;
@@ -14,39 +14,39 @@
   border-radius: var(--border-radius-circle);
 }
 
-.ce-icon-link-button:hover div {
+.ce-icon-link-button:hover .ce-icon-button__wrapper {
   background-color: var(--button-hover-background-color);
 }
 
-.ce-icon-link-button:active div,
-.ce-icon-link-button[aria-pressed="true"] div {
+.ce-icon-link-button:active .ce-icon-button__wrapper,
+.ce-icon-link-button[aria-pressed="true"] .ce-icon-button__wrapper {
   background-color: var(--button-active-background-color);
 }
 
-.ce-icon-link-button:disabled div {
+.ce-icon-link-button:disabled .ce-icon-button__wrapper {
   background-color: transparent;
 }
 
-.ce-icon-link-button[size="small"] div {
+.ce-icon-link-button[size="small"] .ce-icon-button__wrapper {
   width: 30px;
   height: 30px;
 }
 
-.ce-icon-link-button[size="medium"] div {
+.ce-icon-link-button[size="medium"] .ce-icon-button__wrapper {
   width: 48px;
   height: 48px;
 }
 
-.ce-icon-link-button[size="large"] div {
+.ce-icon-link-button[size="large"] .ce-icon-button__wrapper {
   width: 60px;
   height: 60px;
 }
 
-.ce-icon-link-button[square] div {
+.ce-icon-link-button[square] .ce-icon-button__wrapper {
   border-radius: var(--border-radius-square);
 }
 
-.ce-icon-link-button[badged] div::after {
+.ce-icon-link-button[badged] .ce-icon-button__wrapper::after {
   position: absolute;
   top: 1px;
   right: 1px;
@@ -57,7 +57,7 @@
   content: '';
 }
 
-.ce-icon-link-button img {
+.ce-icon-link-button .ce-image {
   width: 24px;
   height: 24px;
   padding: 6px;
@@ -66,22 +66,22 @@
   user-select: none;
 }
 
-.ce-icon-link-button[size="small"] img {
+.ce-icon-link-button[size="small"] .ce-image {
   width: 18px;
   height: 18px;
 }
 
-.ce-icon-link-button[size="medium"] img {
+.ce-icon-link-button[size="medium"] .ce-image {
   width: 36px;
   height: 36px;
 }
 
-.ce-icon-link-button[size="large"] img {
+.ce-icon-link-button[size="large"] .ce-image {
   width: 48px;
   height: 48px;
 }
 
-.ce-icon-link-button[square] img {
+.ce-icon-link-button[square] .ce-image {
   border-radius: 0;
 }
 

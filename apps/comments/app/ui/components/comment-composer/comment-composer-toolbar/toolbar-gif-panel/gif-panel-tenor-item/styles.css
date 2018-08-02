@@ -8,3 +8,7 @@
   height: 200px;
   border-radius: 0;
 }
+
+.gif-panel-tenor-item .ce-image img {
+  width: auto;
+}

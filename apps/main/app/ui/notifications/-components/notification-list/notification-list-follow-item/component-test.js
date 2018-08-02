@@ -7,7 +7,7 @@ import sinon from 'sinon';
 
 import { setupTestState, stubPromise } from '@cenchat/core/test-support';
 
-module('Integration | Component | notification-list/notification-list-follow-item', (hooks) => {
+module('Integration | Component | notifications/-components/notification-list/notification-list-follow-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -27,7 +27,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item --notification=notification}}
+      {{notifications/-components/notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert
@@ -50,7 +50,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item --notification=notification}}
+      {{notifications/-components/notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert
@@ -69,7 +69,7 @@ module('Integration | Component | notification-list/notification-list-follow-ite
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-follow-item --notification=notification}}
+      {{notifications/-components/notification-list/notification-list-follow-item --notification=notification}}
     `);
 
     // Assert

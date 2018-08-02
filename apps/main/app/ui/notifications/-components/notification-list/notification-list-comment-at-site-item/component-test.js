@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/core/test-support';
 
-module('Integration | Component | notification-list/notification-list-comment-at-site-item', (hooks) => {
+module('Integration | Component | notifications/-components/notification-list/notification-list-comment-at-site-item', (hooks) => {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -21,7 +21,7 @@ module('Integration | Component | notification-list/notification-list-comment-at
 
     // Act
     await render(hbs`
-      {{notification-list/notification-list-comment-at-site-item --notification=notification}}
+      {{notifications/-components/notification-list/notification-list-comment-at-site-item --notification=notification}}
     `);
 
     // Assert
