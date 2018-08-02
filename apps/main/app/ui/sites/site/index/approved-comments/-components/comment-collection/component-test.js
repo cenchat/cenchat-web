@@ -31,7 +31,7 @@ module('Integration | Component | sites/site/index/approved-comments/-components
     `);
 
     // Assert
-    assert.equal(spy.callCount, 8);
+    assert.equal(spy.callCount, 4);
     assert.deepEqual(spy.componentArgsType, {
       comment: 'instance',
       onRejectCommentClick: 'function',

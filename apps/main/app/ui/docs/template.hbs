@@ -8,12 +8,14 @@
       <h2>Installation</h2>
     {{/ce-subheader}}
 
-    {{#masonry-grid --items=platforms as |item|}}
-      {{docs/-components/installation-item
-          --item=item
-          --onInstallationItemClick=(action handleInstallationItemClick)
-          --onInstallationItemKeydown=(action handleInstallationItemKeydown)}}
-    {{/masonry-grid}}
+    <div>
+      {{#each platforms as |platform|}}
+        {{docs/-components/installation-item
+            --item=platform
+            --onInstallationItemClick=(action handleInstallationItemClick)
+            --onInstallationItemKeydown=(action handleInstallationItemKeydown)}}
+      {{/each}}
+    </div>
   </section>
 
   {{liquid-outlet class="side-nav-outlet"}}

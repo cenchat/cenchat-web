@@ -1,9 +1,0 @@
-{{#each columnGroupedItems as |items|}}
-  <div class="masonry-grid__column" data-test-masonry-grid="column">
-    {{#each items as |item|}}
-      {{yield item}}
-    {{/each}}
-  </div>
-{{else}}
-  {{yield to="inverse"}}
-{{/each}}

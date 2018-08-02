@@ -81,7 +81,7 @@ module('Integration | Component | ce-dropdown-button', (hooks) => {
     `);
 
     // Assert
-    await waitFor('[data-test="host"] img');
+    await waitFor('[data-test="host"] img', { timeout: 5000 });
     assert.dom('[data-test="host"] img').hasAttribute('src', this.image);
   });
 

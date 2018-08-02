@@ -36,6 +36,9 @@
   /* Navbar */
   --navbar-background-color: #fff;
 
+  /* Placeholder */
+  --placeholder-color: var(--dark-12);
+
   /* Progress bar */
   --progress-bar-background-color: var(--dark-12);
 

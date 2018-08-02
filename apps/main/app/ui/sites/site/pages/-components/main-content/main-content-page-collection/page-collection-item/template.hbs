@@ -1,6 +1,6 @@
 <article class="card" data-test-page-collection-item="{{--page.id}}">
   {{#if --page.imageUrl}}
-    <img class="card__image" data-test-page-collection-item="image" src="{{--page.imageUrl}}" alt="Page cover">
+    {{ce-image class="card__image" data-test-page-collection-item="image" src=--page.imageUrl alt="Page cover"}}
   {{/if}}
 
   <header class="card__header card__header--small">

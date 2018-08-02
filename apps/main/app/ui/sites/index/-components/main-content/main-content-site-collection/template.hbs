@@ -1,8 +1,8 @@
 {{#infinite-content class="layout__section layout__section--headerless" tagName="section" --query=--sites}}
-  {{#masonry-grid --items=--sites as |item|}}
+  {{#each --sites as |site|}}
     {{sites/index/-components/main-content/main-content-site-collection/site-collection-item
         --router=--router
-        --site=item}}
+        --site=site}}
   {{else}}
     <article class="card card--centered-position" data-test-main-content-site-collection="empty-state">
       <header class="card__header">
@@ -14,5 +14,5 @@
         {{#ce-link-button href=(href-to 'sites.index.new')}}Add site{{/ce-link-button}}
       </div>
     </article>
-  {{/masonry-grid}}
+  {{/each}}
 {{/infinite-content}}

@@ -1,3 +1,5 @@
-{{#masonry-grid --items=--users as |item|}}
-  {{user-collection/user-collection-item --user=item}}
-{{/masonry-grid}}
+<div>
+  {{#each --users as |user|}}
+    {{user-collection/user-collection-item --user=user}}
+  {{/each}}
+</div>

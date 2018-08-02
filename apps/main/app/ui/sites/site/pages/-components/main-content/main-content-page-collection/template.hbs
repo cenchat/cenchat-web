@@ -1,7 +1,7 @@
 {{#infinite-content class="layout__section layout__section--headerless" --query=--pages}}
-  {{#masonry-grid --items=--pages as |item|}}
+  {{#each --pages as |page|}}
     {{sites/site/pages/-components/main-content/main-content-page-collection/page-collection-item
-        --page=item
+        --page=page
         --onRescrapePageClick=(action --onRescrapePageClick)}}
   {{else}}
     <article class="card card--centered-position" data-test-main-content-page-collection="empty-state">
@@ -10,5 +10,5 @@
         <p class="card__subheading">Pages from your site that uses Cenchat Comments will appear here</p>
       </header>
     </article>
-  {{/masonry-grid}}
+  {{/each}}
 {{/infinite-content}}

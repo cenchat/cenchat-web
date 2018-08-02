@@ -1,8 +1,8 @@
 <main class="layout__main">
   {{#infinite-content class="layout__section layout__section--headerless" --query=--comments}}
-    {{#masonry-grid --items=(sort-by 'createdOn:desc' --comments) as |item|}}
+    {{#each (sort-by 'createdOn:desc' --comments) as |comment|}}
       {{sites/site/index/rejected-comments/-components/comment-collection/comment-collection-item
-          --comment=item
+          --comment=comment
           --onApproveCommentClick=(action --onApproveCommentClick)}}
     {{else}}
       <article class="card card--centered-position" data-test-comment-collection="empty-state">
@@ -14,7 +14,7 @@
           </p>
         </header>
       </article>
-    {{/masonry-grid}}
+    {{/each}}
   {{/infinite-content}}
 
   {{yield}}

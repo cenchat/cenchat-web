@@ -1,9 +1,9 @@
 <div class="profile_main-content-info">
-  <img
+  {{ce-image
       class="profile_main-content-info__photo"
       data-test-main-content-info="photo"
-      src="{{--user.avatarUrl}}"
-      alt="{{--user.displayName}}">
+      src=--user.avatarUrl
+      alt=--user.displayName}}
 
   {{#if --user.displayUsername}}
     <p class="profile_main-content-info__username" data-test-main-content-info="username">
