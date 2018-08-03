@@ -5,4 +5,5 @@
 
 .site-page_main-content__email-link-auth {
   border-bottom: 1px solid var(--divider-color);
+  border-radius: 0;
 }

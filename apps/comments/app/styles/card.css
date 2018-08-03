@@ -6,7 +6,7 @@
   overflow: hidden;
   font-family: var(--font-family);
   background-color: var(--surface-background-color);
-  border-radius: var(--border-radius-square);
+  border-radius: 2px;
 }
 
 .card__header {
