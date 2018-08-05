@@ -221,6 +221,7 @@
 
 @media (min-width: 960px) {
   .home_main-content__benefit .card {
+    max-width: 420px;
     padding: 40px;
   }
 }
