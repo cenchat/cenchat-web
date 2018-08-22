@@ -1,0 +1,18 @@
+{{#side-nav}}
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+        href=(href-to 'sites.site.pages.page.explore' (qp-for 'sites.site.pages.page.explore'))
+        title="Navigate back"
+        aria-label="Navigate back"
+        icon="arrow_back"}}
+    <h2>Chat</h2>
+  {{/ce-top-bar}}
+
+  {{outlet}}
+
+  {{chat-composer
+      class="side-nav__toolbar"
+      --session=(lookup 'service:session')
+      --chat=this.model
+      --onSendMessageClick=(action this.handleSendMessageClick)}}
+{{/side-nav}}

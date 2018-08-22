@@ -41,14 +41,14 @@ export default Component.extend({
    * @param {Element} target
    * @function
    */
-  setEmail(target) {
+  handleEmailInput(target) {
     this.set('email', target.value);
   },
 
   /**
    * @function
    */
-  async continueSignIn() {
+  async handleEmailFormSubmit() {
     const auth = this.args.firebase.auth();
 
     const providers = await auth.fetchProvidersForEmail(this.email);
@@ -56,7 +56,7 @@ export default Component.extend({
     if (providers.length === 0) {
       this.set('isEmailNotExisting', true);
     } else {
-      await this.args.onSignInClick(this.email);
+      await this.args.onEmailLinkSignInClick(this.email);
     }
   },
 });

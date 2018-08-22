@@ -31,16 +31,16 @@ before_install:
   - cd ../../
 
 install:
-  - cd apps/comments
+  - cd apps/main
   - npm install
-  - cd ../main
+  - cd ../widget
   - npm install
-  - cd ../../
+  - cd ../
 
 script:
-  - cd apps/comments
-  - npm run lint:js
-  - npm test
-  - cd ../main
+  - cd main
+  # - npm run lint:js
+  # - npm test
+  - cd ../widget
   - npm run lint:js
   - npm test

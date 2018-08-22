@@ -324,6 +324,7 @@ export default Model.extend({
 
   /**
    * @param {string} id
+   * @return {Object} Tenor GIF
    * @function
    * @private
    */

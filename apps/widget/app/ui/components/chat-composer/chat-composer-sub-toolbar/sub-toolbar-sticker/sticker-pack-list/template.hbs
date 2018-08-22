@@ -1,0 +1,18 @@
+{{#ani-each
+    --stickerPacks
+    key="id"
+    tagName="ul"
+    class="chat-composer-sub-toolbar-sticker-pack-list"
+    as |stickerPack|}}
+  <li>
+    {{ce-icon-button
+        data-test-sticker-pack-list=stickerPack.id
+        title=stickerPack.name
+        aria-label=stickerPack.name
+        aria-pressed=(if (eq --selectedStickerPack.id stickerPack.id) 'true' 'false')
+        alt=stickerPack.name
+        image=stickerPack.thumbnailUrl
+        square=true
+        --onClick=(action --onStickerPackClick stickerPack)}}
+  </li>
+{{/ani-each}}

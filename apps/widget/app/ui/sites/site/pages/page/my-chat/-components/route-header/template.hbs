@@ -1,0 +1,17 @@
+{{#ce-top-bar class="layout__header"}}
+  <h1>My Chat</h1>
+  {{ce-icon-link-button
+      href=(href-to 'sites.site.pages.page.explore')
+      title="Navigate to explore chats page"
+      aria-label="Navigate to explore chats page"
+      icon="explore"}}
+
+  {{#if --session.isAuthenticated}}
+    {{ce-icon-link-button
+      data-test-route-header="account-link"
+      href=(href-to 'sites.site.pages.page.account')
+      title="Navigate to account page"
+      aria-label="Navigate to account page"
+      icon="account_circle"}}
+  {{/if}}
+{{/ce-top-bar}}

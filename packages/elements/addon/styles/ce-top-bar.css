@@ -1,7 +1,8 @@
 .ce-top-bar {
   width: 100%;
   color: var(--font-primary-color);
-  background-color: var(--top-bar-background-color);
+  background-color: var(--surface-background-color);
+  border-bottom: 1px solid var(--divider-color);
 }
 
 @media (min-width: 960px) {

@@ -1,4 +1,5 @@
 .ce-button {
+  position: relative;
   padding: 8px;
   overflow: hidden;
   font-family: var(--font-family);
@@ -17,6 +18,10 @@
   line-height: 32px;
 }
 
+.ce-button[outlined] {
+  color: var(--brand-color);
+}
+
 .ce-button div {
   position: relative;
   height: 36px;
@@ -25,50 +30,77 @@
   padding-left: 8px;
   border-radius: var(--border-radius-square);
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ce-button[outlined] div {
+  line-height: 32px;
+  border: 2px solid var(--brand-color);
 }
 
 .ce-button[size="small"] div {
   height: 32px;
 }
 
-.ce-button:hover div {
-  background-color: var(--button-hover-background-color);
+.ce-button:hover div::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0.08;
+  background-color: var(--brand-color);
 }
 
-.ce-button:active div,
-.ce-button[aria-pressed="true"] div {
-  background-color: var(--button-active-background-color);
+.ce-button:active div::before,
+.ce-button[aria-pressed="true"] div::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0.24;
+  background-color: var(--brand-color);
 }
 
 .ce-button:disabled {
   color: var(--button-disabled-text-color);
 }
 
-.ce-button:disabled div {
+.ce-button[outlined]:disabled div {
+  border: 2px solid var(--button-disabled-text-color);
+}
+
+.ce-button:disabled div::before {
   background-color: transparent;
 }
 
 .ce-button[performing] div::after {
   position: absolute;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 50%;
-  height: 2px;
-  background-color: var(--indicator-color);
+  background-color: var(--brand-color);
   content: '';
-  animation-duration: 1000ms;
+  animation-duration: 2000ms;
   animation-iteration-count: infinite;
-  animation-name: ce-button-progress-bar;
+  animation-name: ce-button-performing;
   animation-timing-function: linear;
 }
 
-@keyframes ce-button-progress-bar {
+@keyframes ce-button-performing {
   0% {
-    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.32;
   }
 
   100% {
-    transform: translateX(400%);
+    opacity: 0;
   }
 }

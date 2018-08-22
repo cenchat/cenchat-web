@@ -1,0 +1,9 @@
+<main class="layout__main layout__main--no-nav">
+  {{#if (not --session.isAuthenticated)}}
+    <section class="layout__section layout__section--headerless">
+      {{sign-in-form --page=--chat.page --isAnonymousAllowed=true}}
+    </section>
+  {{/if}}
+
+  {{yield}}
+</main>

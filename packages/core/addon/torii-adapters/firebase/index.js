@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import EmberObject from '@ember/object';
 
 /**
- * @class Application
+ * @class Firebase
  * @namespace ToriiAdapter
  * @extends EmberObject
  */
@@ -10,52 +10,38 @@ export default EmberObject.extend({
   /**
    * @type {Ember.Service}
    */
-  firebase: service(),
+  firebase: service('firebase'),
 
   /**
    * @type {Ember.Service}
    */
-  store: service(),
+  store: service('store'),
 
   /**
    * @param {firebase.User} currentUser
    * @return {Promise}
    */
   async open(currentUser) {
-    let model;
+    const db = this.firebase.firestore();
+    const currentUserDocSnapshot = await db.doc(`users/${currentUser.uid}`).get();
 
-    try {
-      const record = await this.store.findRecord('user', currentUser.uid);
-
-      model = record;
-    } catch (error) {
-      const record = this.store.createRecord('user', {
-        id: currentUser.uid,
-        displayName: currentUser.displayName,
-        displayUsername: null,
-        name: currentUser.displayName.toLowerCase(),
-        photoUrl: null,
-        provider: null,
-        shortBio: null,
-        username: null,
-      });
-
-      await record.save({
-        adapterOptions: {
-          include(batch, db) {
-            batch.set(db.collection('userMetaInfos').doc(currentUser.uid), {
-              accessToken: null,
-              hasNewNotification: false,
-              notificationTokens: null,
-            });
+    if (currentUserDocSnapshot.exists) {
+      return {
+        currentUser,
+        model: await this.store.get('user', currentUser.uid, {
+          fetch() {
+            return Promise.resolve(currentUserDocSnapshot);
           },
-        },
-      });
-
-      model = record;
+        }),
+      };
     }
 
-    return { currentUser, model };
+    await this.createUserRecord(currentUser);
+
+    return {
+      currentUser,
+      model: await this.store.get('user', currentUser.uid),
+    };
   },
 
   /**
@@ -90,5 +76,50 @@ export default EmberObject.extend({
    */
   close() {
     return this.firebase.auth().signOut();
+  },
+
+  /**
+   * @param {firebase.User} currentUser
+   * @private
+   * @function
+   */
+  async createUserRecord(currentUser) {
+    const { displayName } = currentUser;
+    const db = this.firebase.firestore();
+    const batch = db.batch();
+
+    batch.set(db.doc(`users/${currentUser.uid}`), {
+      displayName,
+      displayUsername: null,
+      name: displayName ? displayName.toLowerCase() : null,
+      photoUrl: null,
+      provider: null,
+      shortBio: null,
+      username: null,
+    });
+    batch.set(db.doc(`userMetaInfos/${currentUser.uid}`), {
+      accessToken: null,
+      hasNewNotification: false,
+      notificationTokens: null,
+    });
+
+    await batch.commit();
+
+    this.store.set('user', {
+      displayName,
+      id: currentUser.uid,
+      displayUsername: null,
+      name: displayName ? displayName.toLowerCase() : null,
+      photoUrl: null,
+      provider: null,
+      shortBio: null,
+      username: null,
+      metaInfo: {
+        id: currentUser.uid,
+        accessToken: null,
+        hasNewNotification: false,
+        notificationTokens: null,
+      },
+    });
   },
 });

@@ -1,5 +1,13 @@
-{{#each items as |item index|}}
-  {{yield item index}}
+{{#if key}}
+  {{#each items key=key as |item index|}}
+    {{yield item index}}
+  {{else}}
+    {{yield to="inverse"}}
+  {{/each}}
 {{else}}
-  {{yield to="inverse"}}
-{{/each}}
+  {{#each items as |item index|}}
+    {{yield item index}}
+  {{else}}
+    {{yield to="inverse"}}
+  {{/each}}
+{{/if}}

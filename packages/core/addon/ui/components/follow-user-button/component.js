@@ -32,6 +32,7 @@ export default Component.extend({
   tagName: '',
 
   /**
+   * @param {Event} event
    * @function
    */
   async followUser(event) {

@@ -1,0 +1,7 @@
+{{sites/site/pages/page/my-chat/-components/route-header --session=(lookup 'service:session')}}
+
+{{#sites/site/pages/page/my-chat/-components/route-content --session=(lookup 'service:session') --chat=this.model}}
+  {{outlet}}
+{{/sites/site/pages/page/my-chat/-components/route-content}}
+
+{{sites/site/pages/page/my-chat/-components/route-footer --session=(lookup 'service:session') --chat=this.model --onSendMessageClick=(action this.handleSendMessageClick)}}

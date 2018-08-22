@@ -1,8 +1,16 @@
 <article class="card {{class}}">
-  {{#if isSignInWithEmailLink}}
-    {{email-link-auth/email-link-auth-sign-in --firebase=firebase --onSignInClick=(action handleSignInClick)}}
+  {{cenchat-wordmark-logo class="email-link-auth__logo"}}
+
+  {{#if this.isSignInWithEmailLink}}
+    {{email-link-auth/email-link-auth-sign-in
+        --firebase=(lookup 'service:firebase')
+        --onEmailLinkSignInClick=(action this.handleEmailLinkSignInClick)}}
   {{else}}
-    {{email-link-auth/email-link-auth-send-link --firebase=firebase --redirectUrl=--redirectUrl}}
+    {{email-link-auth/email-link-auth-send-link
+        --firebase=(lookup 'service:firebase')
+        --redirectUrl=--redirectUrl
+        --isAnonymousAllowed=--isAnonymousAllowed
+        --onContinueAnonymouslyClick=(action this.handleContinueAnonymouslyClick)}}
   {{/if}}
 
   <footer>

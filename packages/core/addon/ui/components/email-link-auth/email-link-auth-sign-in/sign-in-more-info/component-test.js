@@ -13,7 +13,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in/sign-i
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    this.set('onSignInClick', () => {});
+    this.set('onEmailLinkSignInClick', () => {});
   });
 
   test('should enable sign in button when display name is valid', async function (assert) {
@@ -22,7 +22,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in/sign-i
     // Arrange
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in/sign-in-more-info
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
 
     // Act
@@ -38,7 +38,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in/sign-i
     // Act
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in/sign-in-more-info
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
 
     // Assert
@@ -49,11 +49,11 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in/sign-i
     assert.expect(1);
 
     // Arrange
-    const spy = sinon.spy(this, 'onSignInClick');
+    const spy = sinon.spy(this, 'onEmailLinkSignInClick');
 
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in/sign-in-more-info
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
     await fillIn('[data-test-sign-in-more-info="display-name-field"] input', 'Foo');
 

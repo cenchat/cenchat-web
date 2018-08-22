@@ -7,6 +7,29 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('sites', function() {
+    this.route('site', { path: '/:site_id' }, function() {
+      this.route('pages', function() {
+        this.route('page', { path: '/:page_postfix_id' }, function() {
+          this.route('explore', function() {
+            this.route('chat', { path: '/:chat_id' }, function() {
+              this.route('messages');
+            });
+          });
+          this.route('account');
+          this.route('my-chat', function() {
+            this.route('messages');
+          });
+          this.route('chats', function() {
+            this.route('chat', { path: '/:chat_id' }, function() {
+              this.route('messages');
+            });
+          });
+        });
+      });
+    });
+  });
+  this.route('sign-in');
 });
 
 export default Router;

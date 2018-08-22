@@ -21,7 +21,23 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app',
+    emailLinkSignInUrl: 'http://localhost:4200/sign-in',
+    tenorApiKey: 'OZ2DM5UOGY8A',
+
+    // Addon configs
+    'ember-component-css': { namespacing: false },
+    firebase: {
+      apiKey: 'AIzaSyDIxnajg07XeRb6Yu3ywwDMwpTRLXm6oKQ',
+      authDomain: 'cenchat-web-staging.firebaseapp.com',
+      databaseURL: 'https://cenchat-web-staging.firebaseio.com',
+      projectId: 'cenchat-web-staging',
+      storageBucket: 'cenchat-web-staging.appspot.com',
+      messagingSenderId: '890151954036',
+    },
+    torii: { sessionServiceName: 'session' },
   };
 
   if (environment === 'development') {
@@ -45,7 +61,16 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.apiHost = 'https://web.cenchat.com',
+    ENV.emailLinkSignInUrl = 'https://widget.cenchat.com/sign-in',
+    ENV.firebase = {
+      apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',
+      authDomain: 'cenchat-prod.firebaseapp.com',
+      databaseURL: 'https://cenchat-prod.firebaseio.com',
+      projectId: 'cenchat-prod',
+      storageBucket: 'cenchat-prod.appspot.com',
+      messagingSenderId: '43732370545',
+    };
   }
 
   return ENV;

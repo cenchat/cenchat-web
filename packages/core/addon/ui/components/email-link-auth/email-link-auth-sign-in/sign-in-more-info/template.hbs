@@ -1,24 +1,24 @@
 <section class="{{class}}">
-  <header class="card__header">
-    <h2 class="card__heading">Complete your profile</h2>
+  <header class="email-link-auth__header card__header">
+    <h2 class="email-link-auth__heading card__heading card__heading--small">Complete your profile</h2>
     <p class="card__subheading">This'll help other users identify you</p>
   </header>
 
-  {{#ce-form class="card__wrapper" --onSubmit=(action --onSignInClick displayName)}}
+  {{#ce-form class="card__wrapper" --onSubmit=(action --onEmailLinkSignInClick this.displayName)}}
     {{ce-field
         class="card__field"
         data-test-sign-in-more-info="display-name-field"
         type="text"
-        value=displayName
+        value=this.displayName
         required=true
         label="Full name"
-        --onInput=(action setDisplayName)}}
+        --onInput=(action this.handleDisplayNameInput)}}
 
     <div class="card__action">
       {{#ce-button
           data-test-sign-in-more-info="sign-in-button"
           type="submit"
-          disabled=(not displayName)}}
+          disabled=(not this.displayName)}}
         Sign in
       {{/ce-button}}
     </div>

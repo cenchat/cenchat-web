@@ -14,6 +14,7 @@ module('Integration | Component | email-link-auth', (hooks) => {
     await setupTestState(this);
 
     this.set('redirectUrl', 'https://example.com');
+    this.set('isAnonymousAllowed', true);
   });
 
   test('should show <EmailLinkAuthSignIn /> when signing in with email link', async function (assert) {
@@ -27,12 +28,19 @@ module('Integration | Component | email-link-auth', (hooks) => {
     const spy = spyComponent(this, 'email-link-auth/email-link-auth-sign-in');
 
     // Act
-    await render(hbs`{{email-link-auth --redirectUrl=redirectUrl}}`);
+    await render(hbs`
+      {{email-link-auth
+          --firebase=(lookup 'service:firebase')
+          --router=(lookup 'service:router')
+          --session=(lookup 'service:session')
+          --redirectUrl=redirectUrl
+          --isAnonymousAllowed=isAnonymousAllowed}}
+    `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, {
       firebase: 'instance',
-      onSignInClick: 'function',
+      onEmailLinkSignInClick: 'function',
     });
   });
 
@@ -47,7 +55,14 @@ module('Integration | Component | email-link-auth', (hooks) => {
     const spy = spyComponent(this, 'email-link-auth/email-link-auth-sign-in');
 
     // Act
-    await render(hbs`{{email-link-auth --redirectUrl=redirectUrl}}`);
+    await render(hbs`
+      {{email-link-auth
+          --firebase=(lookup 'service:firebase')
+          --router=(lookup 'service:router')
+          --session=(lookup 'service:session')
+          --redirectUrl=redirectUrl
+          --isAnonymousAllowed=isAnonymousAllowed}}
+    `);
 
     // Assert
     assert.ok(spy.notCalled);
@@ -64,13 +79,25 @@ module('Integration | Component | email-link-auth', (hooks) => {
     const spy = spyComponent(this, 'email-link-auth/email-link-auth-send-link');
 
     // Act
-    await render(hbs`{{email-link-auth --redirectUrl=redirectUrl}}`);
+    await render(hbs`
+      {{email-link-auth
+          --firebase=(lookup 'service:firebase')
+          --router=(lookup 'service:router')
+          --session=(lookup 'service:session')
+          --redirectUrl=redirectUrl
+          --isAnonymousAllowed=isAnonymousAllowed}}
+    `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { firebase: 'instance', redirectUrl: 'string' });
+    assert.deepEqual(spy.componentArgsType, {
+      firebase: 'instance',
+      redirectUrl: 'string',
+      isAnonymousAllowed: 'boolean',
+      onContinueAnonymouslyClick: 'function',
+    });
   });
 
-  test('should show <EmailLinkAuthSendLink /> when signing in with email link', async function (assert) {
+  test('should hide <EmailLinkAuthSendLink /> when signing in with email link', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -81,7 +108,14 @@ module('Integration | Component | email-link-auth', (hooks) => {
     const spy = spyComponent(this, 'email-link-auth/email-link-auth-send-link');
 
     // Act
-    await render(hbs`{{email-link-auth --redirectUrl=redirectUrl}}`);
+    await render(hbs`
+      {{email-link-auth
+          --firebase=(lookup 'service:firebase')
+          --router=(lookup 'service:router')
+          --session=(lookup 'service:session')
+          --redirectUrl=redirectUrl
+          --isAnonymousAllowed=isAnonymousAllowed}}
+    `);
 
     // Assert
     assert.ok(spy.notCalled);
