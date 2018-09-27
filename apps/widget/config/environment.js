@@ -23,19 +23,19 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    apiHost: 'https://us-central1-cenchat-stg.cloudfunctions.net/app',
+    apiHost: 'https://us-central1-cenchat-app-staging.cloudfunctions.net/app',
     emailLinkSignInUrl: 'http://localhost:4200/sign-in',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
     // Addon configs
     'ember-component-css': { namespacing: false },
     firebase: {
-      apiKey: 'AIzaSyDIxnajg07XeRb6Yu3ywwDMwpTRLXm6oKQ',
-      authDomain: 'cenchat-web-staging.firebaseapp.com',
-      databaseURL: 'https://cenchat-web-staging.firebaseio.com',
-      projectId: 'cenchat-web-staging',
-      storageBucket: 'cenchat-web-staging.appspot.com',
-      messagingSenderId: '890151954036',
+      apiKey: 'AIzaSyAKhyn9clixTGc8-XEqomcdTtI8MWwz3I0',
+      authDomain: 'cenchat-app-staging.firebaseapp.com',
+      databaseURL: 'https://cenchat-app-staging.firebaseio.com',
+      projectId: 'cenchat-app-staging',
+      storageBucket: 'cenchat-app-staging.appspot.com',
+      messagingSenderId: '744051372318',
     },
     torii: { sessionServiceName: 'session' },
   };
@@ -61,15 +61,15 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'https://web.cenchat.com',
+    ENV.apiHost = 'https://us-central1-cenchat-app.cloudfunctions.net/app',
     ENV.emailLinkSignInUrl = 'https://widget.cenchat.com/sign-in',
     ENV.firebase = {
-      apiKey: 'AIzaSyA0P-d4FFL1oB_4DBPQoh-jizLFgbnHghU',
-      authDomain: 'cenchat-prod.firebaseapp.com',
-      databaseURL: 'https://cenchat-prod.firebaseio.com',
-      projectId: 'cenchat-prod',
-      storageBucket: 'cenchat-prod.appspot.com',
-      messagingSenderId: '43732370545',
+      apiKey: 'AIzaSyCaZnNr69Kn4GqsCZm9emWyK-fNEK7vfEI',
+      authDomain: 'cenchat-app.firebaseapp.com',
+      databaseURL: 'https://cenchat-app.firebaseio.com',
+      projectId: 'cenchat-app',
+      storageBucket: 'cenchat-app.appspot.com',
+      messagingSenderId: '325042052100',
     };
   }
 
