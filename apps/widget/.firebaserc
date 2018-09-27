@@ -5,8 +5,8 @@
   "targets": {
     "cenchat-app": {
       "hosting": {
-        "cenchat-app-widget": [
-          "cenchat-app"
+        "widget": [
+          "cenchat-app-widget"
         ]
       }
     }

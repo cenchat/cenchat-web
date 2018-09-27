@@ -1,4 +1,4 @@
-{{! template-lint-disable no-invalid-interactive }}
+{{! template-lint-disable attribute-indentation no-invalid-interactive }}
 
 <div
   class="chat-content-time-group-list-item-author-list-item-message-list-item"
@@ -20,11 +20,7 @@
     data-test-message-list="content"
   >
     {{#if --message.text}}
-      <span
-        class="chat-content-time-group-list-item-author-list-item-message-list-item__text"
-      >
-        {{--message.text}}
-      </span>
+      <span class="chat-content-time-group-list-item-author-list-item-message-list-item__text">{{--message.text}}</span>
     {{else if this.media}}
       {{ce-image
         class="chat-content-time-group-list-item-author-list-item-message-list-item__image"
