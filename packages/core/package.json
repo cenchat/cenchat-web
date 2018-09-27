@@ -4,13 +4,13 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-    "ember-daux": "github:rmmmp/ember-daux#master"
+    "ember-cli-babel": "^6.16.0",
+    "ember-cli-htmlbars": "^3.0.0",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.3",
+    "ember-daux": "^0.3.0"
   },
   "devDependencies": {
-    "ember-cli": "~3.0.1",
+    "ember-cli": "~3.4.3",
     "fastboot-transform": "^0.1.3"
   },
   "ember-addon": {

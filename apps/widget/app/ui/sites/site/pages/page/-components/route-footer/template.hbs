@@ -1,32 +1,36 @@
 {{#ce-navbar class="layout__nav"}}
   {{#if this.isSiteAdmin}}
     {{ce-icon-link-button
-        data-test-route-footer="chats-link"
-        href=(href-to 'sites.site.pages.page.explore')
-        title="Navigate to chats page"
-        aria-label="Navigate to chats page"
-        icon="chat"}}
+      data-test-route-footer="chats-link"
+      href=(href-to "sites.site.pages.page.explore")
+      title="Navigate to chats page"
+      aria-label="Navigate to chats page"
+      icon="chat"
+    }}
   {{else}}
     {{ce-icon-link-button
-        data-test-route-footer="my-chat-link"
-        href=(href-to 'sites.site.pages.page.my-chat')
-        title="Navigate to my chat page"
-        aria-label="Navigate to my chat page"
-        icon="chat"}}
+      data-test-route-footer="my-chat-link"
+      href=(href-to "sites.site.pages.page.my-chat")
+      title="Navigate to my chat page"
+      aria-label="Navigate to my chat page"
+      icon="chat"
+    }}
   {{/if}}
   
   {{ce-icon-link-button
-      href=(href-to 'sites.site.pages.page.explore')
-      title="Navigate to explore chats page"
-      aria-label="Navigate to explore chats page"
-      icon="explore"}}
+    href=(href-to "sites.site.pages.page.explore")
+    title="Navigate to explore chats page"
+    aria-label="Navigate to explore chats page"
+    icon="explore"
+  }}
 
   {{#if --session.isAuthenticated}}
     {{ce-icon-link-button
       data-test-route-footer="account-link"
-      href=(href-to 'sites.site.pages.page.account')
+      href=(href-to "sites.site.pages.page.account")
       title="Navigate to account page"
       aria-label="Navigate to account page"
-      icon="account_circle"}}
+      icon="account_circle"
+    }}
   {{/if}}
 {{/ce-navbar}}

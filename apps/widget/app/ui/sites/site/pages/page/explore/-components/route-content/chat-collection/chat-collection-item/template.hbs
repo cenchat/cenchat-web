@@ -1,14 +1,28 @@
-<article class="card" data-test-chat-collection-item="{{--chat.id}}" onclick={{action this.handleChatClick --chat.id}}>
-  <address class="sites-site-pages-page-explore_route-content-chat-collection-item__address">
+{{! template-lint-disable no-invalid-interactive }}
+
+<article
+  class="card"
+  data-test-chat-collection-item={{--chat.id}}
+  onclick={{action this.handleChatClick --chat.id}}
+>
+  <address
+    class="sites-site-pages-page-explore_route-content-chat-collection-item__address"
+  >
     <img
-        class="sites-site-pages-page-explore_route-content-chat-collection-item__author-photo"
-        data-test-chat-collection-item="author-photo"
-        src="{{get-user-photo --chat.creator}}"
-        alt="{{--chat.creator.displayName}}">
-    <span data-test-chat-collection-item="author-name">{{--chat.creator.displayName}}</span>
+      class="sites-site-pages-page-explore_route-content-chat-collection-item__author-photo"
+      data-test-chat-collection-item="author-photo"
+      src={{get-user-photo --chat.creator}}
+      alt={{--chat.creator.displayName}}
+    >
+    <span data-test-chat-collection-item="author-name">
+      {{--chat.creator.displayName}}
+    </span>
   </address>
 
-  <h3 class="sites-site-pages-page-explore_route-content-chat-collection-item__heading card__heading card__heading--small" data-test-chat-collection-item="name">
+  <h3
+    class="sites-site-pages-page-explore_route-content-chat-collection-item__heading card__heading card__heading--small"
+    data-test-chat-collection-item="name"
+  >
     {{--chat.publicizedTitle}}
   </h3>
 </article>

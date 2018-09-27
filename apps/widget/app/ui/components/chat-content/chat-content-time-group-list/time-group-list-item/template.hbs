@@ -1,10 +1,12 @@
 <section>
   <h3
-      class="chat-content-time-group-list-item__heading"
-      data-test-time-group-list-item="heading">
-    {{moment-format --group.timestamp 'MMM DD YYYY'}}
+    class="chat-content-time-group-list-item__heading"
+    data-test-time-group-list-item="heading"
+  >
+    {{moment-format --group.timestamp "MMM DD YYYY"}}
   </h3>
 
   {{chat-content/chat-content-time-group-list/time-group-list-item/item-author-list
-      --authors=--group.authors}}
+    --authors=--group.authors
+  }}
 </section>

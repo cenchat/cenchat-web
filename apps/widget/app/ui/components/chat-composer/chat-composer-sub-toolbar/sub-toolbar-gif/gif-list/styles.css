@@ -29,3 +29,10 @@
 .chat-composer-sub-toolbar-gif-list__item .ce-image img {
   width: auto;
 }
+
+.chat-composer-sub-toolbar-gif-list__button {
+  display: block;
+  padding: 0;
+  background: none;
+  border: none;
+}

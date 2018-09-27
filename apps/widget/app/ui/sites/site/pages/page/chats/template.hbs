@@ -3,8 +3,9 @@
 {{/ce-top-bar}}
 
 {{#sites/site/pages/page/chats/-components/route-content
-    --chats=this.model
-    --chatLimit=this.chatLimit
-    --onLoadMoreChatsClick=(action this.handleLoadMoreChatsClick)}}
+  --chats=this.model
+  --chatLimit=this.chatLimit
+  --onLoadMoreChatsClick=(action this.handleLoadMoreChatsClick)
+}}
   {{liquid-outlet class="side-nav-outlet"}}
 {{/sites/site/pages/page/chats/-components/route-content}}
