@@ -4,15 +4,10 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-async-let": "^0.0.2",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-    "ember-cli-moment-shim": "^3.5.0",
-    "ember-fetch": "^3.4.5",
-    "ember-href-to": "^1.15.1",
-    "ember-moment": "^7.6.0",
-    "ember-truth-helpers": "^2.0.0"
+    "ember-daux": "github:rmmmp/ember-daux#master"
   },
   "devDependencies": {
     "ember-cli": "~3.0.1",
@@ -20,7 +15,9 @@
   },
   "ember-addon": {
     "fastbootDependencies": [
-      "firebase/auth"
+      "firebase/app",
+      "firebase/auth",
+      "firebase/firestore"
     ]
   }
 }

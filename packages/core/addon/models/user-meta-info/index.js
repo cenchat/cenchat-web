@@ -1,24 +1,55 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
+// import Model from 'ember-data/model';
+// import attr from 'ember-data/attr';
+
+// /**
+//  * @class UserMetaInfo
+//  * @namespace Model
+//  * @extends DS.Model
+//  */
+// export default Model.extend({
+//   /**
+//    * @type {Object}
+//    */
+//   accessToken: attr(),
+
+//   /**
+//    * @type {boolean}
+//    */
+//   hasNewNotification: attr('boolean'),
+
+//   /**
+//    * @type {Array.<string>}
+//    */
+//   notificationTokens: attr(),
+// });
+
+import { Model } from 'ember-daux/daux';
 
 /**
  * @class UserMetaInfo
  * @namespace Model
- * @extends DS.Model
+ * @extends Daux.Core.Model
  */
-export default Model.extend({
+export default class UserMetaInfo extends Model {
   /**
-   * @type {Object}
+   * @override
    */
-  accessToken: attr(),
+  static get attributes() {
+    return ['accessToken', 'hasNewNotification', 'notificationTokens'];
+  }
 
   /**
-   * @type {boolean}
+   * @override
    */
-  hasNewNotification: attr('boolean'),
+  static deserialize(record) {
+    if (typeof record === 'object' && record !== null && record.data) {
+      if (record.exists) {
+        return { ...record.data(), id: record.id };
+      }
 
-  /**
-   * @type {Array.<string>}
-   */
-  notificationTokens: attr(),
-});
+      return null;
+    }
+
+    return record;
+  }
+}

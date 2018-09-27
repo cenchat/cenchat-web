@@ -1,0 +1,8 @@
+.sites-site-pages-page-my-chat_router-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 600;
+  display: flex;
+  background-color: var(--surface-background-color);
+  border-top: 1px solid var(--divider-color);
+}

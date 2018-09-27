@@ -1,0 +1,7 @@
+<div class="chat-content-time-group-list-item-author-list">
+  {{#each --authors key="id" as |author|}}
+    {{chat-content/chat-content-time-group-list/time-group-list-item/item-author-list/author-list-item
+        --session=(lookup 'service:session')
+        --author=author}}
+  {{/each}}
+</div>

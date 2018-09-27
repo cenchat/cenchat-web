@@ -1,0 +1,20 @@
+.sites-site-pages-page-explore_route-content-chat-collection-item__address {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  font-size: var(--font-size-14);
+  font-style: normal;
+  line-height: var(--line-height-14);
+  color: var(--font-secondary-color);
+}
+
+.sites-site-pages-page-explore_route-content-chat-collection-item__author-photo {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 100%;
+}
+
+.sites-site-pages-page-explore_route-content-chat-collection-item__heading {
+  padding-top: 0;
+}

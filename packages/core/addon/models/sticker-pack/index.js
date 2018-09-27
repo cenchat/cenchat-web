@@ -1,37 +1,86 @@
-import { hasMany } from 'ember-data/relationships';
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
+// import { hasMany } from 'ember-data/relationships';
+// import Model from 'ember-data/model';
+// import attr from 'ember-data/attr';
+
+// /**
+//  * @class StickerPack
+//  * @namespace Model
+//  * @extends DS.Model
+//  */
+// export default Model.extend({
+//   /**
+//    * @type {string}
+//    */
+//   artist: attr('string'),
+
+//   /**
+//    * @type {string}
+//    */
+//   description: attr('string'),
+
+//   /**
+//    * @type {string}
+//    */
+//   name: attr('string'),
+
+//   /**
+//    * @type {string}
+//    */
+//   thumbnailUrl: attr('string'),
+
+//   /**
+//    * @type {Array.<Model.Sticker>}
+//    */
+//   stickers: hasMany('sticker', {
+//     limit: 20,
+//   }),
+// });
+
+import { Model } from 'ember-daux/daux';
 
 /**
  * @class StickerPack
  * @namespace Model
- * @extends DS.Model
+ * @extends Daux.Core.Model
  */
-export default Model.extend({
+export default class StickerPack extends Model {
   /**
-   * @type {string}
+   * @override
    */
-  artist: attr('string'),
+  static get attributes() {
+    return [
+      'artist',
+      'description',
+      'name',
+      'thumbnailUrl',
+    ];
+  }
 
   /**
-   * @type {string}
+   * @override
    */
-  description: attr('string'),
+  static get relationship() {
+    return {
+      stickers: {
+        type: 'sticker',
+        kind: 'hasMany',
+        inverse: 'pack',
+      },
+    };
+  }
 
   /**
-   * @type {string}
+   * @override
    */
-  name: attr('string'),
+  static deserialize(record) {
+    if (typeof record === 'object' && record !== null && record.data) {
+      if (record.exists) {
+        return { ...record.data(), id: record.id };
+      }
 
-  /**
-   * @type {string}
-   */
-  thumbnailUrl: attr('string'),
+      return null;
+    }
 
-  /**
-   * @type {Array.<Model.Sticker>}
-   */
-  stickers: hasMany('sticker', {
-    limit: 20,
-  }),
-});
+    return record;
+  }
+}

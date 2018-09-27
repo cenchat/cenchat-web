@@ -1,0 +1,14 @@
+<div class="chat-content-time-group-list-item-author-list-item-message-list">
+  <span
+      class="chat-content-time-group-list-item-author-list-item-item-message-list__author-name"
+      data-test-item-message-list="author-name">
+    {{get-user-display-name --author}}
+  </span>
+
+  {{#each --author.messages key="id" as |message|}}
+    {{chat-content/chat-content-time-group-list/time-group-list-item/item-author-list/author-list-item/item-message-list/message-list-item
+        --firebase=(lookup 'service:firebase')
+        --store=(lookup 'service:store')
+        --message=message}}
+  {{/each}}
+</div>

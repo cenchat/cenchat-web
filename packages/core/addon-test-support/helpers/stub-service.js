@@ -1,9 +1,6 @@
 import { camelize } from '@ember/string';
+import { run } from '@ember/runloop';
 import Service from '@ember/service';
-
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
-
-import { getFixtureData, stubPromise } from '@cenchat/core/test-support';
 
 /**
  * @param {Object} context
@@ -13,10 +10,7 @@ import { getFixtureData, stubPromise } from '@cenchat/core/test-support';
  */
 export function stubService(context, name, serviceProperties) {
   if (serviceProperties) {
-    context.owner.register(
-      `service:${name}`,
-      Service.extend(serviceProperties),
-    );
+    context.owner.register(`service:${name}`, Service.extend(serviceProperties));
   }
 
   return context.owner.lookup(`service:${name}`, { as: camelize(name) });
@@ -28,52 +22,59 @@ export function stubService(context, name, serviceProperties) {
  * @return {Ember.Service} Session service
  */
 export function stubSession(context, model) {
-  return stubService(context, 'session', {
-    currentUser: {
-      displayName: 'User A',
-      email: 'user_a@gmail.com',
-      photoURL: 'user_a.jpg',
-      providerData: [{
+  const session = context.owner.lookup('service:session');
+  const { stateMachine } = session;
+
+  run(() => {
+    stateMachine.send('startOpen');
+    stateMachine.send('finishOpen', {
+      currentUser: {
+        displayName: 'User A',
+        email: 'user_a@gmail.com',
+        isAnonymous: false,
         photoURL: 'user_a.jpg',
-        providerId: 'facebook.com',
-        uid: 'fb_user_a',
-      }],
+        providerData: [
+          {
+            photoURL: 'user_a.jpg',
+            providerId: 'facebook.com',
+            uid: 'fb_user_a',
+          },
+        ],
+        uid: 'user_a',
+
+        getIdToken() {
+          return Promise.resolve(12345);
+        },
+
+        linkWithPopup() {
+          return Promise.resolve();
+        },
+
+        unlink() {
+          return Promise.resolve();
+        },
+
+        updateEmail() {
+          return Promise.resolve();
+        },
+
+        updateProfile() {
+          return Promise.resolve();
+        },
+      },
+      isAuthenticated: true,
       uid: 'user_a',
+      model,
 
-      getIdToken() {
-        return stubPromise(12345);
+      fetch() {
+        return Promise.resolve();
       },
 
-      linkWithPopup() {
-        return stubPromise(true);
+      close() {
+        return Promise.resolve();
       },
-
-      unlink() {
-        return stubPromise();
-      },
-
-      updateEmail() {
-        return stubPromise(true);
-      },
-    },
-    isAuthenticated: true,
-    uid: 'user_a',
-    model,
-
-    fetch() {
-      return stubPromise(true);
-    },
-
-    close() {
-      return stubPromise(true);
-    },
+    });
   });
-}
 
-/**
- * @param {Object} context
- * @return {Ember.Service} Firebase service
- */
-export function stubFirebase(context) {
-  return mockFirebase(context.owner, getFixtureData());
+  return session;
 }

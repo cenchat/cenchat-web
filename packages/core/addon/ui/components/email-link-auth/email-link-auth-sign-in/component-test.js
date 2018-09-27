@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
 
-import { setupTestState, spyComponent, stubPromise } from '@cenchat/core/test-support';
+import { setupTestState, spyComponent } from '@cenchat/core/test-support';
 
 module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hooks) => {
   setupRenderingTest(hooks);
@@ -15,7 +15,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
 
     this.set('auth', { fetchProvidersForEmail() {} });
     this.set('firebase.auth', () => this.auth);
-    this.set('onSignInClick', () => {});
+    this.set('onEmailLinkSignInClick', () => {});
   });
 
   test('should enable continue button when email is valid', async function (assert) {
@@ -25,7 +25,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in
           --firebase=firebase
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
 
     // Act
@@ -42,7 +42,7 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in
           --firebase=firebase
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
 
     // Act
@@ -56,14 +56,14 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
     assert.expect(1);
 
     // Arrange
-    this.set('auth.fetchProvidersForEmail', sinon.stub().returns(stubPromise(true, ['password'])));
+    this.set('auth.fetchProvidersForEmail', sinon.stub().returns(Promise.resolve(['password'])));
 
-    const spy = sinon.spy(this, 'onSignInClick');
+    const spy = sinon.spy(this, 'onEmailLinkSignInClick');
 
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in
           --firebase=firebase
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
     await fillIn('[data-test-email-link-auth-sign-in="email-field"] input', 'foo@gmail.com');
 
@@ -78,14 +78,14 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
     assert.expect(1);
 
     // Arrange
-    this.set('auth.fetchProvidersForEmail', sinon.stub().returns(stubPromise(true, [])));
+    this.set('auth.fetchProvidersForEmail', sinon.stub().returns(Promise.resolve([])));
 
     const spy = spyComponent(this, 'email-link-auth/email-link-auth-sign-in/sign-in-more-info');
 
     await render(hbs`
       {{email-link-auth/email-link-auth-sign-in
           --firebase=firebase
-          --onSignInClick=(action onSignInClick)}}
+          --onEmailLinkSignInClick=(action onEmailLinkSignInClick)}}
     `);
     await fillIn('[data-test-email-link-auth-sign-in="email-field"] input', 'foo@gmail.com');
 
@@ -93,6 +93,6 @@ module('Integration | Component | email-link-auth/email-link-auth-sign-in', (hoo
     await click('[data-test-email-link-auth-sign-in="continue-button"]');
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, { onSignInClick: 'function' });
+    assert.deepEqual(spy.componentArgsType, { onEmailLinkSignInClick: 'function' });
   });
 });

@@ -27,7 +27,7 @@ export default Component.extend({
    * @param {Element} target
    * @function
    */
-  setDisplayName(target) {
+  handleDisplayNameInput(target) {
     this.set('displayName', target.value);
   },
 });

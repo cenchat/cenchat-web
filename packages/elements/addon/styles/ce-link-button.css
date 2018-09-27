@@ -16,8 +16,8 @@
   line-height: 32px;
 }
 
-.ce-link-button:disabled {
-  color: var(--button-disabled-text-color);
+.ce-link-button[outlined] {
+  color: var(--brand-color);
 }
 
 .ce-link-button div {
@@ -28,21 +28,37 @@
   padding-left: 8px;
   border-radius: var(--border-radius-square);
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ce-link-button[outlined] div {
+  line-height: 32px;
+  border: 2px solid var(--brand-color);
 }
 
 .ce-link-button[size="small"] div {
   height: 32px;
 }
 
-.ce-link-button:hover div {
-  background-color: var(--button-hover-background-color);
+.ce-link-button:hover div::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0.08;
+  background-color: var(--brand-color);
 }
 
-.ce-link-button:active div,
-.ce-link-button[aria-pressed="true"] div {
-  background-color: var(--button-active-background-color);
-}
-
-.ce-link-button:disabled div {
-  background-color: transparent;
+.ce-link-button:active div::before,
+.ce-link-button[aria-pressed="true"] div::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0.24;
+  background-color: var(--brand-color);
 }

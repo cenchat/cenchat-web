@@ -39,7 +39,7 @@ export default Component.extend({
     'aria-pressed',
     'target',
     'rel',
-    'disabled',
+    'outlined',
     'size',
     'onclick',
     'isRouteActive:active',

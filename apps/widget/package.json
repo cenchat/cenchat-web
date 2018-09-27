@@ -17,9 +17,11 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "@ember/optional-features": "^0.6.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
+    "ember-autoresize": "^1.3.2",
     "ember-cli": "~3.3.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
@@ -29,31 +31,50 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-qunit": "^4.3.2",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-stylelint": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-component-css": "^0.6.4",
+    "ember-composable-helpers": "^2.1.0",
     "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^5.1.3",
+    "ember-firebase-service": "^5.0.0",
+    "ember-href-to": "^1.15.1",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^7.7.0",
     "ember-resolver": "^4.0.0",
+    "ember-sinon": "^2.2.0",
     "ember-source": "~3.3.0",
-    "ember-welcome-page": "^3.0.0",
+    "ember-test-selectors": "^1.0.0",
+    "ember-truth-helpers": "^2.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-rmmmp": "^0.3.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-import": "^2.14.0",
+    "firebase": "^5.5.1",
+    "liquid-fire": "^0.29.5",
     "loader.js": "^4.2.3",
+    "mock-cloud-firestore": "^0.5.1",
     "normalize.css": "^8.0.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.0",
     "qunit-dom": "^0.6.2",
     "stylelint-config-recess-order": "^2.0.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "torii": "^0.10.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
+  },
+  "ember-addon": {
+    "paths": [
+      "../../packages/core",
+      "../../packages/elements",
+      "../../packages/utils"
+    ]
   }
 }

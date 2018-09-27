@@ -4,7 +4,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const cssimport = require('postcss-import');
 const cssnext = require('postcss-cssnext');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const filesToExclude = [];
 
   // TODO: Remove this once Module Unification lands
@@ -13,6 +13,9 @@ module.exports = function(defaults) {
   }
 
   const app = new EmberApp(defaults, {
+    'ember-composable-helpers': {
+      only: ['optional'],
+    },
     babel: {
       plugins: ['transform-object-rest-spread'],
     },

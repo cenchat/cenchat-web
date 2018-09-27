@@ -30,15 +30,14 @@ export default Component.extend({
    * @param {Element} target
    * @function
    */
-  setEmail(target) {
+  handleEmailInput(target) {
     this.set('email', target.value);
   },
 
   /**
-   * @return {Promise} Resolves when sign in link succeeds or fails
    * @function
    */
-  async sendSignInLinkToEmail() {
+  async handleEmailFormSubmit() {
     let { emailLinkSignInUrl } = getOwner(this).resolveRegistration('config:environment');
 
     if (this.args.redirectUrl) {

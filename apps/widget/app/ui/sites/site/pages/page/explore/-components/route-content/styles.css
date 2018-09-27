@@ -1,0 +1,14 @@
+.sites-site-pages-page-explore_route-content__start-chat-button {
+  display: inline-block;
+  width: 100%;
+  padding: 16px 16px 0;
+}
+
+.sites-site-pages-page-explore_route-content__top-bar-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sites-site-pages-page-explore_route-content__filter-button {
+  margin-bottom: -8px;
+}

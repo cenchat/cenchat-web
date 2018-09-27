@@ -1,8 +1,42 @@
+.email-link-auth__logo {
+  display: block;
+  width: auto;
+  height: 48px;
+  padding-top: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  fill: var(--font-primary-color);
+}
+
+.email-link-auth__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.email-link-auth__heading {
+  padding-top: 16px;
+}
+
 .email-link-auth__policy-message {
-  margin: 0 16px 16px;
+  margin: 16px;
   font-size: var(--font-size-12);
   line-height: var(--line-height-12);
   color: var(--font-secondary-color);
+}
+
+.email-link-auth-send-link__or-anonymous {
+  padding-top: 16px;
+  color: var(--font-secondary-color) !important;
+}
+
+.email-link-auth-send-link__continue-anonymously-button {
+  padding: 0;
+  color: var(--indicator-color);
+  text-decoration: underline;
+  background: none;
+  border: none;
 }
 
 .email-link-auth-sign-in {

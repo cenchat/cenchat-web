@@ -1,0 +1,12 @@
+<div
+    class="{{if (eq --session.model.id --author.id) 'chat-content-time-group-list-item-author-list-item__right-author-group' 'chat-content-time-group-list-item-author-list-item__left-author-group'}}"
+    data-test-author-list-item="{{--author.id}}">
+  <img
+      class="chat-content-time-group-list-item-author-list-item__author-photo"
+      data-test-author-list-item="author-photo"
+      src="{{get-user-photo --author}}"
+      alt="{{get-user-display-name --author}}">
+
+  {{chat-content/chat-content-time-group-list/time-group-list-item/item-author-list/author-list-item/item-message-list
+      --author=--author}}
+</div>

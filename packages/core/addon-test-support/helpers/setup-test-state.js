@@ -1,76 +1,109 @@
 import { run } from '@ember/runloop';
+import Service from '@ember/service';
 
-import { mockFirebase } from 'ember-cloud-firestore-adapter/test-support';
+import MockFirebase from 'mock-cloud-firestore';
 import sinon from 'sinon';
 
 import { initialize as initializeWindowOverrides } from '@cenchat/core/initializers/window-overrides';
 import { stubService, stubSession } from './stub-service';
 import getFixtureData from '../fixture-data';
-import stubPromise from './stub-promise';
+
+/**
+ * @param {Object} owner
+ * @param {Object} fixtureData
+ * @return {Ember.Service} Firebase service
+ * @function
+ */
+function mockCloudFirestore(owner, fixtureData) {
+  const mockFirebase = new MockFirebase();
+
+  const mockFirebasePojo = {
+    _data: fixtureData,
+    initializeApp: mockFirebase.initializeApp,
+    firestore: mockFirebase.firestore,
+  };
+  const firebaseService = Service.extend(mockFirebasePojo);
+
+  owner.register('service:firebase', firebaseService);
+
+  return owner.lookup('service:firebase', { as: 'firebase' });
+}
 
 /**
  * @param {Object} context
+ * @function
  */
 export async function setupTestState(context) {
   initializeWindowOverrides(context.owner);
   stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
 
-  context.set('firebase', mockFirebase(context.owner, getFixtureData()));
+  context.set('firebase', mockCloudFirestore(context.owner, getFixtureData()));
   context.set('firebase.auth', () => ({ isSignInWithEmailLink: sinon.stub().returns(false) }));
   context.set('db', context.firebase.firestore());
   context.set('router', stubService(context, 'router', { urlFor: sinon.stub() }));
   context.set('session', stubSession(context));
 
-  const store = stubService(context, 'store');
+  const store = context.owner.lookup('service:store');
 
-  context.set('store', {
-    createRecord(...args) {
-      return run(() => store.createRecord(...args));
-    },
+  context.set('store', store);
 
-    findAll(...args) {
-      return run(() => store.findAll(...args));
-    },
+  const db = context.firebase.firestore();
 
-    findRecord(...args) {
-      return run(() => store.findRecord(...args));
-    },
-
-    query(...args) {
-      return run(() => store.query(...args));
-    },
+  await store.getAll('chat', {
+    fetch: () => db.collection('chats').get().then(snap => snap.docs),
+  });
+  await store.getAll('page', {
+    fetch: () => db.collection('pages').get().then(snap => snap.docs),
+  });
+  await store.getAll('message', {
+    fetch: () => db.collection('messages').get().then(snap => snap.docs),
+  });
+  await store.getAll('site', {
+    fetch: () => db.collection('sites').get().then(snap => snap.docs),
+  });
+  await store.getAll('sticker', {
+    fetch: () => db.collection('stickers').get().then(snap => snap.docs),
+  });
+  await store.getAll('stickerPack', {
+    fetch: () => db.collection('stickerPacks').get().then(snap => snap.docs),
+  });
+  await store.getAll('userMetaInfo', {
+    fetch: () => db.collection('userMetaInfos').get().then(snap => snap.docs),
+  });
+  await store.getAll('user', {
+    fetch: () => db.collection('users').get().then(snap => snap.docs),
   });
 
-  const user = await context.store.findRecord('user', 'user_a');
+  const user = await db.doc('users/user_a').get();
 
-  context.set('session.model', user);
+  context.set('session.content.model', { ...user.data(), id: user.id });
+  context.store.subscribe(async () => (
+    context.set('session.content.model', await context.store.get('user', user.id))
+  ));
 }
 
 /**
- * Setup application test state
- *
  * @param {Object} context
+ * @function
  */
 export async function setupApplicationTestState(context) {
-  stubService(context, 'firebaseui', { startAuthUi() {}, resetAuthUi() {} });
-
-  context.set('firebase', mockFirebase(context.owner, getFixtureData()));
+  context.set('firebase', mockCloudFirestore(context.owner, getFixtureData()));
   context.set('firebase.messaging', () => ({
     onTokenRefresh(callback) {
       return callback();
     },
 
     getToken() {
-      return stubPromise(true, 'token_a');
+      return Promise.resolve('token_a');
     },
 
     requestPermission() {
-      return stubPromise(true);
+      return Promise.resolve();
     },
   }));
   context.set('firebase.auth', () => ({
     signOut() {
-      return stubPromise(true);
+      return Promise.resolve();
     },
   }));
   context.set('db', context.firebase.firestore());
@@ -84,12 +117,15 @@ export async function setupApplicationTestState(context) {
       currentUser: {
         displayName: 'User A',
         email: 'user_a@gmail.com',
+        isAnonymous: false,
         photoURL: 'user_a.jpg',
-        providerData: [{
-          displayName: 'User A',
-          photoURL: 'user_a.jpg',
-          providerId: 'facebook.com',
-        }],
+        providerData: [
+          {
+            displayName: 'User A',
+            photoURL: 'user_a.jpg',
+            providerId: 'facebook.com',
+          },
+        ],
         uid: 'user_a',
 
         getIdToken() {

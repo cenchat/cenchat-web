@@ -1,17 +1,21 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
+import { setupTestState } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
-import { stubPromise } from '@cenchat/core/test-support';
 import Adapter from '@cenchat/core/torii-adapters/firebase';
 
 module('Unit | Torii Adapters | firebase', function (hooks) {
   setupTest(hooks);
 
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
+
   module('function: open', function () {
     test('should return firebase user and existing user record', async function (assert) {
-      assert.expect(1);
+      assert.expect(2);
 
       // Arrange
       const currentUser = {
@@ -21,20 +25,16 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
         uid: 'user_a',
       };
       const adapter = Adapter.create({
-        firebase: null,
-        store: {
-          findRecord: sinon.stub().withArgs('user', 'user_a').returns(stubPromise(true, 'foo')),
-        },
+        firebase: this.firebase,
+        store: this.store,
       });
 
       // Act
       const result = await adapter.open(currentUser);
 
       // Assert
-      assert.deepEqual(result, {
-        currentUser,
-        model: 'foo',
-      });
+      assert.deepEqual(result.currentUser, currentUser);
+      assert.equal(result.model.id, 'user_a');
     });
 
     test('should return firebase user and newly created user record when it does not exist yet', async function (assert) {
@@ -42,40 +42,29 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
 
       // Arrange
       const currentUser = {
-        displayName: 'User A',
-        email: 'user_a@gmail.com',
-        photoURL: 'user_a.jpg',
-        uid: 'user_a',
+        displayName: 'User 100',
+        email: 'user_100@gmail.com',
+        photoURL: 'user_100.jpg',
+        uid: 'user_100',
       };
-      const saveStub = sinon.stub().returns(stubPromise(true));
-      const createRecordStub = sinon.stub().returns({ save: saveStub });
       const adapter = Adapter.create({
-        firebase: null,
-        store: {
-          createRecord: createRecordStub,
-          findRecord: sinon.stub().withArgs('user', 'user_a').returns(stubPromise(false)),
-        },
+        firebase: this.firebase,
+        store: this.store,
       });
 
       // Act
       const result = await adapter.open(currentUser);
 
       // Assert
-      assert.ok(createRecordStub.calledWithExactly('user', {
-        id: 'user_a',
-        displayName: 'User A',
-        displayUsername: null,
-        name: 'user a',
-        photoUrl: null,
-        provider: null,
-        shortBio: null,
-        username: null,
-      }));
-      assert.ok(saveStub.calledOnce);
-      assert.deepEqual(result, {
-        currentUser,
-        model: { save: saveStub },
-      });
+      assert.deepEqual(result.currentUser, currentUser);
+
+      const userDocSnapshot = await this.db.doc('users/user_100').get();
+
+      assert.ok(userDocSnapshot.exists);
+
+      const userMetaSnapshot = await this.db.doc('userMetaInfos/user_100').get();
+
+      assert.ok(userMetaSnapshot.exists);
     });
   });
 
@@ -107,7 +96,7 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
 
       // Arrange
       const stub = sinon.stub().returns({
-        getRedirectResult: sinon.stub().returns(stubPromise(true, {
+        getRedirectResult: sinon.stub().returns(Promise.resolve({
           user: { uid: 'foo' },
         })),
 
@@ -133,7 +122,7 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
 
       // Arrange
       const stub = sinon.stub().returns({
-        getRedirectResult: sinon.stub().returns(stubPromise(true, {})),
+        getRedirectResult: sinon.stub().returns(Promise.resolve({})),
 
         onAuthStateChanged(callback) {
           callback();
@@ -156,7 +145,7 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
 
       // Arrange
       const stub = sinon.stub().returns({
-        getRedirectResult: sinon.stub().returns(stubPromise(false)),
+        getRedirectResult: sinon.stub().returns(Promise.reject()),
 
         onAuthStateChanged(callback) {
           callback();
@@ -181,7 +170,7 @@ module('Unit | Torii Adapters | firebase', function (hooks) {
 
       // Arrange
       const stub = sinon.stub().returns({
-        signOut: sinon.stub().returns(stubPromise(true, 'foo')),
+        signOut: sinon.stub().returns(Promise.resolve('foo')),
       });
       const adapter = Adapter.create({
         firebase: { auth: stub },

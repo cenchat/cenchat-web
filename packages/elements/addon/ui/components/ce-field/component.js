@@ -104,7 +104,9 @@ export default Component.extend({
   getFieldTagName() {
     if (this.isMultiTextField) {
       return 'textarea';
-    } else if (this.isSelectField) {
+    }
+
+    if (this.isSelectField) {
       return 'select';
     }
 
@@ -152,8 +154,9 @@ export default Component.extend({
 
     if (!fieldElement.checkValidity()) {
       if (fieldTagName === 'input') {
-        feedback = fieldElement.validity.patternMismatch ?
-          this.title : fieldElement.validationMessage;
+        feedback = fieldElement.validity.patternMismatch
+          ? this.title
+          : fieldElement.validationMessage;
       } else {
         feedback = fieldElement.validationMessage;
       }
