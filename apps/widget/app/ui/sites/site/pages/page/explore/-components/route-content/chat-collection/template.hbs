@@ -1,7 +1,8 @@
 <div class="layout__section layout__section--headerless">
   {{#ani-each --chats key="id" as |chat|}}
     {{sites/site/pages/page/explore/-components/route-content/chat-collection/chat-collection-item
-        --chat=chat}}
+      --chat=chat
+    }}
   {{else}}
     <p class="empty-state" data-test-chat-collection="empty-state">
       No chats to explore right now
@@ -10,9 +11,10 @@
 
   {{#if (eq --chats.length --chatLimit)}}
     {{#ce-button
-        class="sites-site-pages-page-explore_route-content-chat-collection__more-button"
-        data-test-chat-collection="more-button"
-        --onClick=(action --onLoadMoreChatsClick)}}
+      class="sites-site-pages-page-explore_route-content-chat-collection__more-button"
+      data-test-chat-collection="more-button"
+      --onClick=(action --onLoadMoreChatsClick)
+    }}
       More
     {{/ce-button}}
   {{/if}}

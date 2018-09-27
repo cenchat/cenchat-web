@@ -4,8 +4,9 @@
   {{/ce-subheader}}
 
   {{email-link-auth
-      --firebase=(lookup 'service:firebase')
-      --router=(lookup 'service:router')
-      --session=(lookup 'service:session')
-      --redirectUrl="http://localhost:4200/sites/site_a/pages/page_a"}}
+    --firebase=(lookup "service:firebase")
+    --router=(lookup "service:router")
+    --session=(lookup "service:session")
+    --redirectUrl="http://localhost:4200/sites/site_a/pages/page_a"
+  }}
 </section>

@@ -39,8 +39,10 @@ install:
 
 script:
   - cd main
+  # - npm run lint:hbs
   # - npm run lint:js
   # - npm test
   - cd ../widget
+  - npm run lint:hbs
   - npm run lint:js
   - npm test
