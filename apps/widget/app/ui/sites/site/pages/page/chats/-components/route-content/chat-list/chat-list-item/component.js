@@ -18,7 +18,7 @@ export default Component.extend({
   description: computed('args', {
     get() {
       const { chat } = this.args;
-      let description = chat.lastMessage.author.displayName;
+      let description = chat.lastMessage.author.displayName || 'Anonymous';
 
       if (this.args.session.get('model.id') === chat.lastMessage.author.id) {
         description = 'You';

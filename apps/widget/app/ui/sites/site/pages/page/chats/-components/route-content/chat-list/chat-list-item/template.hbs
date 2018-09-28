@@ -7,12 +7,12 @@
       class="list__avatar list__avatar--circle"
       data-test-chat-list-item="author-photo"
       src=(get-user-photo --chat.creator)
-      alt=--chat.creator.displayName
+      alt=(get-user-display-name --chat.creator)
     }}
 
     <div class="list__multi-line-content">
       <h2 class="list__primary-text" data-test-chat-list-item="title">
-        {{--chat.creator.displayName}}
+        {{get-user-display-name --chat.creator}}
       </h2>
 
       <p class="list__secondary-text" data-test-chat-list-item="description">

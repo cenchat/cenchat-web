@@ -23,7 +23,7 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    apiHost: 'https://us-central1-cenchat-app-staging.cloudfunctions.net/app',
+    apiHost: 'https://us-central1-cenchat-app-staging.cloudfunctions.net/app/api',
     emailLinkSignInUrl: 'http://localhost:4200/sign-in',
     tenorApiKey: 'OZ2DM5UOGY8A',
 
@@ -61,7 +61,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = 'https://us-central1-cenchat-app.cloudfunctions.net/app',
+    ENV.apiHost = 'https://us-central1-cenchat-app.cloudfunctions.net/app/api',
     ENV.emailLinkSignInUrl = 'https://widget.cenchat.com/sign-in',
     ENV.firebase = {
       apiKey: 'AIzaSyCaZnNr69Kn4GqsCZm9emWyK-fNEK7vfEI',

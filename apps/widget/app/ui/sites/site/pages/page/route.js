@@ -98,6 +98,7 @@ export default Route.extend({
 
       await fetch(`${config.apiHost}/pages`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...page, site: `sites/${siteId}` }),
       });
 

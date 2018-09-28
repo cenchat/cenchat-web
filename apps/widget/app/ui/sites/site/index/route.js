@@ -92,7 +92,6 @@ export default Route.extend({
    */
   async createPage() {
     const config = getOwner(this).resolveRegistration('config:environment');
-    const authorizationToken = await this.get('session.currentUser').getIdToken();
     const siteId = this.modelFor('sites.site').id;
     const db = this.firebase.firestore();
     const postfixId = db.collection('pages').doc().id;
@@ -100,7 +99,7 @@ export default Route.extend({
 
     await fetch(`${config.apiHost}/pages`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${authorizationToken}` },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...page, site: `sites/${siteId}` }),
     });
 

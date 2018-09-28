@@ -43,7 +43,8 @@ function batchCreateMessage(chat, messageDocRef, content, type, currentUserId, d
  * @function
  */
 function batchCreateChat(chat, messageDocRef, currentUserId, db, batch) {
-  const chatDocRef = db.doc(`chats/${chat.page.id}__${currentUserId}`);
+  const chatId = chat.id || `${chat.page.id}__${currentUserId}`;
+  const chatDocRef = db.doc(`chats/${chatId}`);
 
   batch.set(chatDocRef, {
     creator: db.doc(`users/${currentUserId}`),
