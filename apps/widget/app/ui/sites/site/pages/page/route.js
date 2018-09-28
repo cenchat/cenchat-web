@@ -89,7 +89,6 @@ export default Route.extend({
 
     if (slug) {
       const config = getOwner(this).resolveRegistration('config:environment');
-      const authorizationToken = await this.get('session.currentUser').getIdToken();
       const siteId = this.modelFor('sites.site').id;
       const page = {
         id: `${siteId}__${params.page_postfix_id}`,
@@ -99,7 +98,6 @@ export default Route.extend({
 
       await fetch(`${config.apiHost}/pages`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${authorizationToken}` },
         body: JSON.stringify({ ...page, site: `sites/${siteId}` }),
       });
 

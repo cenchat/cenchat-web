@@ -19,6 +19,9 @@ module.exports = function (defaults) {
     babel: {
       plugins: ['transform-object-rest-spread'],
     },
+    fingerprint: {
+      exclude: ['universal.js'],
+    },
     funnel: {
       // TODO: Remove this once Module Unification lands
       exclude: filesToExclude,
