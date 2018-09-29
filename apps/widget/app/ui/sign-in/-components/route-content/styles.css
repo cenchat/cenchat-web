@@ -1,7 +1,9 @@
 .sign-in_route-content__email-link-auth {
-  --border-radius-square: 2px;
-  --surface-background-color: #fff;
-  --text-field-background-color: #f5f5f5;
+  --brand-color: var(--cenchat-brand-color);
+
+  height: 100vh;
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 @media (min-width: 960px) {
@@ -13,10 +15,10 @@
   }
 
   .sign-in_route-content__email-link-auth {
-    --surface-background-color: #f5f5f5;
-    --text-field-background-color: #fff;
-
     max-width: 456px;
-    border: 40px solid transparent;
+    height: auto;
+    padding: 40px;
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius-square);
   }
 }
