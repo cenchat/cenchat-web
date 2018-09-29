@@ -40,7 +40,7 @@ export async function setupTestState(context) {
   context.set('firebase', mockCloudFirestore(context.owner, getFixtureData()));
   context.set('firebase.auth', () => ({ isSignInWithEmailLink: sinon.stub().returns(false) }));
   context.set('db', context.firebase.firestore());
-  context.set('router', stubService(context, 'router', { urlFor: sinon.stub() }));
+  context.set('router', stubService(context, 'router', { transitionTo() {}, urlFor() {} }));
   context.set('session', stubSession(context));
 
   const store = context.owner.lookup('service:store');
