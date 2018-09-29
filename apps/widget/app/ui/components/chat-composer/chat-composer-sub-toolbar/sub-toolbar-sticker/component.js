@@ -53,9 +53,11 @@ export default Component.extend({
       },
     });
 
-    this.args.store.update('user', sessionId, { stickerPacks });
+    if (stickerPacks.length > 0) {
+      this.args.store.update('user', sessionId, { stickerPacks });
 
-    this.set('selectedStickerPack', await this.args.store.get('stickerPack', stickerPacks[0].id));
+      this.set('selectedStickerPack', await this.args.store.get('stickerPack', stickerPacks[0].id));
+    }
   },
 
   /**
