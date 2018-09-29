@@ -32,9 +32,7 @@ export default Component.extend({
 
       if (Array.isArray(this.args.messages)) {
         this.sortedMessages.forEach((message) => {
-          const createdOn = message.createdOn && message.createdOn.toDate
-            ? message.createdOn.toDate()
-            : message.createdOn;
+          const { createdOn } = message;
           const groupByDayForMessage = groups.find((groupByDay) => {
             const startDate = moment(groupByDay.timestamp);
             const endDate = moment(groupByDay.timestamp).endOf('day');

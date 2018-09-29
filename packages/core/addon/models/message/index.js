@@ -38,9 +38,13 @@ export default class Chat extends Model {
     if (typeof record === 'object' && record !== null && record.data) {
       if (record.exists) {
         const message = record.data();
-        const createdOn = message.createdOn && message.createdOn.toDate
-          ? message.createdOn.toDate()
-          : message.createdOn;
+        let createdOn;
+
+        if (message.createdOn) {
+          createdOn = message.createdOn.toDate ? message.createdOn.toDate() : message.createdOn;
+        } else {
+          createdOn = new Date();
+        }
 
         return {
           ...message,
