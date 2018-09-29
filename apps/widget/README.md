@@ -1,6 +1,6 @@
-# Cenchat Widget
+# Widget
 
-Chat widget for widget.cenchat.com
+Source for [widget.cenchat.com](https://widget.cenchat.com)
 
 ## Prerequisites
 

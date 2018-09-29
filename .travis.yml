@@ -31,14 +31,14 @@ before_install:
   - cd ../../
 
 install:
-  - cd apps/main
+  - cd apps/web
   - npm install
   - cd ../widget
   - npm install
   - cd ../
 
 script:
-  - cd main
+  - cd web
   # - npm run lint:hbs
   # - npm run lint:js
   # - npm test

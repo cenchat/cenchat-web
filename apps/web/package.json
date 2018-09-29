@@ -1,8 +1,8 @@
 {
-  "name": "main",
+  "name": "web",
   "version": "0.0.0",
   "private": true,
-  "description": "Web app for cenchat.com",
+  "description": "Source for web.cenchat.com",
   "license": "GPL-3.0",
   "author": "Cenchat",
   "directories": {
