@@ -28,7 +28,7 @@ export default Component.extend({
         if (chat.lastMessage.media.type === 'sticker') {
           description = `${description} sent a sticker`;
         } else if (chat.lastMessage.media.type === 'tenor_gif') {
-          description = `${description} send a Tenor GIF`;
+          description = `${description} sent a Tenor GIF`;
         }
       } else {
         description = `${description}: ${chat.lastMessage.text}`;

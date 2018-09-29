@@ -43,8 +43,23 @@ function batchCreateMessage(chat, messageDocRef, content, type, currentUserId, d
  * @function
  */
 function batchCreateChat(chat, messageDocRef, currentUserId, db, batch) {
-  const chatId = chat.id || `${chat.page.id}__${currentUserId}`;
-  const chatDocRef = db.doc(`chats/${chatId}`);
+  if (chat.id) {
+    const chatDocRef = db.doc(`chats/${chat.id}`);
+
+    batch.set(chatDocRef, {
+      lastActivityTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      lastMessage: messageDocRef,
+    }, { merge: true });
+
+    // Test this
+    return {
+      ...chat,
+      lastActivityTimestamp: new Date(),
+      lastMessage: messageDocRef.id,
+    };
+  }
+
+  const chatDocRef = db.doc(`chats/${chat.page.id}__${currentUserId}`);
 
   batch.set(chatDocRef, {
     creator: db.doc(`users/${currentUserId}`),
@@ -54,7 +69,7 @@ function batchCreateChat(chat, messageDocRef, currentUserId, db, batch) {
     page: db.doc(`pages/${chat.page.id}`),
     publicizedTitle: chat.publicizedTitle,
     site: db.doc(`sites/${chat.site.id}`),
-  }, { merge: true });
+  });
 
   return {
     ...chat,
