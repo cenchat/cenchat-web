@@ -3,7 +3,7 @@ import { setupTest } from 'ember-qunit';
 
 import sinon from 'sinon';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 
 module('Unit | Route | sites/site/index', function (hooks) {
   setupTest(hooks);

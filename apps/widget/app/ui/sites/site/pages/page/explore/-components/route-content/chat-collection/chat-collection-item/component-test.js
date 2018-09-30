@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 
 module('Integration | Component | sites/site/pages/page/explore/-components/route-content/chat-collection/chat-collection-item', function (hooks) {
   setupRenderingTest(hooks);

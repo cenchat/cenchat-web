@@ -1,0 +1,74 @@
+.index_route-content {
+  flex: 1;
+}
+
+.index_route-content__cover {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-content: center;
+}
+
+@media (min-width: 960px) {
+  .index_route-content__cover {
+    max-width: 600px;
+    padding-top: 56px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.index_route-content__cover-title {
+  padding: 48px 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: var(--font-size-56);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-56);
+  text-align: center;
+  color: #fff;
+  background-color: var(--cenchat-brand-color);
+  border-radius: var(--border-radius-square);
+}
+
+.index_route-content__cover-description {
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-24);
+  text-align: center;
+  color: var(--font-secondary-color);
+}
+
+.index_route-content__cover-try-it-button {
+  margin-right: auto;
+  margin-bottom: 48px;
+  margin-left: auto;
+}
+
+.index_route-content__marketing {
+  background-color: #fafafa;
+}
+
+.index_route-content__marketing-title {
+  padding: 48px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-34);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-34);
+  text-align: center;
+}
+
+.index_route-content__benefits {
+  padding: 16px;
+}
+
+.index_route-content__benefit {
+  border: 1px solid var(--divider-color);
+  border-radius: var(--border-radius-square);
+  background-color: #fff;
+}

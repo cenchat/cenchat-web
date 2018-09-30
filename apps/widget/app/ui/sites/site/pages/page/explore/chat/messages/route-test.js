@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 import sinon from 'sinon';
 
 module('Unit | Route | sites/site/pages/page/explore/chat/messages', function (hooks) {

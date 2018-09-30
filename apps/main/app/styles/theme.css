@@ -1,0 +1,48 @@
+.cenchat-theme {
+  /* Colors */
+  --dark-87: rgba(0, 0, 0, 0.87);
+  --dark-54: rgba(0, 0, 0, 0.54);
+  --dark-38: rgba(0, 0, 0, 0.38);
+  --dark-12: rgba(0, 0, 0, 0.12);
+
+  /* Scaffolding */
+  --brand-color: var(--cenchat-brand-color);
+  --body-background-color: #fff;
+  --surface-background-color: #fff;
+  --active-background-color: #bdbdbd;
+  --hover-background-color: #eee;
+  --disabled-color: var(--dark-38);
+  --error-color: #ff5252;
+  --indicator-color: var(--brand-color);
+
+  /* Buttons */
+  --button-disabled-text-color: var(--disabled-color);
+
+  /* Divider */
+  --divider-color: var(--dark-12);
+
+  /* List */
+  --list-item-disabled-text-color: var(--disabled-color);
+  --list-item-hover-background-color: var(--hover-background-color);
+  --list-item-active-background-color: var(--active-background-color);
+
+  /* Placeholder */
+  --placeholder-color: var(--dark-12);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--brand-color);
+
+  /* Text fields */
+  --text-field-background-color: rgba(153, 153, 153, 0.1);
+
+  /* Toast */
+  --toast-text-color: #fff;
+  --toast-background-color: #303030;
+  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Typography */
+  --font-primary-color: var(--dark-87);
+  --font-secondary-color: var(--dark-54);
+  --font-hint-color: var(--dark-38);
+}

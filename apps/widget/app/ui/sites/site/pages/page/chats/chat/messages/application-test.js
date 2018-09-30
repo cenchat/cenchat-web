@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit } from '@ember/test-helpers';
 
-import { setupApplicationTestState } from '@cenchat/core/test-support';
+import { setupApplicationTestState } from '@cenchat/firebase/test-support';
 
 module('Acceptance | sites/site/pages/page/chats/chat/messages', function (hooks) {
   setupApplicationTest(hooks);

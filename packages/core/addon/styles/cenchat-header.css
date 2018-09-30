@@ -4,7 +4,6 @@
 
 .cenchat-header__logo {
   width: auto;
-  height: 32px;
-  padding: 6px 20px;
+  height: 20px;
   fill: var(--cenchat-brand-color);
 }

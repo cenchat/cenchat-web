@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import sinon from 'sinon';
 
-import { setupApplicationTestState } from '@cenchat/core/test-support';
+import { setupApplicationTestState } from '@cenchat/firebase/test-support';
 
 module('Acceptance | sites/site/index', function (hooks) {
   setupApplicationTest(hooks);

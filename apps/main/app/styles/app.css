@@ -1,0 +1,27 @@
+@import "card.css";
+@import "layout.css";
+@import "legal.css";
+@import "pod-styles.css";
+@import "theme.css";
+
+html {
+  font-family: var(--font-family);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--cenchat-brand-color);
+}
+
+a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
+  color: var(--cenchat-brand-color);
+}
+
+strong {
+  font-weight: 500;
+}

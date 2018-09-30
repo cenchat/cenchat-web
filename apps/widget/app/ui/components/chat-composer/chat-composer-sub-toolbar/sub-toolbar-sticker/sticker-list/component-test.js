@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 import sinon from 'sinon';
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 
 module('Integration | Component | chat-composer/chat-composer-sub-toolbar/sub-toolbar-sticker/sticker-list', function (hooks) {
   setupRenderingTest(hooks);

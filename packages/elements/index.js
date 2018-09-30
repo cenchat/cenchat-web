@@ -1,6 +1,5 @@
 /* eslint-env node */
 
-
 module.exports = {
   name: '@cenchat/elements',
   options: {

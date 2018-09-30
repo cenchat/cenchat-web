@@ -3,7 +3,8 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState, spyComponent } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
+import { spyComponent } from '@cenchat/core/test-support';
 import sinon from 'sinon';
 
 module('Integration | Component | sites/site/pages/page/explore/-components/route-content/chat-collection', function (hooks) {

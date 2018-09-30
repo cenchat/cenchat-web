@@ -1,0 +1,26 @@
+.index_route-footer {
+  padding: 40px 16px;
+  background-color: #fafafa;
+}
+
+.index_route-footer__wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.index_route-footer__link {
+  font-size: var(--font-size-12);
+  color: var(--font-primary-color);
+  text-decoration: none;
+}
+
+.index_route-footer__link:not(:last-child) {
+  margin-right: 8px;
+}
+
+.index_route-footer__link--right {
+  margin-left: auto;
+}

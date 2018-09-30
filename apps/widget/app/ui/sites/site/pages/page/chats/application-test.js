@@ -2,7 +2,7 @@ import { click, visit, waitFor } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import { setupApplicationTestState } from '@cenchat/core/test-support';
+import { setupApplicationTestState } from '@cenchat/firebase/test-support';
 
 module('Acceptance | sites/site/pages/page/chats', function (hooks) {
   setupApplicationTest(hooks);

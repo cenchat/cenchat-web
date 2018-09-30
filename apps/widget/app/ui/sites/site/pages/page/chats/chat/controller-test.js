@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 
 module('Unit | Controller | sites/site/pages/page/chats/chat', function (hooks) {
   setupTest(hooks);
