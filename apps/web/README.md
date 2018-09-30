@@ -1,6 +1,6 @@
-# Cenchat Main
+# Web
 
-Web app for [cenchat.com](https://cenchat.com)
+Source for [web.cenchat.com](https://web.cenchat.com)
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd main`
+* `cd web`
 * `npm install`
 
 ## Running / Development

@@ -2,8 +2,8 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'main',
-    podModulePrefix: 'main/ui',
+    modulePrefix: 'web',
+    podModulePrefix: 'web/ui',
     environment,
     rootURL: '/',
     locationType: 'auto',
