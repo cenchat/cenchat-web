@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 
 module('Integration | Component | chat-content/chat-content-time-group-list/time-group-list-item/item-author-list/author-list-item/item-message-list/message-list-item', function (hooks) {
   setupRenderingTest(hooks);

@@ -76,6 +76,7 @@
     "paths": [
       "../../packages/core",
       "../../packages/elements",
+      "../../packages/firebase",
       "../../packages/utils"
     ]
   }

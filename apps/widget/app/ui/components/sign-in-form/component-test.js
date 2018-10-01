@@ -3,7 +3,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-import { setupTestState, spyComponent } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
+import { spyComponent } from '@cenchat/core/test-support';
 
 module('Integration | Component | sign-in-form', function (hooks) {
   setupRenderingTest(hooks);

@@ -8,7 +8,7 @@ import {
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import { setupApplicationTestState } from '@cenchat/core/test-support';
+import { setupApplicationTestState } from '@cenchat/firebase/test-support';
 
 module('Acceptance | sites/site/pages/page/my-chat', function (hooks) {
   setupApplicationTest(hooks);
