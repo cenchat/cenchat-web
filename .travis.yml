@@ -24,6 +24,8 @@ before_install:
   - npm install
   - cd ../elements
   - npm install
+  - cd ../firebase
+  - npm install
   - cd ../esw-fcm
   - npm install
   - cd ../utils
