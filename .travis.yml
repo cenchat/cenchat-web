@@ -47,9 +47,9 @@ script:
   - npm run lint:js
   - npm test
   - cd ../web
-  # - npm run lint:hbs
-  # - npm run lint:js
-  # - npm test
+  - npm run lint:hbs
+  - npm run lint:js
+  - npm test
   - cd ../widget
   - npm run lint:hbs
   - npm run lint:js
