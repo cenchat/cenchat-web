@@ -3,7 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 import sinon from 'sinon';
 
 import { setupTestState } from '@cenchat/firebase/test-support';

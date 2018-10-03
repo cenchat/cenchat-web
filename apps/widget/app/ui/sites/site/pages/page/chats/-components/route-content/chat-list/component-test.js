@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 import sinon from 'sinon';
 
 module('Integration | Component | sites/site/pages/page/chats/-components/route-content/chat-list', function (hooks) {

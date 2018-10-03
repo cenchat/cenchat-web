@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 import sinon from 'sinon';
 
 module('Integration | Component | chat-composer/chat-composer-sub-toolbar/sub-toolbar-gif', function (hooks) {

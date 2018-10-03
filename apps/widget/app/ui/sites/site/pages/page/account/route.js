@@ -15,7 +15,7 @@ export default Route.extend({
   /**
    * @override
    */
-  model(params) {
-    return this.store.get('user', params.user_id);
+  model() {
+    return this.modelFor('sites.site.pages.page');
   },
 });

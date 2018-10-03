@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('sign-in');
+  this.route('chats');
 });
 
 export default Router;

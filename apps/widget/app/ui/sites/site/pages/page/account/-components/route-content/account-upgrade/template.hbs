@@ -3,10 +3,5 @@
     <h3>Upgrade to permanent account</h3>
   {{/ce-subheader}}
 
-  {{email-link-auth
-    --firebase=(lookup "service:firebase")
-    --router=(lookup "service:router")
-    --session=(lookup "service:session")
-    --redirectUrl="http://localhost:4200/sites/site_a/pages/page_a"
-  }}
+  {{sign-in-form --page=--page}}
 </section>

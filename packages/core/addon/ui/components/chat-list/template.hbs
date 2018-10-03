@@ -1,0 +1,23 @@
+<div class="layout__section layout__section--headerless">
+  {{#ani-each --chats key="id" tagName="ul" class="card list" as |chat|}}
+    {{chat-list/chat-list-item
+      --session=(lookup "service:session")
+      --chat=chat
+      --urlPrefix=--urlPrefix
+    }}
+  {{else}}
+    <p class="empty-state" data-test-chat-list="empty-state">
+      No chats as of the moment
+    </p>
+  {{/ani-each}}
+
+  {{#if (eq --chats.length --chatLimit)}}
+    {{#ce-button
+      class="chat-list__more-button"
+      data-test-chat-list="more-button"
+      --onClick=(action --onLoadMoreChatsClick)
+    }}
+      More
+    {{/ce-button}}
+  {{/if}}
+</div>

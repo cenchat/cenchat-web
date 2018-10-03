@@ -1,0 +1,27 @@
+<li class="list__item" data-test-chat-list-item={{--chat.id}}>
+  <a class="list__action" href={{href-to --urlPrefix --chat.id}}>
+    {{ce-image
+      class="list__avatar list__avatar--circle"
+      data-test-chat-list-item="author-photo"
+      src=(get-user-photo --chat.creator)
+      alt=(get-user-display-name --chat.creator)
+    }}
+
+    <div class="list__multi-line-content">
+      <h2 class="list__primary-text" data-test-chat-list-item="title">
+        {{get-user-display-name --chat.creator}}
+      </h2>
+
+      <p class="list__secondary-text" data-test-chat-list-item="description">
+        {{this.description}}
+      </p>
+    </div>
+
+    <time
+      class="chat-list-item__timestamp"
+      data-test-chat-list-item="timestamp"
+    >
+      {{moment-from --chat.lastActivityTimestamp}}
+    </time>
+  </a>
+</li>

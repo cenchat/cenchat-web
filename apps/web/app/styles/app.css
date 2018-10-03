@@ -1,3 +1,37 @@
-body {
-  display: block;
+@import "card.css";
+@import "empty-state.css";
+@import "pod-styles.css";
+@import "theme.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+}
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  color: var(--font-primary-color);
+  background-color: var(--body-background-color);
+}
+
+a {
+  color: var(--brand-color);
+}
+
+a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
+  color: var(--brand-color);
+}
+
+.ce-navbar ~ .ce-toast {
+  margin-bottom: 52px;
+}
+
+strong {
+  font-weight: 500;
 }

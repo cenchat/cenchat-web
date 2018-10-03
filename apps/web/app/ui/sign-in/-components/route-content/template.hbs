@@ -1,0 +1,9 @@
+<main class="sign-in_route-content">
+  {{email-link-auth
+    class="sign-in_route-content__email-link-auth"
+    --firebase=(lookup "service:firebase")
+    --router=(lookup "service:router")
+    --session=(lookup "service:session")
+    --redirectUrl=redirectUrl
+  }}
+</main>
