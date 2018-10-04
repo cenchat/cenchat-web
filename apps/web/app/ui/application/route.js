@@ -44,8 +44,6 @@ export default Route.extend({
       } else {
         await this.get('session').close();
       }
-    } else {
-      this.transitionTo('sign-in');
     }
 
     this.store.subscribe(async () => {
@@ -53,5 +51,16 @@ export default Route.extend({
 
       this.set('session.content.model', user);
     });
+  },
+
+  /**
+   * @override
+   */
+  redirect() {
+    if (this.get('session.isAuthenticated')) {
+      this.transitionTo('chats');
+    } else {
+      this.transitionTo('sign-in');
+    }
   },
 });

@@ -1,1 +1,13 @@
+{{#ce-top-bar}}
+  <h1>Chats</h1>
+{{/ce-top-bar}}
+
+<main>
+  {{chat-list
+    --chats=this.model
+    --chatRouteName="chats.chat"
+    --chatLimit=this.chatLimit
+  }}
+</main>
+
 {{outlet}}

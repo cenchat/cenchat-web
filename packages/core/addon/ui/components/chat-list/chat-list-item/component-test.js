@@ -12,7 +12,7 @@ module('Integration | Component | chat-list/chat-list-item', function (hooks) {
     await setupTestState(this);
 
     this.set('chat', await this.store.get('chat', 'site_c__page_a__user_a'));
-    this.set('urlPrefix', 'foo.bar');
+    this.set('chatRouteName', 'foo.bar');
   });
 
   test('should show chat', async function (assert) {
@@ -23,7 +23,7 @@ module('Integration | Component | chat-list/chat-list-item', function (hooks) {
       {{chat-list/chat-list-item
         --session=(lookup 'service:session')
         --chat=chat
-        --urlPrefix=urlPrefix
+        --chatRouteName=chatRouteName
       }}
     `);
 
