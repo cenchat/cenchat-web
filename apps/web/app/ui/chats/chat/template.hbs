@@ -1,0 +1,14 @@
+<section class="layout">
+  {{#ce-top-bar}}
+    <h2>Chat</h2>
+  {{/ce-top-bar}}
+
+  {{outlet}}
+
+  {{chat-composer
+    class="layout__toolbar"
+    --session=(lookup "service:session")
+    --chat=this.model
+    --onSendMessageClick=(action this.handleSendMessageClick)
+  }}
+</section>

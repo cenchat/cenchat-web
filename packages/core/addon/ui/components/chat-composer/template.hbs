@@ -1,0 +1,25 @@
+<div class="chat-composer {{class}}">
+  {{#if this.isReadOnly}}
+    <div
+      class="chat-composer__read-only-banner"
+      data-test-chat-composer="read-only-banner"
+    >
+      Read only
+    </div>
+  {{/if}}
+
+  {{chat-composer/chat-composer-main-toolbar
+    --isComposingDisabled=(or (not --session.isAuthenticated) this.isReadOnly)
+    --isSubToolbarVisible=this.isSubToolbarVisible
+    --onShowSubToolbarClick=(action this.handleShowSubToolbarClick)
+    --onHideSubToolbarClick=(action this.handleHideSubToolbarClick)
+    --onSendMessageClick=(action this.handleSendMessageClick)
+  }}
+
+  {{#if this.isSubToolbarVisible}}
+    {{chat-composer/chat-composer-sub-toolbar
+      --onStickerClick=(action this.handleSendMessageClick)
+      --onGifClick=(action this.handleSendMessageClick)
+    }}
+  {{/if}}
+</div>

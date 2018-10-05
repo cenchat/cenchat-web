@@ -1,0 +1,11 @@
+<div>
+  {{chat-composer/chat-composer-sub-toolbar/sub-toolbar-sticker/sticker-pack-list
+    --stickerPacks=--session.model.stickerPacks
+    --selectedStickerPack=this.selectedStickerPack
+    --onStickerPackClick=(action this.handleStickerPackClick)
+  }}
+  {{chat-composer/chat-composer-sub-toolbar/sub-toolbar-sticker/sticker-list
+    --stickers=this.selectedStickerPack.stickers
+    --onStickerClick=(action --onStickerClick)
+  }}
+</div>

@@ -34,7 +34,7 @@
     max-width: 568px;
     min-width: 288px;
     margin: 16px;
-    transform: translateY(calc(100% + 32px));
+    transform: translateY(calc(210% + 32px));
   }
 }
 

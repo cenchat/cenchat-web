@@ -7,7 +7,7 @@
 }
 
 @media (min-width: 960px) {
-  .ce-navbar {
+  /* .ce-navbar {
     display: block;
     width: auto;
   }
@@ -16,7 +16,7 @@
     display: block;
     height: 64px;
     content: '';
-  }
+  } */
 }
 
 .ce-navbar .ce-icon-link-button {

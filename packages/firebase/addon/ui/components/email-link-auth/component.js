@@ -61,7 +61,6 @@ export default Component.extend({
       } else if (error.code === 'auth/invalid-action-code') {
         toast('Invalid sign in link');
       } else {
-        console.log(error);
         toast('Couldn\'t sign in. Try again later.');
       }
     }

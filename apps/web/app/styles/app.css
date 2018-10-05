@@ -1,5 +1,6 @@
 @import "card.css";
 @import "empty-state.css";
+@import "layout.css";
 @import "pod-styles.css";
 @import "theme.css";
 
@@ -15,6 +16,7 @@ html {
 
 .app {
   position: relative;
+  display: flex;
   min-height: 100vh;
   color: var(--font-primary-color);
   background-color: var(--body-background-color);

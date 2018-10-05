@@ -1,13 +1,13 @@
-{{#ce-top-bar}}
-  <h1>Chats</h1>
-{{/ce-top-bar}}
+<section class="layout">
+  {{#ce-top-bar}}
+    <h1>Chats</h1>
+  {{/ce-top-bar}}
 
-<main>
-  {{chat-list
+  {{chats/-components/route-content
     --chats=this.model
-    --chatRouteName="chats.chat"
     --chatLimit=this.chatLimit
+    --onLoadMoreChatsClick=(action this.handleLoadMoreChatsClick)
   }}
-</main>
+</section>
 
 {{outlet}}

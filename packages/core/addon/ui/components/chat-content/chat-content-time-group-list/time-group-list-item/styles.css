@@ -1,0 +1,11 @@
+.chat-content-time-group-list-item__heading {
+  display: block;
+  height: 48px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-12);
+  font-weight: normal;
+  line-height: 48px;
+  color: var(--font-secondary-color);
+  text-align: center;
+}

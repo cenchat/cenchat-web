@@ -17,7 +17,7 @@ module('Integration | Component | sites/site/pages/page/chats/-components/route-
     this.set('onLoadMoreChatsClick', () => {});
   });
 
-  test('should show <ChatCollection />', async function (assert) {
+  test('should show <ChatList />', async function (assert) {
     assert.expect(2);
 
     // Arrange
