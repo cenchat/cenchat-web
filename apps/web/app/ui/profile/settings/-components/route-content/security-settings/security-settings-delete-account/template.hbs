@@ -1,0 +1,53 @@
+<article class="card">
+  <h3 class="card__heading">Delete account</h3>
+
+  {{#if this.isConfirmDeleteAccountVisible}}
+    <p
+      class="card__message"
+      data-test-security-settings-delete-account="confirm-message"
+    >
+      When you delete your account, you'll be removed from being an admin to any registered sites that you're apart of. Those sites will continue to exists even if there are no admins left. In addition, messages made by your account on other sites will be kept but anonymized to maintain the context of the discussion.
+    </p>
+
+    <p
+      class="card__message"
+      data-test-security-settings-delete-account="confirm-message"
+    >
+      <em>It make take up to 24 hours for your account to be completely deleted.</em>
+    </p>
+
+    {{#ce-form class="card__wrapper" --onSubmit=(action this.deleteAccount)}}
+      {{ce-field
+        class="card__field"
+        data-test-security-settings-delete-account="confirm-field"
+        type="text"
+        required=true
+        label=(concat "To confirm deletion, type " this.confirmationKey " below")
+        --onInput=(action this.setRepeatConfirmationKey)
+      }}
+
+      <div class="card__action">
+        {{#ce-button
+          data-test-security-settings-delete-account="confirm-delete-button"
+          type="submit"
+          disabled=(not-eq this.confirmationKey this.repeatConfirmationKey)
+        }}
+          Confirm delete
+        {{/ce-button}}
+      </div>
+    {{/ce-form}}
+  {{else}}
+    <p class="card__message">
+      Permanently delete your account and all of your content
+    </p>
+
+    <div class="card__action">
+      {{#ce-button
+        data-test-security-settings-delete-account="delete-button"
+        --onClick=(action this.showConfirmDeleteAccount)
+      }}
+        Delete
+      {{/ce-button}}
+    </div>
+  {{/if}}
+</article>

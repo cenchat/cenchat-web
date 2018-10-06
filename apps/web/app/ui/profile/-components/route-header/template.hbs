@@ -1,0 +1,41 @@
+{{#ce-top-bar class="layout__header"}}
+  <h1 data-test-route-header="name">{{--user.displayName}}</h1>
+
+  {{ce-icon-link-button
+    data-test-route-header="edit-link"
+    href=(href-to "profile.edit")
+    title="Edit profile"
+    aria-label="Edit profile"
+    icon="edit"
+  }}
+
+  {{#ce-dropdown-button
+    data-test-route-header="more-button"
+    icon="more_vert"
+    position="ll"
+  }}
+    <li class="list__item">
+      <a
+        class="list__action"
+        data-test-route-header="settings-link"
+        href={{href-to "profile.settings"}}
+      >
+        <div>
+          <div class="list__single-line-content">Settings</div>
+        </div>
+      </a>
+    </li>
+
+    <li class="list__item">
+      <button
+        class="list__action"
+        data-test-route-header="sign-out-button"
+        onclick={{action --onSignOutClick}}
+      >
+        <div>
+          <div class="list__single-line-content">Sign out</div>
+        </div>
+      </button>
+    </li>
+  {{/ce-dropdown-button}}
+{{/ce-top-bar}}

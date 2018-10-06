@@ -11,6 +11,7 @@
 @media (min-width: 960px) {
   .liquid-fire-side-nav-outlet {
     position: static;
+    z-index: initial;
     flex: 1;
   }
 }

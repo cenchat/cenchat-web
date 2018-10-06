@@ -1,0 +1,10 @@
+<div class="section__item">
+  {{#ce-subheader class="section__sub-header"}}
+    <h2>Security</h2>
+  {{/ce-subheader}}
+
+  {{profile/settings/-components/route-content/security-settings/security-settings-delete-account
+    --router=(lookup "service:router")
+    --onDeleteAccountToastCompletion=(action --onDeleteAccountToastCompletion)
+  }}
+</div>

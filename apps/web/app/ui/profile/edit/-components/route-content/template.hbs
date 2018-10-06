@@ -1,0 +1,46 @@
+{{#ce-form class="card" --onSubmit=(action --onProfileFormSubmit profile)}}
+  {{ce-field
+    class="card__field"
+    name="displayName"
+    data-test-route-content="display-name-field"
+    type="text"
+    maxlength="100"
+    value=this.profile.displayName
+    required=true
+    label="Full name"
+    --onInput=(action this.handleProfileFormDataChange)
+  }}
+  {{ce-field
+    class="card__field"
+    name="shortBio"
+    data-test-route-content="short-bio-field"
+    type="text"
+    maxlength="160"
+    value=this.profile.shortBio
+    label="Short bio"
+    --onInput=(action this.handleProfileFormDataChange)
+  }}
+  {{ce-field
+    class="card__field"
+    name="username"
+    data-test-route-content="username-field"
+    type="text"
+    title="Use at least 3 characters and it should only contain letters, numbers, and underscores"
+    maxlength="15"
+    pattern="[A-Za-z\d]\w{1,13}[A-Za-z\d]"
+    value=this.profile.username
+    required=true
+    label="Username"
+    --onInput=(action this.handleProfileFormDataChange)
+  }}
+
+  <div class="card__action">
+    {{#ce-button
+      data-test-route-content="submit-button"
+      type="submit"
+      disabled=(not (and this.profile.displayName this.profile.username))
+    }}
+      Save
+    {{/ce-button}}
+  </div>
+{{/ce-form}}

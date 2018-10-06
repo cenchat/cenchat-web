@@ -1,0 +1,16 @@
+<section class="section liquid-fire-side-nav">
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+      data-test-profile-edit="navigate-back-link"
+      href=(href-to "profile")
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"
+    }}
+    <h2>Settings</h2>
+  {{/ce-top-bar}}
+
+  {{profile/settings/-components/route-content
+    --onDeleteAccountToastCompletion=(action this.handleDeleteAccountToastCompletion)
+  }}
+</section>

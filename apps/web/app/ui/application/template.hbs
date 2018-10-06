@@ -1,19 +1,16 @@
 {{#if this.session.isAuthenticated}}
   {{#ce-navbar class="layout__nav"}}
     {{ce-icon-link-button
-      data-test-application="chats-link"
-      href="foo"
+      href=(href-to "chats")
       title="Navigate to chats page"
       aria-label="Navigate to chats page"
       icon="chat"
     }}
-
     {{ce-icon-link-button
-      data-test-application="sites-link"
-      href="foo"
-      title="Navigate to sites page"
-      aria-label="Navigate to sites page"
-      icon="domain"
+      href=(href-to "profile")
+      title="Navigate to profile page"
+      aria-label="Navigate to profile page"
+      icon="account_circle"
     }}
   {{/ce-navbar}}
 {{/if}}

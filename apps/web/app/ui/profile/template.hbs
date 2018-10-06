@@ -1,0 +1,9 @@
+<section class="section">
+  {{profile/-components/route-header
+    --user=this.model
+    --onSignOutClick=(action this.handleSignOutClick)
+  }}
+  {{profile/-components/route-content --user=this.model}}
+</section>
+
+{{liquid-outlet class="liquid-fire-side-nav-outlet"}}

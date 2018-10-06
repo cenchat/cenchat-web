@@ -1,0 +1,42 @@
+.profile_route-content-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile_route-content-user-info__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+
+.profile_route-content-user-info__photo:last-child {
+  margin-bottom: 24px;
+}
+
+.profile_route-content-user-info__username,
+.profile_route-content-user-info__short-bio {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-24);
+  color: var(--font-primary-color);
+  text-align: center;
+}
+
+.profile_route-content-user-info__username {
+  padding: 24px 16px 8px;
+}
+
+.profile_route-content-user-info__username:only-of-type {
+  padding-bottom: 16px;
+}
+
+.profile_route-content-user-info__short-bio {
+  padding: 0 16px 16px;
+}
+
+.profile_route-content-user-info__short-bio:only-of-type {
+  padding-top: 24px;
+}

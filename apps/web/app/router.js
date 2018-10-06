@@ -13,6 +13,10 @@ Router.map(function() {
       this.route('messages');
     });
   });
+  this.route('profile', function() {
+    this.route('edit');
+    this.route('settings');
+  });
 });
 
 export default Router;

@@ -8,4 +8,18 @@ export default function () {
     this.use('toLeft'),
     this.reverse('toRight'),
   );
+
+  this.transition(
+    this.fromRoute('profile.index'),
+    this.toRoute('profile.edit'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
+
+  this.transition(
+    this.fromRoute('profile.index'),
+    this.toRoute('profile.settings'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
 }
