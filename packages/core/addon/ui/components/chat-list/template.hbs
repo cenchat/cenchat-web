@@ -1,8 +1,9 @@
-<div class="layout__section layout__section--headerless">
+<div class={{class}}>
   {{#ani-each --chats key="id" tagName="ul" class="card list" as |chat|}}
     {{chat-list/chat-list-item
       --session=(lookup "service:session")
       --chat=chat
+      --isPageVisible=--isPageVisible
       --chatRouteName=--chatRouteName
     }}
   {{else}}
@@ -12,7 +13,6 @@
   {{/ani-each}}
 
   {{#if (eq --chats.length --chatLimit)}}
-    foobar
     {{#ce-button
       class="chat-list__more-button"
       data-test-chat-list="more-button"

@@ -12,6 +12,7 @@ module('Integration | Component | chat-list/chat-list-item', function (hooks) {
     await setupTestState(this);
 
     this.set('chat', await this.store.get('chat', 'site_c__page_a__user_a'));
+    this.set('isPageVisible', false);
     this.set('chatRouteName', 'foo.bar');
   });
 
@@ -23,14 +24,55 @@ module('Integration | Component | chat-list/chat-list-item', function (hooks) {
       {{chat-list/chat-list-item
         --session=(lookup 'service:session')
         --chat=chat
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
       }}
     `);
 
     // Assert
-    assert.dom('[data-test-chat-list-item="author-photo"]').hasAttribute('src', 'user_a.jpg');
-    assert.dom('[data-test-chat-list-item="title"]').hasText('User A');
+    assert.dom('[data-test-chat-list-item="avatar"]').hasAttribute('src', 'site_c.jpg');
+    assert.dom('[data-test-chat-list-item="title"]').hasText('Site C');
     assert.dom('[data-test-chat-list-item="description"]').hasText('User C: Message C');
     assert.dom('[data-test-chat-list-item="timestamp"]').exists();
+  });
+
+  test('should use creator as avatar when current user is not the creator', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('session.content.model.id', 'user_c');
+
+    // Act
+    await render(hbs`
+      {{chat-list/chat-list-item
+        --session=(lookup 'service:session')
+        --chat=chat
+        --isPageVisible=isPageVisible
+        --chatRouteName=chatRouteName
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-chat-list-item="avatar"]').hasAttribute('src', 'user_a.jpg');
+  });
+
+  test('should use creator display name as title when current user is not the creator', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('session.content.model.id', 'user_c');
+
+    // Act
+    await render(hbs`
+      {{chat-list/chat-list-item
+        --session=(lookup 'service:session')
+        --chat=chat
+        --isPageVisible=isPageVisible
+        --chatRouteName=chatRouteName
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-chat-list-item="title"]').hasText('User A');
   });
 });

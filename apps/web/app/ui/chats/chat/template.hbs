@@ -1,12 +1,14 @@
-<section class="layout">
-  {{#ce-top-bar}}
-    <h2>Chat</h2>
-  {{/ce-top-bar}}
+<section class="section liquid-fire-side-nav">
+  {{chats/chat/-components/route-header
+    --session=(lookup "service:session")
+    --chat=this.model
+  }}
 
-  {{outlet}}
+  <div class="section__content">
+    {{outlet}}
+  </div>
 
   {{chat-composer
-    class="layout__toolbar"
     --session=(lookup "service:session")
     --chat=this.model
     --onSendMessageClick=(action this.handleSendMessageClick)

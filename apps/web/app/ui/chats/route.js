@@ -118,6 +118,9 @@ export default Route.extend({
             },
           })
         ),
+
+        page: chat => db.doc(`pages/${chat.page}`).get(),
+        site: chat => db.doc(`sites/${chat.site}`).get(),
       },
     });
   },

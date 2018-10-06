@@ -1,20 +1,48 @@
 <li class="list__item" data-test-chat-list-item={{--chat.id}}>
   <a class="list__action" href={{href-to --chatRouteName --chat.id}}>
-    {{ce-image
-      class="list__avatar list__avatar--circle"
-      data-test-chat-list-item="author-photo"
-      src=(get-user-photo --chat.creator)
-      alt=(get-user-display-name --chat.creator)
-    }}
+    {{#if (eq --chat.creator.id --session.model.id)}}
+      {{ce-image
+        class="list__avatar list__avatar--circle"
+        data-test-chat-list-item="avatar"
+        src=(get-site-image --chat.site)
+        alt=--chat.site.displayName
+      }}
+    {{else}}
+      {{ce-image
+        class="list__avatar list__avatar--circle"
+        data-test-chat-list-item="avatar"
+        src=(get-user-photo --chat.creator)
+        alt=(get-user-display-name --chat.creator)
+      }}
+    {{/if}}
 
     <div class="list__multi-line-content">
-      <h2 class="list__primary-text" data-test-chat-list-item="title">
-        {{get-user-display-name --chat.creator}}
+      <h2
+        class="list__primary-text list__wrap-text"
+        data-test-chat-list-item="title"
+      >
+        {{#if (eq --chat.creator.id --session.model.id)}}
+          {{--chat.site.displayName}}
+        {{else}}
+          {{get-user-display-name --chat.creator}}
+        {{/if}}
       </h2>
 
-      <p class="list__secondary-text" data-test-chat-list-item="description">
+      <p
+        class="list__secondary-text list__wrap-text"
+        data-test-chat-list-item="description"
+      >
         {{this.description}}
       </p>
+
+      {{#if (and --isPageVisible --chat.page.title)}}
+        <p
+          class="list__secondary-text list__wrap-text"
+          data-test-chat-list-item="page-title"
+        >
+          @ {{--chat.page.title}}
+        </p>
+      {{/if}}
     </div>
 
     <time

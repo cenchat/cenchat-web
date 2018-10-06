@@ -1,5 +1,7 @@
 .chat-composer {
   flex-direction: column;
+  background-color: var(--surface-background-color);
+  border-top: 1px solid var(--divider-color);
 }
 
 .chat-composer__read-only-banner {

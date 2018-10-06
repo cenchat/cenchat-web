@@ -14,6 +14,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await setupTestState(this);
 
     this.set('chats', await this.store.getAll('chat'));
+    this.set('isPageVisible', false);
     this.set('chatRouteName', 'foo.bar');
     this.set('chatLimit', 12);
     this.set('onLoadMoreChatsClick', () => {});
@@ -29,6 +30,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)
@@ -40,6 +42,7 @@ module('Integration | Component | chat-list', function (hooks) {
     assert.deepEqual(spy.componentArgsType, {
       session: 'instance',
       chat: 'object',
+      isPageVisible: 'boolean',
       chatRouteName: 'string',
     });
   });
@@ -54,6 +57,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)
@@ -71,6 +75,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)
@@ -91,6 +96,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)
@@ -108,6 +114,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)
@@ -129,6 +136,7 @@ module('Integration | Component | chat-list', function (hooks) {
     await render(hbs`
       {{chat-list
         --chats=chats
+        --isPageVisible=isPageVisible
         --chatRouteName=chatRouteName
         --chatLimit=chatLimit
         --onLoadMoreChatsClick=(action onLoadMoreChatsClick)

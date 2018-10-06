@@ -1,7 +1,9 @@
 @import "card.css";
 @import "empty-state.css";
 @import "layout.css";
+@import "liquid-fire.css";
 @import "pod-styles.css";
+@import "section.css";
 @import "theme.css";
 
 *,
@@ -12,14 +14,6 @@
 
 html {
   font-family: var(--font-family);
-}
-
-.app {
-  position: relative;
-  display: flex;
-  min-height: 100vh;
-  color: var(--font-primary-color);
-  background-color: var(--body-background-color);
 }
 
 a {

@@ -35,6 +35,7 @@ module('Integration | Component | chats/-components/route-content', function (ho
     assert.ok(spy.calledOnce);
     assert.deepEqual(spy.componentArgsType, {
       chats: 'array',
+      isPageVisible: 'boolean',
       chatRouteName: 'string',
       chatLimit: 'number',
       onLoadMoreChatsClick: 'function',

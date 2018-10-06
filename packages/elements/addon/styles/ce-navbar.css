@@ -7,16 +7,12 @@
 }
 
 @media (min-width: 960px) {
-  /* .ce-navbar {
+  .ce-navbar {
     display: block;
     width: auto;
+    border-top: none;
+    border-right: 1px solid var(--divider-color);
   }
-
-  .ce-navbar::before {
-    display: block;
-    height: 64px;
-    content: '';
-  } */
 }
 
 .ce-navbar .ce-icon-link-button {
