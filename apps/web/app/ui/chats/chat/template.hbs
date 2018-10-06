@@ -4,9 +4,9 @@
     --chat=this.model
   }}
 
-  <div class="section__content">
+  {{#chats/chat/-components/route-content --chat=this.model}}
     {{outlet}}
-  </div>
+  {{/chats/chat/-components/route-content}}
 
   {{chat-composer
     --session=(lookup "service:session")
