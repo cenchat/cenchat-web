@@ -24,6 +24,10 @@ export default Component.extend({
    */
   isReadOnly: computed('args', {
     get() {
+      if (this.args.isReadOnlyDisabled) {
+        return false;
+      }
+
       if (!this.args.chat.id) {
         return false;
       }

@@ -13,7 +13,7 @@ module('Integration | Component | chat-composer', function (hooks) {
     await setupTestState(this);
 
     this.set('chat', await this.store.get('chat', 'site_c__page_a__user_a'));
-    this.set('isReadOnly', false);
+    this.set('isReadOnlyDisabled', false);
     this.set('onSendMessageClick', () => {});
   });
 
@@ -28,11 +28,32 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 
     // Assert
     assert.dom('[data-test-chat-composer="read-only-banner"]').exists();
+  });
+
+  test('should hide read-only banner when current user is not the chat creator and not a site admin and isReadOnlyDisabled is true', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('isReadOnlyDisabled', true);
+    this.set('session.model.id', 'user_b');
+
+    // Act
+    await render(hbs`
+      {{chat-composer
+          --session=session
+          --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
+          --onSendMessageClick=(action onSendMessageClick)}}
+    `);
+
+    // Assert
+    assert.dom('[data-test-chat-composer="read-only-banner"]').doesNotExist();
   });
 
   test('should hide read-only banner when current user is the chat creator', async function (assert) {
@@ -43,6 +64,7 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 
@@ -62,6 +84,7 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 
@@ -80,6 +103,7 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 
@@ -103,6 +127,7 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 
@@ -121,6 +146,7 @@ module('Integration | Component | chat-composer', function (hooks) {
       {{chat-composer
           --session=session
           --chat=chat
+          --isReadOnlyDisabled=isReadOnlyDisabled
           --onSendMessageClick=(action onSendMessageClick)}}
     `);
 

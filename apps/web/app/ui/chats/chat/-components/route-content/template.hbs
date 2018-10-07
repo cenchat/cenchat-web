@@ -1,30 +1,28 @@
-<div class="section__content">
-  {{#if this.isPageLinkVisible}}
-    <aside class="chats-chat_route-content__page-link-container">
-      <div class="chats-chat_route-content__page-link-texts">
-        <div>Chat for:</div>
+{{#if this.isPageLinkVisible}}
+  <aside class="chats-chat_route-content__page-link-container">
+    <div class="chats-chat_route-content__page-link-texts">
+      <div>Chat for:</div>
 
-        <a
-          data-test-route-content="page-link"
-          href="http://{{--chat.site.hostname}}/{{--chat.page.slug}}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {{--chat.page.title}}
-        </a>
-      </div>
+      <a
+        data-test-route-content="page-link"
+        href="http://{{--chat.site.hostname}}/{{--chat.page.slug}}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{--chat.page.title}}
+      </a>
+    </div>
 
-      {{ce-icon-button
-        class="chats-chat_route-content__hide-page-link-button"
-        data-test-route-content="hide-page-link-button"
-        title="Hide page link"
-        aria-label="Hide page link"
-        icon="close"
-        size="small"
-        --onClick=(action this.handleHidePageLinkClick)
-      }}
-    </aside>
-  {{/if}}
+    {{ce-icon-button
+      class="chats-chat_route-content__hide-page-link-button"
+      data-test-route-content="hide-page-link-button"
+      title="Hide page link"
+      aria-label="Hide page link"
+      icon="close"
+      size="small"
+      --onClick=(action this.handleHidePageLinkClick)
+    }}
+  </aside>
+{{/if}}
 
-  {{yield}}
-</div>
+{{yield}}

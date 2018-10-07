@@ -11,6 +11,7 @@
   {{chat-composer
     --session=(lookup "service:session")
     --chat=this.model
+    --isReadOnlyDisabled=true
     --onSendMessageClick=(action this.handleSendMessageClick)
   }}
 </section>
