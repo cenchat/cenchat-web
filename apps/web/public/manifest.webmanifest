@@ -1,0 +1,22 @@
+{
+  "name": "Cenchat",
+  "short_name": "Cenchat",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#fff",
+  "description": "Cenchat is a chat based solution for websites that don't want to bother with moderating comments and responding to the same inquiries over and over again",
+  "icons":[
+    {
+      "src": "assets/images/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "gcm_sender_id": "103953800507"
+}

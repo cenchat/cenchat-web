@@ -20,7 +20,8 @@ module.exports = function (defaults) {
       plugins: ['transform-object-rest-spread'],
     },
     fingerprint: {
-      exclude: ['universal.js'],
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'woff'],
+      replaceExtensions: ['html', 'css', 'js', 'webmanifest'],
     },
     funnel: {
       // TODO: Remove this once Module Unification lands
