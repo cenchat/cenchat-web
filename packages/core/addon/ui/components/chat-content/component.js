@@ -62,9 +62,7 @@ export default Component.extend({
   setupScrollListener() {
     this.set('handleScroll', () => debounce(this, 'processScroll', 150));
 
-    const scrollerElement = this.element.classList.contains('layout__section')
-      ? window
-      : this.element;
+    const scrollerElement = this.args.scroller === 'window' ? window : this.element;
 
     this.set('scrollerElement', scrollerElement);
     this.scrollerElement.addEventListener('scroll', this.handleScroll);

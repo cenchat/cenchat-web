@@ -1,0 +1,32 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-container-background-color);
+}
+
+@media (min-width: 960px) {
+  .section {
+    width: 400px;
+    border-right: 1px solid var(--divider-color);
+  }
+}
+
+.section__content {
+  flex: 1;
+  overflow: auto;
+}
+
+.section__content--headerless {
+  padding-top: 8px;
+}
+
+.section__sub-header {
+  width: 100%;
+  padding-left: 16px;
+}
+
+.section__item:last-of-type {
+  padding-bottom: 8px;
+}

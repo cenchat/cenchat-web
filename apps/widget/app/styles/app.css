@@ -1,9 +1,9 @@
 @import "card.css";
 @import "empty-state.css";
 @import "layout.css";
-@import "outlet.css";
-@import "side-nav.css";
+@import "liquid-fire.css";
 @import "pod-styles.css";
+@import "section.css";
 @import "theme.css";
 
 *,
@@ -16,13 +16,6 @@ html {
   font-family: var(--font-family);
 }
 
-.app {
-  position: relative;
-  min-height: 100vh;
-  color: var(--font-primary-color);
-  background-color: var(--body-background-color);
-}
-
 a {
   color: var(--brand-color);
 }
@@ -32,7 +25,7 @@ a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
 }
 
 .ce-navbar ~ .ce-toast {
-  margin-bottom: 52px;
+  margin-bottom: 60px;
 }
 
 strong {
