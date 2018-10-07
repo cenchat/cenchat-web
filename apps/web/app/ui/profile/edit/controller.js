@@ -38,7 +38,7 @@ export default Controller.extend({
         username: profile.username.toLowerCase(),
       };
 
-      batch.set(db.doc(`users/${this.model.id}`), updatedProfile);
+      batch.set(db.doc(`users/${this.model.id}`), updatedProfile, { merge: true });
       batch.set(db.doc(`usernames/${profile.username.toLowerCase()}`), {
         cloudFirestoreReference: db.doc(`users/${this.model.id}`),
       });

@@ -17,6 +17,6 @@ export default Controller.extend({
    */
   async handleSignOutClick() {
     await this.get('session').close();
-    window.location.href('https://cenchat.com');
+    window.location.href = 'https://cenchat.com';
   },
 });
