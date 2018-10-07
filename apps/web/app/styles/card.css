@@ -6,14 +6,15 @@
   overflow: hidden;
   font-family: var(--font-family);
   background-color: var(--surface-background-color);
-  border-radius: var(--border-radius-square);
+  border-top: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--divider-color);
 }
 
 .card:not(:last-of-type) {
   margin-bottom: 8px;
 }
 
-.card.clickable:hover::before {
+.card--clickable:hover::before {
   position: absolute;
   top: 0;
   right: 0;
@@ -123,6 +124,10 @@
 
 .card__action {
   display: flex;
+}
+
+.card__action--vertical {
+  flex-direction: column;
 }
 
 .card__action .ce-button + [icon],

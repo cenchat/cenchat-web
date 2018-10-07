@@ -1,0 +1,29 @@
+<div class="section__item">
+  {{#ce-subheader class="section__sub-header"}}
+    <h2>Account</h2>
+  {{/ce-subheader}}
+
+  <article class="card">
+    {{#ce-form class="card__wrapper" --onSubmit=(action this.handleFormSubmit)}}
+      {{ce-field
+        class="card__field"
+        data-test-account-settings="email-field"
+        type="email"
+        required=true
+        label="Email"
+        value=this.newEmail
+        --onInput=(action this.handleEmailInput)
+      }}
+
+      <div class="card__action">
+        {{#ce-button
+          data-test-account-settings="update-button"
+          type="submit"
+          disabled=(eq --session.currentUser.email this.newEmail)
+        }}
+          Update
+        {{/ce-button}}
+      </div>
+    {{/ce-form}}
+  </article>
+</div>

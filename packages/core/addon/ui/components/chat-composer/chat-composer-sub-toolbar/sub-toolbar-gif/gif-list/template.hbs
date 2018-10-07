@@ -1,0 +1,20 @@
+{{#ani-each
+  --gifs
+  tagName="ul"
+  class="chat-composer-sub-toolbar-gif-list"
+as |gif|
+}}
+  <li class="chat-composer-sub-toolbar-gif-list__item">
+    <button
+      class="chat-composer-sub-toolbar-gif-list__button"
+      data-test-gif-list={{gif.id}}
+      onclick={{action --onGifClick gif.id "tenor_gif"}}
+    >
+      {{ce-image
+        data-test-gif-list="image"
+        src=gif.imageUrl
+        alt=gif.description
+      }}
+    </button>
+  </li>
+{{/ani-each}}

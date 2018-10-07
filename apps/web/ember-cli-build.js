@@ -14,14 +14,13 @@ module.exports = function (defaults) {
 
   const app = new EmberApp(defaults, {
     'ember-composable-helpers': {
-      only: ['sort-by'],
+      only: ['optional'],
     },
     babel: {
-      plugins: ['transform-async-to-generator', 'transform-object-rest-spread'],
+      plugins: ['transform-object-rest-spread'],
     },
     fingerprint: {
-      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'woff'],
-      replaceExtensions: ['html', 'css', 'js', 'webmanifest'],
+      exclude: ['universal.js'],
     },
     funnel: {
       // TODO: Remove this once Module Unification lands
@@ -34,10 +33,14 @@ module.exports = function (defaults) {
       },
       filter: {
         enabled: true,
-        plugins: [{
-          module: cssnext,
-          options: { features: { customProperties: false } },
-        }],
+        plugins: [
+          {
+            module: cssnext,
+            options: {
+              features: { customProperties: false },
+            },
+          },
+        ],
       },
     },
     stylelint: {

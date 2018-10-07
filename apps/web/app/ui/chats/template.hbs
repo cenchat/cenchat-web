@@ -1,0 +1,13 @@
+<section class="section">
+  {{#ce-top-bar}}
+    <h1>Chats</h1>
+  {{/ce-top-bar}}
+
+  {{chats/-components/route-content
+    --chats=this.model
+    --chatLimit=this.chatLimit
+    --onLoadMoreChatsClick=(action this.handleLoadMoreChatsClick)
+  }}
+</section>
+
+{{liquid-outlet class="liquid-fire-side-nav-outlet"}}

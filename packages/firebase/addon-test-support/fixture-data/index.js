@@ -444,113 +444,54 @@ export default function getFixtureData() {
             username: null,
 
             __collection__: {
-              followers: {
+              chats: {
                 __doc__: {
-                  user_b: {
-                    cloudFirestoreReference: '__ref__:users/user_b',
-                    name: 'user b',
+                  site_c__page_a__user_a: {
+                    creator: '__ref__:users/user_a',
+                    description: 'User C: Message C',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_c',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_c',
                   },
-                },
-              },
 
-              followingComments: {
-                __doc__: {
-                  comment_b: {
-                    attachments: [{
-                      id: 'sticker_a1',
-                      type: 'sticker',
-                    }, {
-                      id: 'sticker_b1',
-                      type: 'sticker',
-                    }],
-                    author: '__ref__:users/user_b',
-                    createdOn: new Date('2017-01-02'),
-                    isDeleted: false,
-                    isLetMeKnow: false,
+                  site_a__page_a__user_b: {
+                    creator: '__ref__:users/user_b',
+                    description: 'User B: Message F',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
                     page: '__ref__:pages/site_a__page_a',
-                    replyTo: '__ref__:comments/comment_a',
-                    root: '__ref__:comments/comment_a',
+                    publicizedTitle: 'Publicized Chat',
                     site: '__ref__:sites/site_a',
-                    status: 'approved',
-                    taggedEntity: null,
-                    text: 'Foobar',
                   },
 
-                  comment_d: {
-                    attachments: [{
-                      id: 'sticker_a1',
-                      type: 'sticker',
-                    }, {
-                      id: 'sticker_b1',
-                      type: 'sticker',
-                    }],
-                    author: '__ref__:users/user_b',
-                    createdOn: new Date('2017-01-04'),
-                    isDeleted: false,
-                    isLetMeKnow: false,
+                  site_a__page_a__user_d: {
+                    creator: '__ref__:users/user_d',
+                    description: 'User D: Message G',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_g',
+                    name: 'Site B',
                     page: '__ref__:pages/site_a__page_a',
-                    replyTo: '__ref__:comments/comment_a',
-                    root: '__ref__:comments/comment_a',
+                    publicizedTitle: 'Publicized Chat',
                     site: '__ref__:sites/site_a',
-                    status: 'approved',
-                    taggedEntity: null,
-                    text: 'Foobar',
                   },
 
-                  comment_e: {
-                    attachments: [{
-                      id: 'sticker_a1',
-                      type: 'sticker',
-                    }, {
-                      id: 'sticker_b1',
-                      type: 'sticker',
-                    }],
-                    author: '__ref__:users/user_b',
-                    createdOn: new Date('2017-01-05'),
-                    isDeleted: false,
-                    isLetMeKnow: false,
+                  site_a__page_a__user_e: {
+                    creator: '__ref__:users/user_e',
+                    description: 'User E: Message F',
+                    isPublicized: false,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
                     page: '__ref__:pages/site_a__page_a',
-                    replyTo: '__ref__:comments/comment_a',
-                    root: '__ref__:comments/comment_a',
+                    publicizedTitle: null,
                     site: '__ref__:sites/site_a',
-                    status: 'approved',
-                    taggedEntity: null,
-                    text: 'Foobar',
-                  },
-
-                  comment_f: {
-                    attachments: [{
-                      id: 'sticker_a1',
-                      type: 'sticker',
-                    }, {
-                      id: 'sticker_b1',
-                      type: 'sticker',
-                    }],
-                    author: '__ref__:users/user_b',
-                    createdOn: new Date('2017-01-02'),
-                    isDeleted: false,
-                    isLetMeKnow: false,
-                    page: '__ref__:pages/site_a__page_a',
-                    replyTo: '__ref__:comments/comment_a',
-                    root: '__ref__:comments/comment_a',
-                    site: '__ref__:sites/site_a',
-                    status: 'rejected',
-                    taggedEntity: null,
-                    text: 'Foobar',
-                  },
-                },
-              },
-
-              followings: {
-                __doc__: {
-                  user_b: {
-                    cloudFirestoreReference: '__ref__:users/user_b',
-                    name: 'user b',
-                  },
-
-                  user_d: {
-                    cloudFirestoreReference: '__ref__:users/user_d',
-                    name: 'user d',
                   },
                 },
               },
@@ -593,66 +534,30 @@ export default function getFixtureData() {
             username: 'user_b',
 
             __collection__: {
-              followers: {
+              chats: {
                 __doc__: {
-                  user_a: {
-                    cloudFirestoreReference: '__ref__:users/user_a',
-                    name: 'user a',
+                  site_c__page_a__user_b: {
+                    creator: '__ref__:users/user_b',
+                    description: 'User C: Message D',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_d',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_c',
                   },
-                },
-              },
 
-              followingComments: {
-                comment_a: {
-                  attachments: [{
-                    id: 'sticker_a1',
-                    type: 'sticker',
-                  }, {
-                    id: 'sticker_b1',
-                    type: 'sticker',
-                  }],
-                  author: '__ref__:users/user_a',
-                  createdOn: new Date('2017-01-01'),
-                  isDeleted: false,
-                  isLetMeKnow: false,
-                  page: '__ref__:pages/site_a__page_a',
-                  replyTo: null,
-                  root: null,
-                  site: '__ref__:sites/site_a',
-                  status: 'approved',
-                  taggedEntity: {
-                    user_b: 'user',
-                  },
-                  text: null,
-                },
-
-                comment_c: {
-                  attachments: [{
-                    id: 'sticker_a1',
-                    type: 'sticker',
-                  }, {
-                    id: 'sticker_b1',
-                    type: 'sticker',
-                  }],
-                  author: '__ref__:users/user_a',
-                  createdOn: new Date('2017-01-03'),
-                  isDeleted: false,
-                  isLetMeKnow: false,
-                  page: '__ref__:pages/site_a__page_a',
-                  replyTo: '__ref__:comments/comment_b',
-                  root: '__ref__:comments/comment_a',
-                  site: '__ref__:sites/site_a',
-                  status: 'approved',
-                  taggedEntity: null,
-                  text: 'Foobar',
-                },
-              },
-
-              followings: {
-                __doc__: {
-                  user_a: {
-                    cloudFirestoreReference: '__ref__:users/user_a',
-                    name: 'user a',
+                  site_a__page_a__user_b: {
+                    creator: '__ref__:users/user_b',
+                    description: 'User B: Message F',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_a',
                   },
                 },
               },
@@ -681,6 +586,82 @@ export default function getFixtureData() {
             username: 'user_c',
 
             __collection__: {
+              chats: {
+                __doc__: {
+                  site_c__page_a__user_a: {
+                    creator: '__ref__:users/user_a',
+                    description: 'User C: Message C',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_c',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_c',
+                  },
+
+                  site_c__page_a__user_b: {
+                    creator: '__ref__:users/user_b',
+                    description: 'User C: Message D',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_d',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_c',
+                  },
+
+                  site_c__page_a__user_d: {
+                    creator: '__ref__:users/user_d',
+                    description: 'User C: Message E',
+                    isPublicized: false,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_e',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: null,
+                    site: '__ref__:sites/site_c',
+                  },
+
+                  site_a__page_a__user_b: {
+                    creator: '__ref__:users/user_b',
+                    description: 'User B: Message F',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_a',
+                  },
+
+                  site_a__page_a__user_d: {
+                    creator: '__ref__:users/user_d',
+                    description: 'User D: Message G',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_g',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_a',
+                  },
+
+                  site_a__page_a__user_e: {
+                    creator: '__ref__:users/user_e',
+                    description: 'User E: Message F',
+                    isPublicized: false,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: null,
+                    site: '__ref__:sites/site_a',
+                  },
+                },
+              },
+
               sitesAsAdmin: {
                 __doc__: {
                   site_a: {
@@ -724,11 +705,30 @@ export default function getFixtureData() {
             username: 'user_d',
 
             __collection__: {
-              followers: {
+              chats: {
                 __doc__: {
-                  user_a: {
-                    cloudFirestoreReference: '__ref__:users/user_a',
-                    name: 'user a',
+                  site_c__page_a__user_d: {
+                    creator: '__ref__:users/user_d',
+                    description: 'User C: Message E',
+                    isPublicized: false,
+                    lastActivityTimestamp: new Date('2018-01-01'),
+                    lastMessage: '__ref__:messages/message_e',
+                    name: 'Site C',
+                    page: '__ref__:pages/site_c__page_a',
+                    publicizedTitle: null,
+                    site: '__ref__:sites/site_c',
+                  },
+
+                  site_a__page_a__user_d: {
+                    creator: '__ref__:users/user_d',
+                    description: 'User D: Message G',
+                    isPublicized: true,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_g',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: 'Publicized Chat',
+                    site: '__ref__:sites/site_a',
                   },
                 },
               },
@@ -757,6 +757,22 @@ export default function getFixtureData() {
             username: 'user_e',
 
             __collection__: {
+              chats: {
+                __doc__: {
+                  site_a__page_a__user_e: {
+                    creator: '__ref__:users/user_e',
+                    description: 'User E: Message F',
+                    isPublicized: false,
+                    lastActivityTimestamp: new Date('2018-01-02'),
+                    lastMessage: '__ref__:messages/message_f',
+                    name: 'Site B',
+                    page: '__ref__:pages/site_a__page_a',
+                    publicizedTitle: null,
+                    site: '__ref__:sites/site_a',
+                  },
+                },
+              },
+
               stickerPacks: {
                 __doc__: {
                   sticker_pack_a: {

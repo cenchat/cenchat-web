@@ -1,92 +1,64 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import EmberObject from '@ember/object';
 
-import { stubPromise } from '@cenchat/core/test-support';
+import { setupTestState } from '@cenchat/firebase/test-support';
 import sinon from 'sinon';
 
-module('Unit | Controller | profile/edit', (hooks) => {
+module('Unit | Controller | profile/edit', function (hooks) {
   setupTest(hooks);
 
-  module('function: handleProfileFormSubmit', () => {
-    test('should update profile', async function (assert) {
-      assert.expect(6);
+  hooks.beforeEach(async function () {
+    await setupTestState(this);
+  });
 
-      // Arrange
-      const saveStub = sinon.stub().returns(stubPromise(true));
-      const model = EmberObject.create({ save: saveStub });
-      const controller = this.owner.lookup('controller:profile/edit');
+  test('should update profile', async function (assert) {
+    assert.expect(5);
 
-      controller.set('model', model);
-      controller.set('transitionToRoute', sinon.stub());
+    // Arrange
+    const model = await this.store.get('user', 'user_a');
+    const controller = this.owner.lookup('controller:profile/edit');
 
-      // Act
-      await controller.handleProfileFormSubmit({
-        displayName: 'Display Name',
-        shortBio: 'Short Bio',
-        username: 'Username',
-      }, {
-        preventDefault: sinon.stub(),
-      });
+    sinon.stub(controller, 'transitionToRoute');
+    controller.set('model', model);
 
-      // Assert
-      assert.equal(model.get('displayName'), 'Display Name');
-      assert.equal(model.get('displayUsername'), 'Username');
-      assert.equal(model.get('name'), 'display name');
-      assert.equal(model.get('shortBio'), 'Short Bio');
-      assert.equal(model.get('username'), 'username');
-      assert.ok(saveStub.calledOnce);
+    // Act
+    await controller.handleProfileFormSubmit({
+      displayName: 'Display Name',
+      shortBio: 'Short Bio',
+      username: 'Username',
+    }, {
+      preventDefault: sinon.stub(),
     });
 
-    test('should transition to profile.index after updating profile', async function (assert) {
-      assert.expect(1);
+    // Assert
+    const updatedProfile = await this.store.get('user', 'user_a');
 
-      // Arrange
-      const transtionToRouteStub = sinon.stub();
-      const model = EmberObject.create({
-        save: sinon.stub().returns(stubPromise(true)),
-      });
-      const controller = this.owner.lookup('controller:profile/edit');
+    assert.equal(updatedProfile.displayName, 'Display Name');
+    assert.equal(updatedProfile.displayUsername, 'Username');
+    assert.equal(updatedProfile.name, 'display name');
+    assert.equal(updatedProfile.shortBio, 'Short Bio');
+    assert.equal(updatedProfile.username, 'username');
+  });
 
-      controller.set('model', model);
-      controller.set('transitionToRoute', transtionToRouteStub);
+  test('should transition to profile.index after updating profile', async function (assert) {
+    assert.expect(1);
 
-      // Act
-      await controller.handleProfileFormSubmit({
-        displayName: 'Foo',
-        username: 'Bar',
-      }, {
-        preventDefault: sinon.stub(),
-      });
+    // Arrange
+    const model = await this.store.get('user', 'user_a');
+    const controller = this.owner.lookup('controller:profile/edit');
+    const transitionToRouteStub = sinon.stub(controller, 'transitionToRoute');
 
-      // Assert
-      assert.ok(transtionToRouteStub.calledWithExactly('profile.index'));
+    controller.set('model', model);
+
+    // Act
+    await controller.handleProfileFormSubmit({
+      displayName: 'Foo',
+      username: 'Bar',
+    }, {
+      preventDefault: sinon.stub(),
     });
 
-    test('should rollback profile when failing to save', async function (assert) {
-      assert.expect(1);
-
-      // Arrange
-      const rollbackAttributesStub = sinon.stub();
-      const model = EmberObject.create({
-        rollbackAttributes: rollbackAttributesStub,
-        save: sinon.stub().returns(stubPromise(false, { code: 'permission-denied' })),
-      });
-      const controller = this.owner.lookup('controller:profile/edit');
-
-      controller.set('model', model);
-      controller.set('transitionToRoute', sinon.stub());
-
-      // Act
-      await controller.handleProfileFormSubmit({
-        displayName: 'Foo',
-        username: 'Bar',
-      }, {
-        preventDefault: sinon.stub(),
-      });
-
-      // Assert
-      assert.ok(rollbackAttributesStub.calledOnce);
-    });
+    // Assert
+    assert.ok(transitionToRouteStub.calledWithExactly('profile.index'));
   });
 });

@@ -1,19 +1,20 @@
-{{#side-nav}}
+<section class="section liquid-fire-side-nav">
   {{#ce-top-bar}}
     {{ce-icon-link-button
-        data-test-profile-edit="navigate-back-link"
-        href=(href-to 'profile')
-        title="Navigate back"
-        aria-label="Navigate back"
-        icon="arrow_back"}}
+      href=(href-to "profile")
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"
+    }}
     <h2>Edit profile</h2>
   {{/ce-top-bar}}
 
-  <div class="side-nav__content">
-    <section class="side-nav__section side-nav__section--headerless">
-      {{profile/edit/-components/profile-form --user=model --onProfileFormSubmit=(action handleProfileFormSubmit)}}
-    </section>
+  <div class="section__content section__content--headerless">
+    <div class="section__item">
+      {{profile/edit/-components/route-content
+        --user=this.model
+        --onProfileFormSubmit=(action this.handleProfileFormSubmit)
+      }}
+    </div>
   </div>
-
-  {{outlet}}
-{{/side-nav}}
+</section>

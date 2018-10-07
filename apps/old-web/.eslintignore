@@ -1,0 +1,6 @@
+# ember generated files
+testem.js
+app/*.js
+config/*.js
+tests/*.js
+/blueprints/*/files/**/*.js

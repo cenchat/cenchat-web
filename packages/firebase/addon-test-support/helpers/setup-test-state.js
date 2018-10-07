@@ -1,11 +1,12 @@
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
 
-import { stubService, stubSession } from '@cenchat/core/test-support';
+import { stubService } from '@cenchat/utils/test-support';
 import MockFirebase from 'mock-cloud-firestore';
 import sinon from 'sinon';
 
 import getFixtureData from '../fixture-data';
+import stubSession from './stub-session';
 
 /**
  * @param {Object} owner

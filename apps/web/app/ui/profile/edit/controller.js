@@ -1,3 +1,4 @@
+import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
 import toast from '@cenchat/elements/utils/toast';
@@ -9,6 +10,16 @@ import toast from '@cenchat/elements/utils/toast';
  */
 export default Controller.extend({
   /**
+   * @type {Ember.Service}
+   */
+  firebase: service('firebase'),
+
+  /**
+   * @type {Ember.Service}
+   */
+  store: service('store'),
+
+  /**
    * @param {Object} profile
    * @param {Event} event
    * @function
@@ -16,42 +27,34 @@ export default Controller.extend({
   async handleProfileFormSubmit(profile, event) {
     event.preventDefault();
 
-    const { model } = this;
-
     try {
-      model.set('displayName', profile.displayName);
-      model.set('displayUsername', profile.username);
-      model.set('name', profile.displayName.toLowerCase());
-      model.set('shortBio', profile.shortBio);
-      model.set('username', profile.username.toLowerCase());
+      const db = this.firebase.firestore();
+      const batch = db.batch();
+      const updatedProfile = {
+        displayName: profile.displayName,
+        displayUsername: profile.username,
+        name: profile.displayName.toLowerCase(),
+        shortBio: profile.shortBio,
+        username: profile.username.toLowerCase(),
+      };
 
-      await model.save({
-        adapterOptions: {
-          include(batch, db) {
-            const changedAttributes = model.changedAttributes();
-
-            if (changedAttributes.username) {
-              const [currentUsername, newUsername] = changedAttributes.username;
-
-              batch.set(db.collection('usernames').doc(newUsername), {
-                cloudFirestoreReference: db.collection('users').doc(model.get('id')),
-              });
-
-              if (currentUsername) {
-                batch.delete(db.collection('usernames').doc(currentUsername));
-              }
-            }
-          },
-        },
+      batch.set(db.doc(`users/${this.model.id}`), updatedProfile, { merge: true });
+      batch.set(db.doc(`usernames/${profile.username.toLowerCase()}`), {
+        cloudFirestoreReference: db.doc(`users/${this.model.id}`),
       });
+
+      if (this.model.username) {
+        batch.delete(db.doc(`usernames/${this.model.username}`));
+      }
+
+      await batch.commit();
+      this.store.set('user', { ...updatedProfile, id: this.model.id });
       this.transitionToRoute('profile.index');
       toast('Profile updated');
     } catch (error) {
       if (error.code === 'permission-denied') {
         toast('Username already exists');
       }
-
-      model.rollbackAttributes();
     }
   },
 });

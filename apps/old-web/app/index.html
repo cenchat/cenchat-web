@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{content-for "head"}}
+
+    <link rel="icon" href="{{rootURL}}assets/images/icons/32.png" sizes="32x32" type="image/png">
+
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/web.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="manifest" href="{{rootURL}}manifest.webmanifest">
+
+    {{content-for "head-footer"}}
+  </head>
+  <body class="app cenchat-theme">
+    {{content-for "body"}}
+
+    <div class="splash-screen">
+      <svg class="splash-screen__logo" xmlns="http://www.w3.org/2000/svg" width="113.513" height="109.532" viewBox="0 0 30.034 28.98">
+        <title>Cenchat</title>
+      
+        <g transform="translate(-23.619 -178.628)">
+          <g style="line-height:1.25">
+            <path d="M53.653 205.244q-2.332 1.116-4.44 1.736-2.084.62-4.44.62-3.002 0-5.507-.868-2.505-.893-4.291-2.679-1.811-1.786-2.803-4.514-.993-2.729-.993-6.375 0-6.797 3.721-10.666 3.746-3.87 9.872-3.87 2.382 0 4.664.67 2.307.67 4.217 1.637v5.184h-.249q-2.133-1.662-4.415-2.555-2.257-.893-4.415-.893-3.969 0-6.276 2.68-2.282 2.653-2.282 7.813 0 5.01 2.233 7.714 2.257 2.679 6.325 2.679 1.414 0 2.877-.372 1.464-.372 2.63-.967 1.017-.521 1.91-1.092.893-.595 1.413-1.017h.249z" style="-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start" font-size="50.8" aria-label="c" font-weight="400" font-family="sans-serif" letter-spacing="0" word-spacing="0" stroke-width=".265" />
+          </g>
+      
+          <circle cx="27.588" cy="203.64" r="3.969" />
+        </g>
+      </svg>
+      
+      <div class="splash-screen__progress-bar"></div>
+    </div>
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.min.js"></script>
+
+    {{content-for "body-footer"}}
+  </body>
+</html>

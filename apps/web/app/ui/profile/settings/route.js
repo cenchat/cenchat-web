@@ -1,15 +1,15 @@
-import ProfileOwnerRoute from 'main/utils/profile-owner-route';
+import Route from '@ember/routing/route';
 
 /**
  * @class ProfileSettings
  * @namespace Route
- * @extends Route.ProfileOwnerRoute
+ * @extends Ember.Route
  */
-export default ProfileOwnerRoute.extend({
+export default Route.extend({
   /**
    * @override
    */
   model() {
-    return this.modelFor('profile').user;
+    return this.modelFor('profile');
   },
 });

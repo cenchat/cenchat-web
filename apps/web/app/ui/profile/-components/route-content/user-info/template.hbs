@@ -1,0 +1,26 @@
+<div class="profile_route-content-user-info">
+  {{ce-image
+    class="profile_route-content-user-info__photo"
+    data-test-user-info="photo"
+    src=(get-user-photo --user)
+    alt=--user.displayName
+  }}
+
+  {{#if --user.displayUsername}}
+    <p
+      class="profile_route-content-user-info__username"
+      data-test-user-info="username"
+    >
+      @{{--user.displayUsername}}
+    </p>
+  {{/if}}
+
+  {{#if --user.shortBio}}
+    <p
+      class="profile_route-content-user-info__short-bio"
+      data-test-user-info="short-bio"
+    >
+      {{--user.shortBio}}
+    </p>
+  {{/if}}
+</div>

@@ -4,7 +4,7 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 
 module('Integration | Component | sites/site/pages/page/explore/-components/route-content', function (hooks) {
   setupRenderingTest(hooks);

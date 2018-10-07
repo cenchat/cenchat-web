@@ -1,0 +1,5 @@
+<div class="chat-content-time-group-list {{class}}">
+  {{#each this.groups key="timestamp" as |group|}}
+    {{chat-content/chat-content-time-group-list/time-group-list-item --group=group}}
+  {{/each}}
+</div>

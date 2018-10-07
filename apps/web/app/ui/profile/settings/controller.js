@@ -2,6 +2,8 @@ import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
+import fetch from 'fetch';
+
 /**
  * @class ProfileSettings
  * @namespace Controller
@@ -11,32 +13,26 @@ export default Controller.extend({
   /**
    * @type {Ember.Service}
    */
-  firebase: service(),
-
-  /**
-   * @type {Ember.Service}
-   */
-  session: service(),
-
-  /**
-   * @type {Ember.Service}
-   */
-  router: service(),
+  session: service('session'),
 
   /**
    * @function
    */
   async handleDeleteAccountToastCompletion() {
-    await this.model.destroyRecord({
-      adapterOptions: { onServer: true },
+    const config = getOwner(this).resolveRegistration('config:environment');
+    const token = await this.get('session.currentUser').getIdToken();
+
+    await fetch(`${config.apiHost}/users/${this.get('session.model.id')}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     });
     await this.get('session').close();
 
-    const config = getOwner(this).resolveRegistration('config:environment');
-
     if (config.environment !== 'test') {
-      // Use native reload instead of transitioning to home to reset Store and Firestore state
-      window.location.reload();
+      window.location.replace('https://cenchat.com');
     }
   },
 });

@@ -1,0 +1,16 @@
+{{#ce-top-bar}}
+  {{ce-icon-link-button
+    href=(href-to "chats" (qp-for "chats"))
+    title="Navigate back"
+    aria-label="Navigate back"
+    icon="arrow_back"
+  }}
+
+  <h1 data-test-route-header="heading">
+    {{#if (eq --chat.creator.id --session.model.id)}}
+      {{--chat.site.displayName}}
+    {{else}}
+      {{get-user-display-name --chat.creator}}
+    {{/if}}
+  </h1>
+{{/ce-top-bar}}

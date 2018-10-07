@@ -4,7 +4,7 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 
 module('Integration | Component | sites/site/pages/page/chats/-components/route-content', function (hooks) {
   setupRenderingTest(hooks);
@@ -17,7 +17,7 @@ module('Integration | Component | sites/site/pages/page/chats/-components/route-
     this.set('onLoadMoreChatsClick', () => {});
   });
 
-  test('should show <ChatCollection />', async function (assert) {
+  test('should show <ChatList />', async function (assert) {
     assert.expect(2);
 
     // Arrange

@@ -25,8 +25,8 @@
   font-size: var(--font-size-56);
   font-weight: var(--font-weight-light);
   line-height: var(--line-height-56);
-  text-align: center;
   color: #fff;
+  text-align: center;
   background-color: var(--cenchat-brand-color);
   border-radius: var(--border-radius-square);
 }
@@ -39,8 +39,8 @@
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-light);
   line-height: var(--line-height-24);
-  text-align: center;
   color: var(--font-secondary-color);
+  text-align: center;
 }
 
 .index_route-content__cover-try-it-button {
@@ -68,7 +68,7 @@
 }
 
 .index_route-content__benefit {
+  background-color: #fff;
   border: 1px solid var(--divider-color);
   border-radius: var(--border-radius-square);
-  background-color: #fff;
 }

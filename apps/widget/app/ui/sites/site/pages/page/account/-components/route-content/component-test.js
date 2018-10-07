@@ -4,13 +4,15 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 
 module('Integration | Component | sites/site/pages/page/account/-components/route-content', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
     await setupTestState(this);
+
+    this.set('page', await this.store.get('page', 'site_a__page_a'));
   });
 
   test('should show <AccountUpgrade /> when session is anonymous', async function (assert) {
@@ -24,14 +26,16 @@ module('Integration | Component | sites/site/pages/page/account/-components/rout
     // Act
     await render(hbs`
       {{sites/site/pages/page/account/-components/route-content
-          --session=(lookup 'service:session')}}
+        --session=(lookup 'service:session')
+        --page=page
+      }}
     `);
 
     // Assert
-    assert.ok(spy.calledOnce);
+    assert.deepEqual(spy.componentArgsType, { page: 'object' });
   });
 
-  test('should show <AccountUpgrade /> when session is not anonymous', async function (assert) {
+  test('should hide <AccountUpgrade /> when session is not anonymous', async function (assert) {
     assert.expect(1);
 
     // Arrange
@@ -40,7 +44,9 @@ module('Integration | Component | sites/site/pages/page/account/-components/rout
     // Act
     await render(hbs`
       {{sites/site/pages/page/account/-components/route-content
-          --session=(lookup 'service:session')}}
+        --session=(lookup 'service:session')
+        --page=page
+      }}
     `);
 
     // Assert

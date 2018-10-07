@@ -1,0 +1,20 @@
+{{#ani-each
+  --stickers
+  key="id"
+  tagName="ul"
+  class="chat-composer-sub-toolbar-sticker-list"
+as |sticker|
+}}
+  <li class="chat-composer-sub-toolbar-sticker-list__item">
+    {{ce-icon-button
+      data-test-sticker-list=sticker.id
+      title=sticker.name
+      aria-label=sticker.name
+      alt=sticker.name
+      image=sticker.imageUrl
+      square=true
+      size="large"
+      --onClick=(action --onStickerClick sticker.id "sticker")
+    }}
+  </li>
+{{/ani-each}}

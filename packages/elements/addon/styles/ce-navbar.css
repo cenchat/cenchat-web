@@ -10,12 +10,8 @@
   .ce-navbar {
     display: block;
     width: auto;
-  }
-
-  .ce-navbar::before {
-    display: block;
-    height: 64px;
-    content: '';
+    border-top: none;
+    border-right: 1px solid var(--divider-color);
   }
 }
 

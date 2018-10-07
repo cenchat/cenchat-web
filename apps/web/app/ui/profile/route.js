@@ -1,51 +1,33 @@
-import { inject } from '@ember/service';
-import AuthenticatedRoute from 'main/utils/authenticated-route';
-import RSVP from 'rsvp';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
 /**
  * @class Profile
  * @namespace Route
- * @extends Route.AuthenticatedRoute
+ * @extends Ember.Route
  */
-export default AuthenticatedRoute.extend({
+export default Route.extend({
   /**
    * @type {Ember.Service}
    */
-  session: inject(),
+  session: service('session'),
+
+  /**
+   * @type {Ember.Service}
+   */
+  store: service('store'),
 
   /**
    * @override
    */
-  async model({ user_id: userId }) {
-    const hash = {};
-    const query = await this.store.query('user', {
-      limit: 1,
+  beforeModel() {
+    this.store.subscribe(() => this.refresh(), this.routeName);
+  },
 
-      filter(reference) {
-        return reference.where('username', '==', userId);
-      },
-    });
-
-    if (query.get('length') === 0) {
-      hash.user = await this.store.findRecord('user', userId);
-    } else {
-      hash.user = query.get('firstObject');
-    }
-
-    if (
-      hash.user
-      && this.get('session.model')
-      && this.get('session.model.id') === hash.user.get('id')
-    ) {
-      hash.followings = hash.user.get('followings');
-
-      const metaInfo = await hash.user.get('metaInfo');
-
-      if (metaInfo.get('accessToken.facebook')) {
-        hash.followSuggestions = hash.user.getUnfollowedFacebookFriends(4);
-      }
-    }
-
-    return RSVP.hash(hash);
+  /**
+   * @override
+   */
+  async model() {
+    return this.get('session.model');
   },
 });

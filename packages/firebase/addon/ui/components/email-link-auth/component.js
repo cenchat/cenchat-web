@@ -53,7 +53,7 @@ export default Component.extend({
       if (this.args.redirectUrl) {
         window.location.replace(this.args.redirectUrl);
       } else {
-        this.args.router.transitionTo('profile', this.get('session.model.id'));
+        this.args.router.transitionTo('chats');
       }
     } catch (error) {
       if (error.code === 'auth/invalid-email') {

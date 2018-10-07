@@ -1,4 +1,22 @@
-{{head-layout}}
-{{outlet}}
-{{application/-components/application-navbar --session=session}}
+{{#if this.session.isAuthenticated}}
+  {{#ce-navbar class="layout__nav"}}
+    {{ce-icon-link-button
+      href=(href-to "chats")
+      title="Navigate to chats page"
+      aria-label="Navigate to chats page"
+      icon="chat"
+    }}
+    {{ce-icon-link-button
+      href=(href-to "profile")
+      title="Navigate to profile page"
+      aria-label="Navigate to profile page"
+      icon="account_circle"
+    }}
+  {{/ce-navbar}}
+{{/if}}
+
+<main class="layout__main">
+  {{outlet}}
+</main>
+
 {{ce-toast data-test-application="toast"}}

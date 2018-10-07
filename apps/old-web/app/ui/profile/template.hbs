@@ -1,0 +1,12 @@
+{{profile/-components/top-bar
+    --session=session
+    --user=model.user
+    --onSignOutClick=(action handleSignOutClick)}}
+
+{{#profile/-components/main-content
+    --session=session
+    --user=model.user
+    --followings=model.followings
+    --followSuggestions=model.followSuggestions}}
+  {{liquid-outlet class="side-nav-outlet"}}
+{{/profile/-components/main-content}}

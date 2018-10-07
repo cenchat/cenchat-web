@@ -1,0 +1,10 @@
+<div class="section__content section__content--headerless">
+  {{chat-list
+    class="section__item"
+    --chats=--chats
+    --isPageVisible=true
+    --chatRouteName="chats.chat"
+    --chatLimit=this.chatLimit
+    --onLoadMoreChatsClick=(action --onLoadMoreChatsClick)
+  }}
+</div>

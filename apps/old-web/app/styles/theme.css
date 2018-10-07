@@ -1,0 +1,61 @@
+.cenchat-theme {
+  /* Colors */
+  --dark-87: rgba(0, 0, 0, 0.87);
+  --dark-54: rgba(0, 0, 0, 0.54);
+  --dark-38: rgba(0, 0, 0, 0.38);
+  --dark-12: rgba(0, 0, 0, 0.12);
+  --brand-primary-color: #212121;
+
+  /* Scaffolding */
+  --body-background-color: #fff;
+  --surface-background-color: #f5f5f5;
+  --elevated-surface-background-color: #fff;
+  --active-background-color: #bdbdbd;
+  --hover-background-color: #e0e0e0;
+  --disabled-text-color: var(--dark-38);
+  --error-color: #ff5252;
+  --indicator-color: var(--brand-primary-color);
+
+  /* Buttons */
+  --button-hover-background-color: var(--hover-background-color);
+  --button-active-background-color: var(--active-background-color);
+  --button-disabled-text-color: var(--disabled-text-color);
+
+  /* Divider */
+  --divider-color: var(--dark-12);
+
+  /* Heading */
+  --heading-background-color: var(--brand-primary-color);
+  --heading-color: #fff;
+
+  /* List */
+  --list-item-disabled-text-color: var(--disabled-text-color);
+  --list-item-hover-background-color: var(--hover-background-color);
+  --list-item-active-background-color: var(--active-background-color);
+
+  /* Navbar */
+  --navbar-background-color: #fff;
+
+  /* Placeholder */
+  --placeholder-color: var(--dark-12);
+
+  /* Progress bar */
+  --progress-bar-background-color: var(--dark-12);
+
+  /* Text fields */
+  --text-field-background-color: #fff;
+
+  /* Toast */
+  --toast-text-color: #fff;
+  --toast-background-color: #303030;
+  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
+  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
+
+  /* Top bar */
+  --top-bar-background-color: #fff;
+
+  /* Typography */
+  --font-primary-color: var(--dark-87);
+  --font-secondary-color: var(--dark-54);
+  --font-hint-color: var(--dark-38);
+}

@@ -6,20 +6,18 @@ import sinon from 'sinon';
 module('Unit | Route | profile/edit', (hooks) => {
   setupTest(hooks);
 
-  module('hook: model', () => {
-    test('should return profile route model', async function (assert) {
-      assert.expect(1);
+  test('should return profile route model as the model', async function (assert) {
+    assert.expect(1);
 
-      // Arrange
-      const route = this.owner.lookup('route:profile/edit');
+    // Arrange
+    const route = this.owner.lookup('route:profile/edit');
 
-      route.set('modelFor', sinon.stub().withArgs('profile').returns({ user: 'foo' }));
+    route.set('modelFor', sinon.stub().withArgs('profile').returns('foo'));
 
-      // Act
-      const result = await route.model();
+    // Act
+    const result = await route.model();
 
-      // Assert
-      assert.equal(result, 'foo');
-    });
+    // Assert
+    assert.equal(result, 'foo');
   });
 });

@@ -1,0 +1,16 @@
+<section class="section liquid-fire-side-nav">
+  {{chats/chat/-components/route-header
+    --session=(lookup "service:session")
+    --chat=this.model
+  }}
+
+  {{#chats/chat/-components/route-content --chat=this.model}}
+    {{outlet}}
+  {{/chats/chat/-components/route-content}}
+
+  {{chat-composer
+    --session=(lookup "service:session")
+    --chat=this.model
+    --onSendMessageClick=(action this.handleSendMessageClick)
+  }}
+</section>

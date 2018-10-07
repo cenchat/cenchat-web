@@ -4,30 +4,29 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 import { setupTestState } from '@cenchat/firebase/test-support';
-import { spyComponent } from '@cenchat/core/test-support';
+import { spyComponent } from '@cenchat/utils/test-support';
 
 module('Integration | Component | sites/site/pages/page/account/-components/route-content/account-upgrade', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
     await setupTestState(this);
+
+    this.set('page', await this.store.get('page', 'site_a__page_a'));
   });
 
-  test('should show <EmailLinkAuth />', async function (assert) {
+  test('should show <SignInForm />', async function (assert) {
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'email-link-auth');
+    const spy = spyComponent(this, 'sign-in-form');
 
     // Act
-    await render(hbs`{{sites/site/pages/page/account/-components/route-content/account-upgrade}}`);
+    await render(hbs`
+      {{sites/site/pages/page/account/-components/route-content/account-upgrade --page=page}}
+    `);
 
     // Assert
-    assert.deepEqual(spy.componentArgsType, {
-      firebase: 'instance',
-      router: 'instance',
-      session: 'instance',
-      redirectUrl: 'string',
-    });
+    assert.deepEqual(spy.componentArgsType, { page: 'object' });
   });
 });

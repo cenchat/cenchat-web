@@ -1,0 +1,28 @@
+.sign-in_route-content__email-link-auth-container {
+  height: 100vh;
+  padding-right: 16px;
+  padding-left: 16px;
+  background-color: var(--surface-background-color);
+}
+
+.sign-in_route-content__email-link-auth {
+  border: none;
+}
+
+@media (min-width: 960px) {
+  .sign-in_route-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 52px);
+    height: 100vh;
+  }
+
+  .sign-in_route-content__email-link-auth-container {
+    max-width: 456px;
+    height: auto;
+    padding: 40px;
+    border: 1px solid var(--divider-color);
+    border-radius: var(--border-radius-square);
+  }
+}
