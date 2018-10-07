@@ -8,6 +8,7 @@
   /* Scaffolding */
   --body-background-color: #fafafa;
   --surface-background-color: #fff;
+  --surface-container-background-color: #fdfdfd;
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
   --disabled-color: var(--dark-38);
@@ -58,6 +59,7 @@
   /* Scaffolding */
   --body-background-color: #303030;
   --surface-background-color: #424242;
+  --surface-container-background-color: #333;
   --active-background-color: rgba(204, 204, 204, 0.25);
   --hover-background-color: rgba(204, 204, 204, 0.1);
   --disabled-color: var(--light-50);

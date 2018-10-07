@@ -1,4 +1,4 @@
-{{#side-nav}}
+{{#side-nav class="section liquid-fire-side-nav"}}
   {{#ce-top-bar}}
     {{ce-icon-link-button
       href=(href-to "sites.site.pages.page.chats" (qp-for "sites.site.pages.page.chats"))
@@ -12,7 +12,6 @@
   {{outlet}}
 
   {{chat-composer
-    class="side-nav__toolbar"
     --session=(lookup "service:session")
     --chat=this.model
     --onSendMessageClick=(action this.handleSendMessageClick)
