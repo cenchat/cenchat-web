@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "cenchat-app"
+  },
+  "targets": {
+    "cenchat-app": {
+      "hosting": {
+        "web": [
+          "cenchat-app-web"
+        ]
+      }
+    }
+  }
+}
