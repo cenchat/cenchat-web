@@ -14,13 +14,13 @@
 }
 
 .ce-field input {
-  border-radius: var(--border-radius-square);
+  border-radius: var(--border-radius-pill);
   appearance: none;
 }
 
 .ce-field select {
   background: none;
-  border-radius: var(--border-radius-square);
+  border-radius: var(--border-radius-pill);
   -moz-appearance: none;
   -webkit-appearance: none;
 }
@@ -30,7 +30,7 @@
 }
 
 .ce-field textarea {
-  border-radius: var(--border-radius-square);
+  border-radius: var(--border-radius-pill);
   resize: none;
 }
 

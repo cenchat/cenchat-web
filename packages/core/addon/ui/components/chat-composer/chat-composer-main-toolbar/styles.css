@@ -14,9 +14,9 @@
   line-height: var(--line-height-16);
   color: var(--font-primary-color);
   resize: none;
-  background-color: var(--text-field-background-color);
+  background-color: var(--surface-background-color);
   border: 1px solid var(--divider-color);
-  border-radius: var(--border-radius-square);
+  border-radius: var(--border-radius-pill);
 }
 
 .chat-composer-main-toolbar__field:disabled {

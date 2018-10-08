@@ -21,7 +21,7 @@ module('Integration | Component | sites/site/pages/page/chats/-components/route-
     assert.expect(2);
 
     // Arrange
-    const spy = spyComponent(this, 'sites/site/pages/page/chats/-components/route-content/chat-list');
+    const spy = spyComponent(this, 'chat-list');
 
     // Act
     await render(hbs`
@@ -35,6 +35,7 @@ module('Integration | Component | sites/site/pages/page/chats/-components/route-
     assert.ok(spy.calledOnce);
     assert.deepEqual(spy.componentArgsType, {
       chats: 'array',
+      chatRouteName: 'string',
       chatLimit: 'number',
       onLoadMoreChatsClick: 'function',
     });

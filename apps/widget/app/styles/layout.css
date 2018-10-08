@@ -1,34 +1,40 @@
 .layout {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "main"
-    "nav";
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   color: var(--font-primary-color);
   background-color: var(--body-background-color);
 }
 
+.layout::before {
+  display: block;
+  min-height: 56px;
+  content: '';
+}
+
+.layout::after {
+  display: block;
+  min-height: 52px;
+  content: '';
+}
+
 .layout__header {
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 400;
-  grid-area: header;
 }
 
 .layout__main {
-  grid-area: main;
+  flex: 1;
 }
 
 .layout__nav {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   z-index: 600;
-  grid-area: nav;
 }
 
 .layout__main--no-nav ~ .layout__nav {

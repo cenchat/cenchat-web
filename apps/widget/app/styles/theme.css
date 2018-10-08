@@ -7,7 +7,8 @@
 
   /* Scaffolding */
   --body-background-color: #fafafa;
-  --surface-background-color: #fff;
+  --bar-background-color: #fff;
+  --surface-background-color: #fafafa;
   --surface-container-background-color: #fdfdfd;
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
@@ -15,7 +16,6 @@
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
   --chat-bubble-background-color: rgba(0, 0, 0, 0.06);
-  --border-radius-square: 2px;
 
   /* Buttons */
   --button-disabled-text-color: var(--disabled-color);
@@ -35,7 +35,7 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: rgba(153, 153, 153, 0.1);
+  --text-field-background-color: var(--bar-background-color);
 
   /* Toast */
   --toast-text-color: #fff;
@@ -58,6 +58,7 @@
 
   /* Scaffolding */
   --body-background-color: #303030;
+  --bar-background-color: #212121;
   --surface-background-color: #424242;
   --surface-container-background-color: #333;
   --active-background-color: rgba(204, 204, 204, 0.25);
@@ -66,7 +67,6 @@
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
   --chat-bubble-background-color: rgba(255, 255, 255, 0.06);
-  --border-radius-square: 2px;
 
   /* Buttons */
   --button-disabled-text-color: var(--disabled-color);
@@ -86,7 +86,7 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: rgba(204, 204, 204, 0.1);
+  --text-field-background-color: var(--bar-background-color);
 
   /* Toast */
   --toast-text-color: rgba(0, 0, 0, 0.87);
