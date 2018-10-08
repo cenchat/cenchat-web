@@ -41,6 +41,7 @@ export default Route.extend({
 
       if (currentUserModel) {
         this.set('session.content.model', currentUserModel);
+        this.setupPushNotification();
       } else {
         await this.get('session').close();
       }
@@ -63,6 +64,49 @@ export default Route.extend({
       }
     } else {
       this.transitionTo('sign-in');
+    }
+  },
+
+  /**
+   * @param {Model.User} profile
+   * @function
+   */
+  async setupPushNotification() {
+    if ('serviceWorker' in navigator) {
+      try {
+        const messaging = this.firebase.messaging();
+
+        await messaging.requestPermission();
+
+        const db = this.firebase.firestore();
+        const metaDocRef = db.doc(`userMetaInfos/${this.get('session.model.id')}`);
+
+        messaging.onTokenRefresh(async () => {
+          const token = await messaging.getToken();
+          const metaDocSnapshot = await metaDocRef.get();
+          const meta = metaDocSnapshot.data();
+          const { notificationTokens } = meta;
+
+          if (!Array.isArray(notificationTokens)) {
+            await metaDocRef.update({ notificationTokens: [token] });
+          } else if (!notificationTokens.includes(token)) {
+            await metaDocRef.update({ notificationTokens: [...notificationTokens, token] });
+          }
+        });
+
+        const token = await messaging.getToken();
+        const metaDocSnapshot = await metaDocRef.get();
+        const meta = metaDocSnapshot.data();
+        const { notificationTokens } = meta;
+
+        if (!Array.isArray(notificationTokens)) {
+          await metaDocRef.update({ notificationTokens: [token] });
+        } else if (!notificationTokens.includes(token)) {
+          await metaDocRef.update({ notificationTokens: [...notificationTokens, token] });
+        }
+      } catch (error) {
+        // Do nothing
+      }
     }
   },
 });
