@@ -3,15 +3,9 @@
  * @function
  */
 export function initialize(appInstance) {
-  const fastboot = appInstance.lookup('service:fastboot');
   const config = appInstance.resolveRegistration('config:environment');
 
-  if (
-    fastboot
-    && !fastboot.isFastBoot
-    && 'serviceWorker' in navigator
-    && config.environment !== 'test'
-  ) {
+  if ('serviceWorker' in navigator && config.environment !== 'test') {
     navigator.serviceWorker.ready.then((registration) => {
       const firebase = appInstance.lookup('service:firebase');
       const messaging = firebase.messaging();

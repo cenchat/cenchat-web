@@ -36,6 +36,7 @@ module.exports = function(environment) {
       projectId: 'cenchat-app-staging',
       storageBucket: 'cenchat-app-staging.appspot.com',
       messagingSenderId: '744051372318',
+      publicVapidKey: 'BM9QBrKkfxMO5etIW7YHZ1d6YPnMVP92hJmWsgwVYvSgq8Q-3f8v-myCwk4uYPK5y4hV-bGVrN6RrIZQGjkLFTs',
     },
     torii: { sessionServiceName: 'session' },
   };
@@ -70,6 +71,7 @@ module.exports = function(environment) {
       projectId: 'cenchat-app',
       storageBucket: 'cenchat-app.appspot.com',
       messagingSenderId: '325042052100',
+      publicVapidKey: 'BKiW4NYEI4tgGA3NKkQ7y_CtnsrnL1xD8B_wNLVzAGjsLEgZAE5WPHXD-uUJpKmfwlP4Gr9faSWE5EBbREU5KdQ',
     };
   }
 
