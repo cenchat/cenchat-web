@@ -164,7 +164,7 @@
 
       .cenchat-widget-container__menu {
         font-family: Arial, Helvetica, sans-serif;
-        background-color: #212121;
+        background-color: #000;
       }
 
       .cenchat-widget-container__close-button {
