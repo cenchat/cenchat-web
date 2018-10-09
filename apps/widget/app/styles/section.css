@@ -15,11 +15,18 @@
 
 .section__content {
   flex: 1;
+  padding-right: 8px;
+  padding-left: 8px;
   overflow: auto;
 }
 
 .section__content--headerless {
   padding-top: 8px;
+}
+
+.section__content--compact {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .section__sub-header {

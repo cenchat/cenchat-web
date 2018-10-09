@@ -28,7 +28,12 @@
   color: #fff;
   text-align: center;
   background-color: var(--cenchat-brand-color);
-  border-radius: var(--border-radius-square);
+}
+
+@media (min-width: 960px) {
+  .index_route-content__cover-title {
+    border-radius: var(--border-radius-square);
+  }
 }
 
 .index_route-content__cover-description {

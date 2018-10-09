@@ -1,7 +1,9 @@
 .chat-composer-sub-toolbar-sticker-list {
+  max-height: 136px;
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
+  overflow: auto;
   text-align: center;
   list-style-type: none;
 }

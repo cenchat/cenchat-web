@@ -7,8 +7,10 @@
 
   /* Scaffolding */
   --brand-color: var(--cenchat-brand-color);
-  --body-background-color: #fff;
-  --surface-background-color: #fff;
+  --body-background-color: #fafafa;
+  --bar-background-color: #fff;
+  --surface-background-color: #fafafa;
+  --surface-container-background-color: #fdfdfd;
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
   --disabled-color: var(--dark-38);
@@ -33,7 +35,7 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: rgba(153, 153, 153, 0.1);
+  --text-field-background-color: var(--bar-background-color);
 
   /* Toast */
   --toast-text-color: #fff;

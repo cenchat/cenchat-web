@@ -7,16 +7,16 @@
 
   /* Scaffolding */
   --brand-color: var(--cenchat-brand-color);
-  --body-background-color: #fafafa;
-  --surface-background-color: #fff;
-  --surface-container-background-color: #fdfdfd;
+  --body-background-color: #fdfdfd;
+  --bar-background-color: #fff;
+  --surface-background-color: #fdfdfd;
+  --surface-container-background-color: #fafafa;
   --active-background-color: #bdbdbd;
   --hover-background-color: #eee;
   --disabled-color: var(--dark-38);
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
   --chat-bubble-background-color: rgba(0, 0, 0, 0.06);
-  --border-radius-square: 2px;
 
   /* Buttons */
   --button-disabled-text-color: var(--disabled-color);
@@ -36,7 +36,7 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: rgba(153, 153, 153, 0.1);
+  --text-field-background-color: var(--surface-container-background-color);
 
   /* Toast */
   --toast-text-color: #fff;

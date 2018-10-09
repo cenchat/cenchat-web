@@ -1,5 +1,7 @@
+{{!-- template-lint-disable attribute-indentation --}}
+
 <div class={{class}}>
-  {{#ani-each --chats key="id" tagName="ul" class="card list" as |chat|}}
+  {{#ani-each --chats key="id" tagName="ul" class="card card--flat list" as |chat|}}
     {{chat-list/chat-list-item
       --session=(lookup "service:session")
       --chat=chat

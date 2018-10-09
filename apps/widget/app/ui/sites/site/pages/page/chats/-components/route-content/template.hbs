@@ -1,9 +1,15 @@
 <main class="layout__main">
-  {{sites/site/pages/page/chats/-components/route-content/chat-list
-    --chats=--chats
-    --chatLimit=this.chatLimit
-    --onLoadMoreChatsClick=(action --onLoadMoreChatsClick)
-  }}
+  <section class="section">
+    <div class="section__content section__content--compact">
+      {{chat-list
+        class="section__item"
+        --chats=--chats
+        --chatRouteName="sites.site.pages.page.chats.chat"
+        --chatLimit=this.chatLimit
+        --onLoadMoreChatsClick=(action --onLoadMoreChatsClick)
+      }}
+    </div>
+  </section>
 
   {{yield}}
 </main>
