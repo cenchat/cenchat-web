@@ -14,7 +14,7 @@
   line-height: var(--line-height-16);
   color: var(--font-primary-color);
   resize: none;
-  background-color: var(--surface-background-color);
+  background-color: var(--text-field-background-color);
   border: 1px solid var(--divider-color);
   border-radius: var(--border-radius-pill);
 }

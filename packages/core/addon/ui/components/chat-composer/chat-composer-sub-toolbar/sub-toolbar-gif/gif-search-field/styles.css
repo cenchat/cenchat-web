@@ -1,7 +1,3 @@
 .chat-composer-sub-toolbar-gif-search-field {
   padding: 0 8px 8px;
 }
-
-.chat-composer-sub-toolbar-gif-search-field input {
-  background-color: var(--surface-background-color);
-}
