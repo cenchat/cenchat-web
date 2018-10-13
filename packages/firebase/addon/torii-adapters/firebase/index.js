@@ -91,16 +91,17 @@ export default EmberObject.extend({
     batch.set(db.doc(`users/${currentUser.uid}`), {
       displayName,
       displayUsername: null,
+      metaInfo: db.doc(`userMetaInfos/${currentUser.uid}`),
       name: displayName ? displayName.toLowerCase() : null,
       photoUrl: null,
-      provider: null,
+      provider: {},
       shortBio: null,
       username: null,
     });
     batch.set(db.doc(`userMetaInfos/${currentUser.uid}`), {
-      accessToken: null,
-      hasNewNotification: false,
-      notificationTokens: null,
+      accessToken: {},
+      notificationTokens: [],
+      unreadChats: [],
     });
 
     await batch.commit();
@@ -111,14 +112,14 @@ export default EmberObject.extend({
       displayUsername: null,
       name: displayName ? displayName.toLowerCase() : null,
       photoUrl: null,
-      provider: null,
+      provider: {},
       shortBio: null,
       username: null,
       metaInfo: {
         id: currentUser.uid,
-        accessToken: null,
-        hasNewNotification: false,
-        notificationTokens: null,
+        accessToken: {},
+        notificationTokens: [],
+        unreadChats: [],
       },
     });
   },

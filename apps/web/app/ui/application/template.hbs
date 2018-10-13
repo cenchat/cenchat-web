@@ -5,6 +5,7 @@
       title="Navigate to chats page"
       aria-label="Navigate to chats page"
       icon="chat"
+      badged=(gt this.session.model.metaInfo.unreadChats.length 0)
     }}
     {{ce-icon-link-button
       href=(href-to "profile")

@@ -55,7 +55,9 @@ export default class User extends Model {
   static deserialize(record) {
     if (typeof record === 'object' && record !== null && record.data) {
       if (record.exists) {
-        return { ...record.data(), id: record.id };
+        const user = record.data();
+
+        return { ...user, id: record.id, metaInfo: user.metaInfo.id };
       }
 
       return null;

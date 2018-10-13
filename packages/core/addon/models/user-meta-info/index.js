@@ -10,7 +10,7 @@ export default class UserMetaInfo extends Model {
    * @override
    */
   static get attributes() {
-    return ['accessToken', 'hasNewNotification', 'notificationTokens'];
+    return ['accessToken', 'notificationTokens', 'unreadChats'];
   }
 
   /**

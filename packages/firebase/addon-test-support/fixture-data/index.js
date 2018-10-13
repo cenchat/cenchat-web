@@ -160,57 +160,17 @@ export default function getFixtureData() {
       notifications: {
         __doc__: {
           notification_a: {
-            dataMessage: null,
-            displayMessage: {
-              body: null,
-              title: 'User C started following you',
-            },
-            createdOn: new Date(),
-            type: 'follow',
-            from: '__ref__:users/user_c',
-            to: '__ref__:users/user_a',
-          },
-
-          notification_b: {
             dataMessage: {
-              commentId: 'comment_a',
+              chatId: 'site_c__page_a__user_a',
             },
             displayMessage: {
               body: null,
-              title: 'User A tagged you in a comment',
+              title: 'User A sent a message at Site C',
             },
-            createdOn: new Date(),
-            type: 'comment_tag',
+            createdOn: new Date('2018-01-01'),
+            type: 'message_at_site',
             from: '__ref__:users/user_a',
-            to: '__ref__:users/user_b',
-          },
-
-          notification_c: {
-            dataMessage: {
-              commentId: 'comment_b',
-            },
-            displayMessage: {
-              body: null,
-              title: 'User B replied to your comment',
-            },
-            createdOn: new Date(),
-            type: 'comment_reply',
-            from: '__ref__:users/user_b',
-            to: '__ref__:users/user_a',
-          },
-
-          notification_d: {
-            dataMessage: {
-              commentId: 'comment_b',
-            },
-            displayMessage: {
-              body: null,
-              title: 'User B commented in a page at Site A',
-            },
-            createdOn: new Date(),
-            type: 'comment_at_site',
-            from: '__ref__:users/user_b',
-            to: '__ref__:users/user_a',
+            to: '__ref__:users/user_c',
           },
         },
       },
@@ -401,33 +361,33 @@ export default function getFixtureData() {
       userMetaInfos: {
         __doc__: {
           user_a: {
-            accessToken: { facebook: 'token_user_a' },
-            hasNewNotification: true,
-            notificationTokens: null,
+            accessToken: {},
+            notificationTokens: [],
+            unreadChats: ['site_a__page_a__user_b'],
           },
 
           user_b: {
-            accessToken: null,
-            hasNewNotification: true,
-            notificationTokens: null,
+            accessToken: {},
+            notificationTokens: [],
+            unreadChats: [],
           },
 
           user_c: {
-            accessToken: null,
-            hasNewNotification: false,
-            notificationTokens: null,
+            accessToken: {},
+            notificationTokens: [],
+            unreadChats: [],
           },
 
           user_d: {
-            accessToken: null,
-            hasNewNotification: false,
-            notificationTokens: null,
+            accessToken: {},
+            notificationTokens: [],
+            unreadChats: [],
           },
 
           user_e: {
-            accessToken: null,
-            hasNewNotification: false,
-            notificationTokens: null,
+            accessToken: {},
+            notificationTokens: [],
+            unreadChats: [],
           },
         },
       },
@@ -437,6 +397,7 @@ export default function getFixtureData() {
           user_a: {
             displayName: 'User A',
             displayUsername: null,
+            metaInfo: '__ref__:userMetaInfos/user_a',
             name: 'user a',
             photoUrl: 'user_a.jpg',
             provider: { facebook: 'fb_user_a' },
@@ -527,6 +488,7 @@ export default function getFixtureData() {
           user_b: {
             displayName: 'User B',
             displayUsername: 'user_b',
+            metaInfo: '__ref__:userMetaInfos/user_b',
             name: 'user b',
             photoUrl: null,
             provider: null,
@@ -579,6 +541,7 @@ export default function getFixtureData() {
           user_c: {
             displayName: 'User C',
             displayUsername: 'user_c',
+            metaInfo: '__ref__:userMetaInfos/user_c',
             name: 'user c',
             photoUrl: null,
             provider: null,
@@ -698,6 +661,7 @@ export default function getFixtureData() {
           user_d: {
             displayName: 'User D',
             displayUsername: 'user_d',
+            metaInfo: '__ref__:userMetaInfos/user_d',
             name: 'user d',
             photoUrl: null,
             provider: null,
@@ -750,6 +714,7 @@ export default function getFixtureData() {
           user_e: {
             displayName: 'User E',
             displayUsername: 'user_e',
+            metaInfo: '__ref__:userMetaInfos/user_e',
             name: 'user e',
             photoUrl: null,
             provider: null,

@@ -26,6 +26,15 @@
 
   {{#if --session.isAuthenticated}}
     {{ce-icon-link-button
+      href="https://web.cenchat.com"
+      title="Navigate to notifications page"
+      aria-label="Navigate to notifications page"
+      target="_blank"
+      rel="noopener noreferrer"
+      icon="notifications"
+      badged=(gt --session.model.metaInfo.unreadChats.length 0)
+    }}
+    {{ce-icon-link-button
       data-test-route-footer="account-link"
       href=(href-to "sites.site.pages.page.account")
       title="Navigate to account page"

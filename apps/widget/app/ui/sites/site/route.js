@@ -40,7 +40,7 @@ export default Route.extend({
               const docSnapshot = await db.doc(`sites/${record.id}/admins/${currentUser.id}`).get();
 
               if (docSnapshot.exists) {
-                return [docSnapshot];
+                return [await docSnapshot.get('cloudFirestoreReference').get()];
               }
             } catch (error) {
               return [];

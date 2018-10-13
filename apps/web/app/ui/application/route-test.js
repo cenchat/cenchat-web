@@ -26,7 +26,7 @@ module('Unit | Route | application', function (hooks) {
   });
 
   test('should fetch current user model record when authenticated', async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     // Arrange
     const route = this.owner.lookup('route:application');
@@ -35,7 +35,8 @@ module('Unit | Route | application', function (hooks) {
     await route.afterModel();
 
     // Assert
-    assert.deepEqual(route.session.get('model').id, 'user_a');
+    assert.deepEqual(route.session.get('model.id'), 'user_a');
+    assert.equal(route.session.get('model.metaInfo.id'), 'user_a');
   });
 
   test('should transition to chats when authenticated and transition target name is index', async function (assert) {
