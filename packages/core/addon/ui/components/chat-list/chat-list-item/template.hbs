@@ -1,4 +1,7 @@
-<li class="list__item" data-test-chat-list-item={{--chat.id}}>
+<li
+  class={{if this.isUnread "chat-list-item--unread"}}
+  data-test-chat-list-item={{--chat.id}}
+>
   {{#link-to --chatRouteName --chat.id class="list__action"}}
     {{#if (eq --chat.creator.id --session.model.id)}}
       {{ce-image

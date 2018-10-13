@@ -44,4 +44,13 @@ export default Component.extend({
       return description;
     },
   }),
+
+  /**
+   * @type {boolean}
+   */
+  isUnread: computed('args', {
+    get() {
+      return this.args.session.get('model.metaInfo.unreadChats').includes(this.args.chat.id);
+    },
+  }),
 });
