@@ -7,12 +7,12 @@
 
   /* Scaffolding */
   --brand-color: var(--cenchat-brand-color);
-  --body-background-color: #fdfdfd;
+  --body-background-color: #fafafa;
   --bar-background-color: #fff;
   --surface-background-color: #fdfdfd;
-  --surface-container-background-color: #fafafa;
-  --active-background-color: #bdbdbd;
-  --hover-background-color: #eee;
+  --surface-container-background-color: #e8ebef;
+  --active-background-color: #a0acbf;
+  --hover-background-color: #c4ccd9;
   --disabled-color: var(--dark-38);
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
@@ -36,13 +36,11 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: var(--surface-container-background-color);
+  --text-field-background-color: transparent;
 
   /* Toast */
   --toast-text-color: #fff;
   --toast-background-color: #303030;
-  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
-  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
 
   /* Typography */
   --font-primary-color: var(--dark-87);

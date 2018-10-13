@@ -6,12 +6,12 @@
   --dark-12: rgba(0, 0, 0, 0.12);
 
   /* Scaffolding */
-  --body-background-color: #fdfdfd;
+  --body-background-color: #fafafa;
   --bar-background-color: #fff;
   --surface-background-color: #fdfdfd;
   --surface-container-background-color: #fafafa;
-  --active-background-color: #bdbdbd;
-  --hover-background-color: #eee;
+  --active-background-color: #eee;
+  --hover-background-color: #f5f5f5;
   --disabled-color: var(--dark-38);
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
@@ -35,13 +35,11 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: var(--surface-container-background-color);
+  --text-field-background-color: transparent;
 
   /* Toast */
   --toast-text-color: #fff;
   --toast-background-color: #303030;
-  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
-  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
 
   /* Typography */
   --font-primary-color: var(--dark-87);
@@ -60,9 +58,9 @@
   --body-background-color: #303030;
   --bar-background-color: #212121;
   --surface-background-color: #424242;
-  --surface-container-background-color: #333;
-  --active-background-color: rgba(204, 204, 204, 0.25);
-  --hover-background-color: rgba(204, 204, 204, 0.1);
+  --surface-container-background-color: #303030;
+  --active-background-color: #424242;
+  --hover-background-color: #616161;
   --disabled-color: var(--light-50);
   --error-color: #ff5252;
   --indicator-color: var(--brand-color);
@@ -86,13 +84,11 @@
   --progress-bar-background-color: var(--brand-color);
 
   /* Text fields */
-  --text-field-background-color: var(--surface-container-background-color);
+  --text-field-background-color: transparent;
 
   /* Toast */
   --toast-text-color: rgba(0, 0, 0, 0.87);
   --toast-background-color: #fafafa;
-  --toast-button-hover-background-color: rgba(204, 204, 204, 0.1);
-  --toast-button-active-background-color: rgba(204, 204, 204, 0.25);
 
   /* Typography */
   --font-primary-color: var(--light-100);

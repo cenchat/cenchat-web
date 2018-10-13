@@ -23,10 +23,6 @@ a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
   color: var(--brand-color);
 }
 
-.ce-navbar ~ .ce-toast {
-  margin-bottom: 60px;
-}
-
 strong {
   font-weight: 500;
 }
