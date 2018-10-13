@@ -36,6 +36,43 @@ module('Integration | Component | chat-list/chat-list-item', function (hooks) {
     assert.dom('[data-test-chat-list-item="timestamp"]').exists();
   });
 
+  test('should mark chat as unread when current user has not read it yet', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('session.content.model.metaInfo.unreadChats', ['site_c__page_a__user_a']);
+
+    // Act
+    await render(hbs`
+      {{chat-list/chat-list-item
+        --session=(lookup 'service:session')
+        --chat=chat
+        --isPageVisible=isPageVisible
+        --chatRouteName=chatRouteName
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-chat-list-item="site_c__page_a__user_a"]').hasClass('chat-list-item--unread');
+  });
+
+  test('should mark chat as read when current user has read it', async function (assert) {
+    assert.expect(1);
+
+    // Act
+    await render(hbs`
+      {{chat-list/chat-list-item
+        --session=(lookup 'service:session')
+        --chat=chat
+        --isPageVisible=isPageVisible
+        --chatRouteName=chatRouteName
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-chat-list-item="site_c__page_a__user_a"]').hasNoClass('chat-list-item--unread');
+  });
+
   test('should use creator as avatar when current user is not the creator', async function (assert) {
     assert.expect(1);
 

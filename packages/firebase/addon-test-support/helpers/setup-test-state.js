@@ -73,11 +73,9 @@ export async function setupTestState(context) {
     fetch: () => db.collection('users').get().then(snap => snap.docs),
   });
 
-  const user = await db.doc('users/user_a').get();
-
-  context.set('session.content.model', { ...user.data(), id: user.id });
+  context.set('session.content.model', await context.store.get('user', 'user_a'));
   context.store.subscribe(async () => (
-    context.set('session.content.model', await context.store.get('user', user.id))
+    context.set('session.content.model', await context.store.get('user', 'user_a'))
   ));
 }
 
