@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#fafafa",
   "theme_color": "#e0e0e0",
-  "description": "Cenchat is a chat based solution for websites that don't want to bother with moderating comments and responding to the same inquiries over and over again",
+  "description": "Chat based solution for websites that don't want to bother moderating their comment section",
   "icons":[
     {
       "src": "assets/images/icons/192.png",

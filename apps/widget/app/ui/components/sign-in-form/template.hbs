@@ -1,8 +1,9 @@
-{{email-link-auth
-  class=class
-  --firebase=(lookup "service:firebase")
-  --router=(lookup "service:router")
-  --session=(lookup "service:session")
-  --redirectUrl=this.redirectUrl
-  --isAnonymousAllowed=--isAnonymousAllowed
-}}
+<div class={{class}}>
+  {{email-link-auth
+    --firebase=(lookup "service:firebase")
+    --router=(lookup "service:router")
+    --session=(lookup "service:session")
+    --redirectUrl=this.redirectUrl
+    --isAnonymousAllowed=--isAnonymousAllowed
+  }}
+</div>
