@@ -1,5 +1,5 @@
 <li class="list__item" data-test-chat-list-item={{--chat.id}}>
-  <a class="list__action" href={{href-to --chatRouteName --chat.id}}>
+  {{#link-to --chatRouteName --chat.id class="list__action"}}
     {{#if (eq --chat.creator.id --session.model.id)}}
       {{ce-image
         class="list__avatar list__avatar--circle"
@@ -51,5 +51,5 @@
     >
       {{moment-from --chat.lastActivityTimestamp}}
     </time>
-  </a>
+  {{/link-to}}
 </li>

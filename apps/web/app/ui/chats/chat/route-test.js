@@ -37,4 +37,21 @@ module('Unit | Route | chats/chat', function (hooks) {
     // Assert
     assert.ok(transitionToStub.calledWithExactly('chats.chat.messages'));
   });
+
+  test('should return remove chats from metaInfo.unreadChats when it exists', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const route = this.owner.lookup('route:chats/chat');
+
+    route.set('session.content.model.metaInfo.unreadChats', ['site_a__page_a__user_b']);
+
+    // Act
+    await route.afterModel({ id: 'site_a__page_a__user_b' });
+
+    // Assert
+    const metaInfoDocSnapshot = await this.db.doc('userMetaInfos/user_a').get();
+
+    assert.deepEqual(metaInfoDocSnapshot.get('unreadChats'), []);
+  });
 });

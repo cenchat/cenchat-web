@@ -34,9 +34,24 @@ export default Route.extend({
    */
   async afterModel() {
     if (this.get('session.isAuthenticated')) {
+      const db = this.firebase.firestore();
       const sessionId = this.get('session.currentUser.uid');
       const currentUserModel = await this.store.get('user', sessionId, {
-        fetch: () => this.firebase.firestore().doc(`users/${sessionId}`).get(),
+        fetch: () => db.doc(`users/${sessionId}`).get(),
+
+        include: {
+          metaInfo: user => (
+            new Promise((resolve) => {
+              db.doc(`userMetaInfos/${user.id}`).onSnapshot((docSnapshot) => {
+                if (this.get('session.model')) {
+                  this.store.update('userMetaInfo', user.id, docSnapshot.data());
+                } else {
+                  resolve(docSnapshot);
+                }
+              });
+            })
+          ),
+        },
       });
 
       if (currentUserModel) {

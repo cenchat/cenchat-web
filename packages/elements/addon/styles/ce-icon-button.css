@@ -75,8 +75,8 @@
 
 .ce-icon-button[badged] .ce-icon-button__wrapper::after {
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 4px;
+  right: 4px;
   width: 10px;
   height: 10px;
   background-color: var(--error-color);
