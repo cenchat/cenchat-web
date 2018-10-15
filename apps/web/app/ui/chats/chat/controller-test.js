@@ -10,11 +10,39 @@ module('Unit | Controller | chats/chat', function (hooks) {
     await setupTestState(this);
   });
 
-  test('nothing to test so far', async function (assert) {
+  test('should update chat privacy', async function (assert) {
+    assert.expect(4);
+
+    // Arrange
+    const controller = this.owner.lookup('controller:chats/chat');
+
+    controller.set('model', await this.store.get('chat', 'site_a__page_a__user_e'));
+
+    // Act
+    await controller.handlePrivacyFormSubmit({ isPublicized: true, publicizedTitle: 'Foo' });
+
+    // Assert
+    const chatDocSnapshot = await this.db.doc('chats/site_a__page_a__user_e').get();
+
+    assert.equal(chatDocSnapshot.get('isPublicized'), true);
+    assert.equal(chatDocSnapshot.get('publicizedTitle'), 'Foo');
+
+    const chat = await this.store.get('chat', 'site_a__page_a__user_e');
+
+    assert.equal(chat.isPublicized, true);
+    assert.equal(chat.publicizedTitle, 'Foo');
+  });
+
+  test('should toggle privacy form', async function (assert) {
     assert.expect(1);
 
-    const route = this.owner.lookup('route:chats/chat');
+    // Arrange
+    const controller = this.owner.lookup('controller:chats/chat');
 
-    assert.ok(route);
+    // Act
+    controller.handlePrivacyClick();
+
+    // Assert
+    assert.equal(controller.isPrivacyFormVisible, true);
   });
 });

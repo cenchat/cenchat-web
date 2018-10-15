@@ -104,6 +104,7 @@ export async function setupApplicationTestState(context) {
     },
   }));
   context.set('db', context.firebase.firestore());
+  context.set('store', context.owner.lookup('service:store'));
 
   const session = context.owner.lookup('service:session');
   const { stateMachine } = session;

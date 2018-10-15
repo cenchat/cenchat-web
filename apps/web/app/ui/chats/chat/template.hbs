@@ -2,9 +2,15 @@
   {{chats/chat/-components/route-header
     --session=(lookup "service:session")
     --chat=this.model
+    --isPrivacyFormVisible=this.isPrivacyFormVisible
+    --onPrivacyClick=(action this.handlePrivacyClick)
   }}
 
-  {{#chats/chat/-components/route-content --chat=this.model}}
+  {{#chats/chat/-components/route-content
+    --chat=this.model
+    --isPrivacyFormVisible=this.isPrivacyFormVisible
+    --onPrivacyFormSubmit=(action this.handlePrivacyFormSubmit)
+  }}
     {{outlet}}
   {{/chats/chat/-components/route-content}}
 

@@ -1,3 +1,7 @@
+.chats-chat_route-content {
+  overflow: hidden !important;
+}
+
 .chats-chat_route-content__page-link-container {
   position: sticky;
   top: 0;
