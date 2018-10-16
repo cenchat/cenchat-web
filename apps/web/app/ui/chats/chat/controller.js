@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
 import createChatMessage from '@cenchat/core/utils/create-chat-message';
+import toast from '@cenchat/elements/utils/toast';
 
 /**
  * @class ChatsChat
@@ -45,6 +46,8 @@ export default Controller.extend({
 
     await db.doc(`chats/${this.model.id}`).update(chat);
     this.store.update('chat', this.model.id, chat);
+    this.set('isPrivacyFormVisible', false);
+    toast('Privacy updated');
   },
 
   /**

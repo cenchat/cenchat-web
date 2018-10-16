@@ -22,8 +22,8 @@
     label="Visible to"
     --onChange=(action this.handlePrivacyFormDataChange)
   }}
-    <option value="true">Everyone</option>
-    <option value="false">Admins</option>
+    <option value="true" selected={{--chat.isPublicized}}>Everyone</option>
+    <option value="false" selected={{not --chat.isPublicized}}>Admins</option>
   {{/ce-field}}
 
   <div class="card__action">

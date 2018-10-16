@@ -3,7 +3,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 800;
+  z-index: 2400;
   display: flex;
   align-items: center;
   min-height: 52px;
@@ -14,7 +14,7 @@
   color: var(--toast-text-color);
   background-color: var(--toast-background-color);
   transform: translateY(230%);
-  box-shadow: var(--elevation-8);
+  box-shadow: var(--elevation-24);
   box-sizing: border-box;
   transition-duration: 195ms;
   transition-property: transform;

@@ -23,14 +23,8 @@ a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
   color: var(--brand-color);
 }
 
-.ce-navbar ~ .ce-toast {
-  margin-bottom: 60px;
-}
-
 @media (min-width: 960px) {
   .ce-navbar ~ .ce-toast {
-    right: 0;
-    left: 0;
     margin-bottom: 16px;
   }
 }
