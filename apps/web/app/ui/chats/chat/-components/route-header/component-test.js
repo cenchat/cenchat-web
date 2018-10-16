@@ -12,7 +12,7 @@ module('Integration | Component | chats/chat/-components/route-header', function
   hooks.beforeEach(async function () {
     await setupTestState(this);
 
-    this.set('chat', await this.store.get('chat', 'site_c__page_a__user_a'));
+    this.set('chat', await this.store.get('chat', 'site_a__page_a__user_e'));
     this.set('isPrivacyFormVisible', false);
     this.set('onPrivacyClick', () => {});
   });
@@ -20,8 +20,25 @@ module('Integration | Component | chats/chat/-components/route-header', function
   test('should use creator display name as heading when current user is not the creator', async function (assert) {
     assert.expect(1);
 
+    // Act
+    await render(hbs`
+      {{chats/chat/-components/route-header
+        --session=(lookup "service:session")
+        --chat=chat
+        --isPrivacyFormVisible=isPrivacyFormVisible
+        --onPrivacyClick=(action onPrivacyClick)
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-route-header="heading"]').hasText('User E');
+  });
+
+  test('should use site display name as heading when current user is the creator', async function (assert) {
+    assert.expect(1);
+
     // Arrange
-    this.set('session.content.model.id', 'user_c');
+    this.set('session.content.model.id', 'user_e');
 
     // Act
     await render(hbs`
@@ -34,10 +51,10 @@ module('Integration | Component | chats/chat/-components/route-header', function
     `);
 
     // Assert
-    assert.dom('[data-test-route-header="heading"]').hasText('User A');
+    assert.dom('[data-test-route-header="heading"]').hasText('Site A');
   });
 
-  test('should use site display name as heading when current user is the creator', async function (assert) {
+  test('should show privacy button when user is a site admin', async function (assert) {
     assert.expect(1);
 
     // Act
@@ -51,7 +68,27 @@ module('Integration | Component | chats/chat/-components/route-header', function
     `);
 
     // Assert
-    assert.dom('[data-test-route-header="heading"]').hasText('Site C');
+    assert.dom('[data-test-route-header="privacy-button"]').exists();
+  });
+
+  test('should hide privacy button when user is not a site admin', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    this.set('session.content.model.id', 'user_e');
+
+    // Act
+    await render(hbs`
+      {{chats/chat/-components/route-header
+        --session=(lookup "service:session")
+        --chat=chat
+        --isPrivacyFormVisible=isPrivacyFormVisible
+        --onPrivacyClick=(action onPrivacyClick)
+      }}
+    `);
+
+    // Assert
+    assert.dom('[data-test-route-header="privacy-button"]').doesNotExist();
   });
 
   test('should mark privacy button as pressed when privacy form is visible', async function (assert) {

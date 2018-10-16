@@ -120,7 +120,30 @@ export default Route.extend({
         ),
 
         page: chat => db.doc(`pages/${chat.page}`).get(),
-        site: chat => db.doc(`sites/${chat.site}`).get(),
+
+        site: chat => (
+          this.store.get('site', chat.site, {
+            fetch: () => db.doc(`sites/${chat.site}`).get(),
+
+            include: {
+              admins: async (site) => {
+                const currentUser = this.get('session.model');
+
+                try {
+                  const docSnapshot = await db.doc(`sites/${site.id}/admins/${currentUser.id}`).get();
+
+                  if (docSnapshot.exists) {
+                    return [await docSnapshot.get('cloudFirestoreReference').get()];
+                  }
+                } catch (error) {
+                  return [];
+                }
+
+                return [];
+              },
+            },
+          })
+        ),
       },
     });
   },

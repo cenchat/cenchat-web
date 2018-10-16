@@ -29,7 +29,7 @@ export default class User extends Model {
       chats: {
         type: 'chat',
         kind: 'hasMany',
-        inverse: 'creator',
+        inverse: null,
       },
       metaInfo: {
         type: 'userMetaInfo',
