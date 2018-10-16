@@ -21,7 +21,7 @@ export default class Chat extends Model {
       creator: {
         type: 'user',
         kind: 'belongsTo',
-        inverse: 'chats',
+        inverse: null,
       },
       lastMessage: {
         type: 'message',

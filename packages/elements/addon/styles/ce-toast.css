@@ -13,7 +13,7 @@
   line-height: 1.25rem;
   color: var(--toast-text-color);
   background-color: var(--toast-background-color);
-  transform: translateY(calc(210%));
+  transform: translateY(230%);
   box-shadow: var(--elevation-8);
   box-sizing: border-box;
   transition-duration: 195ms;
@@ -34,7 +34,7 @@
     min-width: 288px;
     margin: 16px;
     border-radius: var(--border-radius-square);
-    transform: translateY(calc(110% + 16px));
+    transform: translateY(calc(130% + 16px));
   }
 }
 

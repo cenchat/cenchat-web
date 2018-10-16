@@ -59,6 +59,18 @@ export async function setupTestState(context) {
   });
   await store.getAll('site', {
     fetch: () => db.collection('sites').get().then(snap => snap.docs),
+
+    include: {
+      admins: async (site) => {
+        const adminQuerySnapshot = await db.collection(`sites/${site.id}/admins`).get();
+
+        return Promise.all(
+          adminQuerySnapshot.docs.map(docSnapshot => (
+            docSnapshot.get('cloudFirestoreReference').get()
+          )),
+        );
+      },
+    },
   });
   await store.getAll('sticker', {
     fetch: () => db.collection('stickers').get().then(snap => snap.docs),
@@ -71,6 +83,14 @@ export async function setupTestState(context) {
   });
   await store.getAll('user', {
     fetch: () => db.collection('users').get().then(snap => snap.docs),
+
+    include: {
+      // TODO: Uncomment once this 2-way null inverse relationship is fixed
+      // chats: user => db.collection(`users/${user.id}/chats`).get().then(snap => snap.docs),
+      stickerPacks: user => (
+        db.collection(`users/${user.id}/stickerPacks`).get().then(snap => snap.docs)
+      ),
+    },
   });
 
   context.set('session.content.model', await context.store.get('user', 'user_a'));

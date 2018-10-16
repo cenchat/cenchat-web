@@ -17,9 +17,6 @@ module('Integration | Component | sites/site/pages/page/-components/route-footer
   test('should show chats link when current user is a site admin', async function (assert) {
     assert.expect(1);
 
-    // Arange
-    this.set('page.site.admins', [{ id: 'user_a' }]);
-
     // Act
     await render(hbs`
       {{sites/site/pages/page/-components/route-footer --session=(lookup 'service:session') --page=page}}
@@ -31,6 +28,9 @@ module('Integration | Component | sites/site/pages/page/-components/route-footer
 
   test('should hide chats link when current user is not a site admin', async function (assert) {
     assert.expect(1);
+
+    // Arrange
+    this.set('page.site.admins', []);
 
     // Act
     await render(hbs`
@@ -44,6 +44,9 @@ module('Integration | Component | sites/site/pages/page/-components/route-footer
   test('should show my-chat link when current user is not a site admin', async function (assert) {
     assert.expect(1);
 
+    // Arrange
+    this.set('page.site.admins', []);
+
     // Act
     await render(hbs`
       {{sites/site/pages/page/-components/route-footer --session=(lookup 'service:session') --page=page}}
@@ -55,9 +58,6 @@ module('Integration | Component | sites/site/pages/page/-components/route-footer
 
   test('should hide my-chat link when current user is a site admin', async function (assert) {
     assert.expect(1);
-
-    // Arrange
-    this.set('page.site.admins', [{ id: 'user_a' }]);
 
     // Act
     await render(hbs`
