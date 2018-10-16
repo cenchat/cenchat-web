@@ -1,0 +1,9 @@
+.chats-chat_route-content-privacy-form {
+  position: sticky;
+  top: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid var(--divider-color);
+  border-left: none;
+  border-radius: 0;
+}

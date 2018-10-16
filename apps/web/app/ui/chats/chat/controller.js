@@ -25,6 +25,29 @@ export default Controller.extend({
   store: service('store'),
 
   /**
+   * @type {boolean}
+   */
+  isPrivacyFormVisible: false,
+
+  /**
+   * @function
+   */
+  handlePrivacyClick() {
+    this.set('isPrivacyFormVisible', !this.isPrivacyFormVisible);
+  },
+
+  /**
+   * @param {Object} chat
+   * @function
+   */
+  async handlePrivacyFormSubmit(chat) {
+    const db = this.firebase.firestore();
+
+    await db.doc(`chats/${this.model.id}`).update(chat);
+    this.store.update('chat', this.model.id, chat);
+  },
+
+  /**
    * @param {string} content
    * @param {string} type
    * @function

@@ -1,0 +1,4 @@
+.chats-chat-messages {
+  flex: 1;
+  overflow: auto;
+}

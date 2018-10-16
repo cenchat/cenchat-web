@@ -13,4 +13,13 @@
       {{get-user-display-name --chat.creator}}
     {{/if}}
   </h1>
+
+  {{ce-icon-button
+    data-test-route-header="privacy-button"
+    title="Navigate to chat privacy"
+    aria-label="Navigate to chat privacy"
+    aria-pressed=(concat "" --isPrivacyFormVisible)
+    icon="public"
+    --onClick=(action --onPrivacyClick)
+  }}
 {{/ce-top-bar}}
