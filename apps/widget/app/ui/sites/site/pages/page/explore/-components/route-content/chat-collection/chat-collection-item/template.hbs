@@ -12,10 +12,10 @@
       class="sites-site-pages-page-explore_route-content-chat-collection-item__author-photo"
       data-test-chat-collection-item="author-photo"
       src={{get-user-photo --chat.creator}}
-      alt={{--chat.creator.displayName}}
+      alt={{get-user-display-name --chat.creator}}
     >
     <span data-test-chat-collection-item="author-name">
-      {{--chat.creator.displayName}}
+      {{get-user-display-name --chat.creator}}
     </span>
   </address>
 
