@@ -33,6 +33,21 @@ module('Unit | Controller | chats/chat', function (hooks) {
     assert.equal(chat.publicizedTitle, 'Foo');
   });
 
+  test('should toggle off privacy form when updating privacy', async function (assert) {
+    assert.expect(1);
+
+    // Arrange
+    const controller = this.owner.lookup('controller:chats/chat');
+
+    controller.set('model', await this.store.get('chat', 'site_a__page_a__user_e'));
+
+    // Act
+    await controller.handlePrivacyFormSubmit({ isPublicized: true, publicizedTitle: 'Foo' });
+
+    // Assert
+    assert.equal(controller.isPrivacyFormVisible, false);
+  });
+
   test('should toggle privacy form', async function (assert) {
     assert.expect(1);
 
