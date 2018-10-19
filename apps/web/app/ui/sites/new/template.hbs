@@ -1,0 +1,15 @@
+<section class="section liquid-fire-side-nav">
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+      href=(href-to "sites")
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"
+    }}
+    <h1>New Site</h1>
+  {{/ce-top-bar}}
+
+  {{sites/new/-components/route-content
+    --onSiteFormSubmit=(action this.handleSiteFormSubmit)
+  }}
+</section>

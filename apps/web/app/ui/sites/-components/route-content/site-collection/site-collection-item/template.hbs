@@ -1,0 +1,37 @@
+<article
+  class="card clickable"
+  data-test-site-collection-item={{--site.id}}
+>
+  <a class="card__primary-link" href={{href-to "sites.site" --site.id}}></a>
+
+  {{#if --site.imageUrl}}
+    {{ce-image
+      class="card__image"
+      data-test-site-collection-item="image"
+      src=--site.imageUrl
+      alt=--site.displayName
+    }}
+  {{/if}}
+
+  <header class="card__header">
+    <h3 class="card__heading" data-test-site-collection-item="name">
+      {{--site.displayName}}
+    </h3>
+
+    <p
+      class="card__subheading card__short-text"
+      data-test-site-collection-item="hostname"
+    >
+      {{--site.hostname}}
+    </p>
+
+    {{#if (not --site.isVerified)}}
+      <p
+        class="sites_route-content-site-collection-item__unverified-status card__subheading"
+        data-test-site-collection-item="unverified-status"
+      >
+        Unverified
+      </p>
+    {{/if}}
+  </header>
+</article>

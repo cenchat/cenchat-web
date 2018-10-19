@@ -1,0 +1,27 @@
+<article class="card card--centered-position">
+  <h2 class="card__heading">Verify your site</h2>
+
+  <p class="card__message">
+    To setup your site for verification, follow the guide 
+    <a
+      href="https://cenchat.com/docs/verify-site"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      here
+    </a>
+  </p>
+
+  <p class="card__message">
+    During the setup phase, the Site ID you must use is <strong>{{--site.id}}</strong>
+  </p>
+
+  <div class="card__action">
+    {{#ce-button
+      data-test-verify-site="verify-button"
+      --onClick=(action --onVerifySiteClick)
+    }}
+      Verify
+    {{/ce-button}}
+  </div>
+</article>

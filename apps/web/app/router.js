@@ -17,6 +17,10 @@ Router.map(function() {
     this.route('edit');
     this.route('settings');
   });
+  this.route('sites', function() {
+    this.route('new');
+    this.route('site', { path: '/:site_id' });
+  });
 });
 
 export default Router;

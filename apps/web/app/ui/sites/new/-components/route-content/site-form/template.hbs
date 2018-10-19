@@ -1,0 +1,57 @@
+<div class="section__item">
+  {{#ce-form
+    class="card"
+    --onSubmit=(action --onSiteFormSubmit this.site)
+  }}
+    {{ce-field
+      class="card__field"
+      name="hostname"
+      data-test-site-form="hostname-field"
+      type="text"
+      title="Use the hostname of your site (e.g. example.com)"
+      pattern="(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])"
+      required=true
+      label="URL"
+      --onInput=(action this.handleSiteFormDataChange)
+    }}
+    {{ce-field
+      class="card__field"
+      name="displayName"
+      data-test-site-form="name-field" 
+      type="text"
+      required=true
+      label="Name"
+      --onInput=(action this.handleSiteFormDataChange)
+    }}
+    {{ce-field
+      class="card__field"
+      name="brandColor"
+      data-test-site-form="brand-color-field" 
+      type="text"
+      required=true
+      label="Brand color (e.g. #e3f24d)"
+      --onInput=(action this.handleSiteFormDataChange)
+    }}
+    {{#ce-field
+      class="card__field"
+      name="theme"
+      data-test-site-form="theme-field"
+      type="select"
+      label="Theme"
+      --onChange=(action this.handleSiteFormDataChange)
+    }}
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    {{/ce-field}}
+
+    <div class="card__action">
+      {{#ce-button
+        data-test-site-form="submit-button"
+        type="submit"
+        disabled=(not (and this.site.hostname this.site.displayName this.site.brandColor))
+      }}
+        Save
+      {{/ce-button}}
+    </div>
+  {{/ce-form}}
+</div>
