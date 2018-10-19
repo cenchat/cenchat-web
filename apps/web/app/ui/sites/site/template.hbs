@@ -1,0 +1,16 @@
+<section class="section liquid-fire-side-nav">
+  {{#ce-top-bar}}
+    {{ce-icon-link-button
+      href=(href-to "sites")
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="arrow_back"
+    }}
+    <h1>{{this.model.displayName}}</h1>
+  {{/ce-top-bar}}
+
+  {{sites/site/-components/route-content
+    --site=this.model
+    --onVerifySiteClick=(action this.handleVerifySiteClick)
+  }}
+</section>

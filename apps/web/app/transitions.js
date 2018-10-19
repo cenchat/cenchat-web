@@ -22,4 +22,18 @@ export default function () {
     this.use('toLeft'),
     this.reverse('toRight'),
   );
+
+  this.transition(
+    this.fromRoute('sites.index'),
+    this.toRoute('sites.new'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
+
+  this.transition(
+    this.fromRoute('sites.index'),
+    this.toRoute('sites.site'),
+    this.use('toLeft'),
+    this.reverse('toRight'),
+  );
 }

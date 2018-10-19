@@ -1,4 +1,6 @@
 .chats-chat_route-content {
+  display: flex;
+  flex-direction: column;
   overflow: hidden !important;
 }
 

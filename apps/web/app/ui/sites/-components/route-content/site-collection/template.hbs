@@ -1,0 +1,10 @@
+{{#ani-each
+  (sort-by "isVerified" --sites)
+  key="id"
+  class="section__item"
+as |site|
+}}
+  {{sites/-components/route-content/site-collection/site-collection-item
+    --site=site
+  }}
+{{/ani-each}}

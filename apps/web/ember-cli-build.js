@@ -14,7 +14,7 @@ module.exports = function (defaults) {
 
   const app = new EmberApp(defaults, {
     'ember-composable-helpers': {
-      only: ['optional'],
+      only: ['sort-by'],
     },
     babel: {
       plugins: ['transform-object-rest-spread'],

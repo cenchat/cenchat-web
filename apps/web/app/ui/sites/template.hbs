@@ -1,0 +1,15 @@
+<section class="section">
+  {{#ce-top-bar}}
+    <h1>Sites</h1>
+    {{ce-icon-link-button
+      href=(href-to "sites.new")
+      title="Navigate to create site"
+      aria-label="Navigate to create site"
+      icon="add"
+    }}
+  {{/ce-top-bar}}
+
+  {{sites/-components/route-content --sites=this.model}}
+</section>
+
+{{liquid-outlet class="liquid-fire-side-nav-outlet"}}
