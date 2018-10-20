@@ -16,25 +16,24 @@
       icon="add"
       --onClick=(action --onShowSubToolbarClick)
     }}
+    {{textarea
+      class="chat-composer-main-toolbar__field"
+      data-test-chat-composer-main-toolbar="field"
+      autocapitalize=true
+      placeholder="Type a message..."
+      disabled=--isComposingDisabled
+      value=this.message
+      autoresize=true
+      rows=1
+      max-rows=6
+    }}
+    {{ce-icon-button
+      data-test-chat-composer-main-toolbar="send-button"
+      title="Send message"
+      aria-label="Send message"
+      disabled=(or --isComposingDisabled (not this.message))
+      icon="send"
+      --onClick=(action this.handleSendMessageClick)
+    }}
   {{/if}}
-
-  {{textarea
-    class="chat-composer-main-toolbar__field"
-    data-test-chat-composer-main-toolbar="field"
-    autocapitalize=true
-    placeholder="Type a message..."
-    disabled=--isComposingDisabled
-    value=this.message
-    autoresize=true
-    rows=1
-    max-rows=6
-  }}
-  {{ce-icon-button
-    data-test-chat-composer-main-toolbar="send-button"
-    title="Send message"
-    aria-label="Send message"
-    disabled=(or --isComposingDisabled (not this.message))
-    icon="send"
-    --onClick=(action this.handleSendMessageClick)
-  }}
 </div>

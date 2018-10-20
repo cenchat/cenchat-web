@@ -33,8 +33,8 @@
 
 a.list__action {
   display: flex;
-  align-items: center;
   flex: 1;
+  align-items: center;
   color: inherit;
   text-decoration: none;
 }
@@ -51,8 +51,8 @@ button.list__action {
 
 button.list__action > div {
   display: flex;
-  align-items: center;
   flex: 0 1 auto;
+  align-items: center;
   padding: 0;
 }
 
@@ -73,20 +73,20 @@ button.list__action > div {
 }
 
 .list__single-line-content {
+  box-sizing: border-box;
   flex: 1;
   padding: 12px 16px;
   overflow: hidden;
   color: var(--font-primary-color);
   text-overflow: ellipsis;
   white-space: nowrap;
-  box-sizing: border-box;
 }
 
 .list__multi-line-content {
+  box-sizing: border-box;
   flex: 1;
   padding: 14px 16px;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 .list__primary-text {

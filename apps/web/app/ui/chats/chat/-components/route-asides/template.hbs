@@ -1,0 +1,35 @@
+<div class="section__asides">
+  {{#if --isPrivacyFormVisible}}
+    {{chats/chat/-components/route-asides/privacy-form
+      --chat=--chat
+      --onPrivacyFormSubmit=(action --onPrivacyFormSubmit)
+    }}
+  {{/if}}
+
+  {{#if this.isPageLinkVisible}}
+    <aside class="chats-chat_route-asides__page-link-container section__aside">
+      <div class="chats-chat_route-asides__page-link-texts">
+        <div>Chat for:</div>
+
+        <a
+          data-test-route-asides="page-link"
+          href="http://{{--chat.site.hostname}}/{{--chat.page.slug}}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{--chat.page.title}}
+        </a>
+      </div>
+
+      {{ce-icon-button
+        class="chats-chat_route-asides__hide-page-link-button"
+        data-test-route-asides="hide-page-link-button"
+        title="Hide page link"
+        aria-label="Hide page link"
+        icon="close"
+        size="small"
+        --onClick=(action this.handleHidePageLinkClick)
+      }}
+    </aside>
+  {{/if}}
+</div>

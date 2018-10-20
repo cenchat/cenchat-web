@@ -8,10 +8,10 @@
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: inherit;
   background-color: var(--placeholder-color);
-  animation-duration: 1600ms;
+  border-radius: inherit;
   animation-name: ce-image-placeholder-fade;
+  animation-duration: 1600ms;
   animation-timing-function: var(--motion-standard-curve);
   animation-iteration-count: infinite;
 }

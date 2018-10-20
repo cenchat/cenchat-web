@@ -1,5 +1,6 @@
 .ce-link-button {
   position: relative;
+  box-sizing: border-box;
   padding: 8px;
   font-family: var(--font-family);
   font-size: var(--font-size-14);
@@ -9,7 +10,6 @@
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  box-sizing: border-box;
 }
 
 .ce-link-button[size="small"] {
@@ -22,13 +22,13 @@
 
 .ce-link-button div {
   position: relative;
-  height: 36px;
+  box-sizing: border-box;
   min-width: 66px;
+  height: 36px;
   padding-right: 8px;
   padding-left: 8px;
-  border-radius: var(--border-radius-square);
-  box-sizing: border-box;
   overflow: hidden;
+  border-radius: var(--border-radius-square);
 }
 
 .ce-link-button[outlined] div {
@@ -47,8 +47,8 @@
   bottom: 0;
   left: 0;
   content: '';
-  opacity: 0.08;
   background-color: var(--brand-color);
+  opacity: 0.08;
 }
 
 .ce-link-button:active div::before,
@@ -59,6 +59,6 @@
   bottom: 0;
   left: 0;
   content: '';
-  opacity: 0.24;
   background-color: var(--brand-color);
+  opacity: 0.24;
 }

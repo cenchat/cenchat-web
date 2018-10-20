@@ -1,6 +1,6 @@
 .ce-fade-in {
-  animation-duration: var(--motion-small-expand-duration);
   animation-name: ce-fade-in;
+  animation-duration: var(--motion-small-expand-duration);
   animation-timing-function: var(--motion-deceleration-curve);
 }
 
@@ -15,8 +15,8 @@
 }
 
 .ce-fade-out {
-  animation-duration: var(--motion-small-collapse-duration);
   animation-name: ce-fade-out;
+  animation-duration: var(--motion-small-collapse-duration);
   animation-timing-function: var(--motion-acceleration-curve);
 }
 

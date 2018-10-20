@@ -1,15 +1,14 @@
 .ce-top-bar {
-  width: 100%;
   color: var(--font-primary-color);
-  background-color: var(--bar-background-color);
-  border-bottom: 1px solid var(--divider-color);
+  background-color: var(--top-bar-background-color);
+  opacity: 0.98;
 }
 
 @media (min-width: 960px) {
   .ce-top-bar[responsive] {
+    box-sizing: border-box;
     padding-right: 8px;
     padding-left: 8px;
-    box-sizing: border-box;
   }
 
   .ce-top-bar[responsive] > .ce-top-bar-row:first-child {

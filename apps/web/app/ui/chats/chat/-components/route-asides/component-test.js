@@ -6,7 +6,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { setupTestState } from '@cenchat/firebase/test-support';
 import { spyComponent } from '@cenchat/utils/test-support';
 
-module('Integration | Component | chats/chat/-components/route-content', function (hooks) {
+module('Integration | Component | chats/chat/-components/route-asides', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -21,13 +21,13 @@ module('Integration | Component | chats/chat/-components/route-content', functio
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'chats/chat/-components/route-content/privacy-form');
+    const spy = spyComponent(this, 'chats/chat/-components/route-asides/privacy-form');
 
     this.set('isPrivacyFormVisible', true);
 
     // Act
     await render(hbs`
-      {{chats/chat/-components/route-content
+      {{chats/chat/-components/route-asides
         --chat=chat
         --isPrivacyFormVisible=isPrivacyFormVisible
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
@@ -42,11 +42,11 @@ module('Integration | Component | chats/chat/-components/route-content', functio
     assert.expect(1);
 
     // Arrange
-    const spy = spyComponent(this, 'chats/chat/-components/route-content/privacy-form');
+    const spy = spyComponent(this, 'chats/chat/-components/route-asides/privacy-form');
 
     // Act
     await render(hbs`
-      {{chats/chat/-components/route-content
+      {{chats/chat/-components/route-asides
         --chat=chat
         --isPrivacyFormVisible=isPrivacyFormVisible
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
@@ -62,7 +62,7 @@ module('Integration | Component | chats/chat/-components/route-content', functio
 
     // Act
     await render(hbs`
-      {{chats/chat/-components/route-content
+      {{chats/chat/-components/route-asides
         --chat=chat
         --isPrivacyFormVisible=isPrivacyFormVisible
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
@@ -70,7 +70,7 @@ module('Integration | Component | chats/chat/-components/route-content', functio
     `);
 
     // Assert
-    assert.dom('[data-test-route-content="page-link"]').hasText('Page A Title');
+    assert.dom('[data-test-route-asides="page-link"]').hasText('Page A Title');
   });
 
   test('should hide page link when clicking hide page link', async function (assert) {
@@ -78,7 +78,7 @@ module('Integration | Component | chats/chat/-components/route-content', functio
 
     // Arrange
     await render(hbs`
-      {{chats/chat/-components/route-content
+      {{chats/chat/-components/route-asides
         --chat=chat
         --isPrivacyFormVisible=isPrivacyFormVisible
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
@@ -86,9 +86,9 @@ module('Integration | Component | chats/chat/-components/route-content', functio
     `);
 
     // Act
-    await click('[data-test-route-content="hide-page-link-button"]');
+    await click('[data-test-route-asides="hide-page-link-button"]');
 
     // Assert
-    assert.dom('[data-test-route-content="page-link"]').doesNotExist();
+    assert.dom('[data-test-route-asides="page-link"]').doesNotExist();
   });
 });

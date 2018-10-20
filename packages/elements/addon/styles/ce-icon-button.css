@@ -14,44 +14,8 @@
   width: 36px;
   height: 36px;
   margin: 8px;
-  border-radius: var(--border-radius-circle);
   overflow: hidden;
-}
-
-.ce-icon-button[outlined] .ce-icon-button__wrapper {
-  line-height: 32px;
-  border: 2px solid var(--brand-color);
-}
-
-.ce-icon-button[outlined]:disabled .ce-icon-button__wrapper {
-  border: 2px solid var(--button-disabled-text-color);
-}
-
-.ce-icon-button:hover .ce-icon-button__wrapper::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  opacity: 0.08;
-  background-color: var(--brand-color);
-}
-
-.ce-icon-button:active .ce-icon-button__wrapper::before,
-.ce-icon-button[aria-pressed="true"] .ce-icon-button__wrapper::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  opacity: 0.24;
-  background-color: var(--brand-color);
-}
-
-.ce-icon-button:disabled .ce-icon-button__wrapper::before {
-  background-color: transparent;
+  border-radius: var(--border-radius-circle);
 }
 
 .ce-icon-button[size="small"] .ce-icon-button__wrapper {
@@ -73,15 +37,51 @@
   border-radius: var(--border-radius-square);
 }
 
+.ce-icon-button[outlined] .ce-icon-button__wrapper {
+  line-height: 32px;
+  border: 2px solid var(--brand-color);
+}
+
+.ce-icon-button[outlined]:disabled .ce-icon-button__wrapper {
+  border: 2px solid var(--button-disabled-text-color);
+}
+
+.ce-icon-button:hover .ce-icon-button__wrapper::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background-color: var(--brand-color);
+  opacity: 0.08;
+}
+
+.ce-icon-button:active .ce-icon-button__wrapper::before,
+.ce-icon-button[aria-pressed="true"] .ce-icon-button__wrapper::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background-color: var(--brand-color);
+  opacity: 0.24;
+}
+
+.ce-icon-button:disabled .ce-icon-button__wrapper::before {
+  background-color: transparent;
+}
+
 .ce-icon-button[badged] .ce-icon-button__wrapper::after {
   position: absolute;
   top: 4px;
   right: 4px;
   width: 10px;
   height: 10px;
-  background-color: var(--error-color);
-  border-radius: var(--border-radius-circle);
   content: '';
+  background-color: var(--danger-color);
+  border-radius: var(--border-radius-circle);
 }
 
 .ce-icon-button[performing] .ce-icon-button__wrapper::after {
@@ -90,12 +90,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: var(--brand-color);
   content: '';
-  animation-duration: 2000ms;
-  animation-iteration-count: infinite;
+  background-color: var(--brand-color);
   animation-name: ce-icon-buton-performing;
+  animation-duration: 2000ms;
   animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes ce-icon-buton-performing {
@@ -113,12 +113,12 @@
 }
 
 .ce-icon-button .ce-image {
+  box-sizing: content-box;
   width: 24px;
   height: 24px;
   padding: 6px;
-  border-radius: var(--border-radius-circle);
-  box-sizing: content-box;
   user-select: none;
+  border-radius: var(--border-radius-circle);
 }
 
 .ce-icon-button[size="small"] .ce-image {
@@ -141,9 +141,9 @@
 }
 
 .ce-icon-button .ce-icon {
+  box-sizing: border-box;
   padding: 6px;
   color: inherit;
-  box-sizing: border-box;
 }
 
 .ce-icon-button[outlined] .ce-icon {

@@ -44,8 +44,8 @@
 }
 
 .email-link-auth-sign-in--show-more-info {
-  animation-duration: 375ms;
   animation-name: email-link-auth-sign-in-slide-center-to-left;
+  animation-duration: 375ms;
   animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   animation-fill-mode: forwards;
 }

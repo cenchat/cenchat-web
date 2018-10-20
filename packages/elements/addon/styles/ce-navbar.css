@@ -1,9 +1,7 @@
 .ce-navbar {
   display: flex;
   align-items: center;
-  width: 100%;
-  background-color: var(--bar-background-color);
-  border-top: 1px solid var(--divider-color);
+  background-color: var(--navbar-background-color);
 }
 
 @media (min-width: 960px) {
@@ -11,7 +9,6 @@
     display: block;
     width: auto;
     border-top: none;
-    border-right: 1px solid var(--divider-color);
   }
 }
 
@@ -21,24 +18,7 @@
   justify-content: center;
 }
 
-.ce-navbar .ce-icon-link-button[active]::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  content: '';
-  background-color: var(--indicator-color);
-  border-radius: var(--border-radius-square);
-}
-
-@media (min-width: 960px) {
-  .ce-navbar .ce-icon-link-button[active]::after {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: initial;
-    width: 2px;
-    height: initial;
-  }
+.ce-navbar .ce-icon-link-button[active] {
+  color: var(--font-alternate-color);
+  background-color: var(--info-color);
 }

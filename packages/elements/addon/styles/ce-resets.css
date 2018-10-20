@@ -24,8 +24,8 @@ html {
 }
 
 @font-face {
-  font-style: italic;
   font-family: "Segoe UI";
+  font-style: italic;
   font-weight: 400;
   src: local("Segoe UI Italic");
 }

@@ -1,0 +1,36 @@
+<aside class="section__aside">
+  {{#ce-form --onSubmit=(action --onPrivacyFormSubmit this.chat)}}
+    {{ce-field
+      class="card__field"
+      name="publicizedTitle"
+      data-test-privacy-form="publicized-title-field"
+      type="text"
+      maxlength="140"
+      value=this.chat.publicizedTitle
+      required=true
+      label="Publicized title"
+      --onInput=(action this.handlePrivacyFormDataChange)
+    }}
+    {{#ce-field
+      class="card__field"
+      name="isPublicized"
+      data-test-privacy-form="visible-to-field"
+      type="select"
+      label="Visible to"
+      --onChange=(action this.handlePrivacyFormDataChange)
+    }}
+      <option value="true" selected={{--chat.isPublicized}}>Everyone</option>
+      <option value="false" selected={{not --chat.isPublicized}}>Admins</option>
+    {{/ce-field}}
+
+    <div class="card__action">
+      {{#ce-button
+        data-test-privacy-form="submit-button"
+        type="submit"
+        disabled=(not this.chat.publicizedTitle)
+      }}
+        Save
+      {{/ce-button}}
+    </div>
+  {{/ce-form}}
+</aside>

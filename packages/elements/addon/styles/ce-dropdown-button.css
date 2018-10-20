@@ -5,6 +5,7 @@
 .ce-dropdown-button .menu {
   position: absolute;
   z-index: 800;
+  box-sizing: border-box;
   display: none;
   min-width: 112px;
   max-width: 280px;
@@ -17,19 +18,18 @@
   background-color: var(--surface-background-color);
   border-radius: var(--border-radius-square);
   box-shadow: var(--elevation-8);
-  box-sizing: border-box;
 }
 
 .ce-dropdown-button .menu.expanded {
-  animation-duration: 225ms;
   animation-name: ce-dropdown-button-expand;
+  animation-duration: 225ms;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
 .ce-dropdown-button .menu.compressed {
-  animation-duration: 195ms;
   animation-name: ce-dropdown-button-compress;
+  animation-duration: 195ms;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }

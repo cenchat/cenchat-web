@@ -6,15 +6,18 @@
     --onPrivacyClick=(action this.handlePrivacyClick)
   }}
 
-  {{#chats/chat/-components/route-content
+  {{chats/chat/-components/route-asides
     --chat=this.model
     --isPrivacyFormVisible=this.isPrivacyFormVisible
     --onPrivacyFormSubmit=(action this.handlePrivacyFormSubmit)
   }}
+
+  <div class="section__content" id="chat-content">
     {{outlet}}
-  {{/chats/chat/-components/route-content}}
+  </div>
 
   {{chat-composer
+    class="section__toolbar"
     --session=(lookup "service:session")
     --chat=this.model
     --isReadOnlyDisabled=true
