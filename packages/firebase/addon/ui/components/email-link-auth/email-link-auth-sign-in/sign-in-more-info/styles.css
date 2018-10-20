@@ -1,0 +1,10 @@
+.email-link-auth-sign-in-more-info__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.email-link-auth-sign-in-more-info__heading {
+  padding-top: 16px;
+}

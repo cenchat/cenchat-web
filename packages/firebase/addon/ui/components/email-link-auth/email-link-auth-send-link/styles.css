@@ -1,0 +1,23 @@
+.email-link-auth-send-link__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.email-link-auth-send-link__heading {
+  padding-top: 16px;
+}
+
+.email-link-auth-send-link__or-anonymous {
+  padding-top: 16px;
+  color: var(--font-secondary-color) !important;
+}
+
+.email-link-auth-send-link__continue-anonymously-button {
+  padding: 0;
+  color: var(--indicator-color);
+  text-decoration: underline;
+  background: none;
+  border: none;
+}

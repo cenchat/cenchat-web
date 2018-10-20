@@ -46,11 +46,6 @@ module.exports = function (defaults) {
     },
     stylelint: {
       linterConfig: { syntax: 'css' },
-      includePaths: [
-        '../../packages/core/addon/styles',
-        '../../packages/elements/addon/styles',
-        '../../packages/firebase/addon/styles',
-      ],
     },
   });
 

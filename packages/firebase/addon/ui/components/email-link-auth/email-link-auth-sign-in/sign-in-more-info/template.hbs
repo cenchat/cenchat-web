@@ -6,19 +6,21 @@
 
   {{#ce-form class="card__wrapper" --onSubmit=(action --onEmailLinkSignInClick this.displayName)}}
     {{ce-field
-        class="card__field"
-        data-test-sign-in-more-info="display-name-field"
-        type="text"
-        value=this.displayName
-        required=true
-        label="Full name"
-        --onInput=(action this.handleDisplayNameInput)}}
+      class="card__field"
+      data-test-sign-in-more-info="display-name-field"
+      type="text"
+      value=this.displayName
+      required=true
+      label="Full name"
+      --onInput=(action this.handleDisplayNameInput)
+    }}
 
     <div class="card__action">
       {{#ce-button
-          data-test-sign-in-more-info="sign-in-button"
-          type="submit"
-          disabled=(not this.displayName)}}
+        data-test-sign-in-more-info="sign-in-button"
+        type="submit"
+        disabled=(not this.displayName)
+      }}
         Sign in
       {{/ce-button}}
     </div>
