@@ -1,7 +1,8 @@
 <div class="email-link-auth-sign-in {{if this.isEmailNotExisting 'email-link-auth-sign-in--show-more-info'}}">
   <section class="email-link-auth-sign-in__section">
-    <header class="email-link-auth__header card__header">
-      <h2 class="email-link-auth__heading card__heading card__heading--small">Sign in</h2>
+    <header class="email-link-auth-sign-in__header card__header">
+      <h2 class="email-link-auth-sign-in__heading card__heading card__heading--small">Sign in</h2>
+
       <p class="card__subheading" data-test-email-link-sign-in-form="subheading">
         Re-enter your email for verification
       </p>
@@ -9,19 +10,21 @@
 
     {{#ce-form class="card__wrapper" --onSubmit=(action this.handleEmailFormSubmit)}}
       {{ce-field
-          class="card__field"
-          data-test-email-link-auth-sign-in="email-field"
-          type="email"
-          value=this.email
-          required=true
-          label="Email"
-          --onInput=(action this.handleEmailInput)}}
+        class="card__field"
+        data-test-email-link-auth-sign-in="email-field"
+        type="email"
+        value=this.email
+        required=true
+        label="Email"
+        --onInput=(action this.handleEmailInput)
+      }}
 
       <div class="card__action">
         {{#ce-button
-            data-test-email-link-auth-sign-in="continue-button"
-            type="submit"
-            disabled=(not this.email)}}
+          data-test-email-link-auth-sign-in="continue-button"
+          type="submit"
+          disabled=(not this.email)
+        }}
           Continue
         {{/ce-button}}
       </div>
@@ -30,7 +33,8 @@
 
   {{#if this.isEmailNotExisting}}
     {{email-link-auth/email-link-auth-sign-in/sign-in-more-info
-        class="email-link-auth-sign-in__section"
-        --onEmailLinkSignInClick=(action --onEmailLinkSignInClick this.email)}}
+      class="email-link-auth-sign-in__section"
+      --onEmailLinkSignInClick=(action --onEmailLinkSignInClick this.email)
+    }}
   {{/if}}
 </div>

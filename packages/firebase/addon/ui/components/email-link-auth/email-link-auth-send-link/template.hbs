@@ -1,24 +1,26 @@
 <div>
-  <header class="email-link-auth__header card__header">
-    <h2 class="email-link-auth__heading card__heading card__heading--small">Sign in</h2>
+  <header class="email-link-auth-send-link__header card__header">
+    <h2 class="email-link-auth-send-link__heading card__heading card__heading--small">Sign in</h2>
     <p class="card__subheading">Instead of passwords, we'll send a sign in link to your inbox</p>
   </header>
 
   {{#ce-form class="card__wrapper" --onSubmit=(action this.handleEmailFormSubmit)}}
     {{ce-field
-        class="card__field"
-        data-test-email-link-auth-send-link="email-field"
-        type="email"
-        value=this.email
-        required=true
-        label="Email"
-        --onInput=(action this.handleEmailInput)}}
+      class="card__field"
+      data-test-email-link-auth-send-link="email-field"
+      type="email"
+      value=this.email
+      required=true
+      label="Email"
+      --onInput=(action this.handleEmailInput)
+    }}
 
     <div class="card__action">
       {{#ce-button
-          data-test-email-link-auth-send-link="send-link-button"
-          type="submit"
-          disabled=(not this.email)}}
+        data-test-email-link-auth-send-link="send-link-button"
+        type="submit"
+        disabled=(not this.email)
+      }}
         Send link
       {{/ce-button}}
     </div>
@@ -26,14 +28,16 @@
 
   {{#if --isAnonymousAllowed}}
     <p
-        class="email-link-auth-send-link__or-anonymous card__message"
-        data-test-email-link-auth-send-link="or-anonymous">
+      class="email-link-auth-send-link__or-anonymous card__message"
+      data-test-email-link-auth-send-link="or-anonymous"
+    >
       Or, you can also just
 
       <button
-          class="email-link-auth-send-link__continue-anonymously-button"
-          data-test-email-auth-send-link="continue-anonymously-button"
-          onclick={{action --onContinueAnonymouslyClick}}>
+        class="email-link-auth-send-link__continue-anonymously-button"
+        data-test-email-auth-send-link="continue-anonymously-button"
+        onclick={{action --onContinueAnonymouslyClick}}
+      >
         continue anonymously
       </button>
     </p>
