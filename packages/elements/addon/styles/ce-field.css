@@ -30,8 +30,8 @@
 }
 
 .ce-field textarea {
-  border-radius: var(--border-radius-pill);
   resize: none;
+  border-radius: var(--border-radius-pill);
 }
 
 .ce-field input,
@@ -59,5 +59,5 @@
   padding-left: 16px;
   font-family: var(--font-family);
   font-size: var(--font-size-12);
-  color: var(--error-color);
+  color: var(--danger-color);
 }

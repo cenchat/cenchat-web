@@ -1,5 +1,6 @@
 .ce-button {
   position: relative;
+  box-sizing: border-box;
   padding: 8px;
   overflow: hidden;
   font-family: var(--font-family);
@@ -11,7 +12,6 @@
   text-transform: uppercase;
   background: none;
   border-style: none;
-  box-sizing: border-box;
 }
 
 .ce-button[size="small"] {
@@ -24,13 +24,13 @@
 
 .ce-button div {
   position: relative;
-  height: 36px;
+  box-sizing: border-box;
   min-width: 66px;
+  height: 36px;
   padding-right: 8px;
   padding-left: 8px;
-  border-radius: var(--border-radius-square);
-  box-sizing: border-box;
   overflow: hidden;
+  border-radius: var(--border-radius-square);
 }
 
 .ce-button[outlined] div {
@@ -49,8 +49,8 @@
   bottom: 0;
   left: 0;
   content: '';
-  opacity: 0.08;
   background-color: var(--brand-color);
+  opacity: 0.08;
 }
 
 .ce-button:active div::before,
@@ -61,8 +61,8 @@
   bottom: 0;
   left: 0;
   content: '';
-  opacity: 0.24;
   background-color: var(--brand-color);
+  opacity: 0.24;
 }
 
 .ce-button:disabled {
@@ -83,12 +83,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: var(--brand-color);
   content: '';
-  animation-duration: 2000ms;
-  animation-iteration-count: infinite;
+  background-color: var(--brand-color);
   animation-name: ce-button-performing;
+  animation-duration: 2000ms;
   animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes ce-button-performing {

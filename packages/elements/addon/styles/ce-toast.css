@@ -4,6 +4,7 @@
   bottom: 0;
   left: 0;
   z-index: 2400;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   min-height: 52px;
@@ -13,12 +14,11 @@
   line-height: 1.25rem;
   color: var(--toast-text-color);
   background-color: var(--toast-background-color);
-  transform: translateY(230%);
   box-shadow: var(--elevation-24);
-  box-sizing: border-box;
+  transition-timing-function: ease-out;
   transition-duration: 195ms;
   transition-property: transform;
-  transition-timing-function: ease-out;
+  transform: translateY(230%);
 }
 
 @media (min-width: 600px) {
@@ -30,8 +30,8 @@
 @media (min-width: 960px) {
   .ce-toast {
     right: auto;
-    max-width: 568px;
     min-width: 288px;
+    max-width: 568px;
     margin: 16px;
     border-radius: var(--border-radius-square);
     transform: translateY(calc(130% + 16px));
@@ -45,9 +45,9 @@
 }
 
 .ce-toast[opened] {
-  transform: translateY(0);
-  transition-duration: 225ms;
   transition-timing-function: ease-in;
+  transition-duration: 225ms;
+  transform: translateY(0);
 }
 
 @media (min-width: 600px) {

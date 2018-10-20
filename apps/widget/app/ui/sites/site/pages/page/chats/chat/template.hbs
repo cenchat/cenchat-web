@@ -12,6 +12,7 @@
   {{outlet}}
 
   {{chat-composer
+    class="section__toolbar"
     --session=(lookup "service:session")
     --chat=this.model
     --onSendMessageClick=(action this.handleSendMessageClick)

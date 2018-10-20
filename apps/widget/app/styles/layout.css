@@ -25,6 +25,7 @@
   right: 0;
   left: 0;
   z-index: 400;
+  opacity: 0.98;
 }
 
 .layout__main {
@@ -33,8 +34,11 @@
 
 .layout__nav {
   position: fixed;
+  right: 0;
   bottom: 0;
+  left: 0;
   z-index: 600;
+  opacity: 0.98;
 }
 
 .layout__main--no-nav ~ .layout__nav {

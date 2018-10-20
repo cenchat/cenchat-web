@@ -11,22 +11,20 @@
 .ce-top-bar-row > h4,
 .ce-top-bar-row > h5,
 .ce-top-bar-row > h6 {
+  box-sizing: border-box;
   padding-right: 8px;
   padding-left: 8px;
   margin: 0 12px;
   overflow: hidden;
-
-  /* Title typography */
   font-family: var(--font-family);
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
   line-height: 2rem;
+  color: var(--heading-color);
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--heading-color);
   background-color: var(--heading-background-color);
   border-radius: var(--border-radius-square);
-  box-sizing: border-box;
 }
 
 .ce-top-bar-row > h1 + *,

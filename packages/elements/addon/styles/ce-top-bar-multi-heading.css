@@ -11,13 +11,12 @@
 .ce-top-bar-multi-heading > h4,
 .ce-top-bar-multi-heading > h5,
 .ce-top-bar-multi-heading > h6 {
+  box-sizing: border-box;
   padding-right: 20px;
   padding-left: 20px;
   margin-top: 0;
   margin-bottom: 0;
   overflow: hidden;
-
-  /* Title typography */
   font-family: var(--font-family);
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
@@ -25,22 +24,19 @@
   color: var(--font-primary-color);
   text-overflow: ellipsis;
   white-space: nowrap;
-  box-sizing: border-box;
 }
 
 .ce-top-bar-multi-heading > p {
+  box-sizing: border-box;
   padding-right: 20px;
   padding-left: 20px;
   margin-top: 0;
   margin-bottom: 0;
   overflow: hidden;
-
-  /* Title typography */
   font-family: var(--font-family);
   font-size: var(--font-size-12);
   line-height: 1.25rem;
   color: var(--font-secondary-color);
   text-overflow: ellipsis;
   white-space: nowrap;
-  box-sizing: border-box;
 }

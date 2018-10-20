@@ -1,12 +1,12 @@
 .ce-spinner {
   position: relative;
+  box-sizing: border-box;
   width: 52px;
   height: 52px;
   padding: 6px;
   margin-right: auto;
   margin-left: auto;
   border-radius: var(--border-radius-circle);
-  box-sizing: border-box;
 }
 
 .ce-spinner::after {
@@ -18,16 +18,16 @@
   width: 20px;
   height: 20px;
   margin: auto;
-  border-top: 2px solid var(--indicator-color);
-  border-right: 2px solid var(--indicator-color);
+  content: '';
+  border-top: 2px solid var(--info-color);
+  border-right: 2px solid var(--info-color);
   border-bottom: 2px solid transparent;
   border-left: 2px solid transparent;
   border-radius: var(--border-radius-circle);
-  content: '';
-  animation-duration: 800ms;
-  animation-iteration-count: infinite;
   animation-name: ce-spinner-rotate;
+  animation-duration: 800ms;
   animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 @keyframes ce-spinner-rotate {

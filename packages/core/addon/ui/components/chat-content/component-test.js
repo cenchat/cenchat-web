@@ -25,7 +25,14 @@ module('Integration | Component | chat-content', function (hooks) {
     const spy = spyComponent(this, 'chat-content/chat-content-time-group-list');
 
     // Act
-    await render(hbs`{{chat-content --messages=messages --onScrollToTop=(action onScrollToTop)}}`);
+    await render(hbs`
+      {{chat-content
+        id="foo"
+        --messages=messages
+        --scroller="#foo"
+        --onScrollToTop=(action onScrollToTop)
+      }}
+    `);
 
     // Assert
     assert.deepEqual(spy.componentArgsType, { messages: 'array' });

@@ -14,9 +14,9 @@
   font-style: normal;
   font-weight: normal;
   line-height: 1;
+  text-transform: none;
   letter-spacing: normal;
   text-rendering: optimizeLegibility;  /* Support for Safari and Chrome. */
-  text-transform: none;
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;

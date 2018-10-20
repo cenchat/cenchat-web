@@ -9,12 +9,8 @@
     <h2>Edit profile</h2>
   {{/ce-top-bar}}
 
-  <div class="section__content section__content--headerless">
-    <div class="section__item">
-      {{profile/edit/-components/route-content
-        --user=this.model
-        --onProfileFormSubmit=(action this.handleProfileFormSubmit)
-      }}
-    </div>
-  </div>
+  {{profile/edit/-components/route-content
+    --user=this.model
+    --onProfileFormSubmit=(action this.handleProfileFormSubmit)
+  }}
 </section>

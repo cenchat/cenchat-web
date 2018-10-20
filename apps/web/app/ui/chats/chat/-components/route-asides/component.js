@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 /**
- * @class ChatsChatRouteContent
+ * @class ChatsChatRouteAsides
  * @namespace Component
  * @extends Ember.Component
  */

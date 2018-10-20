@@ -6,7 +6,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { setupTestState } from '@cenchat/firebase/test-support';
 import sinon from 'sinon';
 
-module('Integration | Component | chats/chat/-components/route-content/privacy-form', function (hooks) {
+module('Integration | Component | chats/chat/-components/route-asides/privacy-form', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(async function () {
@@ -21,7 +21,7 @@ module('Integration | Component | chats/chat/-components/route-content/privacy-f
 
     // Arrange
     await render(hbs`
-      {{chats/chat/-components/route-content/privacy-form
+      {{chats/chat/-components/route-asides/privacy-form
         --chat=chat
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
       }}
@@ -41,7 +41,7 @@ module('Integration | Component | chats/chat/-components/route-content/privacy-f
     const spy = sinon.spy(this, 'onPrivacyFormSubmit');
 
     await render(hbs`
-      {{chats/chat/-components/route-content/privacy-form
+      {{chats/chat/-components/route-asides/privacy-form
         --chat=chat
         --onPrivacyFormSubmit=(action onPrivacyFormSubmit)
       }}

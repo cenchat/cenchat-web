@@ -1,4 +1,4 @@
-import { click, fillIn, render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -136,27 +136,5 @@ module('Integration | Component | chat-composer', function (hooks) {
 
     // Assert
     assert.deepEqual(spy.componentArgsType, { onGifClick: 'function', onStickerClick: 'function' });
-  });
-
-  test('should hide <ChatComposerSubToolbar /> when sending a message', async function (assert) {
-    assert.expect(1);
-
-    // Arrange
-    await render(hbs`
-      {{chat-composer
-          --session=session
-          --chat=chat
-          --isReadOnlyDisabled=isReadOnlyDisabled
-          --onSendMessageClick=(action onSendMessageClick)}}
-    `);
-
-    await click('[data-test-chat-composer-main-toolbar="show-sub-toolbar-button"]');
-
-    // Act
-    await fillIn('[data-test-chat-composer-main-toolbar="field"]', 'Foo');
-    await click('[data-test-chat-composer-main-toolbar="send-button"]');
-
-    // Assert
-    assert.dom('[data-test-chat-composer-sub-toolbar="host"]').doesNotExist();
   });
 });
