@@ -205,9 +205,13 @@
     closeButtonElement.innerHTML = '&#10006;';
 
     closeButtonElement.classList.add('cenchat-widget-container__close-button');
-    closeButtonElement.addEventListener('click', () => (
+    closeButtonElement.addEventListener('click', () => {
       document.querySelector('.cenchat-widget-container').classList.remove('cenchat-widget-container--visible')
-    ));
+
+      if (window.matchMedia('(max-width: 959px)').matches) {
+        document.documentElement.style.removeProperty('overflow');
+      }
+    });
     menuElement.appendChild(closeButtonElement);
     document.body.appendChild(containerElement);
   }
@@ -220,6 +224,10 @@
 
     buttonElement.addEventListener('click', () => {
       document.querySelector('.cenchat-widget-container').classList.add('cenchat-widget-container--visible');
+
+      if (window.matchMedia('(max-width: 959px)').matches) {
+        document.documentElement.style.setProperty('overflow', 'hidden');
+      }
 
       showIframeElement();
     });
