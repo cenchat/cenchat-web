@@ -53,6 +53,7 @@ module('Unit | Controller | profile/edit', function (hooks) {
     // Act
     await controller.handleProfileFormSubmit({
       displayName: 'Foo',
+      shortBio: 'Hello',
       username: 'Bar',
     }, {
       preventDefault: sinon.stub(),

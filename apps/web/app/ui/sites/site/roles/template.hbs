@@ -1,0 +1,19 @@
+{{#side-nav class="section liquid-fire-side-nav"}}
+  {{sites/site/roles/-components/route-header
+    --areThereAnyRoleChanges=this.areThereAnyRoleChanges
+    --onSaveRolesClick=(action this.handleSaveRolesClick)
+  }}
+
+  {{sites/site/roles/-components/route-content
+    --roleChange=this.roleChange
+    --usersWithRole=this.usersWithRole
+    --usersWithoutRole=this.usersWithoutRole
+    --areThereAnyRoleChanges=this.areThereAnyRoleChanges
+    --onSearchUserInput=(action this.handleSearchUserInput)
+    --onAddRoleClick=(action this.handleAddRoleClick)
+    --onRemoveRoleClick=(action this.handleRemoveRoleClick)
+    --onRemoveRoleChangeClick=(action this.handleRemoveRoleChangeClick)
+  }}
+
+  {{yield}}
+{{/side-nav}}

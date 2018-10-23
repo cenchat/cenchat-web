@@ -1,0 +1,11 @@
+<div class="section__item">
+  <div class="card">
+    {{ce-field
+      class="card__field"
+      data-test-search-form="search-field"
+      type="search" 
+      label="Search for a user"
+      --onInput=(action this.triggerSearchUserInput)
+    }}
+  </div>
+</div>

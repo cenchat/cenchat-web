@@ -60,7 +60,7 @@
     "firebase": "^5.5.3",
     "liquid-fire": "^0.29.5",
     "loader.js": "^4.7.0",
-    "mock-cloud-firestore": "^0.6.0",
+    "mock-cloud-firestore": "^0.7.0",
     "normalize.css": "^8.0.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.0",
