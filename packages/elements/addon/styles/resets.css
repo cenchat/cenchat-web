@@ -3,6 +3,22 @@ html {
 }
 
 /**
+ * Remove appearance for Safari
+ */
+ input,
+ textarea {
+   -webkit-appearance: none;
+ }
+
+/**
+ * Remove appearance for Firefox and Webkit/Blink browsers
+ */
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/**
  * Reset Segoe UI font to include font-weight 500 for Firefox
  */
 @font-face {
