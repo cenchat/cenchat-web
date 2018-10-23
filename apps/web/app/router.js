@@ -19,7 +19,9 @@ Router.map(function() {
   });
   this.route('sites', function() {
     this.route('new');
-    this.route('site', { path: '/:site_id' });
+    this.route('site', { path: '/:site_id' }, function() {
+      this.route('roles');
+    });
   });
 });
 

@@ -1,4 +1,4 @@
-<section class="section liquid-fire-side-nav">
+<section class="section liquid-fire-detail">
   {{#ce-top-bar}}
     {{ce-icon-link-button
       href=(href-to "sites")
@@ -7,10 +7,18 @@
       icon="arrow_back"
     }}
     <h1>{{this.model.displayName}}</h1>
+    {{ce-icon-link-button
+      href=(href-to "sites.site.roles" this.model.id)
+      title="Navigate back"
+      aria-label="Navigate back"
+      icon="group"
+    }}
   {{/ce-top-bar}}
 
   {{sites/site/-components/route-content
     --site=this.model
     --onVerifySiteClick=(action this.handleVerifySiteClick)
   }}
+
+  {{liquid-outlet class="liquid-fire-side-nav-outlet"}}
 </section>

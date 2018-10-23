@@ -1,0 +1,54 @@
+<div class="section__content">
+  {{sites/site/roles/-components/route-content/search-form
+    --onSearchUserInput=(action --onSearchUserInput)
+  }}
+
+  {{#if --areThereAnyRoleChanges}}
+    <section class="section__item">
+      {{#ce-subheader class="section__sub-header"}}
+        <h5>Pending changes</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/roles/-components/route-content/change-list
+          --roleChange=--roleChange
+          --onRemoveRoleChangeClick=(action --onRemoveRoleChangeClick)
+        }}
+      </article>
+    </section>
+  {{/if}}
+
+  {{#if --usersWithoutRole}}
+    <section class="section__item">
+      {{#ce-subheader class="section__sub-header"}}
+        <h5>Non-admins</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/roles/-components/route-content/user-list
+          --users=--usersWithoutRole
+          --hasRole=false
+          --onAddRoleClick=(action --onAddRoleClick)
+          --onRemoveRoleClick=(action --onRemoveRoleClick)
+        }}
+      </article>
+    </section>
+  {{/if}}
+
+  {{#if --usersWithRole}}
+    <section class="section__item">
+      {{#ce-subheader class="section__sub-header"}}
+        <h5>Admins</h5>
+      {{/ce-subheader}}
+
+      <article class="card">
+        {{sites/site/roles/-components/route-content/user-list
+          --users=--usersWithRole
+          --hasRole=true
+          --onAddRoleClick=(action --onAddRoleClick)
+          --onRemoveRoleClick=(action --onRemoveRoleClick)
+        }}
+      </article>
+    </section>
+  {{/if}}
+</div>

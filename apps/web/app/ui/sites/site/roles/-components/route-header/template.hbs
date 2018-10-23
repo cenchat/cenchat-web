@@ -1,0 +1,20 @@
+{{#ce-top-bar}}
+  {{ce-icon-link-button
+    data-test-route-header="navigate-back-link"
+    href=(href-to "sites.site")
+    title="Navigate back"
+    aria-label="Navigate back"
+    icon="arrow_back"
+  }}
+
+  <h2>Roles</h2>
+
+  {{ce-icon-button
+    data-test-route-header="save-button"
+    title="Save roles"
+    aria-label="Save roles"
+    disabled=(not --areThereAnyRoleChanges)
+    icon="done"
+    --onClick=(action --onSaveRolesClick)
+  }}
+{{/ce-top-bar}}

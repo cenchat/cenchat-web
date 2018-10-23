@@ -1,0 +1,38 @@
+<li class="list__item" data-test-user-list-item={{--user.id}}>
+  {{ce-image
+    class="list__avatar list__avatar--circle"
+    data-test-user-list-item="photo"
+    src=(get-user-photo --user)
+    alt=--user.displayName
+  }}
+
+  <div class="list__multi-line-content">
+    <h2 class="list__primary-text" data-test-user-list-item="name">
+      {{--user.displayName}}
+    </h2>
+
+    {{#if --user.displayUsername}}
+      <p class="list__secondary-text" data-test-user-list-item="username">
+        @{{--user.displayUsername}}
+      </p>
+    {{/if}}
+  </div>
+
+  {{#if --hasRole}}
+    {{ce-icon-button
+      data-test-user-list-item="remove-role-button"
+      title="Remove role"
+      aria-label="Remove role"
+      icon="remove_circle"
+      --onClick=(action --onRemoveRoleClick --user)
+    }}
+  {{else}}
+    {{ce-icon-button
+      data-test-user-list-item="add-role-button"
+      title="Add role"
+      aria-label="Add role"
+      icon="add_circle"
+      --onClick=(action --onAddRoleClick --user)
+    }}
+  {{/if}}
+</li>

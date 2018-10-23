@@ -396,13 +396,13 @@ export default function getFixtureData() {
         __doc__: {
           user_a: {
             displayName: 'User A',
-            displayUsername: null,
+            displayUsername: 'user_a',
             metaInfo: '__ref__:userMetaInfos/user_a',
             name: 'user a',
             photoUrl: 'user_a.jpg',
             provider: { facebook: 'fb_user_a' },
             shortBio: null,
-            username: null,
+            username: 'user_a',
 
             __collection__: {
               chats: {

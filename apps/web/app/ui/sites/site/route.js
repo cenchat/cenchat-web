@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 /**
- * @class Sites
+ * @class SitesSite
  * @namespace Route
  * @extends Ember.Route
  */
