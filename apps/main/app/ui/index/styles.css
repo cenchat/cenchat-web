@@ -1,16 +1,11 @@
-.index_route-content {
-  flex: 1;
-}
-
-.index_route-content__cover {
+.index__cover {
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-content: center;
 }
 
 @media (min-width: 960px) {
-  .index_route-content__cover {
+  .index__cover {
     max-width: 600px;
     padding-top: 56px;
     margin-right: auto;
@@ -18,7 +13,7 @@
   }
 }
 
-.index_route-content__cover-title {
+.index__cover-title {
   padding: 48px 16px;
   margin-top: 0;
   margin-bottom: 16px;
@@ -31,12 +26,12 @@
 }
 
 @media (min-width: 960px) {
-  .index_route-content__cover-title {
+  .index__cover-title {
     border-radius: var(--border-radius-square);
   }
 }
 
-.index_route-content__cover-description {
+.index__cover-description {
   padding-right: 16px;
   padding-left: 16px;
   margin-top: 0;
@@ -48,32 +43,42 @@
   text-align: center;
 }
 
-.index_route-content__cover-try-it-button {
+.index__cover-hint {
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: var(--font-size-16);
+  font-style: italic;
+  line-height: var(--font-size-16);
+  color: var(--font-hint-color);
+  text-align: center;
+}
+
+.index__cover-try-it-button {
   margin-right: auto;
   margin-bottom: 48px;
   margin-left: auto;
 }
 
-.index_route-content__marketing {
-  background-color: #fafafa;
+.index__features {
+  padding-right: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
 }
 
-.index_route-content__marketing-title {
-  padding: 48px;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: var(--font-size-34);
-  font-weight: var(--font-weight-light);
-  line-height: var(--line-height-34);
-  text-align: center;
-}
+@media (min-width: 960px) {
+  .index__features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-.index_route-content__benefits {
-  padding: 16px;
-}
-
-.index_route-content__benefit {
-  background-color: #fff;
-  border: 1px solid var(--divider-color);
-  border-radius: var(--border-radius-square);
+  .index__features .card {
+    width: 33.33%;
+    margin: 8px;
+  }
 }

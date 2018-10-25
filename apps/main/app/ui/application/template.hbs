@@ -1,0 +1,35 @@
+{{head-layout}}
+
+{{#cenchat-header class="layout__header"}}
+  {{#ce-link-button href=(href-to "docs")}}Docs{{/ce-link-button}}
+  {{#ce-link-button href="https://web.cenchat.com"}}Sign in{{/ce-link-button}}
+{{/cenchat-header}}
+
+{{outlet}}
+
+<footer class="application__footer">
+  <div class="application__footer-wrapper">
+    <a
+      class="application__footer-link"
+      href={{href-to "policies.terms"}}
+      rel="noopener noreferrer"
+    >
+      Terms
+    </a>
+
+    <a
+      class="application__footer-link"
+      href={{href-to "policies.privacy"}}
+      rel="noopener noreferrer"
+    >
+      Privacy
+    </a>
+
+    <a
+      class="application__footer-link application__footer-link--right"
+      href="mailto:support@cenchat.com"
+    >
+      Contact us
+    </a>
+  </div>
+</footer>

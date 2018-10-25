@@ -1,0 +1,23 @@
+.snippet {
+  padding: 0.15em 0.4em;
+  overflow-x: auto;
+  background-color: var(--brand-color);
+  border-radius: var(--border-radius-square);
+}
+
+.snippet__block-code {
+  display: block;
+  color: #fff;
+}
+
+.snippet__block-code--multiline {
+  white-space: pre;
+}
+
+.snippet__inline-code {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  color: #fff;
+  background-color: var(--brand-color);
+  border-radius: var(--border-radius-square);
+}

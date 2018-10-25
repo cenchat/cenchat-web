@@ -1,0 +1,25 @@
+<main class="layout__main">
+  <section class="docs">
+    <h2 class="docs__heading">Documentation</h2>
+    <p class="docs__paragraph">Setting up Cenchat for your website is just an easy 3-step process and it should only take a few minutes to get it up and running:</p>
+    <ol class="docs__list">
+      <li>Creating a Cenchat Site at <a href="https://web.cenchat.com" rel="noopener noreferrer" target="_blank">web.cenchat.com</a></li>
+      <li>Verify that you own that website</li>
+      <li>Integrate Cenchat in your website</li>
+    </ol>
+
+    <section>
+      <h3 class="docs__heading">How does the website verification work?</h3>
+      <p class="docs__paragraph">Our system will crawl your website for a specific <code class="snippet__inline-code">&lt;meta&gt;</code> tag in your web page. This tag will be provided by us and you should insert it at the root of your website and every web page that will use Cenchat.</p>
+      <p class="docs__paragraph">To learn more about website verification, click <a href={{href-to "docs.verify-site"}}>here</a>.</p>
+    </section>
+
+    <section>
+      <h3 class="docs__heading">How does integrating Cenchat to my website work?</h3>
+      <p class="docs__paragraph">You'll just have to create a <code class="snippet__inline-code">&lt;button&gt;</code> and a <code class="snippet__inline-code">&lt;script&gt;</code> tag. These tags will also be provided by us and you should insert it at every web page that will use Cenchat. Once you have those, Cenchat can be opened by clicking that button.</p>
+      <p class="docs__paragraph">To learn more about integrating Cenchat, click <a href={{href-to "docs.integration"}}>here</a>.</p>
+    </section>
+  </section>
+
+  {{outlet}}
+</main>

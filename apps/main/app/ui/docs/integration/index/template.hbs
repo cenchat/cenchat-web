@@ -1,0 +1,23 @@
+<main class="layout__main">
+  <section class="docs">
+    <h2 class="docs__heading">Integrate Cenchat to your website</h2>
+    <p class="docs__paragraph">Choose the integration method below that fits your website</p>
+    
+    <ul class="card list">
+      <li class="list__item">
+        <a class="list__action" href={{href-to "docs.integration.custom"}}>
+          {{ce-image
+            class="list__avatar"
+            src="https://firebasestorage.googleapis.com/v0/b/cenchat-app.appspot.com/o/assets%2Fimages%2Fthird-party%2Fhtml5%2Fhtml5-logo_512.png?alt=media&token=2ec683b1-3fca-46b2-af99-8b3436bbdeea"
+            alt="Custom website"
+          }}
+          <div class="list__single-line-content">
+            <h3 class="list__primary-text">Custom website</h3>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  {{outlet}}
+</main>

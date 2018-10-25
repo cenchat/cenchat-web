@@ -37,6 +37,18 @@ module.exports = function (defaults) {
         ],
       },
     },
+    prember: {
+      urls: [
+        '/',
+        '/docs',
+        '/docs/integration',
+        '/docs/integration/custom',
+        '/docs/verify-site',
+        '/policies/privacy',
+        '/policies/rules',
+        '/policies/terms',
+      ],
+    },
     stylelint: {
       linterConfig: { syntax: 'css' },
     },
