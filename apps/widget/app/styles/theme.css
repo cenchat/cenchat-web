@@ -11,7 +11,7 @@
   --surface-background-color: #fdfdfd;
   --active-background-color: #dedede;
   --hover-background-color: #f0f0f0;
-  --disabled-background-color: var(--dark-38);
+  --disabled-color: var(--dark-38);
   --success-color: #69f0ae;
   --danger-color: #ff5252;
   --warning-color: #ff0;
@@ -71,7 +71,7 @@
   --surface-background-color: #424242;
   --active-background-color: #9d9d9d;
   --hover-background-color: #c4c4c4;
-  --disabled-background-color: var(--light-50);
+  --disabled-color: var(--light-50);
   --success-color: #69f0ae;
   --danger-color: #ff5252;
   --warning-color: #ff0;

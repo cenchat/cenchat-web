@@ -12,7 +12,7 @@
   --surface-background-color: #fdfdfd;
   --active-background-color: #dedede;
   --hover-background-color: #f0f0f0;
-  --disabled-background-color: var(--dark-38);
+  --disabled-color: var(--dark-38);
   --success-color: #69f0ae;
   --danger-color: #ff5252;
   --warning-color: #ff0;
