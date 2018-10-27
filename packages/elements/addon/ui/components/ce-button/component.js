@@ -31,6 +31,7 @@ export default Component.extend({
    */
   attributeBindings: [
     'data-test',
+    'data-page-id',
     'type',
     'aria-expanded',
     'aria-haspopup',
