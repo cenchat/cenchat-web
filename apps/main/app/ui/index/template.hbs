@@ -4,7 +4,12 @@
     <p class="index__cover-description">Chat based solution for websites that don't want to bother moderating their comment section</p>
     <p class="index__cover-hint">Cenchat is currently in public beta</p>
 
-    {{#ce-button class="index__cover-try-it-button" outlined=true}}
+    {{#ce-button
+      class="index__cover-try-it-button"
+      id="cenchat-widget-button"
+      data-page-id="L4hf3QwUhCq9dKX5wBpn"
+      outlined=true
+    }}
       Try a demo
     {{/ce-button}}
   </section>
@@ -25,6 +30,8 @@
       <p class="card__message">Publicize insightful chats as read-only so the rest of your community can consume it</p>
     </article>
   </section>
+
+  {{index/-components/route-content}}
 
   {{outlet}}
 </main>

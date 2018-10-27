@@ -24,6 +24,7 @@ module.exports = function(environment) {
     },
 
     'ember-component-css': { namespacing: false },
+    widgetHost: 'http://192.168.1.14:8000',
   };
 
   if (environment === 'development') {
@@ -48,6 +49,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.widgetHost = 'https://widget.cenchat.com';
   }
 
   return ENV;

@@ -25,6 +25,13 @@ export default Route.extend({
   /**
    * @override
    */
+  beforeModel() {
+    this.store.subscribe(() => this.refresh(), this.routeName);
+  },
+
+  /**
+   * @override
+   */
   model() {
     const db = this.firebase.firestore();
 
