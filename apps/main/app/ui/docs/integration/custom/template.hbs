@@ -1,0 +1,34 @@
+<main class="layout__main">
+  <section class="docs">
+    <h2 class="docs__heading">Integration Cenchat in a custom website</h2>
+    <p class="docs__paragraph">This is the universal way to integrate Cenchat to any type of website.</p>
+
+    <section>
+      <h3 class="docs__heading">Using an ID</h3>
+      <p class="docs__paragraph">Add the <code class="snippet__inline-code">&lt;script&gt;</code> tag below at the end of your web page's <code class="snippet__inline-code">&lt;body&gt;</code> tag.</p>
+      
+      <p class="docs__paragraph snippet">
+        <code class="snippet__block-code snippet__block-code--multiline">&lt;script src="https://widget.cenchat.com/embeds/1.0.0/universal.js"&gt;&lt;/script&gt;</code>
+      </p>
+
+      <p class="docs__paragraph">
+        Next, add the <code class="snippet__inline-code">&lt;button&gt;</code> tag below anywhere in your page. You'll need to replace <code class="snippet__inline-code">[page_id]</code> with an ID that uniquely identifies that page across your website.
+      </p>
+
+      <p class="docs__paragraph snippet">
+        <code class="snippet__block-code snippet__block-code--multiline">&lt;button id="cenchat-widget-button" data-page-id="[page_id]"&gt;Start chat&lt;/button&gt;</code>
+      </p>
+
+      <p class="docs__paragraph">Note that you can style that button however you want.</p>
+    </section>
+
+    <section>
+      <h3 class="docs__heading">Using your page's URL</h3>
+      <p class="docs__paragraph">This is similar to what's explained above except that you'll remove the <code class="snippet__inline-code">data-page-id="[page_id]"</code> part.</p>
+      <p class="docs__paragraph">With this method, the URL of the page will be used to determine which set of chats will be shown.</p>
+      <p class="docs__paragraph">Take note that URLs can be unreliable as they could easily change, such as when renaming an article, changing domain, and many more. Should you go with this method, a unique ID will be generated for you which you can use in the future.</p>
+    </section>
+  </section>
+
+  {{outlet}}
+</main>

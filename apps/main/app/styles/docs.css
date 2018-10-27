@@ -1,4 +1,4 @@
-.legal {
+.docs {
   max-width: 744px;
   padding-right: 16px;
   padding-left: 16px;
@@ -6,28 +6,22 @@
   margin-left: auto;
 }
 
-.legal__top-bar div {
-  max-width: 784px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.legal__header {
+.docs__heading {
   font-family: var(--font-family);
   font-weight: var(--font-weight-medium);
 }
 
-h2.legal__header {
+h2.docs__heading {
   font-size: var(--font-size-24);
   line-height: var(--line-height-24);
 }
 
-h3.legal__header {
+h3.docs__heading {
   font-size: var(--font-size-20);
   line-height: var(--line-height-20);
 }
 
-.legal__paragraph,
-.legal__list li {
+.docs__paragraph,
+.docs__list li {
   line-height: var(--line-height-16);
 }

@@ -1,25 +1,26 @@
 @import "card.css";
+@import "docs.css";
 @import "layout.css";
-@import "legal.css";
 @import "pod-styles.css";
+@import "snippet.css";
 @import "theme.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   font-family: var(--font-family);
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 a {
-  color: var(--cenchat-brand-color);
+  color: var(--brand-color);
 }
 
 a:visited:not(.ce-link-button):not(.ce-icon-link-button) {
-  color: var(--cenchat-brand-color);
+  color: var(--brand-color);
 }
 
 strong {

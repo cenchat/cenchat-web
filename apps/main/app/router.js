@@ -12,6 +12,12 @@ Router.map(function() {
     this.route('terms');
     this.route('rules');
   });
+  this.route('docs', function() {
+    this.route('verify-site');
+    this.route('integration', function() {
+      this.route('custom');
+    });
+  });
 });
 
 export default Router;

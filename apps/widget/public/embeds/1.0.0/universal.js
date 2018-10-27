@@ -206,7 +206,7 @@
 
     closeButtonElement.classList.add('cenchat-widget-container__close-button');
     closeButtonElement.addEventListener('click', () => {
-      document.querySelector('.cenchat-widget-container').classList.remove('cenchat-widget-container--visible')
+      document.querySelector('.cenchat-widget-container').classList.remove('cenchat-widget-container--visible');
 
       if (window.matchMedia('(max-width: 959px)').matches) {
         document.documentElement.style.removeProperty('overflow');
