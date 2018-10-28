@@ -1,10 +1,12 @@
 {{! template-lint-disable no-invalid-interactive }}
 
-<article
-  class="card card--clickable"
-  data-test-chat-collection-item={{--chat.id}}
-  onclick={{action this.handleChatClick --chat.id}}
->
+<article class="card" data-test-chat-collection-item={{--chat.id}}>
+  <a
+    class="card__primary-link"
+    href={{href-to "sites.site.pages.page.explore.chat" --chat.id}}
+  >
+  </a>
+
   <address
     class="sites-site-pages-page-explore_route-content-chat-collection-item__address"
   >
