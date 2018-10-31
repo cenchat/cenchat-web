@@ -1,0 +1,67 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.splash-screen--loaded {
+  animation-name: splash-screen-fade-to-none;
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+}
+
+.splash-screen__logo {
+  fill: var(--cenchat-brand-color);
+  animation-name: splash-screen-slight-fade-in;
+  animation-duration: 5000ms;
+  animation-timing-function: var(--motion-deceleration-curve);
+  animation-fill-mode: forwards;
+}
+
+.splash-screen--loaded .splash-screen__logo {
+  animation-name: splash-screen-slight-to-complete-fade-in;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes splash-screen-slight-fade-in {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes splash-screen-slight-to-complete-fade-in {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splash-screen-fade-to-none {
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

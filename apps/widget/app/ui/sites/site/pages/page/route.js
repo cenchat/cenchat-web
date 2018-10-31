@@ -44,6 +44,17 @@ export default Route.extend({
   /**
    * @override
    */
+  afterModel() {
+    const splashScreenElement = document.querySelector('.splash-screen');
+
+    if (splashScreenElement) {
+      splashScreenElement.classList.add('splash-screen--loaded');
+    }
+  },
+
+  /**
+   * @override
+   */
   redirect(model, transition) {
     if (model && transition.targetName === 'sites.site.pages.page.index') {
       this.transitionTo('sites.site.pages.page.my-chat');
