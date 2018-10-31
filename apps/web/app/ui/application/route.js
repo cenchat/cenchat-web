@@ -67,6 +67,7 @@ export default Route.extend({
 
       this.set('session.content.model', user);
     });
+    this.hideSplashScreen();
   },
 
   /**
@@ -122,6 +123,17 @@ export default Route.extend({
       } catch (error) {
         // Do nothing
       }
+    }
+  },
+
+  /**
+   * @function
+   */
+  hideSplashScreen() {
+    const splashScreenElement = document.querySelector('.splash-screen');
+
+    if (splashScreenElement) {
+      splashScreenElement.classList.add('splash-screen--loaded');
     }
   },
 });
