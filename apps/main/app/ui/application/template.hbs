@@ -1,9 +1,47 @@
 {{head-layout}}
 
 {{#cenchat-header class="layout__header"}}
-  {{#ce-link-button href=(href-to "pricing")}}Pricing{{/ce-link-button}}
-  {{#ce-link-button href=(href-to "docs")}}Docs{{/ce-link-button}}
-  {{#ce-link-button href="https://web.cenchat.com"}}Sign in{{/ce-link-button}}
+  {{#ce-dropdown-button
+    class="application__more-button"
+    icon="more_vert"
+    position="ll"
+  }}
+    <li class="list__item">
+      <a class="list__action" href={{href-to "pricing"}}>
+        <div>
+          <div class="list__single-line-content">Pricing</div>
+        </div>
+      </a>
+    </li>
+
+    <li class="list__item">
+      <a class="list__action" href={{href-to "docs"}}>
+        <div>
+          <div class="list__single-line-content">Docs</div>
+        </div>
+      </a>
+    </li>
+
+    <li class="list__item">
+      <a class="list__action" href="https://web.cenchat.com">
+        <div>
+          <div class="list__single-line-content">Sign in</div>
+        </div>
+      </a>
+    </li>
+  {{/ce-dropdown-button}}
+
+  {{#ce-link-button class="application__nav-link" href=(href-to "pricing")}}
+    Pricing
+  {{/ce-link-button}}
+
+  {{#ce-link-button class="application__nav-link" href=(href-to "docs")}}
+    Docs
+  {{/ce-link-button}}
+
+  {{#ce-link-button class="application__nav-link" href="https://web.cenchat.com"}}
+    Sign in
+  {{/ce-link-button}}
 {{/cenchat-header}}
 
 {{outlet}}

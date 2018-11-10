@@ -1,3 +1,17 @@
+.application__nav-link {
+  display: none;
+}
+
+@media (min-width: 400px) {
+  .application__nav-link {
+    display: inline;
+  }
+
+  .application__more-button {
+    display: none;
+  }
+}
+
 .application__footer {
   padding: 48px 16px;
   background-color: #fafafa;

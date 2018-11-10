@@ -11,6 +11,7 @@
 .ce-top-bar-row > h4,
 .ce-top-bar-row > h5,
 .ce-top-bar-row > h6 {
+  flex: 1;
   box-sizing: border-box;
   padding-right: 8px;
   padding-left: 8px;
@@ -25,13 +26,4 @@
   white-space: nowrap;
   background-color: var(--heading-background-color);
   border-radius: var(--border-radius-square);
-}
-
-.ce-top-bar-row > h1 + *,
-.ce-top-bar-row > h2 + *,
-.ce-top-bar-row > h3 + *,
-.ce-top-bar-row > h4 + *,
-.ce-top-bar-row > h5 + *,
-.ce-top-bar-row > h6 + * {
-  margin-left: auto;
 }
