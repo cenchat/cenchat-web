@@ -4,6 +4,10 @@
   align-items: flex-end;
 }
 
+.chat-content-time-group-list-item-author-list-item__left-author-group .chat-content-time-group-list-item-author-list-item-message-list {
+  flex: 1;
+}
+
 .chat-content-time-group-list-item-author-list-item-item-message-list__author-name {
   margin-right: 16px;
   margin-left: 16px;

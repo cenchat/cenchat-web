@@ -13,11 +13,13 @@
 }
 
 .layout__header div {
-  max-width: 1000px;
+  max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
 }
 
 .layout__main {
+  display: flex;
   flex: 1;
+  flex-direction: column;
 }
