@@ -18,6 +18,7 @@ Router.map(function() {
       this.route('custom');
     });
   });
+  this.route('pricing');
 });
 
 export default Router;

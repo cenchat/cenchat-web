@@ -1,34 +1,36 @@
 <main class="layout__main">
-  <section class="index__cover">
-    <h2 class="index__cover-title">Messaging for websites</h2>
-    <p class="index__cover-description">Chat based solution for websites that don't want to bother moderating their comment section</p>
-    <p class="index__cover-hint">Cenchat is currently in public beta</p>
+  <section class="index__wrapper">
+    <div class="index__jumbotron">
+      <h2 class="index__cover-title">Messaging for websites</h2>
+      <p class="index__cover-description">Chat based solution for websites that don't want to bother moderating their comment section</p>
+      <p class="index__cover-hint">Cenchat is currently in public beta</p>
 
-    {{#ce-button
-      class="index__cover-try-it-button"
-      id="cenchat-widget-button"
-      data-page-id="L4hf3QwUhCq9dKX5wBpn"
-      outlined=true
-    }}
-      Try a demo
-    {{/ce-button}}
-  </section>
+      {{#ce-button
+        class="index__cover-try-it-button"
+        id="cenchat-widget-button"
+        data-page-id="L4hf3QwUhCq9dKX5wBpn"
+        outlined=true
+      }}
+        Try a demo
+      {{/ce-button}}
+    </div>
 
-  <section class="index__features">
-    <article class="card">
-      <h3 class="card__heading">Modern communication for modern times</h3>
-      <p class="card__message">Embrace the role of social networks for general conversations but keep an open and direct line available for the official stuff</p>
-    </article>
+    <div class="index__features">
+      <article class="card">
+        <h3 class="card__heading">Modern communication for modern times</h3>
+        <p class="card__message">Embrace the role of social networks for general conversations but keep an open and direct line available for the official stuff</p>
+      </article>
 
-    <article class="card">
-      <h3 class="card__heading">Prevent online harassment</h3>
-      <p class="card__message">Chats are private by default so you don't have to worry about those toxic messages spreading across your website</p>
-    </article>
+      <article class="card">
+        <h3 class="card__heading">Prevent online harassment</h3>
+        <p class="card__message">Chats are private by default so you don't have to worry about those toxic messages spreading across your website</p>
+      </article>
 
-    <article class="card">
-      <h3 class="card__heading">Good conversations are worth reading</h3>
-      <p class="card__message">Publicize insightful chats as read-only so the rest of your community can consume it</p>
-    </article>
+      <article class="card">
+        <h3 class="card__heading">Good conversations are worth reading</h3>
+        <p class="card__message">Publicize insightful chats as read-only so the rest of your community can consume it</p>
+      </article>
+    </div>
   </section>
 
   {{index/-components/route-content}}
